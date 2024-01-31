@@ -1,0 +1,3 @@
+nav:
+    - ...                         # Add all files to beginning. This will include at least index[.*].md
+    - Omega to Alpha: example_dir # You can rename directories in default language here if need be
