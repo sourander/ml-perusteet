@@ -53,5 +53,5 @@ plugins:
 
 # TODO: Replace the copyright with correct. Also add LICENCE file. Template included.
 copyright: |
-  Copyright &copy; 2023 <a href="https://www.example.com">Example Organization</a>. 
-  Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">XX-XX-XX 4.0</a>
+  Copyright &copy; 2023 <a href="https://www.kamk.fi">Kajaanin Ammattikorkeakoulu Oy</a>. 
+  Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">BY-NC-ND 4.0</a>

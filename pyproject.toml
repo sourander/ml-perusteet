@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "doc-skeleton"
+name = "ml-perusteet"
 version = "0.1.0"
 description = ""
 authors = ["Jani Sourander <sourander@gmail.com>"]
