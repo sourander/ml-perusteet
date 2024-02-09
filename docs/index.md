@@ -1,18 +1,16 @@
-# Welcome to MkDocs
+# Tervetuloa kurssille
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Oppimateriaali on tarkoitettu Kajaanin Ammattikorkeakoulun ensimmäisen tai toisen vuoden opiskelijoille. Kurssilla tutustutaan koneoppimiseen. Ohjelmointikielenä on Python, joten kursilla oletetaan vähintäänkin Pythonin alkeiden hallintaa. Myös seuraavat teknologiat on hyvä olla hallussa, tai ne pitää valmistautua ottamaan haltuun kurssin aikana:
 
-## Commands
+* Git
+* Jupyter Notebook
+* Pip ja Venv
+* Pandas ja Numpy -kirjastot
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+Huomaathan, että varsinaiset harjoitukset ja kurssitehtävät ovat muualla. Katso kurssin Moodle-sivulta tai kysy opettajalta.
 
-## Project layout
+## Faktavirheet
+Mikäli oppimateriaali sisältää virheellistä tietoa, tee jompi kumpi:
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md    # The documentation homepage.
-        index.fi.md # The documentation homepage in Finnish.
-        ...         # Other markdown pages, images and other files.
+* Forkkaa GitHubin repository ja tarjoa Pull Request, joka sisältää korjausehdotukset.
+* Ota yhteyttä ylläpitoon ja esittele virheellisen tiedon korjaus.
