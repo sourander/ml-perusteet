@@ -33,6 +33,8 @@ jobs:
           path: ./.venv
           key: venv-${{ hashFiles('poetry.lock') }}
       - name: Install the project dependencies
-        run: poetry install --no-root # No root skips installing the project itself. There is none.
+        # No root skips installing the project itself. There is none.
+        # Only main installs the main dependencies; scikit-learn is skipped.
+        run: poetry install --no-root --only main 
       - name: Deploy to gh-pages branch
         run: poetry run mkdocs gh-deploy --force # -f mkdocs.yml
