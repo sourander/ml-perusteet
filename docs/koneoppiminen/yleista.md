@@ -20,7 +20,21 @@ Datatieteet ovat tieteenala, joka laittaa koneoppimisen käytäntöön. Kontekst
 
 ## Tekoäly
 
-Tekoäly on vahvasti elokuvateollisuuden ja muun fiktion värittämä käsite. Osa fiktion tarjoamasta tiedosta on toki täyttä humpuukia, ja todellisuudessa tekoälyn hupun alta paljastuu pikemminkin tilastotiedettä ja matematiikkaa. Tämä ei kuitenkaan vähennä tekoälyn arvoa liiketoiminnan kannalta tärkeiden ongelmien ratkaisijana.
+Tekoäly on vahvasti elokuvateollisuuden ja muun fiktion värittämä käsite. Osa fiktion tarjoamasta tiedosta on toki täyttä humpuukia, ja todellisuudessa tekoälyn hupun alta paljastuu pikemminkin tilastotiedettä ja matematiikkaa. Tämä ei kuitenkaan vähennä tekoälyn arvoa liiketoiminnan kannalta tärkeiden ongelmien ratkaisijana. Tekoäly itsessään on kattotermi koneoppimiselle, ja se sisältää kaiken sellaisen teknologian, joka matkii ihmisenkaltaista älykkyyttä tavalla tai toisella. Näihin tapoihin kuuluvat myös sääntöpohjaiset järjestelmät (if-elif-elif-else).
+
+Tekoäly ei ole uusi keksintö. Ihmismielen päättelyn ymmärtämistä tai sitä vastaavan mekaanisen laitteen rakentamista on yritetty satoja ellei jopa tuhansia vuosia. Ensimmäinen neuroverkkotietokone, SNARC, rakennettiin vuonna 1950 Minskyn ja Edmondsin toimesta. Se koostui 40:stä keinotekoisesta neuronista, joiden rakennetta insiroivat ihmisaivojen neuronit. Vertailun vuoksi hedelmäkärpäsellä on noin 100 000 neuronia. 1950-luvulla ja 1960-luvulla tietokoneet olivat jo ratkaisseet tarinallisia ongelmia ja pelanneet shakkia. Nämä vuodet olivat täynnä toivoa ja suuria unelmia. Tekoälyn tutkijat tekivät ennusteita ja lupauksia tulevista menestystarinoistaan: tietokone voittaisi ihmisen shakissa 10 vuoden kuluessa. 1960-luvun puolivälistä 2000-luvun alkuun oli ajanjakso, joka sisälsi monia nousuja ja laskuja tai "hype-syklejä". Tämän aikakauden keskellä, 1980-luvulla, oli lyhyt hetki innostusta ja suuria toiveita. Miljardeja dollareita käytettiin erilaisiin tekoälyn sovelluksiin, mikä seurasi pettymystä. Tämä käynnisti uuden laskusuhdanteen tai *"tekoälyn talven"* (engl. AI winter). Tällä hetkellä koemme uutta tekoälyn saapumista, "tekoälyn kevättä". Toiveet ja odotukset ovat jälleen korkealla. Meillä on enemmän dataa ja laskentatehoa kuin koskaan, ja tekoälyn sovellukset ovat osoittautuneet liiketoiminnan kannalta hyödylliseksi, joten hypeen on varmasti syitä.
+
+### Tekoälyn määritelmä
+
+Jotta meillä voisi olla ristiriidaton määritelmä tekoälylle, meillä tulisi olla ensin ristiriidaton määritelmä (ihmisen) älykkyydelle. Tällaista ei ole, joten myös AI:n suhteen joudumme tyytymään vaihteleviin määritelmiin. Kirjassa "Artificial Intelligence: A Modern Approach" (S. Russell & P. Norvig, 3. painos, 2010) esitetään, että tekoäly on ala, joka pyrkii ei vain ymmärtämään, vaan myös rakentamaan älykkäitä toimijoita." Tekoälyn määritelmiä voidaan järjestää neljään kategoriaan: ihmismäisesti ajattelemiseen, rationaalisesti ajattelemiseen, ihmismäisesti toimimiseen ja rationaalisesti toimimiseen. Näiden neljän kategorian jakautuminen perustuu kahteen akseliin: ==rationaali-ihmismäinen== (enlg. rational-humanly) ja ==ajattelu-toiminta== (engl. thinking-acting). Jos tekoäly *toimii ihmismäisesti* (engl. acting humanly), sen käyttäytyminen on vaikea erottaa ihmisen käyttäytymisestä. Esimerkiksi kuulustelija ei tietäisi, käykö hän keskustelua botin vai ihmisen kanssa. Vastakohta tälle molemmilla akselilla on *rationaalisesti ajattelu* (engl. thinking rationally). Tämän määritelmän mukaan botti noudattaisi täydellistä päättelyprosessia. Kaikki olisi täysin virheetöntä logiikkaa.
+
+!!! question "Tehtävä"
+
+    Pohdi, mitä esteitä tulisi vastaan, jos yrittäisit ratkaista todellisen maailman ongelmia käyttäen bottia, joka pyrkii täydellisesti aukottomaan, rationaaliseen ajatteluun?
+
+*Rationaalinen toiminta* (engl. rational-acting) vaikuttaa olevan parhaiten soveltuva lähestymistapa käytännön tekoälylle. Rationaalinen toimija on olio, joka havaitsee ympäristönsä erilaisten antureiden avulla ja toimii sen mukaisesti, mutta pystyy sopeutumaan muutoksiin ja tavoittelee päämääriä. Tämän kurssin aikana luomme useita erilaisia rationaalisia toimijoita ja niiden komponentteja: yksi niistä on koneoppiminen, joka on tällä hetkellä hallitseva tapa rakentaa tekoälyä.
+
+Tämän materiaalin puitteissa voit luottaa seuraavaan määritelmään: *AI eli tekoäly on mitä tahansa, mikä ulkoapäin vaikuttaa joltakin, mikä tyypillisesti vaatii ihmisen älykkyyttä*. Esimerkiksi kielioppivirheitä tai syntaksivirheitä voi poistaa tekstistä sääntöpohjaisella logiikalla käyttämättä koneoppimista laisinkaan. Myös esimerkiksi "älyliikennevaloja" voi ohjata hyvinkin sääntöpohjaisesti.
 
 !!! question
 
@@ -32,17 +46,34 @@ Tekoäly on vahvasti elokuvateollisuuden ja muun fiktion värittämä käsite. O
     * The Matrix (1999/...)
     * Moon (2009)
     * Her (2013)
-    * Ex Machina (2014)
+
+### Tekoälyn haarat
+
+Tekoäly on kattokäsite ja sen alle lukeutuu eri aloja. Kirjassa Artificial Intelligence with Python (Joshi, P. 2017) esitellään tekoälyn eri haarat seuraavasti:
+
+* Koneoppiminen ja hahmontunnistus (engl. machine learning and pattern recognition): datasta oppiminen ja siitä ennustaminen. Tämän kurssin AI edustaa pääasiassa tätä.
+* Logiikkapohjainen AI (engl. logic-based AI): sääntöpohjaiset järjestelmät, jotka perustuvat logiikkaan. Käytetään esimerkiksi kielen parsimiseen.
+* Haku (engl. search): algoritmit, jotka etsivät esimerkiksi optimaalista reittiä. Peleistä ja navigaattoreista tuttuja.
+* Tiedon esittäminen (enlg. nowledge representation): yhteyksien luominen tiedon välille taksonomian tai muun hierarkisen järjestelmän avulla.
+* Suunnittelu (engl. planning): algoritmit, jotka suunnittelevat toimintaa tavoitteiden saavuttamiseksi.
+* Heuresitiikka (engl. heuristics): reittien tai ratkaisuiden etsiminen tilanteessa, jossa optimaalista ratkaisua ei ole mahdollista tai käytännöllistä löytää.
+* Geneettinen ohjelmointi (engl. genetic programming): algoritmit, jotka käyttävät evoluutioteoriaa ratkaisujen löytämiseen.
 
 ## Koneoppiminen
 
-Tarkistetaan määritelmä kirjallisuudesta, jota löytyy [Finna-palvelusta](https://kamk.finna.fi/).
+![Koneoppiminen, tekoäly ja datatiede](../images/AI-ML-DS.png)
+
+*Kuvio 2:* Koneoppiminen, tekoäly ja datatiede.
+
+Koneoppiminen on tekoälyn osa-alue. Kaikki koneoppiminen on tekoälyä, mutta kaikki tekoäly ei ole koneoppimista. Koneoppimisen määritelmään kuuluu, että tekoälymalli oppii datasta. Malli oppii siis kokemuksesta. Koneoppimismallin luominen ("mallinnus") on prosessi, jossa valittu koneoppimisalgoritmi oppii datasta. Ihminen valitsee sekä algoritmin että datan - ja näiden valinnalla on merkittävä vaikutus valmiin mallin laatuun.
+
+### Määritelmiä
 
 > Machine learning (ML) is a collection of algorithms and techniques used to design systems that learn from data. These systems are then able to perform predictions or deduce patterns from the supplied data.
 > 
-> Lähde: Lee, W. 2019. Python Machine Learning. Wiley.
+> Lähde: Lee, W. 2019. Python Machine Learning. Wiley. 
 
-Ja toinen määritelmä koneoppimiselle, jossa sitä verrataan yllä esiteltyyn AI-käsitteeseen.
+---
 
 > The machine learning portion of the picture enabled an AI to perform these tasks:
 > 
@@ -51,6 +82,26 @@ Ja toinen määritelmä koneoppimiselle, jossa sitä verrataan yllä esiteltyyn 
 > * Create new behaviors based on the recognized patterns
 > * Make decisions based on the success of failure of these behaviors.
 > 
-> Lähde: Mueller, P & Massaron, L. 2016. Machine Learning for Dummies. No Starch Press.
+> Lähde: Mueller, P & Massaron, L. 2016. Machine Learning for Dummies. No Starch Press. [Löytyy Finna-palvelusta](https://kamk.finna.fi/).
 
-Tässä materiaalissa tutustutaan eri koneoppimisen algoritmeihin ja niiden käyttöön Python-ohjelmointikielellä. Materiaalissa tutustutaan myös datan esikäsittelyyn, jotta data olisi koneoppimisen algoritmeille sopivassa muodossa. Valmiiden kirjastojen tai palveluiden käytön sijasta pyrimme ymmärtämään, mitä koneoppimisen algoritmit tekevät ja miten ne toimivat, joten algoritmit koodataan pääasiallisesti itse. Tämä ei ole tuotannossa yleinen tapa, sillä valmiit kirjastot on yleisesti optimoitu käsin koodattua Python-skriptiä paremmin. Sen sijaan tämä on algoritmeihin tutustumisen kannalta hyödyllinen lähestymistapa.
+---
+
+> "Difference between machine learning and AI: 
+> 
+> If it is written in Python, it's probably machine learning 
+>
+> If it is written in PowerPoint, it's probably AI" 
+>
+> Lähde: [Matt Velloso:n Twitter/X-postaus marraskuulta 2018](https://twitter.com/matvelloso/status/1065778379612282885?)
+
+---
+
+> "Machine learning is a field of study concerned with giving computers the ability to learn without being explicitly programmed." - Arthur Smith, 1959.
+
+---
+
+> "A computer program is said to learn from experience, E, with respect to a task, T, and a performance measure, P, if its performance on T, as measured by P, improves with experience E." - Tom Mitchell, 1998.
+
+---
+
+> "A program or system that builds (trains) a predictive model from input data. The system uses the learned model to make useful predictions from new (never-before-seen) data drawn from the same distribution as the one used to train the model. Machine learning also refers to the field of study concerned with these programs or systems." - Google Developers Machine Learning Glossary
