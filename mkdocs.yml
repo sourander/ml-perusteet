@@ -45,6 +45,12 @@ markdown_extensions:
   # Admonition call-outs such as "!!! note", and support for making call-outs collapsible
   - admonition
   - pymdownx.details
+  # Checkboxes
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  # Content tabs
+  - pymdownx.tabbed:
+      alternate_style: true
 
 plugins:
   # Navigation page ordering
