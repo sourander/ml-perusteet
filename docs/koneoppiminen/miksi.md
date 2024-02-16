@@ -6,6 +6,11 @@ Koneoppiminen keskittyy algoritmien kehittämiseen, jotka voivat oppia tietoa da
 
     Kuinka varmistaisit, että asiantuntija ei suosi omia mieltymyksiään? Koneoppimismallin objektiivisuus on numeraalisesti mitattavissa, mutta ei suinkaan vaivatonta. Kuinka tekisit tämän ihmisen kanssa?
 
+
+!!! tip
+
+    :book: Kannattaa tutustua myös Oulun Yliopiston julkaisemaan  kirjaan [Miten tekoäly vaikuttaa elämäämme 2050-luvulla?](https://oulurepo.oulu.fi/handle/10024/46333).
+
 Koneoppiminen voi myös auttaa löytämään uusia tietoa datasta, jota ihmiset eivät ole huomanneet. Koneoppimista käytetään monilla eri aloilla, kuten terveydenhuollossa, finanssialalla, markkinoinnissa ja teollisuudessa.
 
 ![Comic about classification](../images/xkcd_sphere_tastiness.png)
