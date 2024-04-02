@@ -1,2 +1,5 @@
 nav:
-    - ...
+  - index.md
+  - koneoppiminen
+  - data
+  - ...

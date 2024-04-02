@@ -30,21 +30,14 @@ def main():
     markdown_dir = Path(args.mds)
 
     print(f"[INFO] Scanning '{image_dir}' for images")
-    image_files = list_images(image_dir)
+    image_files: list[Path] = list_images(image_dir)
     print(f"[INFO] Finding matches in '{markdown_dir}' markdown files")
     image_mentions = find_image_mentions(image_files, markdown_dir)
 
-    if image_mentions:
-        print("[INFO] Matches:")
-        for image_file, md_file in image_mentions.items():
-            print(f"{image_file} => {md_file}")
-    else:
-        print("[INFO] No matches found.")
-
     # Check for unnecessary image files
-    unnecessary_images = set(image_files) - set(image_mentions.keys())
+    unnecessary_images = set([x.name for x in image_files]) - set(image_mentions.keys())
     if unnecessary_images:
-        print(f"[WARNING] {len(unnecessary_images)} unnecessary image files found:")
+        print(f"\n[WARNING] {len(unnecessary_images)} unnecessary image files found:")
         for image in unnecessary_images:
             print(image)
 

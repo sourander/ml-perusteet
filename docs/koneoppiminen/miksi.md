@@ -19,6 +19,10 @@ Koneoppiminen voi myös auttaa löytämään uusia tietoa datasta, jota ihmiset 
 
 ## Esimerkki: Kuvien luokittelu
 
+![A tourist manually classifying images](../images/dalle_polaroid_classification.jpg)
+
+**Kuvio 2:** *Kuvien luokittelu käsin on aikaa vievää ja tylsää. Tässä DALL-E 3:n näkemys.*
+
 Kuvittele, että olet ollut lomalla ja ottanut kuvia. Kävit lomalla kolmessa lokaatiossa: metsässä, vuorella ja museossa. Sinulla on yhteensä ==10,000 valokuvaa==. Kävit kussakin kohteessa useina eri päivinä, joten et voi tunnistaa kuvia helposti järjestämällä niitä päivämäärän tai juoksevan numeroinnin mukaan.
 
 **Nykytilanne**: kaikki 10,000 kuvaa ovat hakemistossa `vacation_pictures/`.
