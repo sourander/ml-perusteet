@@ -1,5 +1,6 @@
 nav:
   - bayes
   - puut
-  - regressio
-  - luokittelu
+  - "Etäisyys": distance
+  - linear
+  - ...

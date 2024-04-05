@@ -1,4 +1,4 @@
-Such wow.
+HUOM! Virhe on jo käsitelty dokumentissa [korrelaatio](../../data/korrelaatio.md). Käy kertaamassa RSME ja muut virheen mittaamisen menetelmät kyseisestä materiaalista. Alla olevissa esimerkeissä tarvitset tätä pohjatietona.
 
 ![Hours Studies vs Exam Points diagram](../../images/linreg_plot_study_time.png)
 

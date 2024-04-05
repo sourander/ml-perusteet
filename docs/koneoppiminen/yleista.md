@@ -69,9 +69,9 @@ Koneoppiminen on tekoälyn osa-alue. Kaikki koneoppiminen on tekoälyä, mutta k
 
 ### Määritelmiä
 
-> Machine learning (ML) is a collection of algorithms and techniques used to design systems that learn from data. These systems are then able to perform predictions or deduce patterns from the supplied data.
-> 
-> Lähde: Lee, W. 2019. Python Machine Learning. Wiley. 
+> "Machine learning (ML) is a collection of algorithms and techniques used to design systems that learn from data. These systems are then able to perform predictions or deduce patterns from the supplied data."
+
+Lähde: Lee, W. 2019. Python Machine Learning. Wiley. 
 
 ---
 
@@ -81,8 +81,8 @@ Koneoppiminen on tekoälyn osa-alue. Kaikki koneoppiminen on tekoälyä, mutta k
 > * Detect patterns in all sorts of data sources
 > * Create new behaviors based on the recognized patterns
 > * Make decisions based on the success of failure of these behaviors.
-> 
-> Lähde: Mueller, P & Massaron, L. 2016. Machine Learning for Dummies. No Starch Press. [Löytyy Finna-palvelusta](https://kamk.finna.fi/).
+
+Lähde: Mueller, P & Massaron, L. 2016. Machine Learning for Dummies. No Starch Press. [Löytyy Finna-palvelusta](https://kamk.finna.fi/).
 
 ---
 
@@ -91,17 +91,23 @@ Koneoppiminen on tekoälyn osa-alue. Kaikki koneoppiminen on tekoälyä, mutta k
 > If it is written in Python, it's probably machine learning 
 >
 > If it is written in PowerPoint, it's probably AI" 
->
-> Lähde: [Matt Velloso:n Twitter/X-postaus marraskuulta 2018](https://twitter.com/matvelloso/status/1065778379612282885?)
+
+Lähde: [Matt Velloso:n Twitter-viesti marraskuulta 2018](https://twitter.com/matvelloso/status/1065778379612282885?)
 
 ---
 
-> "Machine learning is a field of study concerned with giving computers the ability to learn without being explicitly programmed." - Arthur Smith, 1959.
+> "Machine learning is a field of study concerned with giving computers the ability to learn without being explicitly programmed."
+
+Lähde: Arthur Smith, 1959.
 
 ---
 
-> "A computer program is said to learn from experience, E, with respect to a task, T, and a performance measure, P, if its performance on T, as measured by P, improves with experience E." - Tom Mitchell, 1998.
+> "A computer program is said to learn from experience, E, with respect to a task, T, and a performance measure, P, if its performance on T, as measured by P, improves with experience E."
+
+Lähde: Tom Mitchell, 1998.
 
 ---
 
-> "A program or system that builds (trains) a predictive model from input data. The system uses the learned model to make useful predictions from new (never-before-seen) data drawn from the same distribution as the one used to train the model. Machine learning also refers to the field of study concerned with these programs or systems." - Google Developers Machine Learning Glossary
+> "A program or system that builds (trains) a predictive model from input data. The system uses the learned model to make useful predictions from new (never-before-seen) data drawn from the same distribution as the one used to train the model. Machine learning also refers to the field of study concerned with these programs or systems."
+
+Lähde: [Google Developers Machine Learning Glossary](https://developers.google.com/machine-learning/glossary#m)
