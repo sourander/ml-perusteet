@@ -16,9 +16,15 @@ $$
 P(\text{belief}|\text{evidence}) \propto P(\text{evidence}|\text{belief}) \times P(\text{belief})
 $$
 
+Voimme myös korvata kaavasta sanan `belief` sanalla `spam` ja sanan `evidence` useita datasetissä olevia sanoja korvaavalla `x_1, x_2, ..., x_n`.
+
+$$
+P(spam|x_1, x_2, ..., x_n) \propto P(x_1, x_2, ..., x_n|spam) \times P(spam)
+$$
+
 ## Naive Bayes luokittelija
 
-Naive Bayes on Bayesin teoreeman implementaatio, jossa tehdään naiivi oletus, että yksittäiset datapisteet eivät ole keskenään riippuvaisia. Eli sanan `Viagra` esiintyminen viestissä lisää todennäköisyyttä, että viesti on roskapostia, mutta se ei vaikuta siihen, onko viestissä myös sana `Free` tai `Guaranteed`. Tämän naiivin oletuksen kanssa kaava on:
+Naive Bayes on Bayesin teoreeman implementaatio, jossa tehdään naiivi oletus, että yksittäiset datapisteet eivät ole keskenään riippuvaisia. Eli sanan `Viagra` esiintyminen viestissä lisää todennäköisyyttä, että viesti on roskapostia täysin riippumatta siitä, mitä muita sanoja sähköposti sisältää. Kukin sana osallistuu todennäköisyyteen itsenäisesti. Tämän naiivin oletuksen kanssa kaava on:
 
 $$
 \hat{y} = \arg\max_{y} P(y) \prod_{i=1}^{n} P(x_i|y)
@@ -27,35 +33,76 @@ $$
 Saman voisi kirjoittaa Pythonina näin:
 
 ```python
+from math import prod
+
 DATASET = [
     ("Free Viagra now", "Spam"),
     ("A game of golf tomorrow?", "Not spam"),
 ]
 
 def probability_of_word_being_in_class(word, y_val):
-    # P(belief_n | y)
-    n_docs = len([1 for x, y in DATASET if y == y_val and word in x.lower()])
+    """ P(edivence_i | y) """
+
+    # N(x_i | y): (1)
+    n_docs = sum(
+        [
+            1 for sentence, y 
+            in DATASET 
+            if y == y_val and word in sentence.lower()
+        ]
+    )
+
+    # N(y): (2)
     n_class = len([1 for x, y in DATASET if y == y_val])
+    
+    # Laplace smoothing (3)
+    n_docs += 0.5
+    n_class += 1
+
     return n_docs / n_class
 
 def predict_class_probability(evidence, y_val):
-    # P(belief)
-    prior = len([y for x, y in DATASET if y == y_val]) / len(DATASET)
+    # P(y) (4)
+    prior = sum(
+        [
+            1 for _, y 
+            in DATASET 
+            if y == y_val
+            ]
+    ) / len(DATASET)
 
-    # SUM[ P(belief_n | y) ]
-    likelihood = sum([probability_of_word_being_in_class(word, y_val) for word in evidence.lower().split()])
+    # product[ P(evidence_i | y) ]
+    likelihood = prod(
+        [
+            probability_of_word_being_in_class(word, y_val) 
+            for word in evidence.lower().split()
+        ]
+    )
 
-    # P(belief | evidence) * P(y)
-    return prior * likelihood
+    return  likelihood * prior
 
+############ TESTILAUSE #############
 evidence = "Free Viagra of something"
-probabilities = [predict_class_probability(evidence, "Spam"), predict_class_probability(evidence, "Not spam")]
+
+probabilities = [
+    predict_class_probability(evidence, "Spam"), 
+    predict_class_probability(evidence, "Not spam")
+]
+
 y_hat_prob, other_prob = max(probabilities), min(probabilities)
 y_hat = probabilities.index(y_hat_prob)
 
 print(f"Predicted class: {y_hat} (with probability {y_hat_prob} > {other_prob})")
 ```
 
+1. Kyseisen sanan sisältävien viestien määrä luokassa [spam/no spam]
+2. Lauseiden määrä datasetissä, jotka eduustavat luokkaa [spam/no spam]
+3. Smoothing estää tilanteen, jossa jokin sana ei esiinny yhdessäkään viestissä. Tällöin todennäköisyys olisi 0, ja koko lasku menisi nollalla, koska mikä tahansa kertaa 0 on 0.
+4. Luokan todennäköisyys [spam/no spam]. Eli mikä osuus viesteistä on esimerkiksi roskapostia.
+
+
 !!! tip
 
-    Huomaa, että toteutus olettaa koulutusdataan kuulumattomien sanojen olevan todennäköisyydeltään 0. Tätä "zero-frequency problem"-ongelmaa voi korjata käyttämällä Laplace smoothingia.
+    Huomaa, että toteutus on aivan äärimmäisen yksinkertaistettu ja tarkoitettu pienten datasettien testailuun. Kestävämmän toteutuksen löydät kirjasta "Data Science from Scratch". Vielä paremman toteutuksen löydät scikit-learn kirjastosta.
+
+  
