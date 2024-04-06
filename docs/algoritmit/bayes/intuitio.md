@@ -139,10 +139,55 @@ Lausemuodossa tämä on: *"Kurssin läpäisemisen todennäköisyys, annettuna et
 
 ## Todennäköisyyden selvittäminen
 
-Täysin tasapainoinen kolikko tai noppa on tyypillinen todennäköisyysmatematiikassa käytetty esimerkki. Arkielämän ilmiöissä jonkin tapahtuman todennäköisyys pitää selvittää havaintojen perusteella. Esimerkiksi, jos haluat selvittää, kuinka todennäköistä on, että opiskelija läpäisee kurssin, voit käyttää aiempia kurssisuorituksia. Yllä todennäköisyydeksi on väitetty 75 %:n todennäköisyyttä. Kuinka tähän lukuun ollaan päädytty? Kuvitellaan, että tämä on selvitetty kyselytutkimuksella. Kyselyssä on kysytty **56 opiskelijalta**, ovatko he läpäisseet kurssin.
+Täysin tasapainoinen kolikko tai noppa on tyypillinen todennäköisyysmatematiikassa käytetty esimerkki. Arkielämän ilmiöissä jonkin tapahtuman todennäköisyys pitää selvittää havaintojen perusteella. Esimerkiksi, jos haluat selvittää, kuinka todennäköistä on, että opiskelija läpäisee kurssin, voit käyttää aiempia kurssisuorituksia. Yllä todennäköisyydeksi on väitetty 75 %:n todennäköisyyttä. Kuinka tähän lukuun ollaan päädytty? Kuvitellaan, että tämä on selvitetty kyselytutkimuksella. Kyselyssä on kysytty **32 opiskelijalta**, ovatko he läpäisseet kurssin.
 
-* 32 opiskelijaa vastasi kyllä
-* 24 opiskelijaa vastasi ei
+* 24 opiskelijaa vastasi kyllä
+* 8 opiskelijaa vastasi ei
+
+Todennäköisyys voidaan laskea seuraavasti:
+
+$$
+P(B) = \frac{n_{passed}}{n_{total}} = \frac{24}{32} = 0.75
+$$
+
+!!! warning
+
+    Huomaathan, että 32 oppilaan otannalla ei voida varmuudella sanoa, että todennäköisyys oikeasti on 75 %. Näin pienellä otannalla virhemarginaali on suuri (jotakuinkin ± 15 %, 95% luottamustasolla). Näin pienellä otannalla on vain noin 50 % mahdollisuus, että todellinen todennäköisyys on välillä 70 % - 80 %.
+
+    Mitä suurempi otanta, sitä todennäköisempää on, että todennäköisyyslukema vastaa ilmiön todellista todennäköisyyttä. Alla on esitetty kolmen eri otannan todennäköisyysjakaumat. Huomaa, että mitä suurempi otanta, sitä kapeampi jakauma on.
+
+    ![Beta Distrubution of 32, 100 and 200 sample sizes](../../images/pizza_pass_beta_distribution.png)
+
+    **Kuvio 1.** Kolmen eri otannan todennäköisyysjakaumat. 32 opiskelijan otannalla jakauma on leveämpi kuin 100 ja 200 opiskelijan otannoilla.
+
+    Tilanne on sama kuin jos heität kolikko tai kuusitahoista noppaa. Yksittäisellä heitolla et voi sanoa, että kolikon tai nopan todennäköisyys on 50 % tai 1/6. Mutta kun heität kolikkoa tai noppaa tarpeeksi monta kertaa, todennäköisyyslukema lähestyy todellista todennäköisyyttä. Todellinen todennäköisyys ei välttämättä ole tosielämän kolikolla tai nopalla tasan 50 % tai tasan 1/6.
+
+    Yllä näkyvän Kuvio 1:n voit generoida seuraavalla koodilla:
+
+    ```python
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from scipy.stats import beta
+
+    sample_size = [32, 100, 200]
+
+    plt.figure(figsize=(10, 6))
+
+    for n in sample_size:
+        # Compute passes and fails
+        passes = int(0.75 * n)
+        fails = n - passes
+
+        # Plot the Beta distribution
+        x = np.linspace(0, 1, 1000)
+        y = beta.pdf(x, passes, fails)
+        plt.plot(x, y, label=f'{n} students ({passes}/{fails} passes/fails)')
+
+    plt.grid(True)
+    plt.show()
+    ```
+
+
 
 ## Käänteinen todennäköisyys
 
