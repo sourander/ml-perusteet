@@ -26,7 +26,7 @@ Päätöspuun rakentaminen perustuu informaatioteoriaan, joka on samalla koko IT
 
 **Video 1:** *Informaatioteoriaa käsittelevä video (Khan Academy).*
 
-Shannonin artikkelissa sekä yllä olevassa videossa kummassakin päädytään kaavaan, joka on lauseena muotoa: entropia (`H`) on symbolien (esim. `X = x_1, x_2, ..., x_n`) todennäköisyyksien (`p_1, p_2, ..., p_3`) ja informaation sisällön (engl. information content, surprisal) `I(x_i) = log_2(1/p_i)` summa. Käytössämme on binääripuu, joten logaritmin kantaluku on 2. Matemaattista syntaksia käyttäen kaava on:
+Shannonin artikkelissa sekä yllä olevassa videossa kummassakin päädytään kaavaan, joka on lauseena muotoa: entropia (`H`) on symbolien (esim. `X = x_1, x_2, ..., x_n`) todennäköisyyksien (`p_1, p_2, ..., p_3`) ja informaation sisällön (engl. information content, surprisal) `I(x_i) = log_2(1/p_i)` summa. Kaavassa käytetään ogaritmin kantalukuna lukua 2. Matemaattista syntaksia käyttäen kaava on:
 
 $$
 H(X) = \sum_{i=1}^{n} P(x_i) \log_2 \frac{1}{P(x_i)}
@@ -49,7 +49,7 @@ Entropia on maksimoitu, kun kaikki symbolit ovat yhtä todennäköisiä. Tällö
 ```python
 from math import log2
 
-def H(X):
+def entropy(X):
     H_val = -sum([p * log2(p) for p in X if p > 0])
     return H_val
 
