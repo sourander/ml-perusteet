@@ -134,7 +134,7 @@ Luodaan päätöspuu, joka pyrkii generalisoimaan kulkuvälineen valinnan päät
 
 ### Datan esittely
 
-Datasettiin kuuluu 4 saraketta (eli piirrettä, *featurea*) ja 15 riviä (eli havaintoa, *data pointtia*). Sarakkeet ovat:
+Datasettiin kuuluu 4 saraketta (eli piirrettä, *featurea*) ja 15 riviä (eli havaintoa, *observation*). Sarakkeet ovat:
 
 * Olen levännyt (0 = False, 1 = True)
 * Määränpäässä on suihku (0 = False, 1 = True)
@@ -208,8 +208,10 @@ root_l, root_r = dt.split_data(data, ig_root)
 
     Toivon mukaan pohdit nyt, että kuinka ei-binäärisestä piirteestä, nopeudesta, voidaan poimia split point. Tähän olisi monta mahdollista strategiaa, kuten:
 
-    * **Vaihtoehto 1: Käytä mediaania**. Tämä on yksinkertainen tapa ja voi toimia, jos data on tasaisesti jakautunut.
+    * **Vaihtoehto 1: Käytä mediaania**. Tämä tuskin johtaa optimaaliseen ratkaisuun, mutta on nopea ja helppo tapa jakaa dataa.
     * **Vaihtoehto 2: Laske kaikki mahdolliset split pointit**. Tämä on kallis operaatio, mutta antaa tarkan kuvan siitä, mikä split point on paras. Jos data olisi esimerkiksi `[1.0, 2.0, 3.0, 4.0, 5.0]`, mahdolliset split pointit olisivat kaikkien näiden lukujen väliin asettuvat luvut: `[1.5, 2.5, 3.5, 4.5]`.
+
+    Me valitsemme jälkimmäisen vaihtoehdon.
 
 #### Tulos:
 
