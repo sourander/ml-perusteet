@@ -1,4 +1,4 @@
 nav:
-  - knn.md
-  - kMeans.md
+  - k-NN: knn.md
+  - k-Means: kMeans.md
   - ...

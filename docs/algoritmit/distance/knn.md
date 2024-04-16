@@ -1,6 +1,4 @@
-# kNN
-
-Jos aiemmat algoritmit, Naive Bayes sekä päätöspuut ja niistä koostuvat metsät, ovat tuntuneet yksinkertaisilta, niin k-Nearest Neighbors (kNN) on vielä yksinkertaisempi. Naive Bayesin sisältyy tilastollista vaikeutta, päätöspuiden monimutkaisuus tulee informaatiotieteen käsitteistä sekä rekursiivisesta rakenteesta (eli Python-funktioista, jotka kutsuvat itse itseään). kNN on niin yksinkertainen, että sen voi selittää käytännössä kahdella kuvalla. Tässä on ensimmäinen:
+Jos aiemmat algoritmit, Naive Bayes sekä päätöspuut ja niistä koostuvat metsät, ovat tuntuneet yksinkertaisilta, niin k-Nearest Neighbors (k-NN) on vielä yksinkertaisempi. Naive Bayesin sisältyy tilastollista vaikeutta, päätöspuiden monimutkaisuus tulee informaatiotieteen käsitteistä sekä rekursiivisesta rakenteesta (eli Python-funktioista, jotka kutsuvat itse itseään). kNN on niin yksinkertainen, että sen voi selittää käytännössä kahdella kuvalla. Tässä on ensimmäinen:
 
 ## k-NN algoritmi
 
@@ -18,11 +16,11 @@ Algoritmi ei varsinaisesti parametrisoi mitään, vaan se tallentaa kaikki datan
 
 **Kuvio 2:** *Uuden, aikaisemmin näkemättömän havainnon luokittelu tehdään laskemalla etäisyys aivan kaikkiin datapisteisiin. Luokaksi annetaan lähimmän kolmen koulutusdatassa olleen label (olettaen että k=3).*
 
-Uusi piste saa saman luokan kuin sen lähimmillä pisteillä on. Algoritmin toimintaperiaate on siis äärimmäisen simppeli: *"Katso, keiden vieressä seisot, ja tiedät, kuka olet!"*. Luokittelu perustuu siis täysin euklidiseen etäisyyteen. Tässä (ks. Kuvio 2) tapauksessa `k` on 3, joten uusi sininen piste saa oranssin luokan, koska sen kaksi kolmesta lähimmästä pisteest ovat oransseja.
+Uusi piste saa saman luokan kuin sen lähimmillä pisteillä on. Algoritmin toimintaperiaate on siis äärimmäisen simppeli: *"Katso, keiden vieressä seisot, ja tiedät, kuka olet!"*. Luokittelu perustuu siis täysin euklidiseen etäisyyteen. Tässä (ks. Kuvio 2) tapauksessa `k` on 3, joten uusi sininen piste saa oranssin luokan, koska sen kaksi kolmesta lähimmästä pisteest ovat oransseja. Luku `k` on siis hyperparametri, joka määrittää, kuinka monta lähintä pistettä otetaan huomioon, ja se on aina pariton luku.
 
 ### N-ulottoinen avaruus
 
-Huomaa, että kNN toimii myös N-ulotteisessa avaruudessa.
+Huomaa, että k-NN toimii myös N-ulotteisessa avaruudessa.
 
 ![3D Scatter Plot](../../images/knn_scatter_3d.png)
 
@@ -35,7 +33,7 @@ Huomaa, että kNN toimii myös N-ulotteisessa avaruudessa.
 
 ### Pythonilla
 
-Huomaa, että mallin kouluttaminen on vain datan tallentamista. Mallin käyttäminen ennustamiseen on vain etäisyyksien laskemista ja sorttaamista. Tämä tekee kNN:stä erittäin nopean algoritmin pienellä datalla, mutta erittäin hitaan suurella datalla (ainakin ilman optimointeja). Kaava etäisyyden laskemiseen on seuraava:
+Huomaa, että mallin kouluttaminen on vain datan tallentamista. Mallin käyttäminen ennustamiseen on vain etäisyyksien laskemista ja sorttaamista. Tämä tekee k-NN:stä erittäin nopean algoritmin pienellä datalla, mutta erittäin hitaan suurella datalla (ainakin ilman optimointeja). Kaava etäisyyden laskemiseen on seuraava:
 
 $$
 d(p,q) = \sqrt{(p_1 - q_1)^2 + (p_2 - q_2)^2 + \ldots + (p_n - q_n)^2}
@@ -133,8 +131,8 @@ Naive Bayes sen sijaan arvioi kunkin pisteen kohdalla, kuinka todennäköistä o
 
 ### Kaikki visualisoituna
 
-Algoritmien ero tulee selväksi, kun piirrämme kuvaajaan kunkin algoritmin luokittelurajat. Kuviossa 3 on esitetty Naive Bayes, Decision Tree ja kNN:n luokittelurajat käyttäen dataa, joka on luotu Scikit Learn:n `make_circles`-funktiolla.
+Algoritmien ero tulee selväksi, kun piirrämme kuvaajaan kunkin algoritmin luokittelurajat. Kuviossa 3 on esitetty Naive Bayes, Decision Tree ja k-NN:n luokittelurajat käyttäen dataa, joka on luotu Scikit Learn:n `make_circles`-funktiolla.
 
-![Naive vs Tree vs kNN decision boundaries](../../images/naive_decision_knn_decision_boundaries.png)
+![Naive vs Tree vs k-NN decision boundaries](../../images/naive_decision_knn_decision_boundaries.png)
 
-**Kuvio 4:** *Naive Bayes, Decision Tree ja kNN:n luokittelurajat. Naive Bayes on ympyrän muotoinen, Decision Tree on jaettu kuin Yhdysvallat osavaltioihin, ja kNN on epäsäännöllinen. Kannattaa klikata kuva auki uuteen välilehteen, jotta se näkyy suurempana.*
+**Kuvio 4:** *Naive Bayes, Decision Tree ja k-NN:n luokittelurajat. Naive Bayes on ympyrän muotoinen, Decision Tree on jaettu kuin Yhdysvallat osavaltioihin, ja k-NN on epäsäännöllinen. Kannattaa klikata kuva auki uuteen välilehteen, jotta se näkyy suurempana.*
