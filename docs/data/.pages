@@ -1,7 +1,7 @@
 nav:
   - vektori.md
   - datasetti.md
-  - korrelaatio.md
   - skaalaus.md
   - jakauma.md
+  - suorituskyky.md
   - ...
