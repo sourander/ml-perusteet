@@ -3,7 +3,7 @@ Koneoppimisen suhteen on tärkeä tunnistaa ja osata selittää kaksi termiä:
 * **Algoritmi** (engl. algorithm) on matemaattinen kaava tai tilastollinen kaava.
 * **Malli** (engl. model) on algoritmin koulutuksen tuloksena syntynyt koneoppimismalli, joka osaa tehdä luokituksia aikaisemmin näkemättömille syötteille.
 
-Kun sinulla on jokin koneoppimisen ongelma, sinun tulee valita ongelmaan sopiva malli. Mallin valitsemisen jälkeen koulutat algoritmin koulutusdatalla. Koulutuksen jälkeen voit testata mallin suorituskykyä testidatalla. Lopuksi voit käyttää mallia tunnistamaan uusia syötteitä.
+Kun sinulla on jokin koneoppimisen ongelma, sinun tulee valita ongelmaan sopiva malli. Mallin valitsemisen jälkeen koulutat algoritmin koulutusdatalla. Koulutuksen jälkeen voit testata mallin suorituskykyä testidatalla. Testidata on tismalleen samanlaista dataa kuin koulutusdata, mutta sitä ei ole paljastettu algoritmille koulutusvaiheessa. Lopuksi voit käyttää mallia tunnistamaan uusia syötteitä.
 
 ## Kolme koneoppimisen päätyyppiä
 
@@ -19,7 +19,7 @@ Koneoppiminen voidaan jakaa kolmeen päätyyppiin:
 
 **Kuvio 1.** *Talon hinnan arviointi DALL-E 3:n maalaamana. Huomaa talosta lentävät numerot, jotka edustavat joitakin talon piirteitä, kuten sijaintia, huoneiden määrää ja pinta-alaa.*
 
-Näistä ohjattu oppiminen on yleisin ja helpoin ymmärtää: opetusdata sisältää oikean vastauksen. Koulutusvaiheessa etsitään korrelaatioita piirteiden ja oikean vastauksen välillä.
+Ohjattu oppiminen on koneoppimisen tyypeistä ilemisin. Se on yleisesti käytössä ja se on helppo ymmärtää: opetusdata sisältää oikean vastauksen. Koulutusvaiheessa algoritmi pyrkii löytämään korrelaatioita piirteiden ja oikean vastauksen välillä. Lineaarinen regressio (ks. Kuvio 2) eli suoran sovitus on yksi yksinkertaisimmista ohjatun oppimisen algoritmeista. Huomaa, että kone ei tässä tapauksessa opi mitään ilmiöiden kausaalisuhteista, vaan ainoastaan korrelaatioista. Kone ei tiedä mitään logiikasta: se vain palauttaa x:n perusteella y:n - eikä edes *oikeaa* y:n arvoa, vaan jonkin sortin mediaanin.
 
 Käytännön esimerkkejä:
 
@@ -36,9 +36,7 @@ Käytännön esimerkkejä:
 
 ![DVD-elokuvien luokittelu](../images/dalle_dvd_genrefication.jpg)
 
-**Kuvio 2.** *DVD-elokuvien luokittelu DALL-E 3:n maalaamana. Huomaa, että algoritmi tuskin päätyisi ihmisen tuntemiin genreihin kuten draama, komedia ja animaatio - joista jälkimmäisin ei ole edes genre vaan tekniikka. Luokitteluun vaikuttaa merkittävästi se, mitä piirteitä algoritmille syötetään. Jos piirrevektori sisältää pelkän elokuvan keston ja leikkauksien määrän, saat luokkia kuten "Pitkät elokuvat, joissa on vähän leikkauksia"*
-
-Ohjaamattomassa oppimisessa opetusdataa ei ole luokiteltu eli **oikea vastaus puuttuu**. Mallin tulee itse löytää piirteiden välisiä samankaltaisuuksia.
+**Kuvio 2.** *DVD-elokuvien luokittelu DALL-E 3:n maalaamana. Huomaa, että algoritmi tuskin päätyisi ihmisen tuntemiin genreihin kuten draama, komedia ja animaatio. Luokitteluun vaikuttaa merkittävästi se, mitä piirteitä algoritmille syötetään. Jos piirrevektori sisältää pelkän elokuvan keston ja leikkauksien määrän, saat luokkia kuten "Pitkät elokuvat, joissa on vähän leikkauksia"*
 
 Ohjaamaton oppiminen on ohjatun oppimisen vastakohta. Ohjaamattomassa oppimisessa **oikea vastaus puuttuu** kokonaan koulutusdatasta. Valittu algoritmi pyrkii tunnistamaan jonkin sortin rakenteita datasta. Käyttötarpeita ovat esimerkiksi:
 
@@ -56,7 +54,7 @@ Klassinen esimerkki asiakassegmentoinnista ovat t-paidat. Kuvittele, että sinul
 
 !!! warning
 
-    Huomaa, että kussakin luokassa on kuitenkin yksilöitä, joille vaatturi olisi mitannut eri kokoisen paidan. Virhe on aina olemassa.
+    Huomaa, että kussakin luokassa on kuitenkin yksilöitä, joille vaatturi olisi mitannut eri kokoisen paidan. Virhe on aina olemassa. Mikä määrä virhettä on ok? Jos suunnittelet L-koon paidan kyseisen kategorian mukaan, onko ok, että 10 ihmiselle paita ei mahdu ylle rikkomatta saumoja?
 
 ### Vahvistusoppiminen
 

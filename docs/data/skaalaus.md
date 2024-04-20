@@ -13,10 +13,9 @@ Jos mallin virhe perustuu etäisyyteen, skaalaus on tärkeää. Esimerkiksi K-me
     * Muut :white_check_mark:
 
 
-
 ## Skaalauksen apuvälineet
 
-Dataa voi kuvata kuvailevan tilastotieteen avulla. Näitä ovat keskiarvo, mediaani, moodi, varianssi, keskihajonta ja kvartiilit. Tässä dokumentissa keskitytään keskiarvoon, varianssiin ja keskihajontaan. Kukin näistä esitellään ensin matemaattisessa muodossa ja sen jälkeen Python-koodina. Näitä tarvitaan myöhemmin skaalausta tehdessä.
+Dataa voi kuvata tilastotieteen avulla. Kuvailevia lukuja ovat keskiarvo, mediaani, moodi, varianssi, keskihajonta ja kvartiilit. Datan skaalauksessa tarvitaan tyypillisesti keskiarvoa, varianssia ja keskihajontaa. Nämä lienevät jo matematiikasta tuttuja, mutta käydään ne läpi kertauksen vuoksi. Kukin näistä esitellään ensin matemaattisessa muodossa ja sen jälkeen Python-koodina. Näitä tarvitaan myöhemmin skaalausta tehdessä.
 
 Tämä materiaali pohjautuu osin [BMC Genomics](https://bmcgenomics.biomedcentral.com/articles/10.1186/1471-2164-7-142/tables/1)-sivuston kaavoihin.
 
@@ -28,9 +27,12 @@ $$
 {\overline{x}} = \frac{\sum x_{i}}{N}
 $$
 
-```python
-# From Scratch - TODO: Use a custom Vector type
-def mean(x):
+```python title="IPython"
+from ml.vector import Vector
+
+x = Vector(-1, 0, 1, 2, 3, 4, 5)
+
+def mean(x: Vector):
     return sum(x) / len(x)
 ```
 
@@ -42,24 +44,16 @@ $$
 s^{2} = \frac{\sum \left( {x_{i} - {\overline{x}} } \right) ^{2}}{N - 1}
 $$
 
-```python
-def variance(x, ddof=1):
-    """
-    Calculate the variance of a list of numbers.
-
-    Parameters:
-    x (list): A list of numbers.
-    ddof (int): Delta Degrees of Freedom (Default: 1).
-
-    Returns:
-    float: Variance
-    """
-    return sum((x - mean(x))**2) / (len(x) - 1)
+```python title="IPython"
+def variance(x: Vector, ddof=1):
+    return sum((x - mean(x))**2) / (len(x) - ddof)
 ```
 
 !!! question "Miksi - 1?"
 
     Jakajassa oleva `N - 1` vähentää populaatiosta yhden asteen vapautta. Tämä yhden vapausaste (engl. degrees of freedom) on käytössä otannan (engl. sample) varianssia laskettaessa. Mikäli N edustaa koko populaatiota, sitä ei käytetä. Huomaa, että koska jakaja on pienempi, varianssi on suurempi kuin jos jakajana olisi `N`. Koko populaation varianssin oletetaan siis olevan suurempi kuin otannan varianssin.
+
+    Jos skaalaat `X`:ää, `ddof=0` on oikea arvo. Jos skaalaat `X_train`-dataa, `ddof=1` on oikea arvo.
 
 ### Keskihajonta
 
@@ -69,9 +63,9 @@ $$
 s = \sqrt{s^{2}}
 $$
 
-```python
-def std(x):
-    return variance(x) ** 0.5
+```python title="IPython"
+def std(x: Vector, **kwargs):
+    return variance(x, **kwargs) ** 0.5
 ```
 
 
@@ -87,10 +81,14 @@ $$
 {\widetilde{x}} = x - {\overline{x}}
 $$
 
-```python
+```python title="IPython"
 def center(x):
     return x - mean(x)
 ```
+
+![Centering data before and after](../images/scaling_centered.png)
+
+**Kuvio 1:** *Vasemmassa histogrammissa näkyy alkuperäinen data, joka noudattaa suunnilleen normaalijakaumaa. Oikeassa histogrammissa näkyy keskitetty data, jossa keskiarvo on 0.*
 
 ### Z-score
 
@@ -100,35 +98,42 @@ $$
 {z} = \frac{\widetilde{x}}{s}
 $$
 
-```python
-def z_score(x):
+```python title="IPython"
+def z_score(x: Vector):
     return center(x) / std(x)
 ```
+
+![Z-score scaling before and after](../images/scaling_z_score.png)
+
+**Kuvio 2:** *Vasemmassa histogrammissa on sama data kuin Kuviossa 1. Oikeassa histogrammissa näkyy Z-pisteytetty data, jossa keskiarvo on 0 ja keskihajonta on 1.*
 
 !!! tip
 
     Tulet törmäämään tähän usein eri koneoppimisesimerkeissä. Mikäli näet jossakin esimerkissä käytössä [StandardScaler](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html)-esikäsittelijän, se on juurikin tämä.
 
-### Keskiarvon normalisointi
+### Min-max skaalaus
 
-Englanniksi tämä on range normalization tai mean normalization. Kun keskitetty data jaetaan suurimman ja pienimmän arvon erotuksella, saadaan arvot pakotettua välille -1 ja 1.
+Min-max skaalauksessa data skaalataan välille `[0,1]`. Tämä on meidän kurssin kontekstissa eli perinteisessä koneoppimisessa hieman Z-scorea eli standardiskaalausta harvinaisempi, mutta se on hyödyllinen esimerkiksi neuroverkkojen kanssa.
 
 $$
-x' = \frac{ \widetilde{x} }{ max(x) - min(x) }
+x' = \frac{ x - min(x) }{ max(x) - min(x) }
 $$
 
-In Python:
-
-```python
-def range_scale(x):
-    return center(x) / (max(x) - min(x))
+```python title="IPython"
+def min_max(x: Vector):
+    return (x - min(x)) / (max(x) - min(x))
 ```
 
 !!! tip
 
-    Huomaa tämän variantti, min-max skaalaus, jonka avulla skaalataan arvot välille 0 ja 1. Tällöin kaava on seuraava:
+    Huomaa tämän variantti, jossa skaalaksi voidaan asettaa haluttu alue, esimerkiksi $[a, b]$. Alla funktio kirjoitettu siten, että `minmax()` viittaa yllä näkyvään funktioon:
 
     $$
-    x' = \frac{ \widetilde{x} - min(x) }{ max(x) - min(x) }
+    f(x, a, b) = a + (b - a) \cdot minmax(x)
     $$
+
+    ```python title="IPython"
+    def minmax_scale(x, a=0, b=1):
+        return a + (b - a) * range_scale(x)
+    ```
 
