@@ -44,7 +44,7 @@ procedure classify_pictures():
             move picture to forest/
         else if picture.median_color == "brown":
             if picture.iso_sensitivity > 800:
-                move picture to mountain/
+                move picture to museum/
             else:
                 move picture to mountain/
         else if picture.median_color == "grey":
