@@ -8,7 +8,7 @@ Koneoppimisen yhteydessä data on usein raakaa ja vaatii esikäsittelyä ennen k
 
 ### Strukturoitu data
 
-Aloitetaan sturkturoidusta datasta, koska sitä on helppo käsitellä ja ymmärtää. Strukturoitu data on dataa, joka on järjestetty taulukkomuotoon. Taulukko koostuu riveistä ja sarakkeista. Tyypillisesti strukturoitu data on tallennettu tietokantaan (esim. PostgreSQL, MySQL, SQLite) tai tietovarastoon (esim. Snowflake, Redsfhit). Se voi olla myös taulukkolaskentaohjelman taulukossa (esim. Excel, Google Sheets), mutta tällöin voitaisiin väitellä siitä, tippuuko se osittain strukturoidun datan kategoriaan (ks. alla). Tietokannat ovat tyypillisesti vahvasti tyyppisiä, kun taas taulukkolaskentaohjelmat ovat usein heikosti tyyppisiä. Esimerkiksi tietokannassa jokaisella sarakkeella on tyyppi (esim. `INTEGER`, `VARCHAR`, `DATE`), kun taas taulukkolaskentaohjelmassa sarakkeen tyyppi voi muuttua dynaamisesti. Mikäli kentän "Pituus" arvo voi olla merkkijono `182 cm`, tai kvalitatiivinen arvo `pitkä`, data ei sisällä varsinaista lukkoon lyötyä struktuuria.
+Aloitetaan strukturoidusta datasta, koska sitä on helppo käsitellä ja ymmärtää. Strukturoitu data on dataa, joka on järjestetty taulukkomuotoon. Taulukko koostuu riveistä ja sarakkeista. Tyypillisesti strukturoitu data on tallennettu tietokantaan (esim. PostgreSQL, MySQL, SQLite) tai tietovarastoon (esim. Snowflake, Redshift). Se voi olla myös taulukkolaskentaohjelman taulukossa (esim. Excel, Google Sheets), mutta tällöin voitaisiin väitellä siitä, tippuuko se osittain strukturoidun datan kategoriaan (ks. alla). Tietokannat ovat tyypillisesti vahvasti tyyppisiä, kun taas taulukkolaskentaohjelmat ovat usein heikosti tyyppisiä. Esimerkiksi tietokannassa jokaisella sarakkeella on tyyppi (esim. `INTEGER`, `VARCHAR`, `DATE`), kun taas taulukkolaskentaohjelmassa sarakkeen tyyppi voi muuttua dynaamisesti. Mikäli kentän "Pituus" arvo voi olla merkkijono `182 cm`, tai kvalitatiivinen arvo `pitkä`, data ei sisällä varsinaista lukkoon lyötyä struktuuria.
 
 | Selittävä a | Selittävä b | Selittävä c | Selitettävä muuttuja [y] |
 | ----------- | ----------- | ----------- | ------------------------ |
@@ -195,7 +195,7 @@ $$
 
 !!! question "Tehtävä"
 
-    Kahden matriisin välinen välinen pistetulo lasketaan hyvin samalla tavalla.
+    Kahden matriisin välinen välinen pistetulo lasketaan hyvin samalla tavalla. Selvitä, kuinka tämä toimii.
 
 
 Tehdään tämä vielä Pythonissa. Mikäli haluamme luoda matriisin `X` ja vektorin `y` käyttämättä mitään kirjastoja tai luokkia, voimme kuvastaan niitä seuraavalla tavalla:

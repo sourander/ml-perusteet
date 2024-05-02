@@ -19,7 +19,7 @@ Koneoppiminen voidaan jakaa kolmeen päätyyppiin:
 
 **Kuvio 1.** *Talon hinnan arviointi DALL-E 3:n maalaamana. Huomaa talosta lentävät numerot, jotka edustavat joitakin talon piirteitä, kuten sijaintia, huoneiden määrää ja pinta-alaa.*
 
-Ohjattu oppiminen on koneoppimisen tyypeistä ilemisin. Se on yleisesti käytössä ja se on helppo ymmärtää: opetusdata sisältää oikean vastauksen. Koulutusvaiheessa algoritmi pyrkii löytämään korrelaatioita piirteiden ja oikean vastauksen välillä. Lineaarinen regressio (ks. Kuvio 2) eli suoran sovitus on yksi yksinkertaisimmista ohjatun oppimisen algoritmeista. Huomaa, että kone ei tässä tapauksessa opi mitään ilmiöiden kausaalisuhteista, vaan ainoastaan korrelaatioista. Kone ei tiedä mitään logiikasta: se vain palauttaa x:n perusteella y:n - eikä edes *oikeaa* y:n arvoa, vaan jonkin sortin mediaanin.
+Ohjattu oppiminen on koneoppimisen tyypeistä ilmeisin . Se on yleisesti käytössä ja se on helppo ymmärtää: opetusdata sisältää oikean vastauksen. Koulutusvaiheessa algoritmi pyrkii löytämään korrelaatioita piirteiden ja oikean vastauksen välillä. Lineaarinen regressio (ks. Kuvio 2) eli suoran sovitus on yksi yksinkertaisimmista ohjatun oppimisen algoritmeista. Huomaa, että kone ei tässä tapauksessa opi mitään ilmiöiden kausaalisuhteista, vaan ainoastaan korrelaatioista. Kone ei tiedä mitään logiikasta: se vain palauttaa x:n perusteella y:n - eikä edes *oikeaa* y:n arvoa, vaan jonkin sortin mediaanin.
 
 Käytännön esimerkkejä:
 

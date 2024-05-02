@@ -23,7 +23,7 @@ Koneoppimismallin rakentamiseen tarvitaan dataa. Datan pitää olla valitun onge
 Data voi olla esimerkiksi 
 
 * tekstiä
-    * kategorsita tekstiä
+    * kategorista tekstiä
     * vapaamuotoista tekstiä
 * numeerisia arvoja
     * kategorista dataa
@@ -32,7 +32,7 @@ Data voi olla esimerkiksi
 * kuva- tai äänidataa
 * päivämääriä
 
-Dataa voidaan kerätä julkisista lähteistä, oman palvelun käyttäjiltä, kyselyillä, sensoreilta, jne. Datan keräämisessä tehdyt ==virheet kostautuvat kaikissa seuraavissa vaiheissa==. Yrityksen data voi hyvin sijaita siiloutuneena eri järjestelmissä, jolloin datan yhdistäminen ja puhdistaminen voi olla yllättävänkin suuritöistä. Sivuoireeta tästä saattaa syntyä data-alusta, joka tuottaa yritykselle arvoa myös muilla tavoin kuin koneoppimismallien kautta.
+Dataa voidaan kerätä julkisista lähteistä, oman palvelun käyttäjiltä, kyselyillä, sensoreilta, jne. Datan keräämisessä tehdyt ==virheet kostautuvat kaikissa seuraavissa vaiheissa==. Yrityksen data voi hyvin sijaita siiloutuneena eri järjestelmissä, jolloin datan yhdistäminen ja puhdistaminen voi olla yllättävänkin suuritöistä. Sivuoireena tästä saattaa syntyä data-alusta, joka tuottaa yritykselle arvoa myös muilla tavoin kuin koneoppimismallien kautta.
 
 !!! question "Tehtävä"
 
