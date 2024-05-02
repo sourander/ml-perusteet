@@ -1,13 +1,13 @@
-Tämä ei ole matematiikan kurssi eikä tätä materiaalia ole kirjoittanut matematiikan opettaja. Siitä huolimatta kurssilla täytyy hieman käsitellä todennäköisyysmatematiikkaa, tilastotiedettä ja lineaarialgebraa. Tässä osiossa käsitellään Bayesin teoreemaa intuition tasolla. Tämä pohjustaa seuraavia vaiheita, joissa käytämme Bayesin teoreemaa koneoppimisessa. Hyvin yksinkertainen Bayesilainen esimerkki olisi "kurssin läpäisemisen todennäköisyys". Tämä merkittäisiin näin:
+Tämä ei ole matematiikan kurssi eikä tätä materiaalia ole kirjoittanut matematiikan opettaja. Siitä huolimatta kurssilla täytyy hieman käsitellä todennäköisyysmatematiikkaa, tilastotiedettä ja lineaarialgebraa. Tässä osiossa käsitellään Bayesin teoreemaa intuition tasolla. Tämä pohjustaa seuraavia vaiheita, joissa käytämme Bayesin teoreemaa koneoppimisessa. Hyvin yksinkertainen Bayesilainen esimerkki olisi "todennäköisyys, että opiskelija on läpäissyt pizzakurssin". Tämä merkittäisiin näin:
 
 $$
 \begin{align*}
-    B &= \text{ pass the pizza course} \\
+    B &= \text{ passed the pizza course} \\
     P(B) &= 0.75
 \end{align*}
 $$
 
-Huomaa, että `B` on kaavassa **tapahtuma**. `P(B)` on tapahtuman todennäköisyys. Tässä lapsellisessa esimerkissä oletetaan, että aiemman datan nojalla :pizza:-kurssin läpäisemisen todennäköisyys on 75 % &mdash; pois lukien kaikki muut tekijät. 
+Huomaa, että `B` on kaavassa **tapahtuma**. `P(B)` on tapahtuman todennäköisyys. Tässä lapsellisessa esimerkissä oletetaan, että aiemman datan nojalla :pizza:-kurssin on läpäissyt 75 % opiskelijoista, joita voit tavata käytävällä. 
 
 ## Riippuvaisuus
 
@@ -94,7 +94,7 @@ Aiemmin esitellyt tapahtumat ovat keskenään riippumattomia. Kullakin satunnais
 $$
 \begin{align*}
     A &= \text{ has read the pizza bible } \\
-    B &= \text{ pass the pizza course } \\
+    B &= \text{ passed the pizza course } \\
     P(B|A) &= \text{ 0.96 }
 \end{align*}
 $$
@@ -206,4 +206,3 @@ Mutta mitä jos haluamme selvittää, että: *"Kuinka todennäköistä on, että
 $$
 P(A|B) = \frac{P(B|A) \times P(A)}{P(B)} = \frac{0.96 \times 0.5}{0.75} = 0.64
 $$
-
