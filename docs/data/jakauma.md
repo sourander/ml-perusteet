@@ -10,8 +10,6 @@ $$
 g_1 = \frac{\frac{1}{n} \sum (x_i - \overline{x})^3}{(\frac{1}{n}\sum (x_i - \overline{x})^2)^\frac{3}{2}}
 $$
 
-Huomaa, että $\frac{1}{n}(\sum (x_i - \overline{x}))^\frac{3}{2}$ on keskihajonta.
-
 ```python title="IPython"
 
 def skew(x):
