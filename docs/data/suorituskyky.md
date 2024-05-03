@@ -215,34 +215,223 @@ r_squared(y_true, y_pred) == sklearn.metrics.r2_score(y_true, y_pred)
 
 ### Luokittelumallit
 
+Koska luokittelumallit ennustavat luokkaa, ei jatkuvaa arvoa, mallin tarkkuutta voidaan arvioida laskemalla oikeita ja vääriä ennusteita kokonaisluvuin. Näitä mittareita ei tehdä tällä kurssilla käsin, mutta kun teet harjoituksia scikit-learnin kanssa, sinun tulee osata arvioida luokittelumallin suorituskykyä. Toisin sanoen sinun tulee osata lukkea ja ymmärtää alla esiteltyjen mittareiden tuloksia. Alla on suora esimerkki tulosteesta, joka on lainattu [Recognizing hand-written digits](https://scikit-learn.org/stable/auto_examples/classification/plot_digits_classification.html)-esimerkistä Scikit-learnin dokumentaatiosta.
+
+```plaintext
+Classification report for classifier SVC(gamma=0.001):
+              precision    recall  f1-score   support
+
+           0       1.00      0.99      0.99        88
+           1       0.99      0.97      0.98        91
+           2       0.99      0.99      0.99        86
+           3       0.98      0.87      0.92        91
+           4       0.99      0.96      0.97        92
+           5       0.95      0.97      0.96        91
+           6       0.99      0.99      0.99        91
+           7       0.96      0.99      0.97        89
+           8       0.94      1.00      0.97        88
+           9       0.93      0.98      0.95        92
+
+    accuracy                           0.97       899
+   macro avg       0.97      0.97      0.97       899
+weighted avg       0.97      0.97      0.97       899
+```
+
+Kyseessä on monen luokan luokitteluongelma, jossa jokaiselle luokalle on laskettu `precision`, `recall` ja `f1-score`. Luokkia eli uniikkeja `y`-arvoja on 10 kappaletta. Huomaa, että monissa tällä kurssilla käytetyissä esimerkeissä on vain kaksi luokkaa. Jotta säästyisimme vähemmällä laskemisella, käännetään sama ongelma siten, että meillä on vain kaksi luokkaa. Ennustetaan sitä, että ==onko numero luku 3 vai jokin muu==.
+
+```python title="IPython"
+from sklearn import datasets, metrics, svm
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report
+
+digits = datasets.load_digits()
+
+# Convert into binary problem. (1)
+y = digits.target == 3
+
+# Fit and predict
+X_train, X_test, y_train, y_test = train_test_split(
+    digits.data, 
+    y, 
+    test_size=0.3, 
+    random_state=160 # Seed (2)
+)
+clf = svm.SVC(gamma=0.001)
+clf.fit(X_train, y_train)
+y_pred = clf.predict(X_test)
+
+print(classification_report(
+    y_test, 
+    y_pred, 
+    target_names=['Luku N', 'Luku 3'] # (3)
+))
+```
+
+1. Alkuperäinen y sisältää luvut `range(0, 10)`. Luomme uuden `y`:n eli targetin, jossa on arvot `True` ja `False` (lukuina 1 ja 0). Jos y on True, luku on 3. Muutoin se on jokin muu luku (0-2 tai 4-9).
+2. Seed on käsin valittu sellaiseksi, että saamme vähintään yhden False Positiven ja False Negativen.
+3. Nimitämme lukua 3 `Luku 3` ja kaikkia muita `Luku N`.
+
+```plaintext title="stdout"
+              precision    recall  f1-score   support
+
+      Luku N       0.99      1.00      1.00       479
+      Luku 3       0.98      0.95      0.97        61
+
+    accuracy                           0.99       540
+   macro avg       0.99      0.97      0.98       540
+weighted avg       0.99      0.99      0.99       540
+```
+
 #### Hämmennysmatriisi
 
-Käsittele tässä:
+Tarvitsemme precision, recall ja f1-score arvojen laskemiseksi eräänlaisia totuustestien lukemia, joita ovat True Positive (TP), True Negative (TN), False Positive (FP) ja False Negative (FN). Nämä arvot ovat tärkeitä, kun arvioidaan luokittelumallin suorituskykyä. Tässä on lyhyt selitys näille termeille.
 
-* True Positive (TP)
-* True Negative (TN)
-* False Positive (FP)
-* False Negative (FN)
+* **True Positive (TP)**: Luku 3 ennustettiin 3:ksi.
+* **True Negative (TN)**: Luku N ennustettiin N:ksi.
+* **False Positive (FP)**: Luku N ennustettiin 3:ksi.
+* **False Negative (FN)**: Luku 3 ennustettiin N:ksi.
+
+!!! note
+
+    Kuvittele malli, joka ennustaa laboratoriomittausten valossa, onko sinulla jokin sairaus. Huomaa, että `False Negative` on tilanne, jossa malli ennustaa, että sinulla ei ole sairautta, vaikka todellisuudessa sinulla on. Mikäli saat tämän ennusteen, sinua ei ohjata jatkotutkimuksiin, joten sairaus jää hoitamatta. Mikäli saat `False Positive` ennusteen, sinut ohjataan jatkotutkimuksiin, mutta todellisuudessa sinulla ei ole sairautta. Jatkotutkimukset ovat kalliita ja turhia, mutta eikö ole humaanimpaa olla turhan varovainen kuin jättää sairaus hoitamatta?
+    
+    Tämä mielikuva osoittaa, että kaikki väärät vastaukset eivät ole samanarvoisia. Usein `False Negative` on pahempi kuin `False Positive`.
+
+Voimme laskea hämmennysmatriisin Scikit-Learnin `confusion_matrix` -funktiolla. Luodaan nämä arvot palauttava funktio selvyyden ja kurssin hengen vuoksi "from scratch".
+
+```python title="IPython"
+def tp_fp_tn_fn(y_test, y_pred):
+    # Init
+    TP, TN, FP, FN = 0, 0, 0, 0
+
+    # Count
+    for pair in zip(y_test, y_pred):
+        match pair:
+            case (1, 1):
+                TP += 1
+            case (0, 0):
+                TN += 1
+            case (0, 1):
+                FP += 1
+            case (1, 0):
+                FN += 1
+
+    return TP, FP, TN, FN
+
+TP, FP, TN, FN = tp_fp_tn_fn(y_test, y_pred)
+print(f"TP: {TP}, FP: {FP}, TN: {TN}, FN: {FN}")
+```
+
+```plaintext title="stdout"
+TP: 58, FP: 1, TN: 478, FN: 3
+```
+
+Yllä olevassa tulosteessa asetetut luvut laitetaan usein matriisiin, jossa pystyakseli edustaa ennustettua luokkaa ja vaaka-akseli todellista luokkaa. Tämä matriisi on hämmennysmatriisi. Huomaa, että kenttien järjestys voi vaihdella ajoittain. Tässä tapauksessa `TP` on vasemmassa yläkulmassa, `FP` oikeassa yläkulmassa. Järjestys riippuu siitä, miten akselit on määritelty.
+
+|       | Ennustettu True | Ennustettu False |
+| ----- | --------------- | ---------------- |
+| True  | TP              | FN               |
+| False | FP              | TN               |
+
+!!! question "Tehtävä"
+
+    Käy katsomassa yllä mainitusta Scikit-learnin esimerkistä, miltä hämmennysmatriisi näyttää, kun mukana ovat kaikki 10 luokkaa. Tässä vielä linkki uudestaan: [Recognizing hand-written digits](https://scikit-learn.org/stable/auto_examples/classification/plot_digits_classification.html)
+
+Kun syötämme oikeat target-nimet ja arvot, taulukko näyttää tältä:
+
+|        | Ennustettu luku 3 | Ennustettu luku N |
+| ------ | ----------------- | ----------------- |
+| Luku 3 | 58                | 3                 |
+| Luku N | 1                 | 478               |
 
 #### Accuracy
 
-TODO
+Nyt kun meillä on tiedossa hämmennysmatriisin arvot, voimme helposti laskea tarkkuuden (engl. accuracy). Tarkkuus on prosenttiosuus oikeista ennusteista. Se lasketaan seuraavalla kaavalla:
 
-#### Precision
+$$
+\begin{align*}
+    \text{Accuracy} &= \frac{TP + TN}{TP + TN + FP + FN} \\
+                    &= \frac{536}{540} \\
+                    &= 0.9926
+\end{align*}
+$$
 
-TODO
+Voimme tarkistaa, että laskutoimituksemme täsmää Scikit-learningin `accuracy_score` -funktion palauttamaan arvoon. Huomaa, että `TP + TN + FP + FN` on yhtä suuri kuin `len(y_test)` eli koko testidatan havaintojen määrä. Jakaja on siis *kaikki data*.
+
+```python title="IPython"
+acc = (TP + TN) / (TP + TN + FP + FN)
+assert metrics.accuracy_score(y_test, y_pred) == acc
+```
+
+!!! tip
+
+    Tarkkuus on siis lyhyesti: kuinka monta prosenttia ennusteista oli oikein.
 
 #### Recall
 
-TODO
+Löytyvyysarvo (engl. recall, sensitivity) on yhtä helppo laskea.
+
+$$
+\begin{align*}
+    \text{Recall} &= \frac{TP}{TP + FN} \\
+                  &= \frac{58}{61} \\
+                  &\approx 0.95
+\end{align*}
+$$
+
+Voimme tarkistaa, että laskutoimituksemme täsmää Scikit-learningin `recall_score` -funktion palauttamaan arvoon.
+
+```python title="IPython"
+recall = TP / (TP + FN)
+assert metrics.recall_score(y_test, y_pred) == recall
+```
+
+!!! tip
+
+    Löytyvyysarvo kertoo, kuinka monta prosenttia me ennustimme oikein, jos huomioidaan vain True caset ("ylempi rivi").
+
+#### Precision
+
+Myös positiivinen ennustearvo (engl. precision) on helppo laskea.
+
+$$
+\begin{align*}
+    \text{Precision} &= \frac{TP}{TP + FP} \\
+                    &= \frac{58}{59} \\
+                    &\approx 0.98
+\end{align*}
+$$
+
+Voimme tarkistaa, että laskutoimituksemme täsmää Scikit-learningin `precision_score` -funktion palauttamaan arvoon.
+
+```python title="IPython"
+precision = TP / (TP + FP)
+assert metrics.precision_score(y_test, y_pred) == precision
+```
+
+!!! tip
+
+    Precision kertoo, kuinka monta prosenttia me ennustimme oikein, jos huomioidaan vain ennustetut Truet ("vasen sarake").
+
 
 #### F1 score
 
-TODO
+Yhtenä hyvän mallin mittarina voidaan sanoa sellaista, jolla on korkea tarkkuus ==ja== löytyvyysarvo. Sellainen arvo on nimeltään F1 score. F1 on harmoninen keskiarvo tarkkuudesta ja löytyvyysarvosta. Se lasketaan seuraavalla kaavalla:
 
-#### Ehkä: ROC ja AUC
+$$
+\begin{align*}
+    \text{F1} &= 2 \times \frac{\text{Precision} \times \text{Recall}}{\text{Precision} + \text{Recall}} \\
+              &\approx 0.97
+\end{align*}
+$$
 
-TODO
+Voimme tarkistaa, että laskutoimituksemme täsmää Scikit-learningin `f1_score` -funktion palauttamaan arvoon.
 
+```python title="IPython"
+f1 = 2 * (precision * recall) / (precision + recall)
+assert metrics.f1_score(y_test, y_pred) == f1
+```
 
+!!! question "Tehtävä"
 
+    Mikä mahtaa olla F beta score eli $F_{\beta}$ ?Selvitä, mikä on sen laskukaava ja miten se eroaa F1 scoresta.
