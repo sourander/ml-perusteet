@@ -73,7 +73,7 @@ Alisovittaminen (engl. underfitting) ja ylisovittaminen (engl. overfitting) ovat
 
 Vinouma (engl. bias) on mallin virhe, joka johtuu vääristä oletuksista. Vinouman tapauksessa malli **alisovittaa** dataa, eli malli ei kykene selittämään ilmiön monimutkaisuutta. Malli on siis liian yksinkertainen datan monimutkaisuuteen nähden.
 
-Vinouman tapauksessa sekä koulutus- että testidatan virheet ovat suuria.
+Vinouman tapauksessa sekä koulutus- että testidatan virheet ovat suuria eikä koulutusdatan lisääminen poista tätä ongelmaa; malli on yksinkertaisesti liian yksinkertainen. Vinoumaa voidaan korjata lisäämällä mallin monimutkaisuutta, esimerkiksi lisäämällä muuttujia tai nostamalla mallin polynomisen asteen.
 
 ![Training model with 1 sample](../images/optimization_training_size_1_parabol.png)
 
@@ -100,11 +100,6 @@ Hajonnan tunnistaa siitä, että koulutusdatan virhe on pieni, mutta testidatan 
 Regularisointi on menetelmä, jolla voidaan vähentää ylisovittamista. Regularisointi lisää mallin virhefunktion (engl. loss function) rangaistusta, mikäli malli on liian monimutkainen. Regularisointi on erityisen tärkeä menetelmä, kun käytetään monimutkaisia malleja, kuten neuroverkkoja. Tällä kurssilla regularisointia käsitellään korkeintaan pintapuolisesti, mutta se on tärkeä tunnistaa jo nyt terminä.
 
 ### Trade-off
-
-|                          | Ylisovitus | Alisovitus   |
-| ------------------------ | ---------- | ------------ |
-| **Suurempi virhe**       | Testidata  | Koulutusdata |
-| **Vinouma vai hajonta?** | Hajonta    | Vinouma      |
 
 Huomaa, että ylisovittamisen ja alisovittamisen välillä on tasapaino, jota kutsutaan trade-offiksi. Ellei ennustettu malli noudata **täydellisesti** ilman kohinaa jotakin matemaattista kaavaa, malli on aina väkisinkin ali- tai ylisovittava. Tavoitteena on löytää optimaalinen malli, joka ennustaa hyvin sekä opetus- että testidataa. Jos malli ennustaa hyvin opetusdataa, mutta huonosti testidataa, se on ylisovittava. Jos malli ennustaa huonosti sekä opetus- että testidataa, se on alisovittava. Alla on taulukko, joka kuvaa, miten jompaa kumpaa ääripäätä voidaan korjata.
 
