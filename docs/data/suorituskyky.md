@@ -87,13 +87,17 @@ Tutustu yllä oleviin kuvioihin (Kuviot 3 ja 4) tarkasti. Kuvioissa on `MSE test
 
 !!! question "Tehtävä"
 
-    Ihminen on eräänlainen koneoppimismalli, joka osaa luokitella näkemäänsä. Tutustu aiheeseen **kognitiivinen vinouma** ja mieti, miten se suhtautuu koneoppimismallin vinoumaan. Asiantuntijana on tärkeää osata epäillä myös omia oletuksiaan.
+    Ihminen on eräänlainen koneoppimismalli, joka osaa luokitella näkemäänsä. Tutustu aiheeseen **kognitiivinen vinouma** ja mieti, miten se suhtautuu koneoppimismallin vinoumaan.
 
 ### Hajonta
 
 Hajonta (engl. variance) on vinouman vastakohta.  Hajonnan tapauksessa malli **ylisovittaa** dataa eli se pitää pienintäkin kohinaa merkittävänä, selittävänä tekijänä. Hajonta on mallin virhe, joka johtuu siitä, että malli on liian monimutkainen datan monimutkaisuuteen tai määrään nähden.
 
-Hajonnan tunnistaa siitä, että koulutusdatan virhe on pieni, mutta testidatan virhe on suuri - ja mallin monimutkaisuuden lisääntyessä tämä ero kasvaa.
+Hajonnan tunnistaa usein siitä, että koulutusdatan virhe on pieni, mutta testidatan virhe on suuri - ja mallin monimutkaisuuden lisääntyessä tämä ero kasvaa. Mallin parametrit heilahtavat reilusti, jos koulutat mallin useamman kerran saman datan eri subsetilla, koska malli on liian herkkä kohinalle.
+
+!!! tip
+
+    Bias ja variance eivät ole lukuja, joita saisi yhtä helposti esille kuin vaikkapa tarkkuus tai f1-score. Jos haluat penkoa, voit yrittää käyttää mlxtend-kirjaston [bias_variance_decomp: Bias-variance decomposition for classification and regression losses](https://rasbt.github.io/mlxtend/user_guide/evaluate/bias_variance_decomp/)-artikkelissa esiteltyä funktiota.
 
 ### Regularisointi
 
@@ -110,7 +114,7 @@ Huomaa, että ylisovittamisen ja alisovittamisen välillä on tasapaino, jota ku
 | **# Muuttujaa**           | Poista muuttujia       | Tehtaile lisää muuttujia |
 | **# Havaintoa**           | Kerää lisää havaintoja | ---                      |
 
- Yllä oleva taulukko tarjoaa ratkaisuehdotuksen yli- tai alisovittamisen tapauksessa.
+ Yllä oleva taulukko tarjoaa ratkaisuehdotuksen yli- tai alisovittamisen tapauksessa. Myös ensemble-menetelmät, kuten Random Forest ja Gradient Boosting, ovat hyviä tapoja vähentää ylisovittamista. Nämä menetelmät käyttävät useita malleja, jotka yhdessä ennustavat paremmin kuin yksittäinen malli.
 
  ![Model complexity vs errors](../images/optimization_model_complexity_intuition.png)
 
