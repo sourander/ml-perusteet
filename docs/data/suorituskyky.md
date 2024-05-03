@@ -73,7 +73,7 @@ Alisovittaminen (engl. underfitting) ja ylisovittaminen (engl. overfitting) ovat
 
 Vinouma (engl. bias) on mallin virhe, joka johtuu vääristä oletuksista. Vinouman tapauksessa malli **alisovittaa** dataa, eli malli ei kykene selittämään ilmiön monimutkaisuutta. Malli on siis liian yksinkertainen datan monimutkaisuuteen nähden.
 
-Vinouman tunnistaa siitä, että koulutusdatan virhe on suurempi kuin testidatan virhe.
+Vinouman tapauksessa sekä koulutus- että testidatan virheet ovat suuria.
 
 ![Training model with 1 sample](../images/optimization_training_size_1_parabol.png)
 
@@ -93,7 +93,7 @@ Tutustu yllä oleviin kuvioihin (Kuviot 3 ja 4) tarkasti. Kuvioissa on `MSE test
 
 Hajonta (engl. variance) on vinouman vastakohta.  Hajonnan tapauksessa malli **ylisovittaa** dataa eli se pitää pienintäkin kohinaa merkittävänä, selittävänä tekijänä. Hajonta on mallin virhe, joka johtuu siitä, että malli on liian monimutkainen datan monimutkaisuuteen tai määrään nähden.
 
-Hajonnan tunnistaa siitä, että koulutusdatan virhe on pienempi kuin testidatan virhe. Katso uusin silmin Kuviota 2.
+Hajonnan tunnistaa siitä, että koulutusdatan virhe on pieni, mutta testidatan virhe on suuri - ja mallin monimutkaisuuden lisääntyessä tämä ero kasvaa.
 
 ### Regularisointi
 

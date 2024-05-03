@@ -27,7 +27,7 @@ def skew(x):
 Huippuus kuvaa jakauman muotoa. Huipukkuuden kaava on seuraava:
 
 $$
-g_2 = \frac{\frac{1}{n} \sum (x_i - \overline{x})^4}{\frac{1}{n}(\sum (x_i - \overline{x})^2)^2}
+g_2 = \frac{\frac{1}{n} \sum (x_i - \overline{x})^4}{\frac{1}{n}(\sum (x_i - \overline{x})^2)^2} - 3 
 $$
 
 ```python title="IPython"
@@ -84,7 +84,7 @@ Syntyvä data näyttää seuraavalta:
 Huomaa, että suurin osa palkoista sijaitsee välillä 0-60 000. Vasemmalla puolella data leikkautuu nollan kohdalla. Oikealla on hajanaisia suuria palkkoja. Suurin palkka tässä tasasetissä on 268 898. Jos datasetistä lasketaan vinouma ja huipukkuus, saadaan seuraavat tulokset:
 
 ```python title="REPL"
->>> skrewness(salaries)
+>>> skewness(salaries)
 6.17
 >>> kurtosis(salaries)
 62.35
