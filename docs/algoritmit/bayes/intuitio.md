@@ -99,7 +99,7 @@ $$
 \end{align*}
 $$
 
-Lausemuodossa tämä on: *"Kurssin läpäisemisen todennäköisyys, annettuna että olet lukenut The Pizza Biblen, on 99 %."* Kaavassa `B` on yhä sama :pizza:-kurssin läpäisy. `A` on tapahtuman ehto. `P(B|A)` on tapahtuman todennäköisyys, annettuna ehto. Huomaa, että tällöin tapahtumat eivät ole keskenään riippumattomia vaan nimenomaan riippuvaisia toisistaan.
+Lausemuodossa tämä on: *"Kurssin läpäisemisen todennäköisyys, annettuna että olet lukenut The Pizza Biblen, on 96 %."* Kaavassa `B` on yhä sama :pizza:-kurssin läpäisy. `A` on tapahtuman ehto. `P(B|A)` on tapahtuman todennäköisyys, annettuna ehto. Huomaa, että tällöin tapahtumat eivät ole keskenään riippumattomia vaan nimenomaan riippuvaisia toisistaan.
 
 !!! tip
 
