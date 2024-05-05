@@ -71,19 +71,19 @@ Alisovittaminen (engl. underfitting) ja ylisovittaminen (engl. overfitting) ovat
 
 ### Vinouma
 
-Vinouma (engl. bias) on mallin virhe, joka johtuu vääristä oletuksista. Vinouman tapauksessa malli **alisovittaa** dataa, eli malli ei kykene selittämään ilmiön monimutkaisuutta. Malli on siis liian yksinkertainen datan monimutkaisuuteen nähden.
+Vinouma (engl. bias) on mallin virhe, joka johtuu vääristä oletuksista. Vinouman tapauksessa malli **alisovittaa** dataa, eli malli ei kykene selittämään ilmiön monimutkaisuutta. Malli on siis liian yksinkertainen datan monimutkaisuuteen nähden. Kaikissa maailman malleissa on jokin määrä vinoumaa, hajontaa ja kohinaa. Mallin virheen voi ajatella koostuvan näistä tekijöistä:
 
-Vinouman tapauksessa sekä koulutus- että testidatan virheet ovat suuria eikä koulutusdatan lisääminen poista tätä ongelmaa; malli on yksinkertaisesti liian yksinkertainen. Vinoumaa voidaan korjata lisäämällä mallin monimutkaisuutta, esimerkiksi lisäämällä muuttujia tai nostamalla mallin polynomisen asteen.
+$$
+\text{Virhe} = \text{Vinouma} + \text{Hajonta} + \text{Kohina}
+$$
 
-![Training model with 1 sample](../images/optimization_training_size_1_parabol.png)
+Vinoumaa voidaan mitata ottamalla satunnaisia otantoja datasta (engl. bootstrapping) ja laskemalla mallin virhe. Jos mallin virhe pysyy otannasta huolimatta suurena, malli on vahvasti vinoutunut (engl. biased). Tästä voidaan tulkita, että myös testidatan virhe on suuri. Täten koulutusdatan lisääminen ei poista ongelmaa; malli on liian yksinkertainen selittämään ongelmaa, joten mitenpä se voisi? Vinoumaa voidaan korjata lisäämällä mallin monimutkaisuutta. Se, miten mallin monimutkaisuutta lisätään, selviää kurssin aikana.
 
-**Kuvio 3:** *Kuvassa on esitetty jokin ilmiö, joka sattuu noudattamaan hyvin lähelle toisen asteen yhtälöä eli parabolia. Valittu malli on koulutettu tasan yhdellä havainnolla: kaikkia muita käytetään testidatana. Huomaa, että `X_train`-virhe eli testivirhe on tasan 0. Viiva läpäisee pisteen.*
+Alla olevassa kuviossa on tilanne, jossa malli on biased. Koulutusdataa on vain 10 pistettä, mutta vaikka kouluttaisit mallin enemmällä datalla, malli ei kykenisi selittämään ilmiötä. Ei ole sellaista suoraa viivaa, joka selittäisi parabolisen käyrän. Huomaa, että vinouma on siis *oletus*, että ilmiö on suora.
 
 ![Training model with 10 samples](../images/optimization_training_size_10_parabol.png.png)
 
-**Kuvio 4:** *Kuvassa on esitetty sama ilmiö kuin kuviossa 3, mutta tällä kertaa malli on koulutettu kymmenellä havainnolla. Malli on yhä liian yksinkertainen, ja se alisovittaa dataa. Treenidatan suhteen virhe ei ole enää 0.0, mutta vastaavasti testidatan virhe on vähemmän altis satunnaisuudelle.*
-
-Tutustu yllä oleviin kuvioihin (Kuviot 3 ja 4) tarkasti. Kuvioissa on `MSE test` ja `MSE train` arvot eli koulutus- ja testidatan virhe suhteessa malliin. Valittu malli (eli suora viiva) on liian yksinkertainen selittämään ilmiötä, joka sattuu noudattamaan parabolista käyrää. Koulutusdatan lisääminen auttaa vähentämään virhettä, mutta todellinen ratkaisu olisi lisätä malliin monimutkaisuutta (eli mallin polynomisen asteen nostaminen). Huomaa kuitenkin, että jos koulutusdataa on liian vähän, kuten vain 1 tai 2 havaintoa, niin pelkkä monimutkaisuuden lisääminen voi johtaa jopa entistä suurempaan virheeseen.
+**Kuvio 3:** *Malli on yhä liian yksinkertainen eli alisovittaa dataa. Eri otannat (bootstrapit) tuottavat kaikki suuren virheen.*
 
 !!! question "Tehtävä"
 
@@ -91,9 +91,9 @@ Tutustu yllä oleviin kuvioihin (Kuviot 3 ja 4) tarkasti. Kuvioissa on `MSE test
 
 ### Hajonta
 
-Hajonta (engl. variance) on vinouman vastakohta.  Hajonnan tapauksessa malli **ylisovittaa** dataa eli se pitää pienintäkin kohinaa merkittävänä, selittävänä tekijänä. Hajonta on mallin virhe, joka johtuu siitä, että malli on liian monimutkainen datan monimutkaisuuteen tai määrään nähden.
+Hajonta (engl. variance) on vinouman vastakohta.  Hajonnan tapauksessa malli **ylisovittaa** dataa eli se pitää mitättömiäkin yksityiskohtia merkittävinä - jopa pelkkää kohinaa. Hajonta on mallin virhe, joka johtuu siitä, että malli on liian monimutkainen datan monimutkaisuuteen tai määrään nähden.
 
-Hajonnan tunnistaa usein siitä, että koulutusdatan virhe on pieni, mutta testidatan virhe on suuri - ja mallin monimutkaisuuden lisääntyessä tämä ero kasvaa. Mallin parametrit heilahtavat reilusti, jos koulutat mallin useamman kerran saman datan eri subsetilla, koska malli on liian herkkä kohinalle.
+Hajonnan tunnistaa usein siitä, että koulutusdatan virhe on pieni, mutta testidatan virhe on suuri - ja mallin monimutkaisuuden lisääntyessä tämä ero kasvaa. Mallin parametrit heilahtavat reilusti, jos koulutat mallin useamman kerran saman datan eri subsetilla, koska malli on liian herkkä.
 
 !!! tip
 
@@ -101,7 +101,9 @@ Hajonnan tunnistaa usein siitä, että koulutusdatan virhe on pieni, mutta testi
 
 ### Regularisointi
 
-Regularisointi on menetelmä, jolla voidaan vähentää ylisovittamista. Regularisointi lisää mallin virhefunktion (engl. loss function) rangaistusta, mikäli malli on liian monimutkainen. Regularisointi on erityisen tärkeä menetelmä, kun käytetään monimutkaisia malleja, kuten neuroverkkoja. Tällä kurssilla regularisointia käsitellään korkeintaan pintapuolisesti, mutta se on tärkeä tunnistaa jo nyt terminä.
+Regularisointi on menetelmä, jolla voidaan vähentää ylisovittamista. Yleisesti regularisointi on nimenomaan gradient descent -menetelmien yhteydessä käytetty termi, mutta muiden kurssin koneoppimisalgoritmien tapauksessa sille löytyy yleisesti jokin vastine, jolla mallin ylisovittamista voidaan vähentää. Esimerkiksi k-NN -mallissa voidaan säätään `k`:n arvoa. Päätöspuualogritmit ovat luontaisesti herkkiä ja täten ylisovittavia, mutta niiden ylisovittamista voidaan vähentää rajoittamalla puun syvyyttä tai rakentamalla useista pienistä puista koostuva metsä. Tätä harjoitellaan tämän kurssin aikana.
+
+Regularisointi on siis yleinen termi, joka tarkoittaa mallin ylisovittamisen vähentämistä.
 
 ### Trade-off
 
@@ -118,7 +120,7 @@ Huomaa, että ylisovittamisen ja alisovittamisen välillä on tasapaino, jota ku
 
  ![Model complexity vs errors](../images/optimization_model_complexity_intuition.png)
 
- **Kuvio 5:** *Kuvassa on esitetty mallin monimutkaisuuden vaikutus virheeseen. Kun mallin monimutkaisuutta lisätään, esimerkiksi regularisaatiota vähentämällä tai muuttujia lisäämällä, koulutusvirhe laskee. Alisovitus vaihtuu vaihtua ylisovitukseksi, kun yleistettävyys heikkenee. Kuvaajassa tätä ilmentää koulutusvirheen ja testivirheen etäisyys toisistaan. Vastaava graafi, jossa x-akselilla on epookkien määrä, tulee sinulle myöhemmissä opinnoissa tutuksi neuroverkkojen kanssa.*
+ **Kuvio 5:** *Kuvassa on esitetty mallin monimutkaisuuden vaikutus virheeseen. Virhe ilmaistaan sanalla "validation", mutta voit tulkita sen koulutusdatan virheeksi tässä yhteydessä. Kun mallin monimutkaisuutta lisätään koulutusvirhe laskee. Alisovitus vaihtuu vaihtua ylisovitukseksi, kun yleistettävyys heikkenee. Kuvaajassa tätä ilmentää koulutusvirheen ja testivirheen etäisyys toisistaan.*
 
 ## Mittariston valinta
 
