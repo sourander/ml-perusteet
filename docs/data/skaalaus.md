@@ -134,6 +134,6 @@ def min_max(x: Vector):
 
     ```python title="IPython"
     def minmax_scale(x, a=0, b=1):
-        return a + (b - a) * range_scale(x)
+        return a + (b - a) * min_max(x)
     ```
 
