@@ -138,7 +138,7 @@ $$
 
 Kyseistä virhefunktiota käytetään [Normaaliyhtälö](../algoritmit/linear/normal_equation.md) -materiaalissa.
 
-Huomaa, että virhe on nostettu neliöön. Jos ennustat esimerkiksi asunnon hintaa ja MSE on 10,000 euroa, se tarkoittaa, että nimenomaan **neliösumma** virheestä on 40,000 euroa. Neliö voidaan palauttaa alkuperäiseen skaalaan ottamalla neliöjuuri virheestä: `sqrt(40_000)` palauttaa arvon `200`, koska `200 * 200 = 40_000`. Neliösummaa käytetään ==mallin koulutuksessa==, mutta alkuperäiseen skaalaan palautettu `RMSE` (Root Mean Squared Error) on helpompi ymmärtää evaluaatiovaiheessa.
+Huomaa, että virhe on nostettu neliöön. Jos ennustat esimerkiksi asunnon hintaa ja MSE on 40,000 euroa, se tarkoittaa, että nimenomaan **neliösumma** virheestä on 40,000 euroa. Neliö voidaan palauttaa alkuperäiseen skaalaan ottamalla neliöjuuri virheestä: `sqrt(40_000)` palauttaa arvon `200`, koska `200 * 200 = 40_000`. Neliösummaa käytetään ==mallin koulutuksessa==, mutta alkuperäiseen skaalaan palautettu `RMSE` (Root Mean Squared Error) on helpompi ymmärtää evaluaatiovaiheessa. Koneoppimismalli ei siis suinkaan tässä tapauksessa ennustanut hintoja 40 000 euroa väärin, jos virhettä käsitellään alkuperäisessä skaalassa (eli euroina eikä neliöeuroina). Alkuperäiseen skaalaan palautettu virhe on 200 euroa, mikä on mitätön ero, olettaen että asunnot maksavat kymmeniä tai satoja tuhansia.
 
 Sekä MSE:n että RMSE:n voi laskea myös Scikit-Learn kirjaston funktioilla:
 
