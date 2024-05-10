@@ -41,7 +41,7 @@ DATASET = [
 ]
 
 def probability_of_word_being_in_class(word, y_val):
-    """ P(edivence_i | y) """
+    """ P(evidence_i | y) """
 
     # N(x_i | y): (1)
     n_docs = sum(
@@ -85,8 +85,8 @@ def predict_class_probability(evidence, y_val):
 evidence = "Free Viagra of something"
 
 probabilities = [
-    predict_class_probability(evidence, "Spam"), 
     predict_class_probability(evidence, "Not spam")
+    predict_class_probability(evidence, "Spam"), 
 ]
 
 y_hat_prob, other_prob = max(probabilities), min(probabilities)
