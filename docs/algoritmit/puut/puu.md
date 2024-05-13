@@ -50,12 +50,18 @@ Informaation kasvu (engl. information gain) on päätöspuun rakentamisen keskei
 Kaava on:
 
 $$
-IG(X, A) = H(X) - \sum_{v \in V} \frac{|X_v|}{|X|} H(X_v)
+IG(X, a) = H(X) - H(X|a)
+$$
+
+Tämä voidaan kirjoittaa auki muotoon:
+
+$$
+IG(X, a) = H(X) - \sum_{v \in V_a} \frac{|X_{v_a}|}{|X|} H(X_{v_a})
 $$
 
 Missä:
 
-
+* $a$ : on valittu ominaisuus
 * $H(X)$ : on vanhemman solmun entropia
 * $V$ : on lasten solmujen joukko (`V =[beardless, bearded]`)
 * $X_v$ : on lapsen solmun $v$ data (esim. `V[1] = bearded = [0] * 7`)
