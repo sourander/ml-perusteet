@@ -5,14 +5,14 @@ Päätöspuu on puun muotoon järjestetty joukko sääntöjä, jotka auttavat en
 ```mermaid
 graph TD
     A[Onko eläin nisäkäs?] -->|Kyllä| B[Onko eläimellä kärsä?]
-    A -->|Ei| C(Lintu)
+    A -->|Ei| C(Varis)
     B -->|Kyllä| D(Elefantti)
     B -->|Ei| E[Esiintyykö eläintä Suomessa?]
     E -->|Kyllä| I(Karhu)
     E -->|Ei| H(Gepardi)
 ```
 
-**Kuvio 1:** *Mikä eläin?-pelin päätöspuu, olettaen että ainoat sallitut eläimet ovat: gepardi, varis, elefantti, karhu ja leijona.*
+**Kuvio 1:** *Mikä eläin?-pelin päätöspuu, olettaen että ainoat sallitut eläimet ovat: gepardi, karhu, elefantti ja varis.*
 
 Informaatio on tiedon yllättävyyttä (engl. surprise). Jos jokin tapahtuma on äärimmäisen epätodennäköinen, mutta tapahtuu silti, se on yllättävä (eli sisältää paljon informaatiota.) Tapahtuma "Näin eilen metsässä eläimen" ei ole laisinkaan yllättävä, mutta "Näin eilen metsässä leijonan" on erittäin yllättävä.
 
