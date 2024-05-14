@@ -327,7 +327,7 @@ print(f"TP: {TP}, FP: {FP}, TN: {TN}, FN: {FN}")
 TP: 58, FP: 1, TN: 478, FN: 3
 ```
 
-Yllä olevassa tulosteessa asetetut luvut laitetaan usein matriisiin, jossa pystyakseli edustaa ennustettua luokkaa ja vaaka-akseli todellista luokkaa. Tämä matriisi on hämmennysmatriisi. Huomaa, että kenttien järjestys voi vaihdella ajoittain. Tässä tapauksessa `TP` on vasemmassa yläkulmassa, `FP` oikeassa yläkulmassa. Järjestys riippuu siitä, miten akselit on määritelty.
+Yllä olevassa tulosteessa asetetut luvut laitetaan usein matriisiin, jossa pystyakseli edustaa ennustettua luokkaa ja vaaka-akseli todellista luokkaa. Tämä matriisi on hämmennysmatriisi. Huomaa, että kenttien järjestys voi vaihdella ajoittain. Järjestys riippuu siitä, miten akselit on määritelty. Meidän tapauksessa rivi on todellinen luokka, sarake on ennustettu luokka.
 
 |       | Ennustettu True | Ennustettu False |
 | ----- | --------------- | ---------------- |
