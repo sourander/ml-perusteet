@@ -228,7 +228,7 @@ Päätöspuu on saanut ensimmäisen haaransa, joka vastaa kysymykseen:
 
 **Sinä** :thinking: : "Hmm, pitäisikö minun pyöräillä vai mennä autolla määränpäähän?"
 
-**Puu** :palm_tree: : "Ah, tämä riippuu siitä, kuinka kauan sinun pitää päästä ja kuinka äkkiä. Onko vaadittu nopeus suurempi kuin 20.995 km/h?".
+**Puu** :palm_tree: : "Ah, tämä riippuu siitä, kuinka kauas sinun pitää päästä ja kuinka äkkiä. Onko vaadittu nopeus suurempi kuin 20.995 km/h?".
 
 ##### Graafi
 
