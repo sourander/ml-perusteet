@@ -423,17 +423,17 @@ conf_matrix = confusion_matrix(y_test, y_pred)
 tn, fp, fn, tp = conf_matrix.ravel()
 
 print(f"Confusion matrix:")
-print(f"TP: {tp}, FN: {fn}")
-print(f"FP: {fp}, TN: {tn}")
+print(f"TP: {tp}, FP: {fp}")
+print(f"FN: {fn}, TN: {tn}")
 print(f"Accuracy: {(tp + tn) / (len(y_test))}")
 ```
 
-Confusion matrix on seuraavanlainen:
+Hämmennysmatriisi on seuraavanlainen:
 
-|                  | Autolla | Pyörällä |
-| ---------------- | ------- | -------- |
-| Ennuste autolla  | 71      | 0        |
-| Ennuste pyörällä | 1       | 28       |
+|          | Ennuste Autolla | Ennuste Pyörällä |
+| -------- | --------------- | ---------------- |
+| Autolla  | 71              | 1                |
+| Pyörällä | 0               | 28               |
 
 !!! question "Kysymys"
     Mikä on tämän mallin tarkkuus?
