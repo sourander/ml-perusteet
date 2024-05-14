@@ -445,6 +445,8 @@ Hämmennysmatriisi on seuraavanlainen:
 
 !!! question "Kysymys"
 
-    Miksi yksi False Negative on False Negative? Kyseinen väärin ennustettu havainto näyttää tältä: `(1, 1, 19.95, 0)`. Kulje mallia pitkin ja tarkista, että mitä reittiä havainto kulkee. Muista, että kentät ovat järjestyksessä ja nollaindeksoituina: `im_well_rested`, `dst_has_shower` ja `required_speed`.
-
-    Missä ennuste menee vikaan? Nimeä oksa, joka on selkeästi väärässä. Pohdi, kuinka tätä tulosta voisi parantaa.
+    Miksi yksi False Positive on False Positive? 
+    
+    * Kyseinen väärin ennustettu havainto näyttää tältä: `(1, 1, 19.95, 0)`. Kuinka löytäisit tämän koodin avulla? 
+    * Missä ennuste menee vikaan? Nimeä oksa, joka on selkeästi väärässä. 
+    * Pohdi, kuinka tätä tulosta voisi parantaa.
