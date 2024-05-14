@@ -143,7 +143,7 @@ Luodaan päätöspuu, joka pyrkii generalisoimaan kulkuvälineen valinnan päät
 
 ### Datan esittely
 
-Datasettiin kuuluu 4 saraketta (eli piirrettä, *featurea*) ja 15 riviä (eli havaintoa, *observation*). Sarakkeet ovat:
+Datasettiin kuuluu 4 saraketta (eli piirrettä, *featurea*) ja 16 riviä (eli havaintoa, *observation*). Sarakkeet ovat:
 
 * Olen levännyt (0 = False, 1 = True)
 * Määränpäässä on suihku (0 = False, 1 = True)
