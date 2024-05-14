@@ -105,14 +105,17 @@ def information_gain(parent, child1, child2):
 # Dataset X
 X = [
 #   x0, x1, y
-    (1, 1, 0),  #  ┌────> x[0] => 1/3  
+    (1, 1, 0),  #  ┌─────> x[0] => 1/3 naisia
     (1, 1, 1),  #  │
-    (1, 1, 0),  #  ┘ ┌───> x[1] => 2/4
-    (0, 1, 1),  #  ──┘           = 1/2
-    (0, 0, 0),
-    (0, 1, 1),
+    (1, 1, 0),  #  ┘ ┌───> x[1] => 3/5 naisia
+    (0, 1, 1),  #  ──┤      
+    (0, 0, 0),  #    │
+    (0, 1, 1),  #  ──┘
     (0, 0, 0)
 ]
+
+# Note: There are multiple symbols you can use to draw arrows in ASCII art.
+#       These symbols are useful: ─ │ ┌ ┐ └ ┘ ┴ ┬ ├ ┤ ┼
 
 # Compute the IG for both non-label columns: X_i (i=0 or i=1)
 for i in (0, 1):
@@ -283,7 +286,7 @@ print(f"Splitting score: {ig_depth_1}")
 #   split_point=0.5
 # )
 
-root_l_l, root_l_r = dt.split_data(data, ig_root)
+root_l_l, root_l_r = dt.split_data(data, ig_depth_1)
 ```
 #### Tulos
 
