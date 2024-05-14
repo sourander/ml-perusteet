@@ -377,9 +377,10 @@ Huomaa, että esimerkki koulutettiin vain 16 rivillä dataa. Näin suppealla dat
 Entäpä jos generoimme enemmän dataa? Alla Decision Tree:n Scikit learn -kirjastolla luotu päätöspuu, joka on koulutettu 293 rivillä dataa. Koodi on yksinkertainen ja helppo ymmärtää, mutta se on myös tehokas ja skaalautuva. Voisimme käyttää myös tähän omaa koodiamme, mutta Scikit-learn tarjoaa mahdollisuuden puun visualisointiin - tätä ei meidän purkkaviritelmästä löydy. Huomaa, että **tarkkuus on kummassakin kuitenkin sama!** Tämän voit testata myöhemmin koodiharjoituksien avulla.
 
 ```python
-# Import required libraries such as DecisionTreeClassifier
-from pathlib import Path
 import matplotlib.pyplot as plt
+import ml.decision_tree as dt
+
+from pathlib import Path
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 
 data_train = dt.read_jsonl(Path("../../data/bike_or_car/293_train.jsonl"))
