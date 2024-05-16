@@ -50,27 +50,26 @@ Informaation kasvu (engl. information gain) on päätöspuun rakentamisen keskei
 Kaava on:
 
 $$
-IG(X, a) = H(X) - H(X|a)
+IG(S, a) = H(S) - H(S|a)
 $$
 
 Tämä voidaan kirjoittaa auki muotoon:
 
 $$
-IG(X, a) = H(X) - \sum_{v \in V_a} \frac{|X_{v_a}|}{|X|} H(X_{v_a})
+IG(S, a) = H(S) - \sum_{v \in values(a)} \frac{|S_{v}|}{|S|} H(S_{v})
 $$
 
 Missä:
 
-* $a$ : on valittu ominaisuus
-* $H(X)$ : on vanhemman solmun entropia
-* $V$ : on lasten solmujen joukko (`V =[beardless, bearded]`)
-* $X_v$ : on lapsen solmun $v$ data (esim. `V[1] = bearded = [0] * 7`)
-* $|X|$ : on vanhemman solmun data(n kardinaalisuus)
-* $H(X_v)$ : on lasten solmun $v$ entropia
+* $H(S)$ : on vanhemman solmun entropia (eli `y`-arvojen entropia)
+* $a$ : on valittu ominaisuus eli piirre
+* $v \in values(a)$ : on ominaisuuden $a$ mahdolliset arvot
+* $S_v$ : on S:n data niissä indekseissä, joissa $a$ on $v$ (`child1` tai `child2`)
+* $H(S_v)$ : on lasten solmun $v$ entropia
 
-Kaavassa pystypalkit `|X|` ja `|X_v|` tarkoittavat joukon kardinaalisuutta, eli kuinka monta alkiota joukossa on. Käytännössä se on sama asia kuin `len(X)`.
+Kaavassa pystypalkit $|S|$ ja $|S_v|$ tarkoittavat joukon kardinaalisuutta, eli kuinka monta alkiota joukossa on. Käytännössä se on sama asia kuin `len(X)`. Jakolaskun tulona on siis: *"Kuinka suuri osa piirteen $a$ arvoista on $v$"*. 
 
-Python-koodina informaation kasvun laskeminen voisi näyttää tältä:
+Python-koodina informaation kasvun laskeminen näyttää tältä:
 
 ```python
 def class_probabilities(values):  # What's this?(1)
@@ -82,46 +81,44 @@ def class_probabilities(values):  # What's this?(1)
 # This is the some_magic_function() from the previous example
 def information_gain(parent, child1, child2):
     
-    # H(X) - Entropy of parent node
-    H_X = entropy(class_probabilities(parent))
+    # H(S) - Entropy of parent node
+    H_S = entropy(class_probabilities(parent))
 
-    # |X| - Cardinality of parent node
+    # |S| - Cardinality of parent node
     n = len(parent)
     
-    # V - Data of each child node
-    V = [child1, child2]
+    # S_v - Data of each child node
+    S_v = [child1, child2]
 
-    # |X_v| - Cardinality of each child node
-    n_v = [len(v) for v in V]
+    # |S_v| - Cardinality of each child node
+    n_S_v = [len(v) for v in S_v]
 
     # H(X_v) - Entropy of each child node
-    H_X_v = [entropy(class_probabilities(v)) for v in V]
+    H_S_v = [entropy(class_probabilities(v)) for v in S_v]
 
     # Formula
-    IG = H_X - sum([n_v[i] / n * H_X_v[i] for i in range(len(V))])
+    IG = H_S - sum([n_S_v[i] / n * H_S_v[i] for i in range(len(S_v))])
 
     return IG
 
 # Dataset X
 X = [
 #   x0, x1, y
-    (1, 1, 0),  #  ┌─────> x[0] => 1/3 naisia
+    (1, 1, 0),  #  ┌─────> x[0] => 1/3 equals true
     (1, 1, 1),  #  │
-    (1, 1, 0),  #  ┘ ┌───> x[1] => 3/5 naisia
-    (0, 1, 1),  #  ──┤      
+    (1, 1, 0),  #  ┘ ┌───> x[1] => 3/5 equals true
+    (0, 1, 1),  #  ──┤
     (0, 0, 0),  #    │
     (0, 1, 1),  #  ──┘
     (0, 0, 0)
 ]
 
-# Note: There are multiple symbols you can use to draw arrows in ASCII art.
-#       These symbols are useful: ─ │ ┌ ┐ └ ┘ ┴ ┬ ├ ┤ ┼
+n_columns = len(X[0]) - 1
 
-# Compute the IG for both non-label columns: X_i (i=0 or i=1)
-for i in (0, 1):
+for i in range(n_columns):
     parent = [row[-1] for row in X]
-    child1 = [row[-1] for row in X if row[i] == 1]
-    child2 = [row[-1] for row in X if row[i] == 0]
+    child1 = [row[-1] for row in X if row[i] == 1]  # v in values(a) == 1
+    child2 = [row[-1] for row in X if row[i] == 0]  # v in values(a) == 0
 
     ig = information_gain(parent, child1, child2)
     print(f"Column {i} information gain: {ig:.2f}")
