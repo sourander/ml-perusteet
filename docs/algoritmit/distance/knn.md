@@ -24,7 +24,7 @@ Huomaa, että k-NN toimii myös N-ulotteisessa avaruudessa.
 
 ![3D Scatter Plot](../../images/knn_scatter_3d.png)
 
-**Kuvio 3:** *Kolmiulotteinen pistekaavio ei eroa 2-ulotteisesta muuten kuin siinä, että siinä on kolmas ulottuvuus. Etäisyys on nyt (dist_x + dist_y, dist_z). Neljäs ulottuvuus olisi huomattavan vaikea visualisoida.*
+**Kuvio 3:** *Kolmiulotteinen pistekaavio ei eroa 2-ulotteisesta muuten kuin siinä, että siinä on kolmas ulottuvuus, joka otetaan etäisyyttä laskiessa huomioon. Neljäs ulottuvuus olisi huomattavan vaikea visualisoida.*
 
 !!! question "Tehtävä"
 
