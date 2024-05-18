@@ -32,7 +32,7 @@ $$
 
 Saman voisi kirjoittaa Pythonina näin:
 
-```python
+```python title="IPython"
 from math import prod
 
 DATASET = [

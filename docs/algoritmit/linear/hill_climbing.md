@@ -70,7 +70,7 @@ Jatkossa kutakin kaikkia näitä kolmea, `x[0], x[1], x[2]`, kohden on olemassa 
 
 Tämän voi siis suorittaa silmukassa, jossa käydään kukin sample läpi, ja kerrotaan sen samplen kukin piirre sitä vastaavalla painolla (eli `x[0] * w[0] ... x[n] * w[n]`). Tämän jälkeen kaikki tulokset summataan yhteen ja saadaan ennuste. Koodina se näyttää tältä:
 
-```python
+```python title="Python"
 from random import random
 
 X = [
@@ -138,7 +138,7 @@ $$
     Toisin kuin Pythonissa, käytämme havaintojen yhteydessä `1`-indeksiä, eli ensimmäinen havainto, `x[n]`, on `x[1]` eikä `x[0]`.
 
 
-```python
+```python title="Python"
 import numpy as np
 
 # Convert to numpy arrays
@@ -205,7 +205,7 @@ print(w)
 
 Käärmeen mitta on suuruusluokkaa 50-300, sää on 0-30. Huomaa, että virhefunktio perustuu etäisyyden neliöön, joten suuret arvot dominoivat virhefunktiota. Tämän vuoksi on tärkeää normalisoida data ennen kuin käytämme sitä: muutoin painotamme käärmeen mittaa enemmän kuin lämpötilaa.
 
-```python
+```python title="Python"
 class StandardScaler:
     
     def standardize(self, X):

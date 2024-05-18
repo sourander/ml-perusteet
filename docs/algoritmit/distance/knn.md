@@ -47,7 +47,7 @@ $$
 
 Oletetaan, että meillä on seuraavanlainen datasetti, joka koostuu n-dimensionaalisista pisteistä (`Point([1, 2, 3, ..., n_val], label="sininen")`). Tämä nykyinen toteutus koostuu tasan 2-ulotteisista pisteistä. Katso datasetin muodostus koodista alta:
 
-```python
+```python title="IPython"
 from dataclasses import dataclass
 
 @dataclass
@@ -72,7 +72,7 @@ data = [
 
 Antaen tämän datan, voimme ennustaa ennen näkemättömän pisteen `(x=4.5, y=5.5)` luokan seuraavasti:
 
-```python
+```python title="IPython"
 from collections import defaultdict
 
 def euclidean_distance(a:Point, b:Point):

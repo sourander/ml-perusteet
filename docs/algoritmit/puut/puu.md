@@ -10,7 +10,7 @@ Arvaa kuka?-pelin logiikassa tämä olisi parhaan kysymyksen valinta. Kuvitellaa
 
 Kukin kysymys jakaisi datasetin kahteen osaan: heihin joilla tämä piirre on, ja heihin, joilta se puuttuu. Meidän kuvitteellisen Arvaa kuka?-pelin datasetissä ei ole laisinkaan parrakkaita naisia, mutta on useampi parraton jotakin muuta sukupuolta edustava henkilö. Jako tapahtuisi seuraavalla tavalla:
 
-```python
+```python title="IPython"
 # Input Data
 #
 #        the rest with beards                     women without beards
@@ -34,7 +34,10 @@ bearded   = [label for label, beard in zip(label, beard) if beard]
 # Compute the entropy after the split
 score = some_magic_function(label, beardless, bearded)
 print(f"Score: {score:.2f}")
-# Score: 0.44
+```
+
+```plaintext title="stdout"
+Score: 0.44
 ```
 
 !!! warning
@@ -71,7 +74,7 @@ Kaavassa pystypalkit $|S|$ ja $|S_v|$ tarkoittavat joukon kardinaalisuutta, eli 
 
 Python-koodina informaation kasvun laskeminen näyttää tältä:
 
-```python
+```python title="IPython"
 def class_probabilities(values):  # What's this?(1)
     n = len(values)
     zeros = values.count(0)
@@ -173,7 +176,7 @@ Viimeinen sarake on se label, jota me yritämme ennustaa. Datasetti näyttää t
 
 Havaintoavaruuden kolme ensimmäistä saraketta (eli piirteet) on generoitu satunnaislukuja käyttäen. Viimeinen sarake, eli label `go_by_car`, on generoitu seuraavalla logiikalla:
 
-```python
+```python title="IPython"
 transportation_mode = np.where(
     (required_speed > 20) |
     ((well_rested == 0) & (required_speed > 15)) |
@@ -198,7 +201,7 @@ Varsinainen koodi kannattaa kirjoittaa rekursiiviseksi, koska kunkin oksanhaaran
 
 Alla olevassa koodissa `find_max_column_information_gain()`-funktio laskee informaation kasvun jokaiselle piirteelle (levänneisyys, suihkullisuus ja nopeus) ja palauttaa suurimman informaation kasvun tuottavan sarakkeen indeksin. Tämän jälkeen `split_data()`-funktio jakaa datan valitun piirteen perusteella kahteen osaan.
 
-```python
+```python title="IPython"
 ig_root = dt.find_max_column_information_gain(data)
 print(f"Root node: {ig_root}")
 # Splitting score: IGScore(
@@ -273,7 +276,7 @@ Klikkaa seuraavat laatikot auki nähdäksesi, mitkä rivit ovat osallistuneet ku
 
 Juuritaso, eli taso 0, on nyt luotu. Toinen oksa haarautui suoraan lehteen, joten sitä on turha jatkaa. `root_r` on siis lehti. Seuraavaksi valitaan `root_l`-solmun lapsista uusi juuritaso.
 
-```python
+```python title="IPython"
 ig_depth_1 = dt.find_max_column_information_gain(root_l)
 print(f"Splitting score: {ig_depth_1}")
 # Splitting score: IGScore(
@@ -321,7 +324,7 @@ graph TD
 
 Juuritaso ja Taso 1 päättyivät kumpikin tilanteeseen, jossa toinen oksa (`root_l_r`) osoittautui lehdeksi. Meillä on taas helppo tilanne edessä, jossa meidän täytyy laskea vain toisen oksan informaation kasvu.
 
-```python
+```python title="IPython"
 ig_depth_2 = dt.find_max_column_information_gain(root_l_l, verbose=True)
 print(f"Splitting score: {ig_depth_2}")
 # Splitting score: IGScore(
@@ -373,7 +376,7 @@ Huomaa, että esimerkki koulutettiin vain 16 rivillä dataa. Näin suppealla dat
 
 Entäpä jos generoimme enemmän dataa? Alla Decision Tree:n Scikit learn -kirjastolla luotu päätöspuu, joka on koulutettu 293 rivillä dataa. Koodi on yksinkertainen ja helppo ymmärtää, mutta se on myös tehokas ja skaalautuva. Voisimme käyttää myös tähän omaa koodiamme, mutta Scikit-learn tarjoaa mahdollisuuden puun visualisointiin - tätä ei meidän purkkaviritelmästä löydy. Huomaa, että **tarkkuus on kummassakin kuitenkin sama!** Tämän voit testata myöhemmin koodiharjoituksien avulla.
 
-```python
+```python title="IPython"
 import matplotlib.pyplot as plt
 import ml.decision_tree as dt
 
@@ -396,7 +399,7 @@ clf.fit(X_train, y_train)
 
 Tämän jälkeen voimme visualisoida päätöspuun seuraavasti:
 
-```python
+```python title="IPython"
 plt.figure(figsize=(10, 8))
 plot_tree(clf, filled=True)
 ```

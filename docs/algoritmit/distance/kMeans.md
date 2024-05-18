@@ -40,7 +40,7 @@ Huomaa, että alla olevan kuvaajan (Kuvio 1) pisteet kuuluvat `-1` klusteriin, m
 
 Klusteriin kuuluvan pisteen määrittämiseksi lasketaan etäisyys jokaisen klusterin keskipisteen ja pisteen välillä. Piste kuuluu siihen klusteriin, jonka keskipiste on lähimpänä pistettä. Tämä tehdään alla olevalla koodilla:
 
-```python
+```python title="IPython"
 @dataclass
 class Point:
     x: float
@@ -80,7 +80,7 @@ def assign_points_to_centroids(points: list[Point], centroids: list[Centroid]):
 
 Kun jokainen piste on määritetty kuuluvaksi lähimpään klusteriin, lasketaan jokaisen klusterin pisteiden keskiarvo. Tämä keskiarvo on uusi klusterikeskus. Tämä tehdään alla olevalla koodilla:
 
-```python
+```python title="IPython"
 def compute_new_centroid_locations(points: list[Point], centroids: list[Centroid]):
 
     for centroid in centroids:
@@ -125,7 +125,7 @@ Alla olevassa kuvassa (Kuvio 2) näkyy klusterikeskukset ja niiden lokaatiot ens
 
 Huomaa `compute_new_centroid_locations`-funktion palauttama `None`, joka kertoo, että klusterikeskukset eivät enää muuttuneet. Tämä on meidän lopetusehto. Voimme siis kouluttaa algoritmin loppuun muutoin loppumattomassa silmukassa. Järkevä koodaaja laittaisi myös `max_iter`-parametrin, joka estäisi silmukan jatkumisen loputtomiin. Se puuttuu tästä esimerkistä.
 
-```python
+```python title="IPython"
 while True:
     # Take a deep copy for plotting purposes
     prev_centroids = deepcopy(centroids)
@@ -143,7 +143,7 @@ while True:
 
 ??? info "Klikkaa plot_data koodi esiin"
 
-    ```python
+    ```python title="IPython"
     
     def plot_data(
         points:list[Point], 
@@ -209,7 +209,7 @@ Huomaa, että todellisen klusteroinnin tapauksessa emme voi evaluoida mallin suo
 
 Koodina sen voi tehdä käytännössä näin:
 
-```python
+```python title="IPython"
 # Compare the labels to the predictions
 correct = 0
 for a, b in zip(predicted_points, actual_points):

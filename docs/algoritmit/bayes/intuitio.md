@@ -21,7 +21,7 @@ $$
 
 Tämän voi helposti todistaa käymällä läpi kaikki kombinaatiot. Termi tälle on tulojoukko tai karteesinen tulo (engl. Cartesian product).
 
-```python
+```python title="IPython"
 from itertools import product
 
 B1 = [1, 1, 1, 0]  # 3/4 = 0.75
@@ -43,7 +43,7 @@ for b1, b2 in product(B1, B2):
 
     Koodissa tulostetaa yksi rivi per oppilas (B1,B2) kombinaatio. Tuloste on:
 
-    ```
+    ```plaintext title="stdout"
     b1=1, b2=1 -> 1  <== 1/16
     b1=1, b2=1 -> 1  <== 2/16
     b1=1, b2=1 -> 1  <== 3/16
@@ -76,7 +76,7 @@ Kaikista vaihtoehdoista 9/16 on sellaisia, joissa molemmat opiskelijat ovat läp
     
     Yllä olevat for-loopin lisäksi voit laskea saman murtoluvuilla joko käsin tai Pythonilla. Tästä esimerkki alla:
 
-    ```python
+    ```python title="IPython"
     from fractions import Fraction
 
     b1 = Fraction(3, 4)
@@ -164,7 +164,7 @@ $$
 
     Yllä näkyvän Kuvio 1:n voit generoida seuraavalla koodilla:
 
-    ```python
+    ```python title="IPython"
     import numpy as np
     import matplotlib.pyplot as plt
     from scipy.stats import beta

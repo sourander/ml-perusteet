@@ -52,7 +52,7 @@ Yhtälön muuttujat ovat seuraavat:
 
 Saman funktion voi luonnollisesti toteuttaa myös Pythonilla. Huomaa, että me emme vielä toistaiseksi tiedä, mitkä ovat $m$ ja $b$, tai miten ne lasketaan. Tähän tutustumme seuraavaksi.
 
-```python
+```python title="IPython"
 def predict(x):
     m = None # We need to find this
     b = None # as well as this
@@ -98,7 +98,7 @@ $$
 
 Pythonina sama on luonnollisesti:
 
-```python
+```python title="IPython"
 def mse(residuals):
     return sum([residual**2 for residual in residuals]) / len(residuals)
 ```
@@ -137,7 +137,7 @@ $$
 
 Pythonissa saman voi toteuttaa Numpyn avulla seuraavasti:
 
-```python
+```python title="IPython"
 import numpy as np
 from numpy.linalg import inv
 
@@ -151,7 +151,7 @@ coefficients = inv(X.T @ X) @ X.T @ Y
 
 Ja saman voi tietenkin toteuttaa myös Scikit-Learnin avulla:
 
-```python
+```python title="IPython"
 from sklearn.linear_model import LinearRegression
 
 model = LinearRegression(fit_intercept=False)
@@ -165,7 +165,7 @@ coefficients = model.coef_
     
     Datasetti on seuraavanlainen:
 
-    ```python
+    ```python title="IPython"
     data = [
         (0.5, 0.5),
         (1.0, 0.25),
@@ -194,7 +194,7 @@ Jos pohdit, mitä selittävien piirteiden lisääminen käytännössä tekee, ni
 
 Piirteiden määrän vaikutusta laskenta-aikaan voi testata seuraavalla koodinpätkällä:
 
-```python
+```python title="IPython"
 import datetime
 import numpy as np
 from sklearn import datasets

@@ -62,7 +62,7 @@ $$
 
 Alla on esimerkkitoteutus entropiafunktiosta Python-kielellä. Huomaa, että todennäköisyyksiä voi olla useampia, mutta niiden summan tulee olla 1.0. Me käsittelemme tällä kurssilla vain binääripuita, joten todennäköisyyksiä on jatkossa vain kaksi per päätöspuun solmu. Alla oleva koodi edustaa Khan Academyn videon esimerkkiä, jossa symbolien `ABCD` todennäköisyydet ovat `[0.5, 0.25, 0.125, 0.125]`.
 
-```python
+```python title="IPython"
 from math import log2
 
 def entropy(X):

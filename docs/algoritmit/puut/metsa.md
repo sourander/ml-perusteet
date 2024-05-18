@@ -69,7 +69,7 @@ Satunnaismetsässä koulutusdatasta otetaan satunnainen otos kullekin puulle. T�
 
 Yllä oleva on todennäköisesti helpompi näyttää koodina kuin selittää lauseina. Kuvitellaan, että meillä on 10 rivin datasetti, joka näyttää tältä:
 
-```python
+```python title="IPython"
 data = [
     (1, "..."),
     (2, "..."),
@@ -88,7 +88,7 @@ data = [
 
 Koska `random.sample(iterable, n)` palauttaa satunnaisen otoksen `n` alkioista, voimme käyttää sitä without replacement eli Random-metodin toteuttamiseen:
 
-```python
+```python title="IPython"
 import random
 
 def sample_without_replacement(data, n):
@@ -99,7 +99,7 @@ sample_without_replacement(data, 3)
 
 Random choice on käytännössä sama kuin sekoittaisi listan ja pitäisi `data[:n]`-osan. Palautuva otos, joka voi sisältää kunkin numeron vain kerran, on esimerkiksi:
 
-```python
+```plaintext title="stdout"
 [
     (4, "..."),
     (7, "..."),
@@ -111,7 +111,7 @@ Random choice on käytännössä sama kuin sekoittaisi listan ja pitäisi `data[
 
 Jos haluamme toteuttaa Bagging-metodin, voimme käyttää `random.choice(iterable)`-funktiota, joka palauttaa satunnaisen alkion datasetistä. Koska `choice` ei poista valittua alkioita, sama alkio voi esiintyä useammin samassa otoksessa:
 
-```python
+```python title="IPython"
 import random
 
 def sample_with_replacement(data):
@@ -122,7 +122,7 @@ sample_with_replacement(data)
 
 Huomaa, että `random.choice()` ei poista riviä datasta, joten sama rivi voi tulla vastaan `len(data)` kertaa. Palautuva otos on esimerkiksi:
 
-```python
+```plaintext title="stdout"
 [
     (4, "..."),
     (4, "..."),
@@ -146,7 +146,7 @@ Lopputuloksena:
 
 Mikäli koulutat esimerkiksi 100 eri puuta, jokainen puu saa erilaisen otoksen datasta. Alla vielä esimerkki, kuinka tätä voisi käyttää:
 
-```python
+```python title="IPython"
 import ml.decision_tree as dt # Last lesson's implementation
 
 
@@ -228,7 +228,7 @@ graph LR
 
 Boosting-metodeja on useita, mutta yksi tunnetuimmista on **AdaBoost** (adaptive boosting). AdaBoost perustuu siihen, että koulutetaan `Malli X`. Tuon `Malli X`:n virheellisesti ennustamat havainnot painotetaan seuraavassa mallissa `Malli X+1`. Käytännössä meidän tulisi siis lisätä dataan paino, joka olisi pohjimmiltaan esimerkiksi `1/N`, jossa `N` on havaintojen määrä.
 
-```python
+```python title="IPython"
 X = [
     (1, 1, 12.34),
     (1, 1, 11.11),
@@ -246,8 +246,8 @@ X_with_weights = [
 
 Ensimmäinen malli `Malli X` koulutetaan normaalisti, ja sen virheellisesti ennustamat havainnot painotetaan seuraavassa mallissa `Malli X+1`. Tämä prosessi jatkuu, kunnes saavutetaan `M` mallia. Seuraavan mallin data voisi siis olla jotain seuraavaa, olettaen että `x_2` on virheellisemmin ennustettu kuin `x_1`:
 
-```python
-X = [
+```python title="IPython"
+X_for_next_model = [
     (1, 1, 12.34, 0.011),
     (1, 1, 11.11, 0.025),
     ...
