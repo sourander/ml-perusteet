@@ -21,7 +21,7 @@ Tämä materiaali pohjautuu osin [BMC Genomics](https://bmcgenomics.biomedcentra
 
 ### Keskiarvo (mean)
 
-Keskiarvo on kaikkien otannan (engl. sample) lukujen summa jaettuna lukumäärällä. Jatkossa kun näet `x̄`-symbolin tässä dokumentissa, se tarkoittaa keskiarvoa.
+Keskiarvo on kaikkien otannan (engl. sample) lukujen summa jaettuna lukumäärällä. Huomaa, että koko populaation keskiarvoa merkataan $\mu$:lla (lausutaan *myy*); $\overline{x}$ on nimenomaan otannan keskiarvo. Jatkossa, kun näet `x̄`-symbolin tässä dokumentissa, se tarkoittaa keskiarvoa.
 
 $$
 {\overline{x}} = \frac{\sum x_{i}}{N}
