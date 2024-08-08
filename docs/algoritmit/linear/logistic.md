@@ -2,7 +2,7 @@ Logistinen regressio on aiemmista luvuista tuttu lineaarinen malli, mutta toisin
 
 ```mermaid
 graph LR
-    bias --> model("α(x1 * w1 + ... + xn * wn)")
+    bias --> model("σ(x1 * w1 + ... + xn * wn)")
     x_1 --> model
     x_2 --> model
     x_n --> model
