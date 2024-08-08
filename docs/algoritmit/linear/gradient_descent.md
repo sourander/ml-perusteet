@@ -228,8 +228,8 @@ def partial_derivative_full_sse(w, x, y, feature_index, observation_index):
     return 2 * x[feature_index] * (np.dot(w, x) - y[observation_index])
 
 for obs_i, x in enumerate(X):
-    part_0 = derivate(w, x, y, 0, obs_i)
-    part_1 = derivate(w, x, y, 1, obs_i)
+    part_0 = partial_derivative_full_sse(w, x, y, 0, obs_i)
+    part_1 = partial_derivative_full_sse(w, x, y, 1, obs_i)
 
     print(f"Observation {i} {x[0]=} {x[1]=} => {part_0=:.2f}, {part_1=:.2f}")
 ```
