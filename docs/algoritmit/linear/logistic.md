@@ -61,7 +61,7 @@ def cross_entropy_cost(y_hat, y, eps=1e-15):
     # Number of samples
     m = len(y)
     
-    # Calculate the negative log likelihood
+    # Cross-entropy loss
     loss = -(1/m) * np.sum(
          y * np.log(y_clip)             # If y is 1
          + (1 - y) * np.log(1 - y_clip) # If y is 0
