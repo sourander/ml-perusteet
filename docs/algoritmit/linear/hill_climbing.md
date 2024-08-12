@@ -241,7 +241,7 @@ Ensimmäinen ennuste voidaan laskea siis seuraavasti:
 
 $$
 \begin{align*}
-\hat{y}_1 &= (0.78 \cdot 1) + (0.01 \cdot 1.13) + (0.60 \cdot 0.93) \\ 
+\hat{y}_1 &= (0.79 \cdot 1) + (0.01 \cdot 1.13) + (0.60 \cdot 0.93) \\ 
 &= 0.79 + 0.02 + 0.56 \\
 &= 1.36
 \end{align*}
