@@ -115,13 +115,15 @@ noise = np.random.normal(0, noise_delta, 8).round(2)
 
 # Data
 X = np.array(list(range(8))).reshape(8, -1)
-X = np.c_[np.ones(X.shape[0]), X]
 
-# Target (1)
+# Target 
 y = -0.25*X + 1.5
 y = y.flatten() + noise
 
-# Manually set wrong weights (2)
+# Add bias
+X = np.c_[np.ones(X.shape[0]), X]
+
+# Manually set wrong weights 
 w = np.array([-0.5, 0.5])
 
 # Predict y_hat
