@@ -11,7 +11,7 @@ graph LR
 
 ## Sigmoid-aktivointifunktio
 
-Malli nuo `y_hat`-ennusteen samalla tavalla kuin aiemmin, eli `X @ w`. Erona on, että tämä ennuste syötetään logistiseen funktioon, joka palauttaa arvon väliltä 0-1. Tämä arvo voidaan tulkita todennäköisyydeksi, että havainto kuuluu positiiviseen luokkaan. Näitä logistisia funktioita kutsutaan aktivaatiofunktioiksi, ja niitä käytetään myös syväoppimisessa. Näitä ovat esimerkiksi sigmoid, relu ja tanh. Logistisessa regressiossa käytetään tyypillisissä esimerkeissä sigmoidia, joten käytämme sitä tässäkin. Neuroverkkojen yhteydessä yleisempiä ovat muut.
+Malli luo `y_hat`-ennusteen samalla tavalla kuin aiemmin, eli `X @ w`. Erona on, että tämä ennuste syötetään logistiseen funktioon, joka palauttaa arvon väliltä 0-1. Tämä arvo voidaan tulkita todennäköisyydeksi, että havainto kuuluu positiiviseen luokkaan. Näitä logistisia funktioita kutsutaan aktivaatiofunktioiksi, ja niitä käytetään myös syväoppimisessa. Näitä ovat esimerkiksi sigmoid, relu ja tanh. Logistisessa regressiossa käytetään tyypillisissä esimerkeissä sigmoidia, joten käytämme sitä tässäkin. Neuroverkkojen yhteydessä yleisempiä ovat muut.
 
 Tämä tehdään, koska logistinen regressio ennustaa luokan todennäköisyyttä. Olisi erikoista, jos ennuste olisi esimerkiksi 12.534, kun vaihtoehdot ovat 0 ja 1.
 
@@ -90,29 +90,30 @@ Scikit-learn kirjaston datasetteihin kuuluu iris-datasetti. Suomeksi iris on kur
 
 
 ??? tip "Koodi datan takana"
-```python title="IPython"
-import numpy as np
 
-from sklearn import datasets
-from sklearn.preprocessing import StandardScaler
+    ```python title="IPython"
+    import numpy as np
 
-# Load the dataset
-iris = datasets.load_iris()
+    from sklearn import datasets
+    from sklearn.preprocessing import StandardScaler
 
-# Keep only 100 first examples and only two features.
-X = iris.data[:100, :2]
-y = iris.target[:100]
+    # Load the dataset
+    iris = datasets.load_iris()
 
-# Perform the z-score standardization
-ss = StandardScaler()
-X_no_bias = ss.fit_transform(X)
+    # Keep only 100 first examples and only two features.
+    X = iris.data[:100, :2]
+    y = iris.target[:100]
 
-# Set values
-w = np.array([5.67, 2.34, 0.67])
+    # Perform the z-score standardization
+    ss = StandardScaler()
+    X_no_bias = ss.fit_transform(X)
 
-# Add bias to X
-X = np.c_[X_no_bias, np.ones(X_no_bias.shape[0])]
-```
+    # Set values
+    w = np.array([5.67, 2.34, 0.67])
+
+    # Add bias to X
+    X = np.c_[X_no_bias, np.ones(X_no_bias.shape[0])]
+    ```
 
 Arvomme myös alkuarvot painoille. Tässä tapauksessa käytämme arvoja `[5.67, 2.34, 0.67]`. Arvon on tarkoituksenmukaisesti valittu siten, että se on hyvin kaukana oikeasta arvosta. Lähtötilanne ei ole kolikonheiton parempi.
 
