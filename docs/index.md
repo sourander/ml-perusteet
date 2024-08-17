@@ -6,7 +6,7 @@ Ohjelmointikielenä kurssilla on Python, joten kursilla oletetaan vähintäänki
 
 ![genAI vs traditional AI](images/ml_vs_genai_madebytio.jpg)
 
-**Kuvio 1.** *Sarjakuvapiirros koneoppimisesta. (Copyright note: The memefied comic is by unknown author, but found from r/machinelearningmemes posted by u/joelllthedestoryer. Published with permission from the creator of the original comic strip MadeByTio.)*
+**Kuvio 1.** *Sarjakuvapiirros koneoppimisesta. (Copyright note: The memeified comic is by unknown author, but found from r/machinelearningmemes posted by u/joelllthedestoryer. Published with permission from the creator of the original comic strip MadeByTio.)*
 
 !!! tip
 
