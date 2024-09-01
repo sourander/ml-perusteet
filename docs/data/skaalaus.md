@@ -71,7 +71,7 @@ def std(x: Vector, **kwargs):
 
 ## Piirteiden skaalaus
 
-Piirteiden skaalaus on menetelmä, jolla yhtenäistetään eri muuttujien tai piirteiden alue. Tietojenkäsittelyssä sitä kutsutaan myös datan normalisoinniksi ja se suoritetaan yleensä datan esikäsittelyvaiheessa. Se ottaa datataulukon ja palauttaa uuden taulukon samalla muodolla, mutta skaalattuna standardialueelle.
+Piirteiden skaalaus on menetelmä, jolla yhtenäistetään eri muuttujien tai piirteiden alue. Tietojenkäsittelyssä sitä kutsutaan myös datan normalisoinniksi ja se suoritetaan yleensä datan esikäsittelyvaiheessa. Se ottaa datataulukon ja palauttaa uuden taulukon samalla muodolla, mutta skaalattuna valitun menetelmän mukaiselle alueelle. Alla on esiteltynä muutama yleinen skaalaukseen liittyvä menetelmä.
 
 ### Keskitys (centering)
 
@@ -92,7 +92,7 @@ def center(x):
 
 ### Z-score
 
-BMC's taulukossa tätä kutsutaan autoskaalaukseksi (engl. autoscaling). Tämä on yleisin skaalausmenetelmä. Keskitettu data jaetaan keskihajonnalla, mistä lopputuloksena listan lukujen keskiarvo on 0 ja keskihajonta 1.
+BMC's taulukossa tätä kutsutaan autoskaalaukseksi (engl. autoscaling). Tämä on yleisin skaalausmenetelmä. Keskitettu data jaetaan keskihajonnalla, mistä lopputuloksena listan lukujen keskiarvo on 0 ja keskihajonta 1. Z-pisteytyksestä käytetään usein termiä standardisointi (engl. standardization).
 
 $$
 {z} = \frac{\widetilde{x}}{s}
@@ -113,7 +113,7 @@ def z_score(x: Vector):
 
 ### Min-max skaalaus
 
-Min-max skaalauksessa data skaalataan välille `[0,1]`. Tämä on meidän kurssin kontekstissa eli perinteisessä koneoppimisessa hieman Z-scorea eli standardiskaalausta harvinaisempi, mutta se on hyödyllinen esimerkiksi neuroverkkojen kanssa.
+Min-max skaalauksessa data skaalataan välille `[0,1]`. Tämä on meidän kurssin kontekstissa eli perinteisessä koneoppimisessa hieman Z-scorea eli standardiskaalausta harvinaisempi, mutta se on hyödyllinen esimerkiksi neuroverkkojen kanssa. Min-max skaalauksesta käytetään usein myös nimitystä normalisointi.
 
 $$
 x' = \frac{ x - min(x) }{ max(x) - min(x) }
