@@ -17,6 +17,7 @@ Ohjelmointikielenä kurssilla on Python, joten kursilla oletetaan vähintäänki
     * [Pandas Cheat Sheet](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf)
 
 ## Faktavirheet
+
 Mikäli oppimateriaali sisältää virheellistä tietoa, tee jompi kumpi:
 
 * Forkkaa GitHubin repository ja tarjoa Pull Request, joka sisältää korjausehdotukset.

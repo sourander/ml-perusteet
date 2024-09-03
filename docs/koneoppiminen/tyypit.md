@@ -97,7 +97,7 @@ mindmap
 
 !!! question "Tehtävä"
 
-    Yllä oleva miellekartta pohjautuu vahvasti Scikit Learnin [Choosing the right estimator](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html) -sivun kaavioon. Tutustu myös tähän alkuperäiseen, hieman laajempaan kaavioon.
+    Yllä oleva miellekartta pohjautuu vahvasti Scikit Learnin [Choosing the right estimator](https://scikit-learn.org/stable/machine_learning_map.html#choosing-the-right-estimator) -sivun kaavioon. Tutustu myös tähän alkuperäiseen, hieman laajempaan kaavioon.
 
 ## Tehtävät
 
