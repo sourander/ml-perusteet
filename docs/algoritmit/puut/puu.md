@@ -234,8 +234,8 @@ Päätöspuu on saanut ensimmäisen haaransa, joka vastaa kysymykseen:
 
 ```mermaid
 graph TD
-    ROOT[Nopeus?] -->|<20.995| ROOT_L_QUIZ[Seuraava kysymys]
-    ROOT -->|>=20.995| ROOT_R_LEAF((Autolla))
+    ROOT[Nopeus?] -->|#60;20.995| ROOT_L_QUIZ[Seuraava kysymys]
+    ROOT -->|#62;#61;20.995| ROOT_R_LEAF((Autolla))
 ```
 
 !!! info
@@ -296,8 +296,8 @@ Jotta voit päätyä tähän tilanteeseen, sinulla täytyy olla nopeutta vähemm
 
 ```mermaid
 graph TD
-    ROOT[Nopeus?] -->|<20.995| ROOT_L[Suihku?]
-    ROOT -->|>=20.995| ROOT_R_LEAF((Autolla))
+    ROOT[Nopeus?] -->|#60;20.995| ROOT_L[Suihku?]
+    ROOT -->|#62;#61;20.995| ROOT_R_LEAF((Autolla))
 
     ROOT_L -->|Ei| ROOT_L_L_QUIZ[Seuraava kysymys]
     ROOT_L -->|Kyllä| R_L_R_LEAF((Pyörällä))
@@ -345,14 +345,14 @@ Jotta voit päätyä tähän tilanteeseen, sinulla täytyy olla nopeutta vähemm
 
 ```mermaid
 graph TD
-    ROOT[Nopeus?] -->|<20.995| ROOT_L[Suihku?]
-    ROOT -->|>=20.995| ROOT_R_LEAF((Autolla))
+    ROOT[Nopeus?] -->|#lt;20.995| ROOT_L[Suihku?]
+    ROOT -->|#62;#61;20.995| ROOT_R_LEAF((Autolla))
 
     ROOT_L -->|Ei| ROOT_L_L[Nopeus?]
     ROOT_L -->|Kyllä| R_L_R_LEAF((Pyörällä))
 
-    ROOT_L_L -->|<8.255| ROOT_L_L_L_LEAF((Pyörällä))
-    ROOT_L_L -->|>=8.255| ROOT_L_L_R_LEAF((Autolla))
+    ROOT_L_L -->|#60;8.255| ROOT_L_L_L_LEAF((Pyörällä))
+    ROOT_L_L -->|#62;#61;8.255| ROOT_L_L_R_LEAF((Autolla))
 ```
 
 ##### Datan jaot
