@@ -7,7 +7,7 @@ on:
     paths:
       - 'docs/**'
       - 'mkdocs.yml'
-      - 'poetry.lock'
+      - 'uv.lock'
 
 permissions:
   contents: write
@@ -17,24 +17,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install Python
-        uses: actions/setup-python@v5
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
         with:
-          python-version: '3.10'
-      - name: Install poetry
-        uses: abatilo/actions-poetry@v2
-      - name: Use a local virtual environment in .venv directory
-        run: |
-          poetry config virtualenvs.create true --local
-          poetry config virtualenvs.in-project true --local
-      - uses: actions/cache@v4
-        name: Define a cache for the virtual environment based on the dependencies lock file
-        with:
-          path: ./.venv
-          key: venv-${{ hashFiles('poetry.lock') }}
-      - name: Install the project dependencies
-        # No root skips installing the project itself. There is none.
-        # Only main installs the main dependencies; scikit-learn is skipped.
-        run: poetry install --no-root --only main 
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: Set up Python
+        run: uv python install
+
       - name: Deploy to gh-pages branch
-        run: poetry run mkdocs gh-deploy --force # -f mkdocs.yml
+        run: uv run mkdocs gh-deploy --force # -f mkdocs.yml
