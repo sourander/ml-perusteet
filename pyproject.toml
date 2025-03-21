@@ -12,5 +12,3 @@ version = "0.1.0"
 description = ""
 readme = "README.md"
 
-[project.scripts]
-find-images = "ml_perusteet.find_image_usages:main"
