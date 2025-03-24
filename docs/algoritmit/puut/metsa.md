@@ -1,3 +1,5 @@
+# Metsä
+
 Päätöspuilla on taipumus ylisovittaa (engl. overfit) malli dataan. Tämä tarkoittaa sitä, että malli ei onnistu yleistämään (engl. generalize) sen taustalla olevaa ilmiötä vaan myötäilee dataa ulkoaopitun tarkasti. Ylisovittamista voi pyrkiä rajoittamaan Decision Tree:n oppimista parametreilla, kuten puun maksimisyvyydellä. Nämä parametrit toimivat "Early Exit"-sääntöinä puun koulutuksessa; jos puu yrittää kasvaa liian syväksi, rekursiivinen prosessi palauttaa lehden.
 
 Toinen, hyvin yleinen tapa, parantaa päätöspuita ja muita korkean varianssin malleja on käyttää **ensemble-menetelmiä**. Ensemble-menetelmät perustuvat usean mallin yhdistämiseen yhdeksi ennustavaksi malliksi. Mikä ensemble koostuu vain ja ainoastaan puista, on tälle asialle osuva termi metsä. Koska metsän puut perustuvat satunnaiseen otantaan koulutusdatasta, tästä metsästä käytetään termiä **Satunnaismetsä** (engl. Random Forest).

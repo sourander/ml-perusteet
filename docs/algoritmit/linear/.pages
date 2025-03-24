@@ -2,5 +2,4 @@ nav:
   - normal_equation.md
   - hill_climbing.md
   - gradient_descent.md
-  - logistic.md
-  - ...
+  - "*"
