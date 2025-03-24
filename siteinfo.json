@@ -1,5 +1,6 @@
 {
-    "site_name": "Johdatus Koneoppimiseen",
-    "category": "Study materials",
-    "related_repo": "[ml-perusteet-code](https://github.com/sourander/ml-perusteet-code)"
+  "site_name": "Johdatus Koneoppimiseen",
+  "site_name_slug": "ml-perusteet",
+  "category": "Study materials",
+  "related_repo": "[ml-perusteet-code](https://github.com/sourander/ml-perusteet-code)"
 }
