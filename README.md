@@ -17,8 +17,6 @@ Tämä sivusto on luotu [Doc Skeleton](https://github.com/sourander/doc-skeleton
 # Kloonaa 
 git clone 'this-repo-url'
 
-
-
 # Aja development serveri
 uv run mkdocs serve --open
 ```
