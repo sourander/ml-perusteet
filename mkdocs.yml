@@ -56,9 +56,11 @@ markdown_extensions:
   # Content tabs
   - pymdownx.tabbed:
       alternate_style: true
+
   # MathJax
   - pymdownx.arithmatex:
       generic: true
+
 
 plugins:
   # Navigation page ordering
