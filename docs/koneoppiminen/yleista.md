@@ -6,7 +6,9 @@ Keskitymme tässä ensimmäisessä luvussa alan tärkeimpiin termeihin ja määr
 
 Tämä on kurssi koneoppimisesta ja tekoälystä. Kumpaahkin näihin liittyy käsite sekä tieteenala *datatieteet (engl. data sciences)*.
 
-> "Data science is the field of study that combines domain expertise, programming skills, and knowledge of mathematics and statistics to extract meaningful insights from data. Data science practitioners apply machine learning algorithms to numbers, text, images, video, audio, and more to produce artificial intelligence (AI) systems to perform tasks that ordinarily require human intelligence. In turn, these systems generate insights which analysts and business users can translate into tangible business value." - [DataRobot](https://www.datarobot.com/wiki/data-science/)
+!!! quote
+
+    "Data science is the field of study that combines domain expertise, programming skills, and knowledge of mathematics and statistics to extract meaningful insights from data. Data science practitioners apply machine learning algorithms to numbers, text, images, video, audio, and more to produce artificial intelligence (AI) systems to perform tasks that ordinarily require human intelligence. In turn, these systems generate insights which analysts and business users can translate into tangible business value." - [DataRobot](https://www.datarobot.com/wiki/data-science/)
 
 ![Data_Science_VD](../images/Data_Science_VD.png)
 
@@ -51,6 +53,7 @@ Tämän materiaalin puitteissa voit luottaa seuraavaan määritelmään: *AI eli
     * Moon (2009)
     * Her (2013)
     * Ex Machina (2014)
+    * Companion (2025)
 
 ### Tekoälyn haarat
 
