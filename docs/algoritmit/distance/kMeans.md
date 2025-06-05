@@ -1,3 +1,5 @@
+# k-Means
+
 Aiemmin esiteltyä kNN:ää ja nyt käsiteltävää k-Means algoritmia yhdistää kirjain `k`, mutta niiden merkitys on eri. k-Meansin kohdalla `k` tarkoittaa `n_clusters` eli klustereiden määrää, kun taas kNN:ssä `k` tarkoittaa naapureiden määrää. Toinen merkittävä ero algoritmien välillä on, että k-Means ei ole luokittelualgoritmi, vaan ==klusterointialgoritmi eli siis ohjaamaton koneoppimisalgoritmi==. Kukin havainto kuuluu siihen klusteriin, jonka keskipiste on lähimpänä havaintoa.
 
 ## k-Means algoritmi

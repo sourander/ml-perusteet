@@ -1,3 +1,4 @@
 nav:
-  - k-NN: knn.md
-  - k-Means: kMeans.md
+  - knn.md
+  - kMeans.md
+  - tehtavat.md

@@ -1,3 +1,5 @@
+# k-NN
+
 Jos aiemmat algoritmit, Naive Bayes sekä päätöspuut ja niistä koostuvat metsät, ovat tuntuneet yksinkertaisilta, niin k-Nearest Neighbors (k-NN) on vielä yksinkertaisempi. Naive Bayesin sisältyy tilastollista vaikeutta, päätöspuiden monimutkaisuus tulee informaatiotieteen käsitteistä sekä rekursiivisesta rakenteesta (eli Python-funktioista, jotka kutsuvat itse itseään). kNN on niin yksinkertainen, että sen voi selittää käytännössä kahdella kuvalla. Tässä on ensimmäinen:
 
 ## k-NN algoritmi
