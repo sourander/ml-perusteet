@@ -50,6 +50,7 @@ Tämän materiaalin puitteissa voit luottaa seuraavaan määritelmään: *AI eli
     * Hitchhiker's Guide to the Galaxy (1978/...)
     * Terminator (1984/...)
     * The Matrix (1999/...)
+    * A.I. Artificial Intelligence (2001)
     * Moon (2009)
     * Her (2013)
     * Ex Machina (2014)
