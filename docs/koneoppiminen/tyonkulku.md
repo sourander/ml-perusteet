@@ -9,7 +9,7 @@ Olettaen, että ongelma on jo määritelty, niin vaiheet voi jakaa muun muassa s
 3. Mallin valinta
 4. Mallin koulutus
 5. Mallin evaluointi
-6. Mallin hienosäätö
+6. Mallin tuunaus
 7. Mallin käyttöönotto
 
 !!! warning
@@ -81,13 +81,13 @@ Koneoppimismalli koulutetaan koulutusdatalla; osa datasta laitetaan sivuun, ja s
 
 Koulutetun koneoppimismallin suorituskyky arvioidaan testidatalla. Tämä auttaa arvioimaan, kuinka hyvin malli yleistyy uuteen dataan ja kuinka hyvin se ennustaa tulevia tapahtumia. Mallin suorituskyvyn arviointi riippuu siitä, onko kyseessä luokittelu-, regressio- vai jokin muu ongelma. Luokittelumalleja voidaan arvioida esimerkiksi hämmennysmatriisilla, tarkkuusarvolla (%) sekä F1-pisteytyksellä. Regressiomalleja voidaan arvioida esimerkiksi keskivirheellä (MAE/MSE) ja selitysasteella (R2-arvo).
 
-### 6. Mallin hienosäätö
+### 6. Mallin tuunaus
 
-Koneoppimismallin hienosäätöä (engl. hyperparameter tuning) käytetään mallin suorituskyvyn parantamiseen. 
+Koneoppimismallin tuunausta (engl. hyperparameter tuning) käytetään mallin suorituskyvyn parantamiseen.
 
 Aivan kuten mallin koulutuksessa, myös hienosäädössä käytetään koulutusdataa, jotta voidaan varmistaa, ettei mallin hyperparametreja optimoida testidatan suhteen. Tavoite on, että hyperparametrien arvot ovat sellaiset, että malli yleistyy parhaiten uuteen dataan - ei se, että se toimii parhaiten koulutusdatalla.
 
-Parametrien hienosäätö voi tapahtua esimerkiksi ristivalidoinnin (engl. cross-validation) avulla. Ristivalidoinnissa data jaetaan useaan osaan, joista osa käytetään koulutukseen ja osa testaukseen. Tätä toistetaan useita kertoja, jolloin saadaan luotettavampi arvio mallin suorituskyvystä.
+Parametrien tuunaus voi tapahtua esimerkiksi ristivalidoinnin (engl. cross-validation) avulla. Ristivalidoinnissa data jaetaan useaan osaan, joista osa käytetään koulutukseen ja osa testaukseen. Tätä toistetaan useita kertoja, jolloin saadaan luotettavampi arvio mallin suorituskyvystä.
 
 Pseudoesimerkki alla. Esimerkkiä lukiessa sinun ei tarvitse tietää, mitä Lasso-malli tekee. Riittää, että hyväksyt, että  `alpha`-arvon on hyperparametri, ja sen arvon valinta vaikuttaa merkittävästi siihen, kuinka hyvin malli ennustaa. Hyperparametrien tuunaus on näiden arvojen haarukoimista. Jos haarukoitavia arvoja on monta (kuvitteellisina esimerkkeinä alpha, beta, gamma, ...), niin kaikki näiden kombinaatiot pitää testata.
 
