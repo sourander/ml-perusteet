@@ -68,8 +68,8 @@ img = cv2.resize(img, (200, 200))
 h, w, _ = img.shape
 X = img.reshape((h * w, 3))
 
-# Display the image.
-plt.imshow(img)
+# Display the image
+plt.show(img)
 ```
 
 #### RGB vs. HSV
