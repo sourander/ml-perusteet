@@ -25,7 +25,7 @@ jobs:
           cache-dependency-glob: "uv.lock"
 
       - name: Set up Python
-        run: uv python install
+        run: uv python install 3.12
 
       - name: Deploy to gh-pages branch
         run: uv run mkdocs gh-deploy --force # -f mkdocs.yml
