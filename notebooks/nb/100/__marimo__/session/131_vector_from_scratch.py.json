@@ -1,0 +1,106 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.21.0",
+    "script_metadata_hash": null
+  },
+  "cells": [
+    {
+      "id": "setup",
+      "code_hash": "2165a3ac278eb64f0d36dac4f79fbeda",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Hbol",
+      "code_hash": "1d0db38904205bec4d6f6f6a1f6cec3e",
+      "outputs": [],
+      "console": []
+    },
+    {
+      "id": "MJUe",
+      "code_hash": "9e365be49cb93cee179e7d26eb7b952c",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"vector-from-scratch\">Vector from Scratch</h1>\n<span class=\"paragraph\">This course will contain multiple Marimo Notebooks that implement something <em>from scratch</em>. The idea behind these is to enable students to look under-the-hood of various algorithms. This first one is about creating a Vector from scratch. We could also create e.g. Matrix and N-dimensional Tensor, if we would want, but Vector should be enough to get the idea.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "2a29d6d0ab9edf279d3c69f258a4b55a",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "bkHC",
+      "code_hash": "43d399d14667138672528883b5cc7320",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"demonstation\">Demonstation</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "lEQa",
+      "code_hash": "d478e57241b497b7060443edeee632c7",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stdout",
+          "text": "\n===== Vector from Scratch ======\nv_1 + v_2 =  (5, 7, 9)\nv_1 +  42 =  (43, 44, 45)\nv_1 - v_2 =  (-3, -3, -3)\nv_1 /   2 =  (0.5, 1.0, 1.5)\nv_1 * v_2 =  (4, 10, 18)\nv_1 @ v_2 =  32\nv_1 concat v_2 =  (1, 2, 3, 4, 5, 6)\n\n===== NumPy for Comparison ======\nn_1 + n_2 =  [5 7 9]\nn_1 +  42 =  [43 44 45]\nn_1 - n_2 =  [-3 -3 -3]\nn_1 /   2 =  [0.5 1.  1.5]\nn_1 * n_2 =  [ 4 10 18]\nn_1 @ n_2 =  32\nn_1 concat n_2 =  [1 2 3 4 5 6]\n",
+          "mimetype": "text/plain"
+        }
+      ]
+    },
+    {
+      "id": "PKri",
+      "code_hash": "8eb8f2b3cd1884748c4d176111d1cdc4",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"matrix-with-vector\">Matrix with Vector</h2></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Xref",
+      "code_hash": "55245effbbd5284bc7eab6cd26993683",
+      "outputs": [],
+      "console": []
+    }
+  ]
+}

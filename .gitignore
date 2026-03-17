@@ -1,8 +1,10 @@
 # Archived old data
 ARCHIVE/
+__OLD/
 
-# JetBrains
+# IDE
 .idea/
+.vscode/
 
 # macOS
 .DS_Store

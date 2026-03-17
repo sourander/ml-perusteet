@@ -1,25 +1,30 @@
-## Miksi koneoppimista käytetään?
+---
+priority: 110
+---
 
-Koneoppiminen keskittyy algoritmien kehittämiseen, jotka voivat oppia tietoa datasta. Koneoppimista käytetään monenlaisiin ongelmiin, kuten luokitteluun, regressioon, klusterointiin ja suosittelujärjestelmiin. Syy koneoppimisen käyttämiseen on usein se, että algoritmi auttaa automatisoimaan monimutkaisia tehtäviä. Alan asiantuntija voi tyypillisestä tehdä saman tehtävän käsin, mutta usein tämä on taloudellisesti kannattamatonta. On esimerkiksi täysin mahdollista, että musiikkistriimauspalvelun (Spotify, Apple Music yms.) palkkaama asiantuntija analysoisi sinun kuunteluhistoriasi ja suosittelisi sinulle musiikkia, josta sinä saattaisit pitää. Kuinka paljon palvelun kuukausimaksu olisi, jos jokaiselle resursoitaisiin 2 tuntia asiantuntijatyötä per kuukausi?
+# Motivaatio
 
-!!! question
-
-    Kuinka varmistaisit, että asiantuntija ei suosi omia mieltymyksiään? Koneoppimismallin objektiivisuus on numeraalisesti mitattavissa, mutta ei suinkaan vaivatonta. Kuinka tekisit tämän ihmisen kanssa?
-
+Kuten edellisessä luvussa määrittelimme, koneoppiminen keskittyy algoritmien kehittämiseen, jotka voivat oppia tietoa datasta. Koneoppimista käytetään monenlaisiin ongelmiin, kuten **luokitteluun** (`kissa|koira|tuntematon`), **regressioon** (`320.2`), **klusterointiin** (`himopelaajat|sunnuntaipelaajat`) ja **suosittelujärjestelmiin** (`seuraavaksi: Beatles – Help!`) [^hundredpage]. Pohjimmainen syy on usein automatisointi. Alan asiantuntija voi tyypillisestä tehdä saman tehtävän käsin, mutta usein tämä on taloudellisesti kannattamatonta. On esimerkiksi täysin mahdollista, että musiikkistriimauspalvelun (Spotify, Apple Music yms.) palkkaama asiantuntija analysoisi sinun kuunteluhistoriasi ja suosittelisi sinulle musiikkia, josta sinä saattaisit pitää. Kuinka paljon palvelun kuukausimaksu olisi, jos jokaiselle resursoitaisiin 2 tuntia asiantuntijatyötä per kuukausi? Kuinka varmistaisit, että asiantuntija ei suosi omia mieltymyksiään? Koneoppimismallin objektiivisuus on numeraalisesti mitattavissa, mutta ei suinkaan vaivatonta. Kuinka tekisit tämän ihmisen kanssa?
 
 !!! tip
 
-    :book: Kannattaa tutustua myös Oulun Yliopiston julkaisemaan  kirjaan [Miten tekoäly vaikuttaa elämäämme 2050-luvulla?](https://oulurepo.oulu.fi/handle/10024/46333).
+    Tämä on ainut kerta kun vihjaan näin: ==tästä(kin) aiheesta löytyy kurssikirjasta sisältöä==. Referoin tarkoituksella kohtalaisen harvoin kurssikirjaan, ja nojaan muuhun kirjallisuuteen, jotta teille opiskelijoille jää lukemisen ja löytämisen ilo kurssikirjan suhteen. Kun seuraat kurssikirjaa, sinun oletetaan tunnistavat kurssiaiheissa käsiteltävät teemat itse ja luomaan siltoja näiden lähteiden – kuten myös itse löytämiesi lähteiden – välillä.
 
-Koneoppiminen voi myös auttaa löytämään uusia tietoa datasta, jota ihmiset eivät ole huomanneet. Koneoppimista käytetään monilla eri aloilla, kuten terveydenhuollossa, finanssialalla, markkinoinnissa ja teollisuudessa.
+    Tämä osio löytyisi aivan kirjan alusta, luvusta 1, esimerkiksi otsikon **Why Use Machine Learning?** alta.
 
-![Comic about classification](../images/xkcd_sphere_tastiness.png)
+Koneoppiminen voi myös auttaa löytämään uusia tietoa datasta, jota ihmiset eivät ole huomanneet. Koneoppimista käytetään monilla eri aloilla, kuten terveydenhuollossa, finanssialalla, markkinoinnissa ja teollisuudessa. Tarkempi termi prosessille, jossa etsitään ennen huomaamattomia korrelaatioita, säännönmukaisuuksia, rakenteita ja poikkea datasta, on **data mining** [^datamining]. Jos haluat nähdä, kuinka termin suosion on elänyt 2000-luvulla, tee [Google Trend Haku](https://trends.google.com/explore?q=data%20mining&date=all&geo=Worldwide). Opettajan näkemys on, että datanlouhinta nähtiin aluksi Hadoop-liittyvänä erillinä vaiheena, ja on sittemmin arkipäiväistynyt tai sulautunut osaksi yleistä tietovarastoinnin ja koneoppimisen prosessia, joten termiin itseensä ei törmää yhtä herkästi kuin esimerkiksi vuonna 2010, mutta ilmiö itsessään ei ole kadonnut.
+
+![Comic about classification](../images/110_xkcd_sphere_tastiness.png)
 
 **Kuvio 1:** *Koneoppimista ja tilastotiedettä voi käyttää muun muassa luokitteluun. Lähde: [xkcd 2893 (CC BY-NC)](https://xkcd.com/2893/)*
 
+Koneoppimisalgoritmeilla ratkaisu etsitään yleensä numeerisesti, eli iteratiivisen optimoinnin avulla, eikä analyyttisesti suljetulla kaavalla. Analyyttinen ratkaisu tarkoittaa kaavaa tai symbolista ratkaisua. Esimerkiksi summalle $0 + 1 + \ldots + N$ analyyttinen ratkaisu on $N * \frac{(N + 1)}{2}$, kun taas laskennallinen ratkaisu on laskea summa silmukassa. Monissa koneoppimisen ongelmissa analyyttistä ratkaisua ei tunneta tai se ei ole käytännöllinen, joten ratkaisu etsitään numeerisilla optimointimenetelmillä. [^essential-math-for-ai]
+
+Jotta koneoppimisalgoritmin motivaatio pysyy konkretian tasolla, käsitellään tämä koko aihe esimerkin kautta. Tästä lisää alla.
+
 ## Esimerkki: Kuvien luokittelu
 
-![A tourist manually classifying images](../images/dalle_polaroid_classification.jpg)
+![A tourist manually classifying images](../images/110_dalle_polaroid_classification.jpg)
 
 **Kuvio 2:** *Kuvien luokittelu käsin on aikaa vievää ja tylsää. Tässä DALL-E 3:n näkemys.*
 
@@ -82,7 +87,7 @@ print(features)
 
 #### Vaihe 3.2: Koneoppimismallin kouluttaminen
 
-![Vacation Images Training](../images/vacation_images_training.png)
+![Vacation Images Training](../images/110_vacation_images_training.png)
 
 **Kuvio 2:** *Koneoppimismallin koulutus hoituisi syöttämällä mallille metsä-, vuori- ja museokuvien (vihreät, ruskeat, siniset neliöiden) piirrevektoreita.*
 
@@ -113,7 +118,7 @@ Kuvitellaan, että testaus on mennyt hyvin, ja malli on tunnistanut kuvat seuraa
 
 #### Vaihe 3.4: Koneoppimismallin käyttö
 
-![Kuvien inferenssi](../images/vacation_images_inference.png)
+![Kuvien inferenssi](../images/110_vacation_images_inference.png)
 
 **Kuvio 3:** *Koneoppimismallin käyttö. Kuvien piirteet syötetään mallille, joka antaa luokituksen.*
 
@@ -134,3 +139,9 @@ print(predicted_class)
 ```txt title="stdout"
 "forest"
 ```
+
+## Lähteet
+
+[^hundredpage]: Burkov, A. *The Hundred-Page Machine Learning Book*. Self-published, 2019.
+[^datamining]: Han, J., Kamber, M., & Pei, J. (2011). *Data Mining: Concepts and Techniques, 3rd Edition*. Elsevier. 2011.
+[^essential-math-for-ai]: Nelson, H. *Essential Math for AI*. O'Reilly. 2023.

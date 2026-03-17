@@ -1,0 +1,6 @@
+nav:
+  - yleista.md    # 100
+  - miksi.md      # 110
+  - tyypit.md     # 120
+  - datasetti.md  # 130
+  - "*"           # 140

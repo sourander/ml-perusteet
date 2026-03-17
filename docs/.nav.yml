@@ -1,5 +1,4 @@
 nav:
   - index.md
-  - koneoppiminen
-  - data
-  - "*"
+  - "1. Koneoppiminen": "1_koneoppiminen"
+
