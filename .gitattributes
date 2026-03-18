@@ -1,0 +1,2 @@
+notebooks/gitlfs-store/** filter=lfs diff=lfs merge=lfs -text
+notebooks/nb/solutions/** filter=git-crypt diff=git-crypt
