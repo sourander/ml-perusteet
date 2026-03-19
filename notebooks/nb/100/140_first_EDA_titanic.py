@@ -7,6 +7,9 @@ with app.setup:
     import polars as pl
     import altair as alt
     import polars.selectors as cs
+    import json
+
+    from pathlib import Path
 
 
 @app.cell
@@ -25,31 +28,45 @@ def _(mo):
     >
     > – Wikipedia, https://en.wikipedia.org/wiki/Exploratory_data_analysis
 
-    In this document, we will figure out how to handle each column. Also, this will work as a test that your environment works as expected. To start, you need to know how to unzip files. Binary files are data files are on Git LFS directory, and you must uncompress them to `data/` directory. You can do this like so...
+    In this document, we will inspect the Titanic dataset column by column and decide what belongs in a semantic feature layer – which is a fancy way of saying that we will preprocess the data and save it to disk, and continue in another script. This notebook also works as a smoke test: if you can run this, your environment has been set up correctly. If not, ask for help. To start, you need to unzip the data files from the Git LFS store into the local `data/` directory. You can do this like so...
 
     ```bash
-    cd notebook
+    cd notebooks
     unzip gitlfs-store/titanic.zip
     ```
 
     ## Goal of this file
 
-    We want to produce a `titanic_semantic.parquet` file, which has only **deterministic, semantic feature extraction** applied into this. For example, we can produce field like `is_alone` as `family_size == 1` or parse the persons title, like `Dr. (doctor)`, from name. We can also completely drop some columns or decide to rename them. Also, all values that should be `NULL`, like string values (`["\", " ", "N/A", "None that I know :)"]`) will be turned to actual `NULL` values.
+    We want to produce a semantic Parquet artifact at `data/titanic/titanic.parquet`. In this notebook, **semantic** means: transforms that are deterministic, justified from the meaning of the raw column, and do not require fitting on training data.
 
-    Anything else must be left for the next script to handle These include things that are:
+    This notebook is responsible for:
 
-    * fitted from training data (leakage risk if done globally)
-    * model-dependent
-    * a hyperparameter we want to tune
-    * imputing the NULL values
+    * inspecting columns
+    * ...and choosing what to do (verdicts)
+    * applying (deterministic) feature extraction
+    * standardizing nulls
+    * dropping obvious leakage columns
+    * saving a semantic Parquet plus sidecar metadata
+
+    Good examples of work that belongs here are parsing titles from names, deriving `family` and `is_alone`, extracting `ticketprefix` and `cabinprefix`, and resolving values when domain knowledge gives a deterministic answer.
+
+    Anything that is fit (=learned) from data, depends on the downstream estimator (=ML model), or acts like a tunable hyperparameter must be left for the next notebook. That includes:
+
+    * imputing unresolved missing values
+    * one-hot encoding or ordinal encoding
+    * scaling numeric features
+    * rare-category bucketing
+
+    The next notebook will load this semantic Parquet, split `X` and `y`, and continue from there.
     """)
     return
 
 
 @app.cell
 def _():
-    TITANIC_FILE = "data/titanic/titanic.csv"
-    TITANIC_OUT_FILE = "data/titanic/titanic.parquet"
+    TITANIC_FILE = Path("data/titanic/titanic.csv")
+    TITANIC_OUT_FILE = Path("data/titanic/titanic.parquet")
+    TITANIC_META_FILE = TITANIC_OUT_FILE.with_suffix(".meta.json")
 
     TITANIC_SCHEMA = {
         "pclass": pl.Int8,       # only values 1, 2, 3. Ordinal.
@@ -73,7 +90,13 @@ def _():
     # as well have nulls like ["missing", "MISSING", "NONE", "NULL"]. These
     # will be found during EDA process.
     TITANIC_NULL_VALUES = ["", "NA", "N/A", "null", "?"]
-    return TITANIC_FILE, TITANIC_NULL_VALUES, TITANIC_OUT_FILE, TITANIC_SCHEMA
+    return (
+        TITANIC_FILE,
+        TITANIC_META_FILE,
+        TITANIC_NULL_VALUES,
+        TITANIC_OUT_FILE,
+        TITANIC_SCHEMA,
+    )
 
 
 @app.cell
@@ -90,15 +113,15 @@ def _(mo):
     mo.md(r"""
     ## What is schema?
 
-    A simple CSV does not contain any *schema information*, roughly meaning the data types of each columns. Only information that can be read from the file is what is the name of the field (if header exists) and whether the field contains a number, a string or a missing value.
+    A simple CSV does not contain any *schema information* (=the data types of each columns). Only information that can be read from the file is what is the name of the field (if header exists) and whether the field contains a number, a string or a missing value.
 
-    For example, it makes sense to read values that can only be `0/1` as booleans. This does not simply just save our RAM (by storing less bits per value), but also makes it easier to visualize and process the data.
+    For example, it makes sense to read small integer values as `INT8`, taking only 8 bits instead the default `f64`, which takes 64 bits of memory. This does not simply just save our RAM (by storing less bits per value), but also makes it easier to visualize and process the data later on.
 
     The data has been originally downloaded from ~~`http://biostat.mc.vanderbilt.edu/DataSets`~~  and that site is no longer online. You can find the metadata at [TitanicMETA.pdf](http://campus.lakeforest.edu/frank/FILES/MLFfiles/Bio150/Titanic/TitanicMETA.pdf), but the table description is replicated below as Markdown table for your convenience.
 
 
     | Field      | Description                                                             |
-    |------------|-------------------------------------------------------------------------|
+    |------------|:------------------------------------------------------------------------|
     | pclass     | Passenger Class (1 = 1st; 2 = 2nd; 3 = 3rd)                             |
     | survival   | Survival (0 = No; 1 = Yes)                                              |
     | name       | Name                                                                    |
@@ -132,7 +155,7 @@ def _(TITANIC_FILE, TITANIC_NULL_VALUES, TITANIC_SCHEMA):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    # 30,000 feet view
+    # Dataset overview
 
     The whole dataset can be checked at once. There are multiple ways to do this, including also...
 
@@ -141,7 +164,9 @@ def _(mo):
     TableReport(df)
     ```
 
-    The code block above would run nearly 1 minute and print an interactive raport you can investigate. We will simply check a typical **scatter matrix**. Nominal (our string) fields are hard to plot, so we will keep only numerical fields.
+    The code block above would run nearly 1 minute and print an interactive report you can investigate. Here we will simply check a typical **scatter matrix** to get a quick feel for the numeric columns.
+
+    We intentionally leave out `body` from this overview even though it is numeric, because it is an obvious leakage column for survival prediction and would distract from the rest of the inspection.
     """)
     return
 
@@ -152,7 +177,8 @@ def _(df):
     _numeric_cols = list(df.select(cs.numeric()).columns)
     _numeric_cols.remove("survived")
 
-    # Look into this too!
+    # Try it yourself: check what the output of this looks like 
+    # by commenting out the next row
     _numeric_cols.remove("body") 
 
     alt.Chart(df).mark_circle().encode(
@@ -174,7 +200,14 @@ def _(mo):
     mo.md(r"""
     # Column-level work
 
-    We will be going through these 14 columns. As we go, we will categorize each one into one of the bins (e.g. `CATEGORICALS` for low-cardinality categoricals).
+    We will go through these 14 columns one by one. For each column, we will place it into one of four buckets:
+
+    * keep as numeric
+    * keep as categorical
+    * derive one or more features (and drop original)
+    * drop
+
+    The rule is simple: if a decision can be made deterministically from the raw value and domain meaning, it belongs here. If it would need training data, frequency statistics, estimator assumptions, or hyperparameter choices, it belongs in the next notebook.
     """)
     return
 
@@ -209,7 +242,9 @@ def _(mo):
     )
     ```
 
-    **Verdict:** This is clearly a low cardinality column.
+    `pclass` is stored as a small integer, but semantically it acts like a low-cardinality category: first, second, or third class.
+
+    **Verdict:** Keep it as a categorical feature. We are not ordinal-encoding it here; we are only deciding that this field should survive into the semantic dataset.
     """)
     return
 
@@ -240,7 +275,9 @@ def _(mo):
     mo.md(r"""
     ## 2. survived
 
-    **Verdict:** This is our `target`. It has no missing values, so we can just keep it as it is. It is mildly imbalanced; we may want to take this into account when splitting into training and testing sets.
+    This is our prediction target rather than an input feature. It has no missing values, so we can keep it unchanged in the semantic dataset and let the next notebook separate it from the predictors.
+
+    **Verdict:** Keep it as the `target`. Any train/test splitting strategy or class-imbalance handling belongs downstream.
     """)
     return
 
@@ -264,7 +301,9 @@ def _(mo):
     mo.md(r"""
     ## 3. name
 
-    **Verdict:** Name is too high cardinality, but it contains titles, which might be useful. Let's create a new column `title` and drop the old `name`
+    Passenger names are far too high-cardinality to keep directly, but they do contain a compact semantic signal: honorific titles such as `Mr`, `Mrs`, `Miss`, or `Dr`.
+
+    **Verdict:** Extract a deterministic `title` feature from `name` and drop the original `name` column. This is semantic parsing, not model preprocessing.
     """)
     return
 
@@ -305,7 +344,9 @@ def _(mo):
     mo.md(r"""
     ## 4. sex
 
-    **Verdict:** We can keep this as it is.
+    This is already a small categorical column with clear meaning and no extra parsing required.
+
+    **Verdict:** Keep it as-is as a categorical feature. Encoding is deferred to the modeling pipeline.
     """)
     return
 
@@ -330,7 +371,9 @@ def _(mo):
     mo.md(r"""
     ## 5. age
 
-    **Verdict:** We can leave it as it is.
+    `age` is already a meaningful numeric feature, and missing values here should remain visible to the downstream pipeline.
+
+    **Verdict:** Keep it as-is. We do not impute missing ages in this notebook because imputation is fitted from data and belongs with the model pipeline.
     """)
     return
 
@@ -352,7 +395,11 @@ def _(mo):
     mo.md(r"""
     ## 6 & 7. sibsp and parch
 
-    **VERDICT:** These two columns have a lot in common. We can create a new column for family size. Let's also create another one to be a boolean column indicating if one is alone.
+    These two columns describe family relationships aboard the ship and are easier to reason about together than separately.
+
+    We can combine them into a deterministic `family` feature using `sibsp + parch + 1`. The `+ 1` matters because the passenger themselves count as part of their travel group. That gives us a second deterministic feature, `is_alone`, defined as `family == 1`.
+
+    **Verdict:** Derive `family` and `is_alone`, then drop `sibsp` and `parch` from the semantic output.
     """)
     return
 
@@ -409,7 +456,9 @@ def _(mo):
     mo.md(r"""
     ## 8. ticket
 
-    **VERDICT:** The letters in the ticket may contain important information. It seems that e.g. `S` points to Southhampton.
+    Raw ticket values are too messy and high-cardinality to keep directly, but the leading letters can still carry semantic information.
+
+    **VERDICT:** Extract `ticketprefix` as a compact categorical feature and drop the original `ticket`. This is still semantic extraction, not encoding. Any later grouping of rare prefixes should happen in the modeling notebook if needed.
     """)
     return
 
@@ -450,7 +499,9 @@ def _(mo):
     mo.md(r"""
     ## 9. fare
 
-    **VERDICT:** Keep as it is. We might want to either bin this, or cap to e.g. 300 to reduce the effect of the 4 outliers (with a fare of 500+).
+    `fare` is already a meaningful numeric column, even if it is skewed and contains a few very large values.
+
+    **VERDICT:** Keep it as-is. Binning, clipping, transforming, or scaling the distribution would be modeling decisions, so they are intentionally deferred.
     """)
     return
 
@@ -475,7 +526,11 @@ def _(mo):
     mo.md(r"""
     ## 10. cabin
 
-    **Verdict:** Let's do the same trick as with ticket. Keep the starting letter (or number, which don't exist). We will simply mark all others as UNKNOWN. These is such as high volume of these that imputation strategies would not end up being useful.
+    Full cabin identifiers are sparse and high-cardinality, but the leading cabin letter still carries semantic information about the deck.
+
+    **Verdict:** Extract `cabinprefix` and drop the original `cabin` column. Rows without a cabin value are labeled `UNKNOWN` in this derived feature so that the semantic dataset preserves the fact that cabin information was absent.
+
+    This is different from downstream imputation: we are not guessing a deck, we are creating an explicit category that means cabin information was missing in the source data.
     """)
     return
 
@@ -525,7 +580,9 @@ def _(mo):
     >
     > – Encyclopedia Titanica
 
-    **VERDICT:** Both individuals boarded the ship in **Southampton**. Thus, we can fill in the value **S**.
+    **VERDICT:** Both individuals boarded the ship in **Southampton**, so we can fill in the value **S** and rename the semantic output column to `embark_at`.
+
+    This is one of the few cases where filling a missing value is still acceptable in this notebook, because the value is resolved from external domain evidence rather than estimated from the dataset. If we did not have that evidence, the null should remain for the modeling pipeline to handle later.
     """)
     return
 
@@ -563,9 +620,9 @@ def _(mo):
     mo.md(r"""
     ### Embark and Ticket sanity check
 
-    We have two fields now containing city-knowledge. The ticket prefix `S...` and embark_at `S` both relate to Southhampton, most likely. Let's make sure that this is not quite 1:1 duplicate information.
+    We now have two features that may both encode some location information: ticket prefix and embarkation port. Before moving on, it is worth checking that they are not just duplicates of each other.
 
-    The letters in the embarkment column should mean:
+    The letters in the embarkation column mean:
 
     * C = Cherbourg (France)
     * Q = Queenstown (Ireland) - now known as Cobh
@@ -622,7 +679,7 @@ def _(mo):
 
     Wonder if he is in the dataset?
 
-    **Verdict:** You would not know whether you make it into a life boat or not when before that has happened. This column needs to be dropped.
+    **Verdict:** Drop. `boat` leaks post-incident information that would not be available at prediction time.
     """)
     return
 
@@ -647,7 +704,7 @@ def _(mo):
 
     If you already have a body bag number, there isn't a lot to predict.
 
-    **Verdict:** Drop.
+    **Verdict:** Drop. This is an even clearer leakage column than `boat`.
     """)
     return
 
@@ -665,7 +722,7 @@ def _(mo):
 
     The `home.dest` contains various information of their either home town or country or destination. It *might* be somehow useful, assuming that non-native English speakers wouldn't have access to all safety instructions due to language barrier. Let's investigate the Finns aboard on the ship.
 
-    **Verdict:** It surely is possible to use this field to infer information about where they are from, but this would require a fair amount of mapping (or utilizing a simple BERT language model of sorts). Thus, let's drop it.
+    **Verdict:** Drop. There may be signal here, but turning this free-text field into a useful semantic feature would require a much larger mapping project than this introductory notebook should take on.
     """)
     return
 
@@ -684,33 +741,41 @@ def _(mo):
     mo.md(r"""
     # Write to disk
 
-    We are now ready to write the dataset to disk as a Parquet file (or any other chosen file format).
+    We are now ready to write the semantic dataset to disk.
+
+    The Parquet file will contain only the columns we decided to keep after deterministic feature extraction and leakage removal. The sidecar JSON file records which columns are categorical, numeric, dropped, and which column is the target so that the next notebook can build a model pipeline without repeating the EDA work.
     """)
     return
 
 
 @app.cell
-def _(CATEGORICALS, DROP_COLS, NUMERICS, TARGET):
-    print(CATEGORICALS) # {'cabinprefix', 'embark_at', 'pclass', 'sex', 'ticketprefix', 'title'}
-    print(NUMERICS)     # {'fare', 'survived', 'family'}
-    print(DROP_COLS)    # {'cabin', 'parch', 'home.dest', 'body', 'name', 'ticket', 'embarked', 'sibsp'}
-    print(TARGET)       # ['survived']
-    return
+def _(CATEGORICALS, DROP_COLS, NUMERICS, TARGET, df_embarked):
+    metadata = {
+        "categoricals": sorted(CATEGORICALS),
+        "numerics": sorted(NUMERICS),
+        "drop_cols": sorted(DROP_COLS),
+        "target": list(TARGET),
+    }
+    print(metadata)
 
-
-@app.cell
-def _(DROP_COLS, df_embarked):
     df_write = df_embarked.drop(DROP_COLS)
 
     # View
     df_write
-    return (df_write,)
+    return df_write, metadata
 
 
 @app.cell
-def _(TITANIC_OUT_FILE, df_write):
-    # Write to disk
+def _(TITANIC_META_FILE, TITANIC_OUT_FILE, df_write, metadata):
+    # Write Parquet data
     df_write.write_parquet(TITANIC_OUT_FILE)
+
+    # Write sidecar metadata
+    with open(TITANIC_META_FILE, "w", encoding="utf-8") as f:
+        json.dump(metadata, f, indent=2, ensure_ascii=False)
+
+    print(f"[INFO] Wrote data to: {TITANIC_OUT_FILE}")
+    print(f"[INFO] Wrote metadata to: {TITANIC_META_FILE}")
     return
 
 
@@ -719,7 +784,39 @@ def _(mo):
     mo.md(r"""
     # Conclusion
 
-    TODO: Summarize here what was done to the dataset.
+    This notebook produced a semantic Titanic dataset intended to be consumed by the next notebook.
+
+    What we kept:
+
+    * categorical inputs such as `pclass` and `sex`
+    * numeric inputs such as `age` and `fare`
+    * the target column `survived`
+
+    What we derived deterministically:
+
+    * `title` from `name`
+    * `family` from `sibsp + parch + 1`
+    * `is_alone` from `family == 1`
+    * `ticketprefix` from the leading ticket letters
+    * `cabinprefix` from the leading cabin letter, with `UNKNOWN` marking missing cabin information
+    * `embark_at` from `embarked`, including a deterministic fix for the two missing values
+
+    What we dropped:
+
+    * obvious leakage columns such as `boat` and `body`
+    * high-cardinality raw columns that were replaced by semantic features such as `name`, `ticket`, `cabin`, `sibsp`, `parch`, and `embarked`
+    * `home.dest`, because converting it into a robust semantic feature would require a larger project than this notebook should own
+
+    What we deliberately did **not** do:
+
+    * impute unresolved missing values such as `age`
+    * encode categorical columns
+    * scale numeric columns
+    * make frequency-based or model-dependent feature decisions
+
+    That work belongs in the next notebook, which should stay focused on loading the semantic Parquet, splitting `X` and `y`, defining the estimator pipeline, and evaluating the model.
+
+    One cleanup item remains for the future: the output feature names are currently useful but not fully standardized. For now, this notebook documents the existing contract exactly as written so that downstream code can rely on it.
     """)
     return
 
