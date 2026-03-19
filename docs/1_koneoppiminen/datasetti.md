@@ -137,7 +137,7 @@ Jos tarkistat sanan [nominal](https://en.wiktionary.org/wiki/nominal) wiktionary
 
 Kuten sanasta voi päätellä, ordinaalinen noudattaa järjestystä (*engl. order*). Tyypillinen esimerkki on kyselylomakkeista tuttu Likert-asteikko, jossa vastausvaihtoehdot ovat esimerkiksi `Erittäin tyytyväinen`, `Tyytyväinen`, `Neutraali`, `Tyytymätön` ja `Erittäin tyytymätön`. Näitä ei voi kääntää numeroiksi tai kategorioiksi satunnaisjärjestyksessä menettämällä tärkeää informaatiota. Muita vaihtoehtoja ovat esimerkiksi arvosanat (`A, B, ... F`), t-paitakoot (`S`, `M`, `L`, `XL`), elokuva-arvostelun tähdet (`*`, `**`, `***`) tai henkilön asema yrityshierarkiassa (`intern`, `entry level`, `director`, `VP`, `C-level`). [^feature-engineering]
 
-**Tyypillinen käsittelytapa:** *Ordinal encoding* (tai *label encoding*). Tämä on hyvinkin simppeliä:
+**Datalle natiivi käsittelytapa:** *Ordinal encoding* (tai *label encoding*). Tämä on hyvinkin simppeliä:
 
 | Rank at company | Encoded Value |
 | --------------- | ------------- |
@@ -146,6 +146,10 @@ Kuten sanasta voi päätellä, ordinaalinen noudattaa järjestystä (*engl. orde
 | Director        | 2             |
 | VP              | 3             |
 | C-level         | 4             |
+
+!!! tip
+
+    Tämällä on vaarana olla liian edistynyt konsepti ensimmäiselle viikolle, mutta mainittakoon silti: **ordinal encoding** on luonnollinen tapa koodata ordinaalista dataa, mutta se toimii parhaiten malleissa, jotka eivät perustu etäisyyksiin, kuten päätöspuumalleissa (DecisionTree, RandomForest, Gradient Boosting). Etäisyyspohjaisille malleille turvallisin vaihtoehto on silti usein one‑hot encoding.
 
 ### Intervalli
 
@@ -202,7 +206,27 @@ On yllättävänkin tyypillistä, että jokin data puuttuu. Täydellisiin datase
 
 ## Vektorit ja matriisit
 
-Emme käsittele tällä kursseilla laskentaan liittyviä lukuja Pythonin sisäänrakennettuina muuttujatyyppeinä, kuten `int` tai `list[float]`. Tästä poikkeuksena on ensimmäinen harjoitus, jossa tutustutaan Pythonilla luotuun Vector-luokkaan: ihan vain varmistaaksemme, että ymmärrämme, mitä konepellin alla suunnilleen tapahtuu. Sen sijaan käytämme Numpy-kirjastoa matriisien ja vektorien käsittelyyn. Lisäksi käytämme Pandas-kirjastoa. Huomaa, että Pandas hyödyntää NumPya, joten Pandas DataFrame on pohjimmiltaan NumPy-matriisi, joka on kääritty `Index`, `Series` tai `DataFrame`-luokan olion sisään. Lisäksi Pandas lisää muutaman oman tyypin kyytiin: *"pandas and third-party libraries extend NumPy’s type system in a few places."* [^pandas-essential] Kaikki Pandasin lisäämät tyypit löydät [täältä](https://pandas.pydata.org/docs/user_guide/basics.html#basics-dtypes)
+Emme käsittele tällä kursseilla laskentaan liittyviä lukuja Pythonin sisäänrakennettuina muuttujatyyppeinä, kuten `int` tai `list[float]`. Tästä poikkeuksena on ensimmäinen harjoitus, jossa tutustutaan Pythonilla luotuun Vector-luokkaan: ihan vain varmistaaksemme, että ymmärrämme, mitä konepellin alla suunnilleen tapahtuu. Sen sijaan käytämme Numpy-kirjastoa matriisien ja vektorien käsittelyyn. 
+
+!!! note "Polars ja Pandas"
+
+    Käytämme lisäksi kirjastoja Polars ja/tai Pandas-kirjastoa. Polars on näistä siinä mielessä suositeltu vaihtoehto, että Marimo suosii sitä. Jos tarkistat [pyproject.toml](https://github.com/marimo-team/marimo/blob/main/pyproject.toml)-tiedoston Marimon repositoriosta, huomaat seuraavat rivit:
+
+    ```toml
+    [project.optional-dependencies]
+    sql = [
+        "duckdb>=1.0.0",           # SQL cells
+        "polars[pyarrow]>=1.9.0",  # SQL output back in Python
+        "sqlglot[c]>=26.8.0"       # SQL cells parsing;
+    ]
+
+    # ...
+
+    [tool.marimo.ai]
+    rules = "- prefer polars over pandas\n- make charts using altair"
+    ```
+    
+    **The More You Know**: Pandas hyödyntää NumPya, joten Pandas DataFrame on pohjimmiltaan NumPy-matriisi, joka on kääritty `Index`, `Series` tai `DataFrame`-luokan olion sisään. Lisäksi Pandas lisää muutaman oman tyypin kyytiin: *"pandas and third-party libraries extend NumPy’s type system in a few places."* [^pandas-essential] Kaikki Pandasin lisäämät tyypit löydät [täältä](https://pandas.pydata.org/docs/user_guide/basics.html#basics-dtypes)
 
 Tämän materiaalin alussa esitelty tabulaarinen datasetti on ihmiselle helpossa taulukkomuodossa. Koneoppimismallien tapauksessa data käsitellään yleensä matriiseina ja vektoreina. *Vektorisoidut operaatiot* ovat tehokkaampia kuin silmukat. Tyypillisesti koneoppimisessa käytetään `numpy`-kirjastoa edustamaan matriisia `X` ja vektoria `y`. Matriisi `X` on kaksiulotteinen taulukko, jossa rivit ovat havaintoja ja sarakkeet ovat muuttujia. Vektori `y` on yksiulotteinen taulukko, jossa on selitettävän muuttujan arvot. Alla on ylempää dokumentista tuttu datasetti `X` ja `y` `numpy`-muodossa. Näiden muuttujien nimet voivat luonnollisesti olla mitä tahansa, mutta `X` ja `y` ovat alan konvention mukaisia.
 
@@ -222,13 +246,13 @@ y: np.ndarray = np.array([1, 0, 1, 1, 0])
 
 ## Tehtävät
 
-!!! question "Tehtävä: Numpy & Pandas Basics"
+!!! question "Tehtävä: Numpy Basics (TODO EXTEND)"
 
-    Tutustu `130_numpy_pandas_basics.py`-tiedostoon, joka on Marimo Notebook. Kyseisessä tiedostossa käsitellään tämän materiaalin aihepiiriä Notebook-muodossa, koodia ajaen.
+    Tutustu `130_numpy_basics.py`-tiedostoon, joka on Marimo Notebook. Kyseisessä tiedostossa käsitellään tämän materiaalin aihepiiriä Notebook-muodossa, koodia ajaen.
 
     Tämä on kurssin ensimmäinen Marimo Notebook, joten saat hieman tarkempaa pohjatietoa:
 
-    * tiedosto löytyy [repositorion](https://github.com/sourander/ml-perusteet) juuresta alkaen polusta `notebooks/nb/100/130_numpy_pandas_basics.py`
+    * tiedosto löytyy [repositorion](https://github.com/sourander/ml-perusteet) juuresta alkaen polusta `notebooks/nb/100/130_numpy_basics.py`
     * on kannattavaa kloonata koko repositorio koneellesi. Avaa tuo `notebooks/`-hakemisto Visual Studio Codessa.
     * ... ja/tai kopioi koko hakemisto johonkin toiseen lokaatioon, kuten esimerkiksi siihen hakemistoon, mistä löytyy sinun oppimispäiväkirjasi.
 
@@ -240,7 +264,7 @@ y: np.ndarray = np.array([1, 0, 1, 1, 0])
 
 !!! question "Tehtävä: Vector from Scratch"
 
-    Tutustu `131_vector_from_scratch.py`-tiedostossa olevaan `Vector`-luokkaan. Luokka on toteutettu natiivilla Pythonilla ilman ulkoisia kirjastoja eli *from scratch*. Toivon mukaan luokan yksinkertaisten looppien kautta ymmärrät, millaista laskentaa tapahtuu, kun käytät `numpy`-kirjastolla vastaavia operaatioita.
+    Tutustu `131_vector_from_scratch.py`-tiedostossa olevaan `Vector`-luokkaan. Luokka on toteutettu natiivilla Pythonilla ilman ulkoisia kirjastoja eli *from scratch*. Toivon mukaan luokan yksinkertaisten looppien kautta ymmärrät, millaista laskentaa tapahtuu, kun käytät `numpy`-kirjastolla vastaavia operaatioita. NumPy toki tekee saman tehokkaammin, hyödyntäen mahdollisuuksien mukaan vektoroituja operaatioita – loogisella tasolla operaatio on kuitenkin sama kuin `Vector`-luokassa.
 
 ## Lähteet
 

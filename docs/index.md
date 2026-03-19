@@ -20,6 +20,25 @@ Tervetuloa kurssille! Aiheita käydään läpi lyhyesti teoreettisesta näkökul
 
 **Kuvio 1.** *Sarjakuvapiirros koneoppimisesta. (Copyright note: The memeified comic is by unknown author, but found from r/machinelearningmemes posted by u/joelllthedestoryer. Published with permission from the creator of the original comic strip MadeByTio.)*
 
+## Git LFS
+
+Ennen kuin kloonaat tätä repoa, sinun tulee aktivoida Git LFS (Large File Storage), jotta saat kurssin datatiedostot ladattua. Jos olet Windowsissa ja sinulla on Git for Windows, Git LFS on jo asennettu, mutta se tulee aktivoida. Jos olet macOS:ssä tai Ubuntussa, katso asennusohje [How to Git > Käyttö > Gitlab: LFS](https://sourander.github.io/how-to-git/kaytto/lfs/) tai etsi ohje valitsemastasi paikasta. Tämä tarvitsee tehdä vain kerran per tietokone.
+
+```bash
+# Ennen kuin kloonaat
+git lfs install
+
+# Ja nyt on turvallista...
+mkdir -p ~/Code/sourander
+cd ~/Code/sourander
+git clone https://github.com/sourander/ml-perusteet
+```
+
+!!! tip
+
+    Tarvitset repositoriosta vain `notebooks/`-kansion, mutta GitHubin web-käyttöliittymä ei tue Git LFS:ää, joten sinun tulee kloonata koko repository. Kloonaamisen jälkeen voit kopioida `notebooks/`-kansion haluamaasi paikkaan ja tarpeen mukaan poistaa koko repositoryn.
+
+## Oppimistavoitteet
 
 Viralliset oppimistavoitteet löydät OPS:sta, mutta pääpiirteittäin kurssin jälkeen:
 
@@ -29,9 +48,7 @@ Viralliset oppimistavoitteet löydät OPS:sta, mutta pääpiirteittäin kurssin 
 * Olet luonut oppimispäiväkirjan, joka mahdollistaa kertauksen ja jatko-opiskelun.
 * Olet valmis jatkamaan Syväoppiminen I -kurssin suuntaan.
 
-
-
-## Tehtävät
+## Tehtävien numerointi
 
 Kurssi sisältää tehtäviä, jotka tukevat syväoppimisen keskeisten käsitteiden ja menetelmien ymmärtämistä. Tehtävien tarkoitus ei ole tuottaa yksittäisiä *“oikeita vastauksia”*, vaan toimia lähtökohtana oppimiselle, kokeilulle ja reflektoinnille.
 

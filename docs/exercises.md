@@ -19,7 +19,7 @@ Kopioi tehtävälista leikepöydälle ja muokkaa se sinun käyttöösi sopivaksi
 
 ## Data (130)
 
-- [ ] Tehtävä: Numpy & Pandas Basics
+- [ ] Tehtävä: Numpy Basics (TODO EXTEND)
 - [ ] Tehtävä: Vector from Scratch
 
 

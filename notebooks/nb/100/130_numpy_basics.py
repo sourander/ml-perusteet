@@ -4,7 +4,6 @@ __generated_with = "0.21.0"
 app = marimo.App(width="medium")
 
 with app.setup:
-    import pandas as pd
     import numpy as np
 
 
@@ -20,13 +19,7 @@ def _(mo):
     mo.md(r"""
     # Numpy & Pandas Basics
 
-    Note that you are expected to have experience with Pandas, since that is part of KAMK's curriculum. This Marimo Notebook will function as a recap. This will also introduce the lesson's theory bits in practice.
-
-    If in doubt, read the following articles from Pandas' docs...
-
-    * [10 minutes to pandas](https://pandas.pydata.org/docs/user_guide/10min.html)
-    * [Comparison with SQL](https://pandas.pydata.org/docs/getting_started/comparison/comparison_with_sql.html)
-    * [Essential basic functionality](https://pandas.pydata.org/docs/user_guide/basics.html)
+    Note that you are expected to have experience with Numpy, since that is part of KAMK's curriculum. This Marimo Notebook will function as a recap. This will also introduce the lesson's theory bits in practice.
     """)
     return
 

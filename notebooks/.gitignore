@@ -1,0 +1,5 @@
+# Help students to avoid commiting binary stuff if they place this directory
+# inside their own repos.
+.venv/
+data/
+__marimo__/
