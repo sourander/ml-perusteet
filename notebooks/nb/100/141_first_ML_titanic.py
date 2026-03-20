@@ -426,7 +426,10 @@ def _(best_models):
     _rows = []
 
     for _model_name, _fitted_pipeline in best_models.items():
-        _feature_names = _fitted_pipeline.named_steps["preprocessor"].get_feature_names_out()
+        _feature_names = [
+            name.removeprefix("remainder__")
+            for name in _fitted_pipeline.named_steps["preprocessor"].get_feature_names_out()
+        ]
         _classifier = _fitted_pipeline.named_steps["classifier"]
 
         # Tree algorithms call them feature importances
@@ -457,7 +460,7 @@ def _(best_models):
     return (importance_df,)
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(importance_df):
     _chart = (
         alt.Chart(importance_df)
@@ -501,7 +504,7 @@ def _(mo):
     return
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _():
     def unique_options(df: pl.DataFrame, col: str) -> list[str]:
         values = (
@@ -565,7 +568,7 @@ def _():
     return float_slider_stats, int_slider_stats, mode_option, unique_options
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(
     X_train,
     best_models,
@@ -658,7 +661,7 @@ def _(
     )
 
 
-@app.cell
+@app.cell(hide_code=True)
 def _(
     age_slider,
     cabinprefix_dd,
