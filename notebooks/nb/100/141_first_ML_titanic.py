@@ -491,157 +491,77 @@ def _(
     best_models,
     float_slider_stats,
     int_slider_stats,
+    mo,
     mode_option,
     unique_options,
 ):
-    title_options = unique_options(X_train, "title")
-    cabinprefix_options = unique_options(X_train, "cabinprefix")
-    embark_at_options = unique_options(X_train, "embark_at")
-    pclass_options = unique_options(X_train, "pclass")
-    sex_options = unique_options(X_train, "sex")
-    ticketprefix_options = unique_options(X_train, "ticketprefix")
-
-    title_default = mode_option(X_train, "title")
-    cabinprefix_default = mode_option(X_train, "cabinprefix")
-    embark_at_default = mode_option(X_train, "embark_at")
-    pclass_default = mode_option(X_train, "pclass")
-    sex_default = mode_option(X_train, "sex")
-    ticketprefix_default = mode_option(X_train, "ticketprefix")
-
-    age_start, age_stop, age_default = int_slider_stats(X_train, "age")
-    family_start, family_stop, family_default = int_slider_stats(X_train, "family_size")
-    fare_start, fare_stop, fare_default = float_slider_stats(X_train, "fare")
-
-    # Simple, readable step sizes
-    age_step = 1
-    family_step = 1
-    fare_step = 0.5 if fare_stop <= 100 else 1.0
-
-    model_options = list(best_models.keys())
-    default_model = model_options[0]
-    return (
-        age_default,
-        age_start,
-        age_step,
-        age_stop,
-        cabinprefix_default,
-        cabinprefix_options,
-        default_model,
-        embark_at_default,
-        embark_at_options,
-        family_default,
-        family_start,
-        family_step,
-        family_stop,
-        fare_default,
-        fare_start,
-        fare_step,
-        fare_stop,
-        model_options,
-        pclass_default,
-        pclass_options,
-        sex_default,
-        sex_options,
-        ticketprefix_default,
-        ticketprefix_options,
-        title_default,
-        title_options,
-    )
-
-
-@app.cell
-def _(
-    age_default,
-    age_start,
-    age_step,
-    age_stop,
-    cabinprefix_default,
-    cabinprefix_options,
-    default_model,
-    embark_at_default,
-    embark_at_options,
-    family_default,
-    family_start,
-    family_step,
-    family_stop,
-    fare_default,
-    fare_start,
-    fare_step,
-    fare_stop,
-    mo,
-    model_options,
-    pclass_default,
-    pclass_options,
-    sex_default,
-    sex_options,
-    ticketprefix_default,
-    ticketprefix_options,
-    title_default,
-    title_options,
-):
     model_dd = mo.ui.dropdown(
-        options=model_options,
-        value=default_model,
+        options=list(best_models.keys()),
+        value=list(best_models.keys())[0],
         label="Model"
     )
 
     title_dd = mo.ui.dropdown(
-        options=title_options,
-        value=title_default,
+        options=unique_options(X_train, "title"),
+        value=mode_option(X_train, "title"),
         label="Title"
     )
 
     cabinprefix_dd = mo.ui.dropdown(
-        options=cabinprefix_options,
-        value=cabinprefix_default,
+        options=unique_options(X_train, "cabinprefix"),
+        value=mode_option(X_train, "cabinprefix"),
         label="Cabin prefix"
     )
 
     embark_at_dd = mo.ui.dropdown(
-        options=embark_at_options,
-        value=embark_at_default,
+        options=unique_options(X_train, "embark_at"),
+        value=mode_option(X_train, "embark_at"),
         label="Embark at"
     )
 
     pclass_dd = mo.ui.dropdown(
-        options=pclass_options,
-        value=pclass_default,
+        options=unique_options(X_train, "pclass"),
+        value=mode_option(X_train, "pclass"),
         label="Passenger class"
     )
 
     sex_dd = mo.ui.dropdown(
-        options=sex_options,
-        value=sex_default,
+        options=unique_options(X_train, "sex"),
+        value=mode_option(X_train, "sex"),
         label="Sex"
     )
 
     ticketprefix_dd = mo.ui.dropdown(
-        options=ticketprefix_options,
-        value=ticketprefix_default,
+        options=unique_options(X_train, "ticketprefix"),
+        value=mode_option(X_train, "ticketprefix"),
         label="Ticket prefix"
     )
 
+    _age_start, _age_stop, _age_default = int_slider_stats(X_train, "age")
+    _family_start, _family_stop, _family_default = int_slider_stats(X_train, "family_size")
+    _fare_start, _fare_stop, _fare_default = float_slider_stats(X_train, "fare")
+
     age_slider = mo.ui.slider(
-        start=age_start,
-        stop=age_stop,
-        value=age_default,
-        step=age_step,
+        start=_age_start,
+        stop=_age_stop,
+        value=_age_default,
+        step=1,
         label="Age"
     )
 
     family_slider = mo.ui.slider(
-        start=family_start,
-        stop=family_stop,
-        value=family_default,
-        step=family_step,
+        start=_family_start,
+        stop=_family_stop,
+        value=_family_default,
+        step=1,
         label="Family size"
     )
 
     fare_slider = mo.ui.slider(
-        start=fare_start,
-        stop=fare_stop,
-        value=round(fare_default, 2),
-        step=fare_step,
+        start=_fare_start,
+        stop=_fare_stop,
+        value=round(_fare_default, 2),
+        step=0.5 if _fare_stop <= 100 else 1.0,
         label="Fare"
     )
     return (
@@ -741,11 +661,6 @@ def _(X_new_encoded, best_models, mo, model_dd):
         result_md += f"- **Predicted probability (class 1):** `{proba:.2%}`"
 
     mo.md(result_md)
-    return
-
-
-@app.cell
-def _():
     return
 
 
