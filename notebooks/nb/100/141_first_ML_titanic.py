@@ -15,10 +15,11 @@ with app.setup:
     from sklearn.base import clone
     from sklearn.compose import ColumnTransformer
     from sklearn.pipeline import Pipeline
-    from sklearn.preprocessing import StandardScaler, OneHotEncoder, OrdinalEncoder
+    from sklearn.preprocessing import StandardScaler, OneHotEncoder
     from sklearn.impute import SimpleImputer, KNNImputer
     from sklearn.linear_model import LogisticRegression
     from sklearn.ensemble import RandomForestClassifier
+    from sklearn.svm import SVC
     from sklearn.model_selection import GridSearchCV, train_test_split
 
     from sklearn.metrics import (
@@ -191,7 +192,18 @@ def _(NUMERICS):
                 KNNImputer(n_neighbors=5, weights='distance'),
             ],
             'preprocessor__nums__scaler': ['passthrough'],
-        }
+        },
+        {
+            'classifier': [SVC(probability=True, random_state=42)],
+            'classifier__C': [0.1, 1.0, 10.0],
+            'classifier__kernel': ['rbf', 'linear'],
+            'preprocessor__nums__imputer': [
+                SimpleImputer(strategy='mean'),
+                SimpleImputer(strategy='median'),
+                KNNImputer(n_neighbors=5, weights='uniform'),
+            ],
+            'preprocessor__nums__scaler': [StandardScaler()],
+        },
     ]
     return param_grid, pipeline
 
@@ -268,7 +280,7 @@ def _(df_results):
             groupby=["classifier_name"],
             as_=["mean_test_score", "density"]
         )
-        .mark_area(opacity=0.65)
+        .mark_area(opacity=0.45)
         .encode(
             x=alt.X("mean_test_score:Q", title="Mean CV test score"),
             y=alt.Y("density:Q", stack=None, title="Density"),
