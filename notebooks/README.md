@@ -48,15 +48,16 @@ Some of the Notebooks contain exercises. Example solutions are in a subdirectory
 
 Here is a guide for setup. I might move this guide to `How to Git` one day. For now, it is here.
 
-### Part A: Encrypt (macOS)
+### Prerequisites
 
-This setup is done only on one machine. I will start it on my macOS. The folloging command initializes git-crypt in the repository. The key file is created into `.git/git-crypt/keys/default`. Run this only once per repository.
+The `git-crypt` key has been originally created only on one machine and then distributed to other machines utilizing a password manager.
 
 Here we assume that: 
 
-1. the `git-crypt` is installed and `git-crypt init` has been run inside some repository that will use the same encryption key.
-2. the `.gitignore` file contains a filter that we need. Check the file in `../.gitignore` for details.
-3. the `gh-solutions.git-crypt.key` has been downloaded to `$HOME` directory.
+1. the `.gitignore` file contains a filter that we need. Check the file in `../.gitignore` for details.
+2. the `gh-solutions.git-crypt.key` has been downloaded to `$HOME` directory.
+
+The key file is copied into `.git/git-crypt/keys/default` after running the commands below. Run this only once per repository (or again if you need to clone the repository again).
 
 ```bash
 # Navigate to whereever the repo root is

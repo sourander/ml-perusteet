@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.21.0"
+__generated_with = "0.21.1"
 app = marimo.App(width="medium")
 
 with app.setup:
@@ -48,7 +48,7 @@ def _(mo):
     * dropping obvious leakage columns
     * saving a semantic Parquet plus sidecar metadata
 
-    Good examples of work that belongs here are parsing titles from names, deriving `family` and `is_alone`, extracting `ticketprefix` and `cabinprefix`, and resolving values when domain knowledge gives a deterministic answer.
+    Good examples of work that belongs here are parsing titles from names, deriving `family_size`, extracting `ticketprefix` and `cabinprefix`, and resolving values when domain knowledge gives a deterministic answer.
 
     Anything that is fit (=learned) from data, depends on the downstream estimator (=ML model), or acts like a tunable hyperparameter must be left for the next notebook. That includes:
 
@@ -164,7 +164,7 @@ def _(mo):
     TableReport(df)
     ```
 
-    The code block above would run nearly 1 minute and print an interactive report you can investigate. Here we will simply check a typical **scatter matrix** to get a quick feel for the numeric columns.
+    Having that said, we are not using skrub in this course. Here we will simply check a typical **scatter matrix** to get a quick feel for the numeric columns.
 
     We intentionally leave out `body` from this overview even though it is numeric, because it is an obvious leakage column for survival prediction and would distract from the rest of the inspection.
     """)
@@ -283,12 +283,9 @@ def _(mo):
 
 
 @app.cell
-def _(NUMERICS, df):
+def _(df):
     _COL = "survived"
     print_null_and_uniques(_COL, df)
-
-    # Verdict action
-    NUMERICS.add(_COL)
 
     df.plot.bar(
         x=f"{_COL}:N", y="count()"
@@ -379,10 +376,12 @@ def _(mo):
 
 
 @app.cell
-def _(df_name):
+def _(NUMERICS, df_name):
     _COL = "age"
     print(f"[INFO] The {_COL} has null values: ", df_name.select(_COL).null_count().item())
     print(f"[INFO] Unique values are: ", df_name.select(_COL).unique().to_series().to_list()[:30])
+
+    NUMERICS.add(_COL)
 
     df_name.plot.bar(
         x=f"{_COL}:Q", y="count()", color="survived"
@@ -397,9 +396,9 @@ def _(mo):
 
     These two columns describe family relationships aboard the ship and are easier to reason about together than separately.
 
-    We can combine them into a deterministic `family` feature using `sibsp + parch + 1`. The `+ 1` matters because the passenger themselves count as part of their travel group. That gives us a second deterministic feature, `is_alone`, defined as `family == 1`.
+    We can combine them into a deterministic `family_size` feature using `sibsp + parch + 1`. The `+ 1` matters because the passenger themselves count as part of their travel group.
 
-    **Verdict:** Derive `family` and `is_alone`, then drop `sibsp` and `parch` from the semantic output.
+    **Verdict:** Derive `family_size`, then drop `sibsp` and `parch` from the semantic output.
     """)
     return
 
@@ -421,15 +420,10 @@ def _(DROP_COLS, NUMERICS, df_name):
     print(f"[INFO] The {_COLb} has null values: ", df_name.select(_COLb).null_count().item())
     print(f"[INFO] Unique values are: ", df_name.select(_COLb).unique().to_series().to_list())
 
-    _NEW_FAMILY = "family"
-    _NEW_ALONE = "is_alone"
+    _NEW_FAMILY = "family_size"
 
     df_family = df_name.with_columns(
         (pl.col(_COLa) + pl.col(_COLb) + 1).alias(_NEW_FAMILY),
-    )
-
-    df_family = df_family.with_columns(
-        (pl.col(_NEW_FAMILY) == 1).alias(_NEW_ALONE)
     )
 
     # Verdict
@@ -441,14 +435,6 @@ def _(DROP_COLS, NUMERICS, df_name):
         x=f"{_NEW_FAMILY}:N", y="count()", color="survived"
     ).properties(width=900)
     return (df_family,)
-
-
-@app.cell
-def _(df_family):
-    df_family.plot.bar(
-        x=f"is_alone:N", y="count()", color="survived"
-    ).properties(width=500)
-    return
 
 
 @app.cell(hide_code=True)
@@ -753,7 +739,6 @@ def _(CATEGORICALS, DROP_COLS, NUMERICS, TARGET, df_embarked):
     metadata = {
         "categoricals": sorted(CATEGORICALS),
         "numerics": sorted(NUMERICS),
-        "drop_cols": sorted(DROP_COLS),
         "target": list(TARGET),
     }
     print(metadata)
@@ -795,8 +780,7 @@ def _(mo):
     What we derived deterministically:
 
     * `title` from `name`
-    * `family` from `sibsp + parch + 1`
-    * `is_alone` from `family == 1`
+    * `family_size` from `sibsp + parch + 1`
     * `ticketprefix` from the leading ticket letters
     * `cabinprefix` from the leading cabin letter, with `UNKNOWN` marking missing cabin information
     * `embark_at` from `embarked`, including a deterministic fix for the two missing values

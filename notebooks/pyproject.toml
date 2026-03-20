@@ -4,6 +4,6 @@ version = "0.1.0"
 requires-python = ">=3.12, <4.0"
 dependencies = [
     "marimo[recommended]>=0.21.0",
+    "pandas>=3.0.1",
     "scikit-learn>=1.8.0",
-    "skrub>=0.7.2",
 ]
