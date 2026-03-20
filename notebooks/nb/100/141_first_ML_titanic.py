@@ -416,6 +416,86 @@ def _(metrics_df):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
+    # Feature Importances
+    """)
+    return
+
+
+@app.cell
+def _(best_models):
+    _rows = []
+
+    for _model_name, _fitted_pipeline in best_models.items():
+        _feature_names = _fitted_pipeline.named_steps["preprocessor"].get_feature_names_out()
+        _classifier = _fitted_pipeline.named_steps["classifier"]
+
+        # Tree algorithms call them feature importances
+        if hasattr(_classifier, "feature_importances_"):
+            _importance_values = _classifier.feature_importances_
+            _metric_name = "Feature_Importance"
+        # Linear models, like Logaritmic Regression, call them coefficients
+        elif hasattr(_classifier, "coef_"):
+            _importance_values = _classifier.coef_[0]
+            _metric_name = "Coefficient"
+        # Panic route for any other situation
+        else:
+            _importance_values = np.zeros(len(_feature_names))
+            _metric_name = "Value_Not_Available"
+
+        for _feat, _val in zip(_feature_names, _importance_values):
+            _rows.append({
+                "model": _model_name,
+                "feature": _feat,
+                "metric": _metric_name,
+                "value": float(_val),
+                "absolute_impact": float(np.abs(_val)),
+            })
+
+    importance_df = pl.DataFrame(_rows).sort("absolute_impact", descending=True)
+    # View if it helps:
+    # importance_df
+    return (importance_df,)
+
+
+@app.cell
+def _(importance_df):
+    _chart = (
+        alt.Chart(importance_df)
+        .mark_bar()
+        .encode(
+            x=alt.X(
+                'feature:N',
+                sort=alt.EncodingSortField(
+                    field='absolute_impact',
+                    op='sum',              # or 'mean', 'max'
+                    order='descending'
+                ),
+                axis=alt.Axis(labelAngle=-45)
+            ),
+            xOffset=alt.XOffset('model:N'),
+            y=alt.Y('value:Q'),
+            color=alt.Color('model:N'),
+            tooltip=[
+                alt.Tooltip('feature:N'),
+                alt.Tooltip('value:Q', format=',.2f'),
+                alt.Tooltip('absolute_impact:Q', format=',.2f'),
+                alt.Tooltip('model:N')
+            ]
+        )
+        .properties(
+            height=290,
+            width='container'
+        )
+        .configure_axis(grid=False)
+    )
+
+    _chart
+    return
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
     # Test Subject X
     """)
     return
