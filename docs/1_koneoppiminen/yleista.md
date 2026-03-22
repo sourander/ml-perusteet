@@ -138,15 +138,15 @@ Koneoppimisen määritelmään kuuluu, että koneoppimismalli oppii datasta. Mal
 ## Lähteet
 
 [^koko]: Finto. *KOKO-ontologia*. https://finto.fi/koko/fi/
+[^kämäräinen]: Kämäräinen, J. *Koneoppimisen perusteet*. Otatieto. 2023.
 [^joshwills]: Wills, J (`@josh_wills`). Twitter post (now X). 2012. https://x.com/josh_wills/status/198093512149958656
 [^drewconway]: Conway, D. *The Data Science Venn Diagram*. http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram
 [^snarc]: Parvez, Z. *The Pioneers of AI: Marvin Minsky and the SNARC*. Medium. 2023. https://zahid-parvez.medium.com/history-of-ai-the-first-neural-network-computer-marvin-minsky-231c8bd58409
-[^russell2010]: Russell, S. & Norvig, P. *Artificial Intelligence: A Modern Approach*. 3rd edition. Pearson. 2010. 
-[^joshi2017]: Joshi, P. Artificial Intelligence with Python. Packt Publishing. 2017. 
-[^kämäräinen]: Kämäräinen, J. *Koneoppimisen perusteet*. Otatieto. 2023.
+[^russell2010]: Russell, S. & Norvig, P. *Artificial Intelligence: A Modern Approach*. 3rd edition. Pearson. 2010.
+[^joshi2017]: Joshi, P. Artificial Intelligence with Python. Packt Publishing. 2017.
 [^lee2019]: Lee, W. *Python Machine Learning*. Wiley. 2019.
 [^mueller2016]: Mueller, P. & Massaron, L. *Machine Learning for Dummies*. No Starch Press. 2016.
 [^velloso2018]: Velloso, M (`@matvelloso`). Twitter post (now X). 2018. https://x.com/matvelloso/status/1065778379612282885?
 [^tds-historical]: Krishna, D. *Your historical, theoretical and slightly mathematical introduction to the world of Machine…*. Towards Data Science. 2020. https://towardsdatascience.com/your-historical-theoretical-and-slightly-mathematical-introduction-to-the-world-of-machine-862b94fe8353/
-[^googlemlglossary]: Google Developers. *Machine Learning Glossary*. https://developers.google.com/machine-learning/glossary#m
 [^geronpytorch]: Géron, A. *Hands-On Machine Learning with Scikit-Learn and PyTorch*. O'Reilly. 2025.
+[^googlemlglossary]: Google Developers. *Machine Learning Glossary*. https://developers.google.com/machine-learning/glossary#m

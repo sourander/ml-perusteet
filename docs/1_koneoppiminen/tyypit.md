@@ -139,3 +139,4 @@ mindmap
 
 [^selftaughtCS]: Althoff, C. *The Self-Taugt Computer Scientist*. Wiley. 2021.
 [^google-model-def]: Google. *Machine Learning Glossary: Model*. https://developers.google.com/machine-learning/glossary#model
+[^hundredpage]: Burkov, A. *The Hundred-Page Machine Learning Book*. Andriy Burkov. 2019.

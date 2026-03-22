@@ -269,8 +269,8 @@ y: np.ndarray = np.array([1, 0, 1, 1, 0])
 ## Lähteet
 
 [^ml-for-tabular]: Massaron, L. & Ryan, M. *Machine Learning for Tabula Data*. Manning. 2025.
+[^practical-stats]: Bruce, P. & Bruce, A. *Practical Statistics for Data Scientists*. O'Reilly. 2017.
 [^feature-engineering]: OZdemir, S. *Feature Engineering Bookcamp*. Manning. 2022.
 [^levels-of-measurement]: Siadati, S. *Different types of data*. DataBizx. https://medium.com/databizx/different-types-of-data-894cd8d0251e
-[^pandas-essential]: Pandas documentation. *Essential Basic Functionality*. https://pandas.pydata.org/docs/user_guide/basics.html
 [^tilastokeskus-käsitteet]: Tilastokeskus. *Käsitteet*. https://stat.fi/meta/kas/index.html
-[^practical-stats]: Bruce, P. & Bruce, A. *Practical Statistics for Data Scientists*. O'Reilly. 2017.
+[^pandas-essential]: Pandas documentation. *Essential Basic Functionality*. https://pandas.pydata.org/docs/user_guide/basics.html
