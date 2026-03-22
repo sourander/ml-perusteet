@@ -246,17 +246,17 @@ y: np.ndarray = np.array([1, 0, 1, 1, 0])
 
 ## Tehtävät
 
-!!! question "Tehtävä: Numpy Basics (TODO EXTEND)"
+!!! question "Tehtävä: Data Handling Basics (TODO EXTEND)"
 
-    Tutustu `130_numpy_basics.py`-tiedostoon, joka on Marimo Notebook. Kyseisessä tiedostossa käsitellään tämän materiaalin aihepiiriä Notebook-muodossa, koodia ajaen.
+    Tutustu `130_data_handling_basics.py`-tiedostoon, joka on Marimo Notebook. Kyseisessä tiedostossa käsitellään tämän materiaalin aihepiiriä Notebook-muodossa, koodia ajaen.
 
     Tämä on kurssin ensimmäinen Marimo Notebook, joten saat hieman tarkempaa pohjatietoa:
 
-    * tiedosto löytyy [repositorion](https://github.com/sourander/ml-perusteet) juuresta alkaen polusta `notebooks/nb/100/130_numpy_basics.py`
+    * tiedosto löytyy [repositorion](https://github.com/sourander/ml-perusteet) juuresta alkaen polusta `notebooks/nb/100/130_data_handling_basics.py`
     * on kannattavaa kloonata koko repositorio koneellesi. Avaa tuo `notebooks/`-hakemisto Visual Studio Codessa.
     * ... ja/tai kopioi koko hakemisto johonkin toiseen lokaatioon, kuten esimerkiksi siihen hakemistoon, mistä löytyy sinun oppimispäiväkirjasi.
 
-    Tämä on esimerkki Marimo Notebookista, missä ei ole varsinaista *tehtävää*. Sinun kuuluu ajaa tiedosto, tutkia koodia ja raportoida oppimispäiväkirjaasi kurssin aihepiiriin liittyvät havainnot ja opit.
+    Tämä on esimerkki Marimo Notebookista, missä ei ole varsinaista *tehtävää*. Sinun kuuluu ajaa tiedosto, tutkia koodia ja raportoida oppimispäiväkirjaasi kurssin aihepiiriin liittyvät havainnot ja opit. Numpyn osalta tiedosto on todennäköisesti kertausta aiemmpilta kursseilta, kuten Datan käsittelyn kehittyneet menetelmät, mutta Polars on uusi tuttavuus: sinun pitää ulosoppia Pandasin käytänteistä ja hyväksyä Polarsin hieman erilainen API.
 
     !!! tip
 
