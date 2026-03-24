@@ -22,5 +22,14 @@ Kopioi tehtävälista leikepöydälle ja muokkaa se sinun käyttöösi sopivaksi
 - [ ] Tehtävä: Data Handling Basics (TODO EXTEND)
 - [ ] Tehtävä: Vector from Scratch
 
+## Merkkijonojen enkoodaus (200)
+
+- [ ] Tehtävä: Sanojen enkoodaus
+- [ ] Tehtävä: Lauseiden enkoodaus
+
+## Intuitio (210)
+
+- [ ] Tehtävä
+
 
 ```

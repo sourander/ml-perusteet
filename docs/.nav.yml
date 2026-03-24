@@ -1,5 +1,6 @@
 nav:
   - index.md
   - "1. Koneoppiminen": "1_koneoppiminen"
+  - "2. Naive Bayes": "2_naivebayes"
   - exercises.md
 
