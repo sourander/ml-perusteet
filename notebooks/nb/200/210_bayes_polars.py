@@ -78,15 +78,6 @@ def _(CSV_PATH):
             return None
         return P(expr_A & expr_B) / p_b
 
-    def odds(expr):
-        """Odds in favor of expr: P(A) / (1 - P(A))."""
-        p = P(expr)
-        if p == 1:
-            return float("inf")
-        if p == 0:
-            return 0.0
-        return p / (1 - p)
-
     def likelihood(expr_A, expr_B):
         """
         Likelihood of B given A, i.e. P(B | A).
