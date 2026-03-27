@@ -6,7 +6,7 @@ priority: 200
 
 Ennen kuin siirrymme Naive Bayes -algortimin intuition ymmärtämiseen ja itse algoritmin käsittelyyn, tutustutaan datan enkoodaukseen. Wikidata määritelmän (en)kooderi (*engl. encoder*) on: *"ohjelma tai laite, joka muuntaa datan toiseen muotoon määritettyjen sääntöjen mukaan"* [^wiki-encoder]. Tässä kontekstissa enkooderi koodaa ASCII-muotoisen viestin kategoriseksi numeraaliseksi dataksi.
 
-Kurssilla on jo aiemmassa luvussa käynyt selväksi – [Muuttujat](../1_koneoppiminen/datasetti.md#muuttujat)-otsikon yhteydessä –, että koneoppimismallit vaativat numeerisista syötettä. Sanamuotoiset kategoriset muuttujat, kuten arvoavaruus `( "Cat", "Dog", "Hamster" )`, eivät ole numeerisia. Tästä syystä kategoriset muuttxujat tulee enkoodata numeeriseen muotoon. Lauseet, kuten `Olipa kerran kissa.` vaativat vielä monimutkaisempaa käsittelyä.
+Kurssilla on jo aiemmassa luvussa käynyt selväksi (ks. [Muuttujat](../1_koneoppiminen/datasetti.md#muuttujat)), että koneoppimismallit vaativat numeerisista syötettä. Sanamuotoiset kategoriset muuttujat, kuten arvoavaruus `( "Cat", "Dog", "Hamster" )`, eivät ole numeerisia. Tästä syystä kategoriset muuttujat tulee enkoodata numeeriseen muotoon. Lauseet, kuten `Olipa kerran kissa`, vaativat vielä monimutkaisempaa käsittelyä.
 
 Tässä materiaalissa tutustut menetelmiin one-hot encoding, label encoding, ordinal encoding, BoW (bag or words) ja TF-IDF. Tutustutaan niihin seuraavan datasetin avulla:
 
@@ -48,7 +48,7 @@ Huomaa, että arvot on määritelty esiintymisjärjestyksessä (engl. *the order
 
 ### Ordinal Encoding
 
-Aiemmin mainittu sekaannus termien **label** ja **ordinal encoding** välillä mahdollistuu sillä, että scikit-learn:n [OrdinalEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OrdinalEncoder.html) voi toimia myös ilman vaista järjestystä (engl. *order*) – ja näin se myös vakiona tekeekin, koska `categories="auto"`, jolloin toiminnallisuus on: *"determine categories automatically from the training data."*. Tällöin alkuperäinen järjestys menenetään, joten `ordinal`-sana lakkaa olemasta merkityksellinen.
+Aiemmin mainittu sekaannus termien **label** ja **ordinal encoding** välillä mahdollistuu sillä, että scikit-learn:n [OrdinalEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OrdinalEncoder.html) voi toimia myös ilman järjestystä (engl. *order*) – ja näin se myös vakiona tekeekin, koska `categories="auto"`, jolloin toiminnallisuus on: *"determine categories automatically from the training data."*. Tällöin reaalimaailman järjestys menenetään, joten `ordinal`-sana lakkaa olemasta merkityksellinen.
 
 Huomaa, että kummatkin näistä enkoodeneista (label ja ordinal) tekevät jostakin luokasta numerona suuremman kuin toisen. Tämä voi johtaa virheellisiin johtopäätöksiin, koska monet koneoppimismallit tulkitsevat suuruusjärjestyksen olevan merkityksellinen. Kategoriset muuttujat, kuten t-paidan koko (S, M, L, XL jne.) ovat järjestyksellisiä eli ordinaalisia. Tällöin niiden vaihtaminen numeroiksi **järjestystä noudattaen** voi olla perusteltua.
 

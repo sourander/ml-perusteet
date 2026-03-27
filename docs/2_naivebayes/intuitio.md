@@ -13,7 +13,7 @@ $$
 \end{align*}
 $$
 
-Huomaa, että `B` on kaavassa **tapahtuma**. `P(B)` on tapahtuman todennäköisyys. Tässä lapsellisessa esimerkissä oletetaan, että aiemman datan nojalla :pizza:-kurssin on läpäissyt 75 % opiskelijoista, joita voit tavata käytävällä. Todennäköisyys on siis empiirinen arvio, joka on saatu aiemmista havainnoista.
+Huomaa, että `B` on kaavassa **tapahtuma**. `P(B)` on tapahtuman todennäköisyys. Tässä lapsellisessa esimerkissä oletetaan, että aiemman datan nojalla :pizza:-kurssin on läpäissyt 75 % opiskelijoista, joita voit tavata käytävällä. Todennäköisyys on siis empiirinen arvio, joka on saatu aiemmista havainnoista. Empiirisen vastakohta olisi teoreettinen todennäköisyys. [^thinking-bayes] Esimerkiksi ideaalimaailman nopalle ja kolikolle tunnetaan todennäköisyys.
 
 ## Riippuvaisuus
 
@@ -25,7 +25,7 @@ $$
 P(B_1, B_2) = P(B_1) \times P(B_2) = 0.75 \times 0.75 = 0.5625
 $$
 
-Tämän voi helposti todistaa käymällä läpi kaikki kombinaatiot. Termi tälle on tulojoukko tai karteesinen tulo (engl. Cartesian product).
+Tämän voi helposti todistaa käymällä läpi kaikki kombinaatiot. Mahdollisten parien joukko voidaan ajatella karteesisena tulona (engl. *cartesian product*) kahdesta joukosta.
 
 ```python title="IPython"
 from itertools import product
@@ -70,9 +70,9 @@ for b1, b2 in product(B1, B2):
 
 Kaikista vaihtoehdoista 9/16 on sellaisia, joissa molemmat opiskelijat ovat läpäisseet kurssin. Tämä on sama kuin laskettu todennäköisyys eli 0.5625.
 
-!!! question "Tehtävä"
+!!! note "Vähintään toinen?"
 
-    Katso, mitä tulostuu, mikäli vaihdat yllä olevasta koodista `and`-operaatiot `or`-operaatioiksi. Kysymys tällöin on, että: *kuinka todennäköistä on, että vähintään toinen opiskelija on läpäissyt kurssin?*. 
+    Voi olla hyödyllistä muistella myös läheisesti liittyvää ongelmaa. Mitä tulostuu, mikäli vaihdat yllä olevasta koodista `and`-operaatiot `or`-operaatioiksi. Kysymys tällöin on, että: *kuinka todennäköistä on, että vähintään toinen opiskelija on läpäissyt kurssin?*. 
     
     Todennäköisyys **ei suinkaan ole** 3/4 + 3/4 eli 6/4. Prosentteina tämä olisi 150 %, minkä pitäisi olla jo intuition perusteella selkeästi väärä vastaus. Yksi tapa laskea todennäköisyys on summata `both` + `only_left` + `only_right`, jossa both on yltä tuttu `3/4 * 3/4`, ja kaksi muuta ovat kumpainenkin `3/4 * 1/4`. Toinen tapa on käyttää seuraavaa kaavaa:
 
@@ -115,7 +115,7 @@ Lausemuodossa tämä on: *"Kurssin läpäisemisen todennäköisyys, annettuna et
     \frac{P(B|A)}{P(B)} = \frac{0.96}{0.75} = 1.28
     $$
 
-    Tämä tarkoittaa, että The Pizza Bible kirjan lukeminen nostaa todennäköisyyttä läpäistä kurssi 28 %:lla.
+    Tämä tarkoittaa, että The Pizza Bible kirjan lukeminen nostaa todennäköisyyttä suhteellisesti 28 %, eli absoluuttisesti 21 prosenttiyksikköä (0.96 - 0.75 = 0.21).
 
 ??? warning "Ethän sekoita riippumattomia ja riippuvaisia tapahtumia?"
 
@@ -160,7 +160,7 @@ $$
 
     Huomaathan, että 32 oppilaan otannalla ei voida varmuudella sanoa, että todennäköisyys oikeasti on 75 %. Näin pienellä otannalla virhemarginaali on suuri (jotakuinkin ± 15 %, 95% luottamustasolla). Näin pienellä otannalla on vain noin 50 % mahdollisuus, että todellinen todennäköisyys on välillä 70 % - 80 %.
 
-    Mitä suurempi otanta, sitä todennäköisempää on, että todennäköisyyslukema vastaa ilmiön todellista todennäköisyyttä. Alla on esitetty kolmen eri otannan todennäköisyysjakaumat. Huomaa, että mitä suurempi otanta, sitä kapeampi jakauma on.
+    Pieni otos tuottaa epävarmemman arvion kuin suuri otos. Mitä suurempi otanta, sitä todennäköisempää on, että todennäköisyyslukema vastaa ilmiön todellista todennäköisyyttä. Alla on esitetty kolmen eri otannan todennäköisyysjakaumat. Huomaa, että mitä suurempi otanta, sitä kapeampi jakauma on.
 
     ![Beta Distrubution of 32, 100 and 200 sample sizes](../images/210_pizza_pass_beta_distribution.png)
 
@@ -193,11 +193,109 @@ $$
     plt.show()
     ```
 
+    Pieni otos jättää jakauman leveäksi ja epävarmaksi, kun taas suuri otos tekee arviosta tarkemman. Seuraavassa interaktiivisessa työkalussa tätä havainnollistetaan kolikonheittojen avulla säätämällä prioria ja havaittujen onnistumisten määrää: [Bayesian Inference](https://www.simonwardjones.co.uk/posts/bayesian_inference/).
+
+## Case: SLO
+
+Service Level Objective (SLO) kuvaa palvelun tavoiteltua luotettavuutta. Kokonaisluotettavuus riippuu siitä, ovatko palvelut **sarjassa** vai **rinnakkain**.[^slo]
+
+### Sarjakytkentä
+
+Jos palvelu `C` riippuu sekä `A`:sta että `B`:stä, kaikkien kolmen pitää toimia, jotta kokonaisuus toimii.
+
+```mermaid
+flowchart TD
+    A[System A]
+    B[System B]
+    C[System C]
+
+    A --> C
+    B --> C
+```
+
+Jos $P(A)$, $P(B)$ ja $P(C)$ ovat kaikki 95 % luotettavia, niin kokonaisluotettavuus on:
+
+$$
+P(A \cap B \cap C)=P(A)P(B)P(C)=0.95^3\approx 0.857.
+$$
+
+### Rinnakkaiset reitit
+
+Jos käyttäjä voi mennä minkä tahansa CDN-solmun kautta järjestelmään, riittää että **yksi** CDN toimii, olettaen, että System X itsessään ei ole alhaalla. Oletetaan, että System X on 99 % luotettava, ja CDN:t ovat kukin 95 % luotettavia.
+
+```mermaid
+flowchart TD
+    U[User]
+    CDN1[CDN 1]
+    CDN2[CDN 2]
+    CDN3[CDN 3]
+    BE[System X]
+
+    U --> CDN1
+    U --> CDN2
+    U --> CDN3
+
+    CDN1 --> BE
+    CDN2 --> BE
+    CDN3 --> BE
+```
+
+Tällöin kokonaisuuden luotettavuus voidaan laskea seuraavasti:
+
+$$
+P(\text{onnistuminen})=0.99\times(1-0.05^3)\approx 0.990.
+$$
+
+Jos aihepiiri eli järjestelmän saavutettavuus kiinnostaa, kannattaa tutustua alkuperäiseen [Composite SLO](https://blog.alexewerlof.com/p/composite-slo)-artikkeliin.
+
+## Case: Agentic AI
+
+```mermaid
+flowchart TB
+
+    subgraph VG["With validation gates"]
+        direction TB
+
+        G1{Gate}
+        R1[Retry or repair]
+        B1[Agent 1]
+        C2[Agent 2]
+        G2{Gate}
+        R2[Retry or repair]
+        C3[Agent 3]
+        SP((Stable propagation))
+
+        B1 --> G1
+        G1 -->|valid| C2
+        G1 -->|invalid| R1
+        R1 --> B1
+
+        C2 --> G2
+        G2 -->|valid| C3
+        G2 -->|invalid| R2
+        R2 --> C2
+
+        C3 --> SP
+    end
+
+    subgraph NV["No validation"]
+        direction TB
+        A1[Agent 1]
+        A2[Agent 2]
+        A3[Agent 3]
+        A4[Agent 4]
+        CF((Cascade failure))
+
+        A1 --> A2 --> A3 --> A4 --> CF
+    end
+```
+
+Nicole Koenigstein esitteli O'Reilly *AI Codecon: Software Craftsmanship in the Age of AI*-konferenssissa AI-agenttien välisten virheiden korjaamista validaation avulla. Yllä oleva kuvaaja on adaptaatio hänen vastaavasta kuvaajasta. Esityksen otsikko oli: *"The Hidden Cost of Agentic Failure and the Next Phase of Agentic AI"*. Suora lainaus hänen esityksestään: *"If your base success is 0.30 and you want 98% effective success you need 11 attempts."* [^koenigstein] Idea on siis, että esimerkiksi ChatBot-agentin ensimmäinen vaihe yrittää tuottaa JSON:n seuraavalle agentille. Jos JSON ei läpäise määriteltyjä testejä, tätä yritetään $n$ kertaa. Järjestelmän luotettavuus kasvaa.
 
 
 ## Käänteinen todennäköisyys
 
-Tähän asti me tiedämme todennäköisyydet:
+Palataan takaisin pizzaesimerkkiin. Tähän asti me tiedämme todennäköisyydet:
 
 * `P(A) = 0.5`
     * The Pizza Bible kirjan lukemisen todennäköisyys
@@ -213,10 +311,29 @@ $$
 P(A|B) = \frac{P(B|A) \times P(A)}{P(B)} = \frac{0.96 \times 0.5}{0.75} = 0.64
 $$
 
+Tämä ajatus, että todennäköisyys voidaan laskea asioille, joita ei ole välttämättä vielä kertaakaan tapahtunut, on Bayesin ytimessä. Tämän tulkinnan hyväksyminen tai hylkääminen jakaa matemaatikot leireihin *bayesilaiset* ja *freventistit*. Jos ihmettelet termiä Bayes, se viittaa 1700-luvulla eläneeseen presbyteeripappiin ja matemaatikkoon Thomas Bayes. [^kämäräinen]
+
 ## Tehtävät
 
-TODO
+!!! question "Tehtävä: Bayes ja työssäkäyntitilastot"
+
+    Aja notebook `210_bayes_polars.py`. Tutustu koodiin ja tässä materiaalissa esitettyyn teoriaan. Tässä vaiheessa tavoitteena ei ole ymmärtää kaikkia yksityiskohtia, vaan saada **intuition tasolla** kiinni siitä, mitä koodi tekee. Kiinnitä erityisesti huomiota seuraaviin asioihin:
+
+    - mitä tarkoittaa **suora arvio** (*direct estimate* / *easy problem*)
+    - miksi suora arvio muuttuu epäluotettavaksi, kun ehtoja lisätään paljon
+    - miten **Naive Bayes** ratkaisee tämän ongelman hajottamalla laskun useisiin yksinkertaisempiin todennäköisyyksiin
+
+    Varmista ymmärryksesi ==muokkaamalla esimerkkiä niin==, että lisäät Bayes-laskuun myös seuraavat ehdot:
+
+    - henkilö on **opiskelija**
+    - henkilön **kieli on suomi**
+
+    Voit halutessasi kokeilla lisätä nämä ehdot myös suoraan arvioon (*easy problem*), mutta huomaat todennäköisesti nopeasti, mikä ongelma syntyy, kun ehtoja on paljon. Siispä tee muutokset erityisesti notebookin **harder problem** -osioon.
+
 
 ## Lähteet
 
-TODO
+[^thinking-bayes]: Downey, A. *Think Bayes, 2nd Edition*. O'Reilly Media. 2021.
+[^slo]: Ewerlöf, A. *Composite SLO*. https://blog.alexewerlof.com/p/composite-slo
+[^koenigstein]: Koenigstein, N. *The Hidden Cost of Agentic Failure and the Next Phase of Agentic AI*. O'Reilly AI Codecon. 2026-03-26.
+[^kämäräinen]: Kämäräinen, J. *Koneoppimisen perusteet*. Otatieto. 2023.

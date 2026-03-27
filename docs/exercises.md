@@ -29,7 +29,11 @@ Kopioi tehtävälista leikepöydälle ja muokkaa se sinun käyttöösi sopivaksi
 
 ## Intuitio (210)
 
-- [ ] Tehtävä
+- [ ] Tehtävä: Bayes ja työssäkäyntitilastot
+
+## Naive Bayes (220)
+
+- [ ] Tehtävä: Naive Bayes from Scratch
 
 
 ```
