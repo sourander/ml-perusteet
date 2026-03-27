@@ -34,6 +34,7 @@ Kopioi tehtävälista leikepöydälle ja muokkaa se sinun käyttöösi sopivaksi
 ## Naive Bayes (220)
 
 - [ ] Tehtävä: Naive Bayes from Scratch
+- [ ] Tehtävä: Vihapuheen luokittelu Naive Bayesillä
 
 
 ```

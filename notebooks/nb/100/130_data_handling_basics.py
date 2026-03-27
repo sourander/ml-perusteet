@@ -465,7 +465,7 @@ def _(df_people):
     alt.Chart(df_people).mark_bar().encode(
         x="team",
         y="mean(score)"
-    ).properties(width=400)
+    ).properties(width=400) # try also width="container"
 
     # Do also try:
     #   x=alt.X("title:N", sort="-y")

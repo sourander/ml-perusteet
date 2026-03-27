@@ -143,6 +143,39 @@ Käsitellään luokkaa:  1
 
     P.S. Huomaa, että tässä ratkaisussa on huijattu sinänsä, että tämä ei ole aivan *from scratch*. Meillä on apuna Polars. Jos haluat tutustua pelkkään Pythoniin nojaavaan toteutukseen, suosittelen etsimään käsiisi Joel Grusin kirjan *Data Science from Scratch* tuoreimman painoksen.
 
+!!! question "Tehtävä: Vihapuheen luokittelu Naive Bayesillä"
+
+    Avaa notebook `221_nb_hate_speech.py`. Lataa Notebookin tarvitsema CSV-tiedosto repositoriosta: [gh:t-davison/hate-speech-and-offensive-language](https://github.com/t-davidson/hate-speech-and-offensive-language) ja ==lue samassa hakemistossa oleva README==-tiedosto. Kouluta Naive Bayes classifier, joka tunnistaa, onko viesti vihapuhetta vai ei. Raportoi tulokset oppimispäiväkirjassasi. 
+
+    !!! tip
+
+        Tutustu repositoriossa linkattuun Cornellin yliopiston artikkeliin [Automated Hate Speech Detection and the Problem of Offensive Language](https://doi.org/10.1609/icwsm.v11i1.14955). Artikkelia ei ole pakollista lukea ajatuksella tämän kurssin puitteissa, mutta artikkelia silmäilemällä saat hyvää osviittaa siitä, miltä projektikurssin raportti voi näyttää, jos tehty työ on luokittelumalli. Kannattaa vähintään katsoa kuvaajat läpi, ja miettiä, voiko niistä oppia jotakin jo tämän harjoituksen toteutukseen.
+
+    Alla on pari sääntöä ja ohjaavaa väitettä, jotta työ pysyy kurssin aihealueissa ja laajuudessa sekä edistää sinun oppimistasi:
+
+    * Älä anna tekoälyn kirjoittaa mitään koodia, mitä et osaa itse selittää ja puolustaa.
+    * Älä tee *from scratch*-toteutusta (ellei sinulle ole kymmeniä tunteja ylimääräistä vapaa-aikaa).
+    * Älä käytä edistynyttä stemmausta, lemmatisointia, word2veciä ynnä muuta.
+
+    Mikä sitten on sallittua?
+
+    * ✅ Notebook on nyt sinun Notebook. Muokkaa, miten haluat.
+    * ✅ Muuta hyperparametreja ja selvitä eri asetusten vaikutus mallin suorituskykyyn.
+    * ✅ Käytä kielimallia **haastamaan** sinun ajatteluasi.
+    * ✅ Suosi ymmärrettäviä menetelmiä.
+
+    Korostan vielä, että lue tehtävänanto dataan liittyvissä ongelmissa huolellisesti. Esimerkiksi yllä on esitelty, että sinun tulee tunnistaa, onko viesti vihapuhetta vai ei. Vastaus on siis "Kyllä on" tai "Ei ole". **Älä siis tee** luokitusta, jossa on useampia luokkia, kuten "vihapuhe", "loukkaava puhe", "ei kumpikaan". 
+    
+    !!! tip
+    
+        Voi olla perusteltua kokeilla, kuinka koulutetun mallin tarkkuus reagoi riippuen siitä, mitä teet *offensive*-luokan twiiteille. Sinulle on ainakin kolme vaihtoehtoa:
+
+        1. Jätät ne pois kokonaan.
+        2. Sisällytät ne ei-vihapuheeksi
+        3. Sisällytät ne vihapuheeksi.
+
+        Huomaa, että kohdassa kolme kouluttamastasi mallista tulee *is offensive or worse*-luokittelija, jolloin ongelma on eri kuin tehtävänannon alkuperäinen.
+
 ## Lähteet
 
 [^kämäräinen]: Kämäräinen, J. *Koneoppimisen perusteet*. Otatieto. 2023.
