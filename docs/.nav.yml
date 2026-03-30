@@ -2,5 +2,6 @@ nav:
   - index.md
   - "1. Koneoppiminen": "1_koneoppiminen"
   - "2. Naive Bayes": "2_naivebayes"
+  - "3. Puut ja Metsät": "3_puut"
   - exercises.md
 

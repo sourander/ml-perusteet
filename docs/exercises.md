@@ -36,5 +36,9 @@ Kopioi tehtävälista leikepöydälle ja muokkaa se sinun käyttöösi sopivaksi
 - [ ] Tehtävä: Naive Bayes from Scratch
 - [ ] Tehtävä: Vihapuheen luokittelu Naive Bayesillä
 
+## Luokittelumallin suorituskyky (300)
+
+- [ ] Tehtävä: Luokittelumallin suorituskyky
+
 
 ```

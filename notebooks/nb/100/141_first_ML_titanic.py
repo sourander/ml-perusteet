@@ -328,7 +328,7 @@ def _(mo):
     mo.md(r"""
     ## Fit the One per Family
 
-    The Grid Search remember only the best model as a trained model. All other are kept only as parameter values. Thus, we will need to fit at least the others except the winner. Easy option: quickly retrain all in a loop.
+    The Grid Search remember only the best model as a trained model. All other are kept only as parameter values. Thus, we will need to fit at least the others except the winner. Easy option: quickly retrain all in a loop. Note that we won't use using a $k$:th piece of the data, but all training data. Thus, at least in theory, this model will be better than the winner of GridSearchCV.
     """)
     return
 
