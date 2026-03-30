@@ -598,9 +598,11 @@ Tässä tapauksessa palautuvat arvot ovat `0.9984367672947778` ja `0.99844920375
 
 [^applied-sl]: Johnston, B. & Mathur, I. *Applied Supervised Learning with Python*. Packt Publishing. 2019.
 [^hard-parts]: Vaughan, D. *Data Science: The Hard Parts*. O'Reilly Media. 2023.
-[^ml-for-tabular]: Massaron, L. & Ryan, M. *Machine Learning for Tabular Data*. Manning Publications. 2025.
 [^hands-on-tf]: Zafar, I. et. al. *Hands-On Convolutional Neural Networks with TensorFlow*. Packt Publishing. 2018.
-[^statistics-dunk]: Sutton, G. *Statistics Slam Dunk*. Manning Publications. 2024.
+[^ml-for-tabular]: Massaron, L. & Ryan, M. *Machine Learning for Tabular Data*. Manning Publications. 2025.
 [^data-literacy]: Campesato, O. *Data Literacy with Python*. Mercury Learning and Information. 2023.
+[^statistics-dunk]: Sutton, G. *Statistics Slam Dunk*. Manning Publications. 2024.
 [^geronpytorch]: Géron, A. *Hands-On Machine Learning with Scikit-Learn and PyTorch*. O'Reilly. 2025.
+[^practical-statistics]: Bruce, P., Bruce, A. & Gedeck, P. *Practical Statistics for Data Scientists, 2nd Edition*. O'Reilly Media. 2020.
 [^fund-ml-dl]: Singh, P. *Fundamental and Methods of Machine and Deep Learning*. Wiley-Scrivener. 2022.
+[^torchmetrics-ap]: Lightning AI. *Average Precision*. https://lightning.ai/docs/torchmetrics/stable/classification/average_precision.html
