@@ -9,28 +9,6 @@ with app.setup:
     from math import log2
     from dataclasses import dataclass
 
-
-@app.cell
-def _():
-    import marimo as mo
-
-    return (mo,)
-
-
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""
-    # Decision Tree from Scratch
-
-    ## Data classes
-
-    We will be using ...
-    """)
-    return
-
-
-@app.cell
-def _():
     @dataclass
     class IGScore:
         column_index: int
@@ -59,7 +37,19 @@ def _():
         right: Node
 
 
-    return Decision, IGScore, Leaf, Node
+@app.cell
+def _():
+    import marimo as mo
+
+    return (mo,)
+
+
+@app.cell(hide_code=True)
+def _(mo):
+    mo.md(r"""
+    # Decision Tree from Scratch
+    """)
+    return
 
 
 @app.cell(hide_code=True)
@@ -79,10 +69,10 @@ def _():
         return H_val
 
 
-    def class_probabilities(column_values) -> tuple[float, float]:
+    def class_probabilities(column_values: list[int]) -> tuple[float, float]:
         n = len(column_values)
         if n == 0:
-            return [0, 0]
+            return (0.0, 0.0)
         zeros = column_values.count(0)
         ones = column_values.count(1)
         return (zeros / n, ones / n)
@@ -100,7 +90,7 @@ def _(mo):
 
 @app.cell
 def _(class_probabilities, entropy):
-    def calculate_information_gain(left, right, H_before):
+    def calculate_information_gain(left: list[int], right: list[int], H_before: float) -> float:
 
         # Compute the entropy of the two partitions
         H_left = entropy(class_probabilities(left))
@@ -131,7 +121,7 @@ def _(mo):
 
 @app.cell
 def _(calculate_information_gain, class_probabilities, entropy):
-    def find_optimal_split_point(data, i):
+    def find_optimal_split_point(data: list[tuple], i: int) -> float | None:
         H_before = entropy(class_probabilities([row[-1] for row in data]))
         column_values = sorted([row[i] for row in data])  # Sort the values
 
@@ -169,13 +159,12 @@ def _(mo):
 
 @app.cell
 def _(
-    IGScore,
     calculate_information_gain,
     class_probabilities,
     entropy,
     find_optimal_split_point,
 ):
-    def column_information_gain(data, i) -> IGScore:
+    def column_information_gain(data: list[tuple], i: int) -> IGScore:
 
         if len(data) == 0:
             raise ValueError("Data must not be empty")
@@ -211,13 +200,13 @@ def _(
             split_point=best_split_point,
         )
 
-    def find_max_column_information_gain(data, verbose=False):
+    def find_max_column_information_gain(data: list[tuple], verbose: bool = False) -> IGScore | None:
         # Find out the best column to split on
-        best_ig: IGScore = None
+        best_ig: IGScore | None = None
 
         # We assume that the last column is the class label
         N_FEATURES = len(data[0]) - 1
-    
+
         for i in range(N_FEATURES):
             this_ig: IGScore = column_information_gain(data, i)
 
@@ -240,23 +229,20 @@ def _(mo):
     return
 
 
-@app.cell
-def _(IGScore):
-    def split_data(data, ig: IGScore):
+@app.function
+def split_data(data: list[tuple], ig: IGScore) -> tuple[list[tuple], list[tuple]]:
 
-        # Produce the split based on binary or continuous column
-        if ig.column_type == "binary":
-            left = [row for row in data if not row[ig.column_index]]
-            right = [row for row in data if row[ig.column_index]]
-        elif ig.column_type == "continuous":
-            left = [row for row in data if row[ig.column_index] <= ig.split_point]
-            right = [row for row in data if row[ig.column_index] > ig.split_point]
-        else:
-            raise ValueError(f"Unknown column type {ig.column_type}")
+    # Produce the split based on binary or continuous column
+    if ig.column_type == "binary":
+        left = [row for row in data if not row[ig.column_index]]
+        right = [row for row in data if row[ig.column_index]]
+    elif ig.column_type == "continuous":
+        left = [row for row in data if row[ig.column_index] <= ig.split_point]
+        right = [row for row in data if row[ig.column_index] > ig.split_point]
+    else:
+        raise ValueError(f"Unknown column type {ig.column_type}")
 
-        return left, right
-
-    return (split_data,)
+    return left, right
 
 
 @app.cell(hide_code=True)
@@ -268,10 +254,10 @@ def _(mo):
 
 
 @app.cell
-def _(Decision, Leaf, find_max_column_information_gain, split_data):
-    def build_tree(data, depth=0, **kwargs):
+def _(find_max_column_information_gain):
+    def build_tree(data: list[tuple], depth: int = 0, **kwargs) -> Node:
 
-        def majority_class(reason):
+        def majority_class(reason: str) -> Leaf:
             """
             A nested helper function to create a Leaf node
             on early exit with a given reason.
@@ -341,8 +327,8 @@ def _(mo):
 
 
 @app.cell
-def _(Decision, Leaf, Node):
-    def visualize_tree(node: Node, indent=0):
+def _():
+    def visualize_tree(node: Node, indent: int = 0) -> None:
         col_names = ["im_well_rested", "dst_has_shower", "required_speed", "go_by_car"]
 
         if isinstance(node, Leaf):
@@ -356,12 +342,15 @@ def _(Decision, Leaf, Node):
             visualize_tree(node.right, indent + 1)
 
 
-    def predict(node: Node, input_values):
+    def predict(node: Node, input_values: tuple) -> int:
         while True:
             # If we have reached a leaf, return the label
             if isinstance(node, Leaf):
                 return node.label
-        
+
+            if not isinstance(node, Decision):
+                raise ValueError(f"Unknown node type {type(node)}")
+
             if node.ig.column_type == "binary":
                 if input_values[node.ig.column_index] == 0:
                     node = node.left
@@ -373,7 +362,7 @@ def _(Decision, Leaf, Node):
                 else:
                     node = node.right
 
-    def read_jsonl(file_path: Path):
+    def read_jsonl(file_path: Path) -> list[tuple]:
         # Read
         contents = file_path.read_text(encoding="utf-8")
 
