@@ -1,3 +1,9 @@
+---
+priority: 320
+---
+
+# Puu
+
 Aiemmassa osiossa esitelty entropia on päätöspuun rakentamisen keskeinen käsite. Entropia on datan epäpuhtauden tai epäjärjestyksen mitta. Tavoitteena on ==minimoida entropia== jakamalla data tavalla, joka erottaa luokat mahdollisimman puhtaasti. Tässä osiossa tutustutaan siihen, kuinka kunkin oksan informaation kasvu lasketaan: eli siis, kuinka valitaan paras ominaisuus, jolla data jaetaan.
 
 Arvaa kuka?-pelin logiikassa tämä olisi parhaan kysymyksen valinta. Kuvitellaan, että olemme luomassa koneoppimismallia, joka pyrkii ennustamaan, että *"Onko kysyjän valitsema hahmo naisoletettu"*. Yksinkertaisuuden vuoksi pelissä on leikisti vain 5 eri featurea (`parta|silmälasit|hattu|pitkät hiukset|kauluspaita`). Alla on kuvitteellinen esimerkki ensimmäisen kysymyksen valinnasta:
@@ -437,4 +443,8 @@ Hämmennysmatriisi on seuraavanlainen:
 
 ## Tehtävät
 
-TODO! Tähän tullloo semmottist puu from scratch.
+!!! question "Tehtävä: Puu from Scratch (ENHANCE)"
+
+    Avaa `320_puu_from_scratch.py`. 
+
+    TODO. Kirjoita muu tehtävänanto.

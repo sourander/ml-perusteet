@@ -40,5 +40,9 @@ Kopioi tehtävälista leikepöydälle ja muokkaa se sinun käyttöösi sopivaksi
 
 - [ ] Tehtävä: Luokittelumallin suorituskyky
 
+## Puu (320)
+
+- [ ] Tehtävä: Puu from Scratch (ENHANCE)
+
 
 ```
