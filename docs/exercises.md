@@ -42,7 +42,12 @@ Kopioi tehtävälista leikepöydälle ja muokkaa se sinun käyttöösi sopivaksi
 
 ## Puu (320)
 
-- [ ] Tehtävä: Puu from Scratch (ENHANCE)
+- [ ] Tehtävä: Puu from Scratch
+
+## Metsä (999)
+
+- [ ] Tehtävä: Metsä from Scratch
+- [ ] Tehtävä: Automaattivaihteet metsässä (TODO)
 
 
 ```

@@ -443,8 +443,14 @@ Hämmennysmatriisi on seuraavanlainen:
 
 ## Tehtävät
 
-!!! question "Tehtävä: Puu from Scratch (ENHANCE)"
+!!! question "Tehtävä: Puu from Scratch"
 
-    Avaa `320_puu_from_scratch.py`. 
+    Avaa `320_puu_from_scratch.py`. Aivan viimeisistä soluista puuttuu toteutus. Korvaa ellipsis oikealla toteutuksella näissä riveissä:
+    
+    ```
+    data_train = ... # Implement
+    data_test = ...  # Implement 
+    tree_293 = ...   # Implement
+    ```
 
-    TODO. Kirjoita muu tehtävänanto.
+    Muista, että uteliaisuus on hyvästä. Kokeile ja selvitä, mitä `max_depth`, `min_ig`, `min_samples_split` ja `verbose` argumentit funktiolle `build_tree()` tekevät. Koodi on nyt sinun koodisi, joten muista, että saat muokata sitä. Voi olla kannattavaa esimerkiksi kylvää `print()`-debuggausta pitkin funktioita. Suuremman datasetin kanssa tämä voi olla haasteellinen lähestymistapa, mutta juuripa tämän takia opettaja on antanut sinulle 16 rivin datasetin vaihtoehtona.

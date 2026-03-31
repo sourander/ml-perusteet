@@ -439,12 +439,12 @@ def _(mo):
 
 
 @app.cell
-def _(build_tree, read_jsonl):
+def _():
     # Run against the test data
-    print("\n==== Test with larger dataset begins ====\n")
-    data_train = read_jsonl(Path("data/bike_or_car/293_train.jsonl"))
-    data_test = read_jsonl(Path("data/bike_or_car/100_test.jsonl"))
-    tree_293 = build_tree(data_train, max_depth=5, verbose=True)
+    print("\n==== Training with a larger dataset begins ====\n")
+    data_train = ... # Implement
+    data_test = ...  # Implement 
+    tree_293 = ...   # Implement
     return data_test, tree_293
 
 
@@ -456,6 +456,7 @@ def _(tree_293, visualize_tree):
 
 @app.cell
 def _(data_test, predict, tree_293):
+    print("\n==== Test with larger dataset begins ====\n")
     y = [row[-1] for row in data_test]
     y_hat = [predict(tree_293, row) for row in data_test]
     false_positives = sum([a == 0 and b == 1 for a, b in zip(y, y_hat)])
