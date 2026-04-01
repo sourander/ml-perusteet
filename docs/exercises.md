@@ -47,7 +47,7 @@ Kopioi tehtävälista leikepöydälle ja muokkaa se sinun käyttöösi sopivaksi
 ## Metsä (999)
 
 - [ ] Tehtävä: Metsä from Scratch
-- [ ] Tehtävä: Automaattivaihteet metsässä (TODO)
+- [ ] Tehtävä: Automaattivaihteet metsässä
 
 
 ```

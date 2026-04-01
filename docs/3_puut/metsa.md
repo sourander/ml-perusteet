@@ -369,9 +369,20 @@ print("Ennuste:", prediction)
 
     Avaa `330_metsa_from_scratch.py`. Tutustu koodin toimintaan. Notebook on nyt sinun Notebook, joten muokkaa sitä vapaasti. Voit esimerkiksi kokeilla etsiä vaikeamman datasetin, kuten edellisessä luvussa käsitellyn Vihapuhe-datasetin.
 
-!!! question "Tehtävä: Automaattivaihteet metsässä (TODO)"
+!!! question "Tehtävä: Automaattivaihteet metsässä"
 
-    TODO! Migratoi edellisestä kurssista tehtävä tähän. Marinoi ja Polarisoi se.
+    Avaa `331_automatic_transmission.py`. Notebook sisältää ensimmäiset solut, joissa ladataan DataFrameen dataset ja tehdään sille alustavaa data-analyyttista tarkastelua. Täydennä Notebookin loput solut. Sinun pitää ainakin:
+
+    * Lataa data netistä. ([gh:suhasmaddali/Car-Prices-Prediction](https://github.com/suhasmaddali/Car-Prices-Prediction))
+    * Tee tarvittavat esikäsittelyt, kuten kategoristen muuttujien koodaaminen ja datan jakaminen `train-dev-test`-osioihin.
+    * Kouluta päätöspuu ja satunnaismetsä
+    * Arvostele ja vertaa mallien suorituskykyä
+
+    Puumallit ovat erinomaisen läpinäkyviä. Tutustu, kuinka voit visualisoida DecisionTreeClassifier:n päätöspuun ensimmäisiä haaroja. Tutki myös yksittäisten piirteiden tärkeyttä: tämä onnistuu puun sekä metsän kohdalla. (vihje: `feature_importances_`-attribuutti).
+
+    !!! tip
+
+        Jos haluat haastaa itseäsi, voit kokeilla myös Boosting-menetelmiä, GridSearchCV:tä, [Permutation Importance](https://scikit-learn.org/stable/modules/permutation_importance.html#permutation-importance) -menetelmää tai TreeSHAP-analyysejä. Näitä ei kuitenkaan vaadita, joten keskity ensin perusasioihin.
 
 ## Lähteet
 

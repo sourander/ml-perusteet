@@ -6,4 +6,6 @@ dependencies = [
     "marimo[recommended]>=0.21.0",
     "pandas>=3.0.1",
     "scikit-learn>=1.8.0",
+    "seaborn>=0.13.2",
+    "shap>=0.51.0",
 ]
