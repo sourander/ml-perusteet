@@ -14,6 +14,8 @@ Kämäräinen jakaa koneoppimisen lähestymistapoja kahteen kategoriaan: insinö
 >
 > — Joni Kämäräinen [^kämäräinen]
 
+Päätöspuu on myös toimintansa puolesta sekä intuitiivinen että läpinäkyvä. Päätöspuusta saa jälkikäteen helposti ulos säännöt, jotka kuvaavat mallin päätöksentekoprosessia. Tämä on tärkeää luottamusta vaativissa sovelluksissa, kuten lääketieteessä [^kämäräinen]. Motivaatiota päätöspuihin tutustumiseen voi saada siitä, että ne – tai niiden johdannaiset kuten XGboost tai CatBoost – ovat yhä 2020-luvulla erittäin suosittuja ja erityisesti tabulaarisen datan kanssa ne pärjäävät tai voivat päihittää neuroverkkopohjaiset mallit: ja tekevät saman tehtävän huomattavasti vähemmällä laskennalla. [^nn-outperform-trees] Tai jos ei voita, niin ainakin on hyvä baseline neuroverkolle. [^dl-tabular]
+
 Päätöspuu on puun muotoon järjestetty joukko sääntöjä, jotka auttavat ennustamaan tietyn datapisteen luokan [^grokking]. Jokainen solmu (tai *oksan haara*) testaa tietyn arvon. Jos olet joskus pelannut "Arvaa kuka?" tai "Mikä eläin?" pelejä, konsepti on sinulle jo valmiiksi tuttu. Lopulta puu päättyy lehtiin, jotka edustavat valmiita vastauksia eli luokkia. [^fromscratch]
 
 ```mermaid
@@ -130,6 +132,8 @@ Tämän kurssin esimerkeissä esiintyy kuitenkin nimenomaan Shannonin alkuperäi
 ## Lähteet
 
 [^kämäräinen]: Kämäräinen, J. *Koneoppimisen perusteet*. Otatieto. 2023.
+[^nn-outperform-trees]: McElfresh, D. et. al. *When Do Neural Nets Outperform Boosted Trees on Tabular Data?*. 2023. https://arxiv.org/abs/2305.02997
+[^dl-tabular]: Ye, H. et. al. *A Closer Look at Deep Learning Methods on Tabular Datasets*. 2024. https://arxiv.org/abs/2407.00956
 [^grokking]: Hurbans, R. *Grokking Artificial Intelligence Algorithms*. Manning Publifications. 2020.
 [^fromscratch]: Grus, J. *Data Science from Scratch 2nd Edition*. O'Reilly Media. 2019.
 [^code]: Petzold, C. *Code: The Hidden Language of Computer Hardware and Software*. Microsoft Press. 2000.
