@@ -283,7 +283,9 @@ Nyt kun data on paikoillaan, voimme siirtyä koulutusvaiheeseen. Alla pseudokood
 
 ```python title="IPython"
 def fit_weighted_weak_learner(X, y_signed, weights):
-    # Kouluttaa heikon luokittimen havaintojen painoja käyttäen
+    # Kouluttaa heikon luokittimen havaintojen painoja käyttäen, ESIMERKIKSI:
+    # h_m = DecisionTreeClassifier(max_depth=1)
+    # h_m.fit(X, y_signed, sample_weight=weights)
     return h_m
 
 
@@ -322,6 +324,11 @@ Keskeinen idea:
 * Hyvin suoriutuneet heikot oppijat saavat suuren painon $\alpha_m$​.
 * Huonosti suoriutuneet saavat pienen painon.
 * Jokainen kierros kasvattaa vaikeiden havaintojen painoa (mutta muuttaa kaikkien painoja).
+* Malli, jota `fit_weighted_weak_learner`-funktio käyttää, voi olla mikä tahansa heikko luokitin, kuten päätöspuu, joka on rajoitettu hyvin matalaksi (esim. `max_depth=1`). Tällöin se on *tree stump*. Tämä on scikit-learnin vakio [^scikit-ada].
+
+!!! tip
+
+    Voi olla arvokasta miettiä, että *miksi* juuri puita käytetään boosting ja badding algoritmien kanssa. Kukaanhan ei kiellä käyttämästä melkein mitä tahansa mallia ensemble-menetelmissä.
 
 ### Ennuste
 
@@ -393,3 +400,4 @@ print("Ennuste:", prediction)
 [^chip2022]: Huyen, C. *Designing Machine Learning Systems*. O'Reilly. 2022.
 [^ml-for-trading]: Jansen, S. *Machine Learning for Algorithmic Trading - Second Edition*. 2020.
 [^boosting]: Schapire, R. E., & Freund, Y. *Boosting Foundations and Algorithms*. MIT Press. 2012. https://direct.mit.edu/books/oa-monograph/5342/BoostingFoundations-and-Algorithms
+[^scikit-ada]: scikit-learn developers. *AdaBoostClassifier*. https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.AdaBoostClassifier.html
