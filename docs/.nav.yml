@@ -3,5 +3,6 @@ nav:
   - "1. Koneoppiminen": "1_koneoppiminen"
   - "2. Naive Bayes": "2_naivebayes"
   - "3. Puut ja Metsät": "3_puut"
+  - "4. k-NN": "4_knn"
   - exercises.md
 
