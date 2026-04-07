@@ -114,10 +114,10 @@ def z_score(x: Vector):
 
 ### Min-max skaalaus
 
-Min-max skaalauksessa data skaalataan välille `[0,1]`. Tämä on meidän kurssin kontekstissa eli perinteisessä koneoppimisessa hieman Z-scorea eli standardiskaalausta harvinaisempi, mutta se on hyödyllinen esimerkiksi sigmoid-aktivoitujen neuroverkkojen kanssa. Min-max skaalauksesta käytetään usein myös nimitystä normalisointi.
+Min-max skaalauksessa data skaalataan välille `[0,1]`. Tämä on meidän kurssin kontekstissa eli perinteisessä koneoppimisessa hieman Z-scorea eli standardiskaalausta harvinaisempi, mutta se on hyödyllinen esimerkiksi sigmoid-aktivoitujen neuroverkkojen kanssa. Sen kaava on [^impact-of-fs]:
 
 $$
-x' = \frac{ x - min(x) }{ max(x) - min(x) }
+x_{norm} = \frac{ x - min(x) }{ max(x) - min(x) }
 $$
 
 ```python title="IPython"
@@ -145,3 +145,4 @@ def min_max(x: Vector):
 [^essential-math-for-ds]: Nield, T. *Essential Math for Data Science*. O'Reilly. 2022.
 [^krohn-video]: Krohn, J. *Probability and Statistics for Machine Learning (video)*. O'Reilly. 2021.
 [^bmc]: van den Berg, R.A., Hoefsloot, H.C., Westerhuis, J.A. et al. *Centering, scaling, and transformations: improving the biological information content of metabolomics data*. BMC Genomics 7, 142 (2006). https://doi.org/10.1186/1471-2164-7-142
+[^impact-of-fs]: Piheir, J. et. al. *The Impact of Feature Scaling In Machine Learning: Effects on Regression and Classification Tasks*. 2025. https://arxiv.org/abs/2506.08274v2
