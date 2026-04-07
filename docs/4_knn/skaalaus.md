@@ -87,7 +87,7 @@ def center(x):
     return x - mean(x)
 ```
 
-![Centering data before and after](../images/scaling_centered.png)
+![Centering data before and after](../images/400_scaling_centered.png)
 
 **Kuvio 1:** *Vasemmassa histogrammissa näkyy alkuperäinen data, joka noudattaa suunnilleen normaalijakaumaa. Oikeassa histogrammissa näkyy keskitetty data, jossa keskiarvo on 0.*
 
@@ -104,7 +104,7 @@ def z_score(x: Vector):
     return center(x) / std(x)
 ```
 
-![Z-score scaling before and after](../images/scaling_z_score.png)
+![Z-score scaling before and after](../images/400_scaling_z_score.png)
 
 **Kuvio 2:** *Vasemmassa histogrammissa on sama data kuin Kuviossa 1. Oikeassa histogrammissa näkyy Z-pisteytetty data, jossa keskiarvo on 0 ja keskihajonta on 1.*
 
