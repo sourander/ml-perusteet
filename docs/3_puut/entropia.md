@@ -4,6 +4,8 @@ priority: 310
 
 # Entropia
 
+Tässä luvussa käsitellään päätöspuu intuition tasolla ja tutustutaan informaatioteorian käsitteeseen entropia, joka on päätöspuiden näkökulmasta tapa valita attribuutti, joka jakaa dataa mahdollisimman puhtaasti. Sama termi voi olla sinulle tuttu myös fysiikasta esimerkiksi kaasujen sekoittumisen tai alkuräjähdyksen jälkeen alati kasvavan entropian kautta [^kämäräinen].
+
 ## Päätöspuun intuitio
 
 Päätöspuu (engl. decision tree) on yksinkertainen, mutta tehokas koneoppimisen työkalu. Puun rakentaminen on suhteellisen edullista ja kysely on nopeaa. O-luku on `O(log N)`, koska taustalla on tietorakenne nimeltä binääripuu (engl. *binary tree*). Päätöspuu on pääasiassa luokittelualgoritmi, mutta sitä voidaan käyttää myös regressioon. Tässä materiaalissa keskitymme ensisijaisesti luokitteluun.

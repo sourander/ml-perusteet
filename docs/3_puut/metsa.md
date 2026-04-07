@@ -12,7 +12,7 @@ Ylisovittamista voi pyrkiä rajoittamaan Decision Tree:n oppimista parametreilla
 
     Olemme käsitelleet kurssilla suorituskykymittareita, `train-dev-test`-jakoa, ristiinvalidointia ja muita osatekijöitä, jotka antavat sinulle kaikki valmiudet ymmärtää vinouman ja vääristymän välillä tehtävän kompromissing (engl. *bias-variance tradeoff*). Aiheeseen palataan vielä regressiomallien kohdalla, mutta pohdi aihetta jo vähintään intuition tasolla päätöspuiden näkökulmasta!
 
-Toinen keino parantaa päätöspuita ja muita korkean varianssin malleja on käyttää **ensemble-menetelmiä**. Ensemble-menetelmät perustuvat usean mallin yhdistämiseen yhdeksi ennustavaksi malliksi. Mikäli ensemble koostuu vain ja ainoastaan puista, on tälle asialle osuva termi metsä. Olettaen, että `train-test`-jako on deterministinen, niin yksittäinen puu on deterministinen. Tämä tarkoittaa sitä, että jos koulutat puun uudestaan, saat saman puun. Pelkkä puiden pinoaminen metsäksi ei siis riitä: meidän pitää tuoda satunnaisuutta koulutusprosessiin antamalle kullekin puulle hieman eri data. Kunhan tämä on tehty, niin metsän puut perustuvat satunnaiseen otantaan koulutusdatasta, tästä metsästä käytetään termiä **satunnaismetsä** (engl. *random forest*). [^fromscratch]
+Toinen keino parantaa päätöspuita ja muita korkean varianssin malleja on käyttää **ensemble-menetelmiä**, jotka voi suomentaa joukkio-oppimiseksi [^kämäräinen]. Ensemble-menetelmät perustuvat usean mallin yhdistämiseen yhdeksi ennustavaksi malliksi. Mikäli ensemble koostuu vain ja ainoastaan puista, on tälle asialle osuva termi metsä. Olettaen, että `train-test`-jako on deterministinen, niin yksittäinen puu on deterministinen. Tämä tarkoittaa sitä, että jos koulutat puun uudestaan, saat saman puun. Pelkkä puiden pinoaminen metsäksi ei siis riitä: meidän pitää tuoda satunnaisuutta koulutusprosessiin antamalle kullekin puulle hieman eri data. Kunhan tämä on tehty, niin metsän puut perustuvat satunnaiseen otantaan koulutusdatasta, tästä metsästä käytetään termiä **satunnaismetsä** (engl. *random forest*). [^fromscratch]
 
 ```mermaid
 graph TD
@@ -74,7 +74,7 @@ graph TD
 Satunnaismetsässä koulutusdatasta otetaan satunnainen otos kullekin puulle. Tämä tarkoittaa, että jokainen puu on erilainen, ja jokainen puu oppii eri tavalla. Tällä kurssilla käsitellään kahta seuraavaa tapaa tehdä tämä "bagging"-vaihe, jossa ota havainnoista laitetaan pussiin, osa jää pussin ulkopuolelle:
 
 * **Random Sample** ("without replacement"): Koulutusdatasta otetaan arvottu otos, jossa ei voi esiintyä samaa havaintoa kahdesti. Havainnot siis sekoitetaan ja niistä pidetään esimerkiksi 70 % per pussi.
-* **Bootstrapping** ("with replacement"): Koulutusdatan otanta arvotaan yksi kerrallaan. Tämä tarkoittaa, että sama havainto voi esiintyä useammin samassa otoksessa. Tilastollisesti on 37 % todennäköisyys, että jokin havainto ei esiinny lainkaan otoksessa eli se on "Out of Bag" (OOB).
+* **Bootstrapping** ("with replacement"): Koulutusdatan otanta arvotaan yksi kerrallaan. Tämä tarkoittaa, että sama havainto voi esiintyä useammin samassa otoksessa. Tilastollisesti on 36.8 % todennäköisyys, että jokin havainto ei esiinny lainkaan otoksessa eli se on "Out of Bag" (OOB) [^ml-in-r]. Termin voi suomentaa saappaanlenkitykseksi [^kämäräinen].
 
 !!! tip
 
@@ -394,9 +394,11 @@ print("Ennuste:", prediction)
 ## Lähteet
 
 [^geronpytorch]: Géron, A. *Hands-On Machine Learning with Scikit-Learn and PyTorch*. O'Reilly. 2025.
+[^kämäräinen]: Kämäräinen, J. *Koneoppimisen perusteet*. Otatieto. 2023.
 [^fromscratch]: Grus, J. *Data Science from Scratch 2nd Edition*. O'Reilly Media. 2019.
 [^dietterich]: Dietterich, T. *Ensemble Methods in Machine Learning*. In Proceedings of the First International Workshop on Multiple Classifier Systems (MCS '00). Springer-Verlag, Berlin, Heidelberg, 1–15. Downloaded from: https://web.engr.oregonstate.edu/~tgd/publications/mcs-ensembles.pdf
 [^pisg]: Rosebrock, A. *Random forests*. PyImageSearch Gurus course. 2015.
+[^ml-in-r]: Nwanganga, F. & Chapple, M. *Practical Machine Learning in R*. 2020. O'Reilly.
 [^chip2022]: Huyen, C. *Designing Machine Learning Systems*. O'Reilly. 2022.
 [^ml-for-trading]: Jansen, S. *Machine Learning for Algorithmic Trading - Second Edition*. 2020.
 [^boosting]: Schapire, R. E., & Freund, Y. *Boosting Foundations and Algorithms*. MIT Press. 2012. https://direct.mit.edu/books/oa-monograph/5342/BoostingFoundations-and-Algorithms
