@@ -44,6 +44,15 @@ Kopioi tehtävälista leikepöydälle ja muokkaa se sinun käyttöösi sopivaksi
 
 - [ ] Tehtävä: Puu from Scratch
 
+## Dimensiovähennys (410)
+
+- [ ] Tehtävä: Dimensiovähennyksen leikkikenttä
+
+## k-NN (420)
+
+- [ ] Tehtävä: k-NN from Scratch
+- [ ] Tehtävä: Automaattivaihteet lähimmässä naapurimetsässä
+
 ## Metsä (999)
 
 - [ ] Tehtävä: Metsä from Scratch
