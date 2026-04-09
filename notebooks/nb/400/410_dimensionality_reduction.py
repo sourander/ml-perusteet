@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.22.0"
+__generated_with = "0.22.5"
 app = marimo.App(width="medium")
 
 with app.setup:
@@ -197,10 +197,14 @@ def _(
     add_embedding_columns,
     df_raw,
     method_ui,
+    mo,
     perplexity_ui,
     transform_2d,
+    widget,
     xy_as_numpy,
 ):
+    mo.stop(not widget.data, "You need to draw some data first. Use the drawdata widget above.")
+
     X = xy_as_numpy(df_raw, x_col="x", y_col="y")
 
     Z = transform_2d(
@@ -455,10 +459,14 @@ def _(
     add_projection_column,
     df_raw,
     method_ui_1d,
+    mo,
     perplexity_ui_1d,
     transform_1d,
+    widget,
     xy_as_numpy,
 ):
+    mo.stop(not widget.data, "You need to draw some data first. Use the drawdata widget above.")
+
     X1d = xy_as_numpy(df_raw, x_col="x", y_col="y")
 
     Z1d = transform_1d(
