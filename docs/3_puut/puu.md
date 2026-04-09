@@ -410,7 +410,7 @@ plt.figure(figsize=(10, 8))
 plot_tree(clf, filled=True)
 ```
 
-![Decision Tree Scikit Learn visualisointina](../../images/decision_tree_plot_by_scikit.png)
+![Decision Tree Scikit Learn visualisointina](../images/320_decision_tree_plot_by_scikit.png)
 
 **Kuvio 1:** *Päätöspuu, joka on luotu Scikit-learn-kirjastolla. Graafissa neliön taustaväri indikoi enemmistöluokkaa, joka on kyseisessä solmussa. Sininen viittaa autoon, oranssi pyörään.*
 

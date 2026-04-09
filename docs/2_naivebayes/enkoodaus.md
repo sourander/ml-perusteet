@@ -131,7 +131,7 @@ On äärimmäisen tärkeää huomata, että tämä on *häviöllinen* enkoodaus.
 
 Tämän luvun viimeinen aihe, TF-IDF (Term Frequency Inverse Document Frequency) on hieman monimutkaisempi kuin aiemmat, mutta ei silti varsinaista rakettitiedettä. TF-IDF muuttaa tekstin numeeriseen vektorimuotoon, jossa jokainen sarake vastaa sanaa ja jokainen rivi dokumenttia. Alla oleva Kuva 1, jossa esitellään `TF` ja `IDF` erikseen, on toivon mukaan intuition tasolla selkeä.
 
-Mikäli tutustuit Christian S. Peronen selitykseen aiemmasta enkoodausalgoritmista, on luontevaa jatkaa aihepiiriin tutustumista hänen Part II:n myötä: [Machine Learning :: Text feature extraction (tf-idf) – Part II](https://blog.christianperone.com/2011/10/machine-learning-text-feature-extraction-tf-idf-part-ii/). Peronen artikkelissa esitellään myös L1- ja L2-normalisaatiot, jotka liittyvät sekä tähän että tuleviin kurssin aiheisiin.
+Mikäli tutustuit Christian S. Peronen selitykseen aiemmasta enkoodausalgoritmista, on luontevaa jatkaa aihepiiriin tutustumista hänen Part II:n myötä: [Machine Learning :: Text feature extraction (tf-idf) – Part II](https://blog.christianperone.com/2011/10/machine-learning-text-feature-extraction-tf-idf-part-ii/). Peronen artikkelissa esitellään myös L1- ja L2-normalisaatiot, jotka liittyvät sekä tähän että tuleviin kurssin aiheisiin [^perone].
 
 ![](../images/200_TF_IDF.png)
 
@@ -260,7 +260,6 @@ TFIDF(helppo, data[9]) = 0.25 x 0.916291 = 0.229073
 [^wiki-encoder]: Wikidata. Encoder. https://www.wikidata.org/wiki/Q42586063
 [^duckdb-feat-eng]: Leuca, P. *Basic Feature Engineering with DuckDB*. https://duckdb.org/2025/08/15/ml-data-preprocessing
 [^python-da]: Navlani, A., Fandango, A. & Idris, I. *Python Data Analysis - Third Edition*. Packt Publishing. 2021.
-[^feature-engineering]: OZdemir, S. *Feature Engineering Bookcamp*. Manning. 2022.
 [^fe-cookbook]: Galli, S. *Python Feature Engineering Cookbook - Third Edition*. O'Reilly. 2024.
 [^bow-beginners]: Gandhi, V. *Bag-of-Words Model for Beginners*. https://www.kaggle.com/code/vipulgandhi/bag-of-words-model-for-beginners
 [^buildingaiagents]: Raieli, S. & Iuculano, G. *Building AI Agents with LLMs, RAG, and Knowledge Graphs*. Packt. 2025.
