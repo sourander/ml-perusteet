@@ -60,6 +60,7 @@ Kopioi tehtävälista leikepöydälle ja muokkaa se sinun käyttöösi sopivaksi
 ## K-Means (510)
 
 - [ ] Tehtävä: k-Means from scratch
+- [ ] Tehtävä: Tikkurilan värikartta
 
 ## Metsä (999)
 

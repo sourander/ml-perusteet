@@ -320,9 +320,6 @@ Tämän kaavan idea on yksinkertainen:
 Lopullinen siluettiarvo saadaan ottamalla kaikkien pisteiden siluettiarvojen keskiarvo. [^ml-algorithms] Jos lopun keskiarvo jätetään laskematta, meillä on käsissämme siluettikertoimet (engl. *silhouette coefficients*), jotka järjestämällä voi piirtää *silhouette diagrammin*. [^geronpytorch] Tästä löytyy esimerkki scikit-learnin dokumentaatiosta [Selecting the number of clusters with silhouette analysis on KMeans clustering](https://scikit-learn.org/stable/auto_examples/cluster/plot_kmeans_silhouette_analysis.html).
 
 
-
-
-
 ## Tehtävät
 
 !!! question "Tehtävä: k-Means from scratch"
@@ -330,6 +327,33 @@ Lopullinen siluettiarvo saadaan ottamalla kaikkien pisteiden siluettiarvojen kes
     Avaa `510_kmeans_from_scratch.py` ja tutustu siihen. Notebookissa on toteutettu k-Means-algoritmi alusta alkaen, ilman Scikit Learn -kirjastoa. Piirrä drawdata-widgetillä uusi dataset. Tustutus elbow- ja siluettiarvot piirtäviin kuvaajiin ja tutustu, kuinka eri muotoiset datasetit jaetaan klustereihin eri $k$-arvoilla.
 
     Tämä, aivan kuten edellisetkin kurssin Notebookit, ovat täysin sinun muokattavissasi. Kenties voisi olla mielenkiintoista tehdä Notebookista variantti, jossa algoritmin voi valita vetovalikosta: k-means, DBSCAN, Agglomerative Clustering, MeanShift, tai jokin muu.
+
+!!! question "Tehtävä: Tikkurilan värikartta"
+
+    Avaa `511_color_swatch.py` ja jatka toteutusta. Ensimmäiset solut neuvovat, kuinka OpenCV:llä ladataan kuva ja muunnetaan se RGB-, HSV- ja LAB-koordinaatistoihin. Käyttäen näitä värien representaatioita, sinun tulee kouluttaa ==kolme eri mallia==, jotka klusteroivat kuvan värit $k$ klusteriin. Kun käännät kuvan kunkin pikselin osan klusterinsa väriseksi, ja järjestät ne määrän mukaan, sinulla on kädessäsi värikartta. Moni suomalainen tuntee tämän lopputuloksen nimellä Tikkurilan värikartta.
+    
+    Idea on, että jos haluaisit maalata huoneen annetun referenssikuvan väreillä, malli klusteroi värit, joita sinun tulisi käyttää. Ihmisen värinäkö on kuitenkin huomattavan monimutkainen järjestelmä. Pelkkien RGB-arvojen klusterointi ei välttämättä onnistu löytämään niitä värejä, jotka ihminen kokee kuvan dominoivina väreinä. Tämän vuoksi on syytä tutustua myös HSV- ja LAB-värimalleihin. Jos RGB, HSV ja LAB värimallit ovat sinulle aivan vieraita, voit aloittaa vaikkapa värislidereitä säätämällä esimerkiksi [colorizer.org](https://colorizer.org/) -sivustolla. Saatat myös joutua painottamaan esimerkiksi Hue-arvoa tai LAB:n Lightness-arvoa. Muista, että Hue on syklinen piirre: sinun tulee muuntaa se sin ja cos -koordinaateiksi.
+
+    Skriptin luomaa värikarttaa voisi myöhemmin käyttää esimerkiksi:
+
+    * Huoneen väriteeman määrittelyyn (ks. Kuva 3 alta)
+    * Web-sivuston graafisessa ohjeistuksessa
+    * Elokuvan värimäärittelyn ohjenuorana
+
+    Alla on selvyyden vuoksi esimerkki, miltä lopputulema voisi vaikuttaa HSV:n osalta.
+
+    ![fruit](../images/510_task_kmeans_fruit.jpg)
+
+    **Kuva 1:** *Terry Kearneyn kuva, otsikolla 5 A Day, on tekijänoikeusvapaa kuva ja se on ladattavissa Flickr-palvelusta: [Terry Kearney: 5 A Day](https://www.flickr.com/photos/oneterry/33886767408)*.
+
+    ![värikartta](../images/510_task_kmeans_varikartta.png)
+
+    **Kuva 2:** *Yllä olevasta kuvasta muodostettu 4 värin kartta. Värikartan värit on klusteroitu k-Means-algoritmilla käyttäen HSV-koordinaatistoa.*
+
+    ![](../images/510_kmean_varikartta_sisustuskuva.jpg)
+
+    **Kuva 3:** Värikartan perusteella luotu sisustuskuva. Kuva on GPT-5.4:llä generoitu.
+
 
 ## Lähteet
 

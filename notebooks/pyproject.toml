@@ -5,7 +5,9 @@ requires-python = ">=3.12, <4.0"
 dependencies = [
     "drawdata>=0.5.0",
     "marimo[recommended]>=0.21.0",
+    "opencv-python>=4.13.0.92",
     "pandas>=3.0.1",
+    "plotly>=6.7.0",
     "scikit-learn>=1.8.0",
     "seaborn>=0.13.2",
     "shap>=0.51.0",
