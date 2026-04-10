@@ -53,6 +53,14 @@ Kopioi tehtävälista leikepöydälle ja muokkaa se sinun käyttöösi sopivaksi
 - [ ] Tehtävä: k-NN from Scratch
 - [ ] Tehtävä: Automaattivaihteet lähimmässä naapurimetsässä
 
+## Syklinen enkoodaus (500)
+
+- [ ] Tehtävä: Kellon enkoodaus
+
+## K-Means (510)
+
+- [ ] Tehtävä: k-Means from scratch
+
 ## Metsä (999)
 
 - [ ] Tehtävä: Metsä from Scratch
