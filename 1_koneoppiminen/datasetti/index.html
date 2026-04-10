@@ -1,0 +1,1847 @@
+
+<!doctype html>
+<html lang="fi" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../tyypit/">
+      
+      
+        <link rel="next" href="../tyonkulku/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Data - Johdatus Koneoppimiseen</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data" class="md-skip">
+          Hyppää sisältöön
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Ylätunniste">
+    <a href="../.." title="Johdatus Koneoppimiseen" class="md-header__button md-logo" aria-label="Johdatus Koneoppimiseen" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Johdatus Koneoppimiseen
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Data
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Hae" placeholder="Hae" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Haku">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Tyhjää" aria-label="Tyhjää" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Aloitetaan hakua
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigaatio" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Johdatus Koneoppimiseen" class="md-nav__button md-logo" aria-label="Johdatus Koneoppimiseen" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Johdatus Koneoppimiseen
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tervetuloa kurssille
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Koneoppiminen
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Koneoppiminen
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../yleista/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Yleistä
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../miksi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Motivaatio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tyypit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tyypit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Sisällysluettelo">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sisällysluettelo
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#jarjestyneisyys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Järjestyneisyys
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Järjestyneisyys">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strukturoitu-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strukturoitu data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Strukturoitu data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabulaarinen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabulaarinen
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#osittain-strukturoitu-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Osittain strukturoitu data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#epastrukturoitu-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Epästrukturoitu data
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#muuttujat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Muuttujat
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Muuttujat">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nominaalinen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nominaalinen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordinaalinen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordinaalinen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intervalli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intervalli
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#suhdeasteikollinen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Suhdeasteikollinen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selittava-vs-selitettava" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Selittävä vs. selitettävä
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vektorit-ja-matriisit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vektorit ja matriisit
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tehtavat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tehtävät
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lahteet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lähteet
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tyonkulku/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Työnkulku
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Naive Bayes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Naive Bayes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2_naivebayes/enkoodaus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Merkkijonojen enkoodaus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2_naivebayes/intuitio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intuitio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2_naivebayes/naive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Naive Bayes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Puut ja Metsät
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Puut ja Metsät
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/suorituskyky/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luokittelumallin suorituskyky
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/entropia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entropia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/puu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Puu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/metsa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metsä
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. k-NN
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. k-NN
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_knn/skaalaus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skaalaus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_knn/dimensio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dimensiovähennys
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_knn/knn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k-NN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Klusterointi
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    5. Klusterointi
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5_klusterointi/sykliset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Syklinen enkoodaus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5_klusterointi/kMeans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K-Means
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exercises/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tehtäväkooste
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Sisällysluettelo">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sisällysluettelo
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#jarjestyneisyys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Järjestyneisyys
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Järjestyneisyys">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strukturoitu-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strukturoitu data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Strukturoitu data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tabulaarinen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tabulaarinen
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#osittain-strukturoitu-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Osittain strukturoitu data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#epastrukturoitu-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Epästrukturoitu data
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#muuttujat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Muuttujat
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Muuttujat">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nominaalinen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nominaalinen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordinaalinen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordinaalinen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intervalli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intervalli
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#suhdeasteikollinen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Suhdeasteikollinen
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selittava-vs-selitettava" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Selittävä vs. selitettävä
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vektorit-ja-matriisit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vektorit ja matriisit
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tehtavat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tehtävät
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lahteet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lähteet
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="data">Data</h1>
+<p>Koneoppimisen yhteydessä data vaatii esikäsittelyä ennen kuin se voidaan syöttää koneoppimismalliin. Kurssin ensimmäisen viikon aikana tutustumme datan lataamisen ja käsittelyn aivan tärkeimpiin vaiheisiin. Myöhemmin kurssin aikana opit eri tapoja käsitellä dataa vaiheittain, kunkin algoritmin vaatimusten sekä datan muodon mukaisesti.</p>
+<p>Esikäsittely voi sisältää datan puhdistamista, skaalaamista, muuttujien valintaa ja monia muita vaiheita. Termi <em>datasetti</em> tarkoittaa jotakin kokoelmaa dataa. Data ei välttämättä ole esimerkiksi <em>taulukkomuodossa</em> - mutta usein se joko on, tai se muokataan taulukkomuotoon ennen koneoppimismallin soveltamista. Tabulaarisella datalla tarkoitetaan sellaista dataa, joka on organisoitu riveiksi ja sarakkeiksi.</p>
+<blockquote>
+<p>"Tabular data is simply data that is organized in rows and columns. A collection of tabular data can be called a tabular dataset or a table"</p>
+<p>Luca Massaron &amp; Mark Ryan <sup id="fnref:ml-for-tabular"><a class="footnote-ref" href="#fn:ml-for-tabular">1</a></sup></p>
+</blockquote>
+<h2 id="jarjestyneisyys">Järjestyneisyys</h2>
+<h3 id="strukturoitu-data">Strukturoitu data</h3>
+<p>Aloitetaan strukturoidusta datasta, koska sitä on helppo käsitellä ja ymmärtää.  Tyypillisesti strukturoitu data on tallennettu tietokantaan (esim. PostgreSQL, MySQL, SQLite) tai tietovarastoon (esim. Snowflake, Redshift). Se voi olla myös taulukkolaskentaohjelman taulukossa (esim. Excel, Google Sheets), mutta tällöin voitaisiin väitellä siitä, tippuuko se osittain strukturoidun datan kategoriaan (ks. alla). Tietokannat ovat tyypillisesti vahvasti tyypitettyjä, kun taas taulukkolaskentaohjelmat ovat usein heikosti tyypitettyjä. Vahvalla tyypityksellä tarkoitetaan sitä, että jos kenttä on muotoa <code>INTEGER</code>, siihen <mark>ei voi</mark> tallentaa mitään muuta. Tyypillisesti Excel-taulukon soluun voi kirjoittaa aivan mitä mielii, ellei taulukossa ole erikseen käyttössä datavalidaatiosääntöjä... joita ei usein ole.</p>
+<h4 id="tabulaarinen">Tabulaarinen</h4>
+<p>Kuten yllä on jo todettu, tabulaarinen data on dataa, joka on järjestetty taulukkomuotoon. Taulukko koostuu riveistä (<em>engl. row</em>) ja sarakkeista (<strong>engl. column</strong>) – joskus kutsutaan myös nimellä pystyrivi. Vaakasuuntainen entiteetti eli rivi on tyypillisesti <em>näyte</em> eli <em>sample</em> tai <em>havainto</em> – mutta voi olla myös <em>record</em>, <em>case</em>, <em>instance</em> tai <em>example</em> <sup id="fnref:practical-stats"><a class="footnote-ref" href="#fn:practical-stats">2</a></sup>. Jos meidän datasetti on <strong>opiskelijat.xlsx</strong>, niin yksittäinen rivi on opiskelija, ja yksittäinen sarake on esimerkiksi opiskelijan pituus.</p>
+<p>Excel-tiedosto on toki tabulaarista dataa, mutta paremmassa tapauksessa data on jossakin vahvasti tyypitetyssä muodossa, kuten SQL-tauluna (<code>opiskelijat.db</code>) tai vaikkapa Parquet-tiedostossa (<code>opiskelijat.parquet</code>). Tietokannassa (ja Parquet-tiedostossa) jokaisella sarakkeella on tyyppi (esim. <code>INTEGER</code>, <code>VARCHAR</code>, <code>DATE</code>), kun taas taulukkolaskentaohjelmassa sarakkeen tyyppi voi muuttua dynaamisesti. Mikäli kentän "Pituus" arvo voi olla merkkijono <code>182 cm</code>, tai kvalitatiivinen arvo <code>pitkä</code>, data ei sisällä varsinaista lukkoon lyötyä struktuuria. Näin ollen Excel-tiedosto voi sinänsä tippua kategoriaan <a href="#osittain-strukturoitu-data">Osittain strukturoitu data</a>. Tiedostomuoto ei siis sinällään ole aivan sama asia kuin datan järjestyneisyyden taso.</p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(x_0\)</span></th>
+<th><span class="arithmatex">\(x_1\)</span></th>
+<th><span class="arithmatex">\(x_2\)</span></th>
+<th><span class="arithmatex">\(x_3\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1.01</td>
+<td>512</td>
+<td>R</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1.10</td>
+<td>124124</td>
+<td>Python</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0.99</td>
+<td>42</td>
+<td>R</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0.97</td>
+<td>N/A</td>
+<td>R</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1.00</td>
+<td>96141</td>
+<td>Python</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Yllä olevassa taulukossa on neljä saraketta (<span class="arithmatex">\(X = [\, x_0 \; x_1 \; x_2 \; x_3 \,]\)</span>). Tässä tapauksessa voi siis sanoa, että taulu <span class="arithmatex">\(X\)</span> on reaaliluvuista koostuva <span class="arithmatex">\(n\)</span>-rivin ja 4-sarakkeen taulukko. (<span class="arithmatex">\(X \in \mathbb{R}^{n \times 4}\)</span>)</p>
+<p>Taulukon ensimmäinen olio, eli <code>X[0]</code> on siis silloin monikko eli <em>tuple</em> <code>(1.01, 512, R, 1)</code>, jonka skeema on <code>tuple[float, int, str, bool]</code>. </p>
+<h3 id="osittain-strukturoitu-data">Osittain strukturoitu data</h3>
+<p>Osittain strukturoitu data (engl. semi-structured data) on dataa, joka ei ole täysin taulukkomuotoista, mutta sillä on kuitenkin pääosin koneluettava rakenne tai skeema. Esimerkiksi HTML-tiedostot ovat osittain strukturoitunutta dataa. Alla on esimerkki hyvin, hyvin yksinkertaisesta HTML-sivusta:</p>
+<div class="language-html highlight"><span class="filename">index.html</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Pizza e-Bible<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Pizza Ingredients<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="p">&lt;</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Egg<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Ham<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        <span class="p">&lt;</span><span class="nt">li</span><span class="p">&gt;</span>Spam<span class="p">&lt;/</span><span class="nt">li</span><span class="p">&gt;</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="p">&lt;/</span><span class="nt">ul</span><span class="p">&gt;</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<p>Yllä näkyvän kaltaista dataa voi louhia koneellisesti esimerkiksi Wikipediasta. Osittain strukturoitu data vaatii huomattavasti enemmän käsittelyä kuin strukturoitu data. Tämä käsittely on luonnollisesti virheherkkä prosessi. Datan skeema voi ajan kanssa elää. Esimerkiksi jos Wikipedian sivun HTML-rakenne muuttuu, koneellinen louhinta voi epäonnistua, tai voit päätyä kirjoittamaan väärää tietoa tietokantaan.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Tiedostopääte tai tiedoston formaatti ei itsessään tee datasta kokonaan tai osittain strukturoitua. Esimerkiksi JSON-tiedosto voi olla täysin strukturoitua dataa, jos se on koneellisesti kirjoitettu skeemaa noudattaen. Löytyy jopa projekti <a href="https://json-schema.org/">JSON Schema</a>, joka on JSON-tiedostojen skeemakieli. Toisaalta JSON voi olla myös hyvinkin muodoton, ihmisen kirjoittama köntti dataa, jonka tulkinta vaatii ihmisen kaltaista älyä.</p>
+</div>
+<h3 id="epastrukturoitu-data">Epästrukturoitu data</h3>
+<p>Data, joka on täysin vailla struktuuria (engl. unstructured data), on kaikkein haastavinta käsitellä. Sanat <em>täysin vailla struktuuria</em> eivät suinkaan tarkoita, että kyseessä olisi täysin kaoottinen data. Yksittäinen havainto voi olla esimerkiksi äänitiedosto, kuva, video tai täysin vapaamuotoinen teksti. Tiedostolla itsellään, kuten <code>.JPG</code>-tiedostolla, on oma rakenne, mutta <em>informaatio</em> tiedostossa on epästrukturoitua. Esimerkiksi kuvan pikseli xy-koordinaatissa <code>(100, 100)</code> ei itsessään kerro mitään siitä, onko kyseessä kissa vai koira. Kuvan sisältöä tulee siis <em>kuvailla</em> jollakin muulla tavalla numeraalisesti.</p>
+<p>Mikäli koulutat tekoälyä, joka pyrkii tunnistamaan onko kuvassa kissa vai koira, sinun dataset voi vaikkapa hakemistorakenne:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>dataset/
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    cat/
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>        DSC_0123.jpg
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        web_fluffy.jpg
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        ...
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    dog/
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        IMG_0473.jpg
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>        P129719088.jpg
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        ...
+</span></code></pre></div>
+<p>Se, kuuluuko kuva hakemistoon <code>cat/</code> vai <code>dog/</code>, on datasetin selitettävä muuttuja. Kuvan pikseleistä <mark>muodostetaan myöhemmin</mark> selittäviä muuttujia. Tähän soveltuvat eri feature descriptorit eli piirrekuvaajat, kuten HOG, SIFT, SURF, ORB, LBP, jne.</p>
+<p>Huomaa, että saman datan voi tallentaa tietokantaan, mutta se ei tee datasta sen enempää strukturoitua. Käytännössä tässä tapauksessa vain indeksoit kuvat – mikä oli jo tehtynä aiemmin hakemistopuun avulla. Alla esimerkki, jossa kullakin kuvalla on <code>id</code>, <code>label</code> ja <code>data</code>, joista jälkimmäisin on binäärimuodossa tallennettu kuva.</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>label</th>
+<th>data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>cat</td>
+<td>0x111001010...00111</td>
+</tr>
+<tr>
+<td>2</td>
+<td>dog</td>
+<td>0x001001010...11010</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<h2 id="muuttujat">Muuttujat</h2>
+<p>Muuttujat eli piirteet ovat keskeinen osa koneoppimista. Yllä opit, että rivi on <em>näyte</em> (esim. opiskelija) ja sarake on <em>muuttuja</em> (esim. opiskelijan pituus). Muuttujat ovat siis havaintojen <em>piirteitä</em> tai <em>dimensioita</em>. Nyt tulee tärkeä lause: <mark>piirteet käännetään numeroiksi ennen kuin ne voidaan syöttää koneoppimismalliin</mark>. Tämä pätee kaikkiin koneoppimismalleihin, mukaan lukien ChatGPT:n kaltaisiin kielimalleihin. Loppukäyttäjän näkökulmasta voi näyttää siltä, että syötät mallille tekstiä, kuvia, ääntä, tekstisarakkeita sisältäviä SQL-tauluja tai mitä tahansa muuta, mutta data käännetään numeroiksi <em>piirremuotoilun</em> avulla. Englanniksi tarvitsemasi sana on <em>feature engineering</em>. <sup id="fnref:feature-engineering"><a class="footnote-ref" href="#fn:feature-engineering">3</a></sup></p>
+<p>Muuttujat ovat datasetin <strong>sarakkeita</strong>, toiselta nimeltään <strong>pystyrivejä</strong>, jotka <mark>kuvaavat havaintoja</mark>. Ne ovat siis havaintojen piirteitä tai dimensioita. Strukturoidun datan tapauksessa muuttujalla on jokin tyyppi, kuten <code>INTEGER</code>, <code>VARCHAR</code> tai <code>DATE</code>. Tyypin lisäksi arvo voi useimmiten olla myös <code>NULL</code> tai <code>N/A</code>, mikä tarkoittaa, että arvoa ei ole määritetty – joko se puuttuu vahingossa, tai voi olla, että arvo voi ihan tosielämän logiikalla puuttua.</p>
+<p>Data on tyypillisesti joko <em>kvantitatiivista</em> (numeerista luonnostaan) tai <em>kvalitatiivista</em> (kategorista luonnostaan) <sup id="fnref2:feature-engineering"><a class="footnote-ref" href="#fn:feature-engineering">3</a></sup>. Tämä jako on usein ihmiselvä. Nämä tyypit jakautuvat neljään tasoon, jotka ovat <em>nominaalinen</em>, <em>ordinaalinen</em>, <em>intervalli</em> ja <em>suhdeasteikollinen</em>. Nämä S. S. Stevensin määrittelemät tasot kuvaavat datan järjestyneisyyttä ja mittaustasoa <sup id="fnref:levels-of-measurement"><a class="footnote-ref" href="#fn:levels-of-measurement">4</a></sup>.</p>
+<pre class="mermaid"><code>flowchart LR
+    A(("Muuttuja")) 
+
+    A --- C["Kvalitatiivinen (kategorinen)"]
+    C --- F["Nominaalinen"]
+    C --- G["Ordinaalinen"]
+
+    A --- B["Kvantitatiivinen (numeerinen)"]
+    B --- D["Intervalli"]
+    B --- E["Suhdeasteikollinen"]</code></pre>
+<p>Ennen kuin edetään tässä pidemmälle, mietitään ongelmaa, mikä voi syntyä, jos pohditaan kaikkia lukuja siten, että niitä voi ynnätä ja kertoa vapaasti.</p>
+<div class="admonition info">
+<p class="admonition-title">Fahrenheit ja Celcius ongelma</p>
+<p>Aloitetaan väitteillä:</p>
+<ul>
+<li>0 °C on 32 F</li>
+<li>32 F + 32 F = 64 F</li>
+<li>64 F on 17.78 °C</li>
+<li>Täten, 0 °C + 0 °C = 17.78 °C</li>
+</ul>
+<p>Ei se tietenkään näin mene. Syy tälle löytyy alta selityksestä, eli lämpötila on <em>intervallimuuttuja</em>, eikä <em>suhteellinen muuttuja</em>. Intervallimuuttujalla on nollapiste, mutta se ei varsinaisesti ole tilanne, jossa <em>ei olisi mitään</em>. Jos lämpötilaa tarkastellaan kelvin-asteina, niin silloin 0 K on tilanne, jossa ei ole lainkaan lämpöä. Näin ollen kelvin-asteet ovat suhteellisia, ja niillä voi suorittaa vapaasti laskuoperaatioita. Celsius- ja Fahrenheit-asteet ovat intervallimuuttujia, eikä niillä voi suorittaa vapaasti laskuoperaatioita.</p>
+</div>
+<h3 id="nominaalinen">Nominaalinen</h3>
+<p>Jos tarkistat sanan <a href="https://en.wiktionary.org/wiki/nominal">nominal</a> wiktionarystä, huomaat, että se tarkoittaa jotakin nimestä tai nimistä koostuvaa. Tämä kategorinen datan tyyppi on siis dataa, joka koostuu nimistä, joilla ei ole sen enempää järjestystä kuin vaikkapa nimillä <code>Alice</code>, <code>Bob</code> ja <code>Charlie</code>. Voit esimerkiksi laskea Suomen kaikki etunimet ja niiden esiintymismäärät, mutta et voi sanoa, että <code>Alice</code> on suurempi kuin <code>Bob</code>. Muita esimerkkejä ovat verityypit, asuinkunta tai puhelimen brändi <sup id="fnref3:feature-engineering"><a class="footnote-ref" href="#fn:feature-engineering">3</a></sup>.</p>
+<p><strong>Tyypillinen käsittelytapa:</strong> <em>One-hot encoding</em> eli <em>dummy encoding</em>. Tämä käsitellään myöhemmin.</p>
+<h3 id="ordinaalinen">Ordinaalinen</h3>
+<p>Kuten sanasta voi päätellä, ordinaalinen noudattaa järjestystä (<em>engl. order</em>). Tyypillinen esimerkki on kyselylomakkeista tuttu Likert-asteikko, jossa vastausvaihtoehdot ovat esimerkiksi <code>Erittäin tyytyväinen</code>, <code>Tyytyväinen</code>, <code>Neutraali</code>, <code>Tyytymätön</code> ja <code>Erittäin tyytymätön</code>. Näitä ei voi kääntää numeroiksi tai kategorioiksi satunnaisjärjestyksessä menettämällä tärkeää informaatiota. Muita vaihtoehtoja ovat esimerkiksi arvosanat (<code>A, B, ... F</code>), t-paitakoot (<code>S</code>, <code>M</code>, <code>L</code>, <code>XL</code>), elokuva-arvostelun tähdet (<code>*</code>, <code>**</code>, <code>***</code>) tai henkilön asema yrityshierarkiassa (<code>intern</code>, <code>entry level</code>, <code>director</code>, <code>VP</code>, <code>C-level</code>). <sup id="fnref4:feature-engineering"><a class="footnote-ref" href="#fn:feature-engineering">3</a></sup></p>
+<p><strong>Datalle natiivi käsittelytapa:</strong> <em>Ordinal encoding</em> (tai <em>label encoding</em>). Tämä on hyvinkin simppeliä:</p>
+<table>
+<thead>
+<tr>
+<th>Rank at company</th>
+<th>Encoded Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Intern</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Entry</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Director</td>
+<td>2</td>
+</tr>
+<tr>
+<td>VP</td>
+<td>3</td>
+</tr>
+<tr>
+<td>C-level</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Tämällä on vaarana olla liian edistynyt konsepti ensimmäiselle viikolle, mutta mainittakoon silti: <strong>ordinal encoding</strong> on luonnollinen tapa koodata ordinaalista dataa, mutta se toimii parhaiten malleissa, jotka eivät perustu etäisyyksiin, kuten päätöspuumalleissa (DecisionTree, RandomForest, Gradient Boosting). Etäisyyspohjaisille malleille turvallisin vaihtoehto on silti usein one‑hot encoding.</p>
+</div>
+<h3 id="intervalli">Intervalli</h3>
+<p>Nyt päästiin takaisin Fahreinheit- ja Celsius-asteisiin. Intervallimuuttujilla on selkeä järjestys, aivan kuten ordinaalisilla, mutta lisäksi niitä voi käyttää jossain määrin laskennassa. Esimerkiksi 20 °C ja 30 °C ero on kymmenen astetta (ei enää Celciusta; ihan vain astetta). On kuitenkin epäloogista sanoa, että 20 °C on kaksi kertaa lämpimämpi kuin 10 °C, koska 0 °C ei tarkoita tilannetta, jossa ei ole lainkaan lämpöä. 0 °C on vain yksi mittaluku muiden joukossa ilman erityismerkitystä. Se, mikä kuitenkin pätee, on että eri välisten lukujen erotus – eli intervalli – pysyy samana. Esimerkiksi t-paitojen kokoihin tämä ei pätisi: S- ja M-kokojen ero ei välttämättä ole mistään kohtaa paitaa mitattuna sama kuin M ja L. Tämä tarkoittaa, että on jossain luontevaa laskea tilastollisia arvoja kuten <em>keskiarvo</em>, toisin kuin ordinaalisten muuttujien tapauksessa. <sup id="fnref5:feature-engineering"><a class="footnote-ref" href="#fn:feature-engineering">3</a></sup></p>
+<p><strong>Tyypillinen käsittelytapa:</strong> Tässä vaiheessa kurssia.. ei mikään. Annetaan sen olla numero.</p>
+<h3 id="suhdeasteikollinen">Suhdeasteikollinen</h3>
+<p>S. S. Stevensin määrittelemä suhdeasteikollinen on datan tyyppi, joka on järjestetty, ja jonka nollapisteellä on selkeä merkitys: <em>tämä ei ole mitään</em>. Esimerkiksi pituus on suhdeasteikollinen, koska 0 cm tarkoittaa tilannetta, jossa ei ole lainkaan pituutta. </p>
+<p>Nämä ovat siis <em>tavallisia numeroita</em>. Muuttujat, kuten paino tai esineiden määrä laukussa, eivät voi olla negatiivisia. Toiset muuttujat, kuten pankkitilin saldo, voivat olla negatiivisia. Koska nolla on erityismerkityksellinen, näillä muuttujilla voi suorittaa vapaasti laskuoperaatioita, kuten yhteenlaskua, kertolaskua ja jakolaskua.</p>
+<h3 id="selittava-vs-selitettava">Selittävä vs. selitettävä</h3>
+<p>Data jaetaan tyypillisesti <strong>selittävien</strong> ja <strong>selitettävän</strong> mukaan kahteen osaan: matriisiksi <code>X</code> ja vektoriksi <code>y</code>. Terminologia on peräisin tilastotieteestä, mutta se on vakiintunut myös koneoppimisen yhteydessä. Tulet huomaamaan, että koneoppimisessa asioilla on usein monta nimeä, ja eri konteksteissa ne tunnetaan hieman eri nimillä. Alla termit/synonyymit, jotka tarkoittavat samaa asiaa <sup id="fnref:tilastokeskus-käsitteet"><a class="footnote-ref" href="#fn:tilastokeskus-käsitteet">5</a></sup> <sup id="fnref2:practical-stats"><a class="footnote-ref" href="#fn:practical-stats">2</a></sup>:</p>
+<ul>
+<li>selittävä muuttuja (independant variable) – <span class="arithmatex">\(X_i\)</span><ul>
+<li>suomeksi:<ul>
+<li>riippumaton muuttuja</li>
+</ul>
+</li>
+<li>englanniksi:<ul>
+<li>feature</li>
+<li>attribute</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>selitettävä muuttuja (dependant variable) – <span class="arithmatex">\(y\)</span><ul>
+<li>suomeksi:<ul>
+<li>riippuva muuttuja</li>
+</ul>
+</li>
+<li>englanniksi:<ul>
+<li>response</li>
+<li>target</li>
+<li>output</li>
+<li>label</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Koneoppimismallin koulutuksen haluttu tulos on, että selittävien muuttujien avulla voidaan ennustaa selitettävän muuttujan arvo. Esimerkiksi yllä esitelty opiskelijoista koostuva datasetti voidaan jakaa siten, että viimeinen boolean-tyyppinen sarake, <span class="arithmatex">\(x_3\)</span>, on selitettävä muuttuja, ja kolme muuta saraketta selittäviä muuttujia. Näin ollen <code>X</code> on taulukko, joka sisältää kolme ensimmäistä saraketta, ja <code>y</code> on vektori, joka sisältää viimeisen sarakkeen arvot.</p>
+<div class="language-python highlight"><span class="filename">IPython</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># List of rows, or records|case|instace|examples|observations, </span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># ... where each is a tuple of (x0, x1, x2)</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># ... which all are features|attributes|independent variables</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">X</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="p">(</span><span class="mf">1.01</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">),</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="p">(</span><span class="mf">1.10</span><span class="p">,</span> <span class="mi">124124</span><span class="p">,</span> <span class="s1">&#39;Python&#39;</span><span class="p">),</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="p">(</span><span class="mf">0.99</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">),</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>    <span class="p">(</span><span class="mf">0.97</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;R&#39;</span><span class="p">),</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>    <span class="p">(</span><span class="mf">1.00</span><span class="p">,</span> <span class="mi">96141</span><span class="p">,</span> <span class="s1">&#39;Python&#39;</span><span class="p">)</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="p">]</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="c1"># list of targets|responses|dependent variables|labels</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="n">y</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+</span></code></pre></div>
+<p>On tärkeää huomata, että on <mark>ihmisen päätös</mark>, että mikä muuttuja on selittävä ja mitkä ovat selittäviä. Kukaan ei estä meitä ottamasta yllä näkyvää datasettiä ja kouluttamasta tekoälyä, joka pyrkii kolmen muun sarakkeen arvon perusteella ennustamaan arvon <code>Python</code> tai <code>R</code>.</p>
+<p>On yllättävänkin tyypillistä, että jokin data puuttuu. Täydellisiin datasetteihin törmäät lähinnä akateemisissa esimerkeissä. Paras tapa korjata <code>NULL</code>-ongelma on tehostaa datan keräysprosessia. Emme elä täydellisessä maailmassa, joten valitettavasti meidän on kuitenkin opittava käsittelemään puuttuvaa dataa. Puuttuvaa dataa voidaan käsitellä monin eri tavoin, kuten poistamalla vialliset havainnot, täyttämällä puuttuvat arvot keskiarvolla tai mediaanilla. Puuttuvan datan paikkauksessa tai poistamisessa pitää olla kuitenkin tarkkana: arvon puuttuminen voi olla merkityksellistä. Eli siis se, että arvo puuttuu, voi olla itsessään tietoa, joka auttaa ennustamaan selitettävää muuttujaa.</p>
+<h2 id="vektorit-ja-matriisit">Vektorit ja matriisit</h2>
+<p>Emme käsittele tällä kursseilla laskentaan liittyviä lukuja Pythonin sisäänrakennettuina muuttujatyyppeinä, kuten <code>int</code> tai <code>list[float]</code>. Tästä poikkeuksena on ensimmäinen harjoitus, jossa tutustutaan Pythonilla luotuun Vector-luokkaan: ihan vain varmistaaksemme, että ymmärrämme, mitä konepellin alla suunnilleen tapahtuu. Sen sijaan käytämme Numpy-kirjastoa matriisien ja vektorien käsittelyyn. </p>
+<div class="admonition note">
+<p class="admonition-title">Polars ja Pandas</p>
+<p>Käytämme lisäksi kirjastoja Polars ja/tai Pandas-kirjastoa. Polars on näistä siinä mielessä suositeltu vaihtoehto, että Marimo suosii sitä. Jos tarkistat <a href="https://github.com/marimo-team/marimo/blob/main/pyproject.toml">pyproject.toml</a>-tiedoston Marimon repositoriosta, huomaat seuraavat rivit:</p>
+<div class="language-toml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">[project.optional-dependencies]</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">sql</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="s2">&quot;duckdb&gt;=1.0.0&quot;</span><span class="p">,</span><span class="w">           </span><span class="c1"># SQL cells</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="s2">&quot;polars[pyarrow]&gt;=1.9.0&quot;</span><span class="p">,</span><span class="w">  </span><span class="c1"># SQL output back in Python</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="s2">&quot;sqlglot[c]&gt;=26.8.0&quot;</span><span class="w">       </span><span class="c1"># SQL cells parsing;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">]</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1"># ...</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="k">[tool.marimo.ai]</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="n">rules</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;- prefer polars over pandas</span><span class="se">\n</span><span class="s2">- make charts using altair&quot;</span>
+</span></code></pre></div>
+<p><strong>The More You Know</strong>: Pandas hyödyntää NumPya, joten Pandas DataFrame on pohjimmiltaan NumPy-matriisi, joka on kääritty <code>Index</code>, <code>Series</code> tai <code>DataFrame</code>-luokan olion sisään. Lisäksi Pandas lisää muutaman oman tyypin kyytiin: <em>"pandas and third-party libraries extend NumPy’s type system in a few places."</em> <sup id="fnref:pandas-essential"><a class="footnote-ref" href="#fn:pandas-essential">6</a></sup> Kaikki Pandasin lisäämät tyypit löydät <a href="https://pandas.pydata.org/docs/user_guide/basics.html#basics-dtypes">täältä</a></p>
+</div>
+<p>Tämän materiaalin alussa esitelty tabulaarinen datasetti on ihmiselle helpossa taulukkomuodossa. Koneoppimismallien tapauksessa data käsitellään yleensä matriiseina ja vektoreina. <em>Vektorisoidut operaatiot</em> ovat tehokkaampia kuin silmukat. Tyypillisesti koneoppimisessa käytetään <code>numpy</code>-kirjastoa edustamaan matriisia <code>X</code> ja vektoria <code>y</code>. Matriisi <code>X</code> on kaksiulotteinen taulukko, jossa rivit ovat havaintoja ja sarakkeet ovat muuttujia. Vektori <code>y</code> on yksiulotteinen taulukko, jossa on selitettävän muuttujan arvot. Alla on ylempää dokumentista tuttu datasetti <code>X</code> ja <code>y</code> <code>numpy</code>-muodossa. Näiden muuttujien nimet voivat luonnollisesti olla mitä tahansa, mutta <code>X</code> ja <code>y</code> ovat alan konvention mukaisia.</p>
+<div class="language-python highlight"><span class="filename">IPython</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">X</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="p">[</span><span class="mf">1.01</span><span class="p">,</span> <span class="mi">512</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="p">[</span><span class="mf">1.10</span><span class="p">,</span> <span class="mi">124124</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="p">[</span><span class="mf">0.99</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    <span class="p">[</span><span class="mf">0.97</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="p">[</span><span class="mf">1.00</span><span class="p">,</span> <span class="mi">96141</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="p">])</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</span></code></pre></div>
+<h2 id="tehtavat">Tehtävät</h2>
+<div class="admonition question">
+<p class="admonition-title">Tehtävä: Data Handling Basics (TODO EXTEND)</p>
+<p>Tutustu <code>130_data_handling_basics.py</code>-tiedostoon, joka on Marimo Notebook. Kyseisessä tiedostossa käsitellään tämän materiaalin aihepiiriä Notebook-muodossa, koodia ajaen.</p>
+<p>Tämä on kurssin ensimmäinen Marimo Notebook, joten saat hieman tarkempaa pohjatietoa:</p>
+<ul>
+<li>tiedosto löytyy <a href="https://github.com/sourander/ml-perusteet">repositorion</a> juuresta alkaen polusta <code>notebooks/nb/100/130_data_handling_basics.py</code></li>
+<li>on kannattavaa kloonata koko repositorio koneellesi. Avaa tuo <code>notebooks/</code>-hakemisto Visual Studio Codessa.</li>
+<li>... ja/tai kopioi koko hakemisto johonkin toiseen lokaatioon, kuten esimerkiksi siihen hakemistoon, mistä löytyy sinun oppimispäiväkirjasi.</li>
+</ul>
+<p>Tämä on esimerkki Marimo Notebookista, missä ei ole varsinaista <em>tehtävää</em>. Sinun kuuluu ajaa tiedosto, tutkia koodia ja raportoida oppimispäiväkirjaasi kurssin aihepiiriin liittyvät havainnot ja opit. Numpyn osalta tiedosto on todennäköisesti kertausta aiemmpilta kursseilta, kuten Datan käsittelyn kehittyneet menetelmät, mutta Polars on uusi tuttavuus: sinun pitää ulosoppia Pandasin käytänteistä ja hyväksyä Polarsin hieman erilainen API.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Muokkaa tiedostoa vapaasti! Tämä pätee kaikkiin kurssin Notebook-tiedostoihin. Voit esimerkiksi lisätä omia kommenttejasi, kokeilla erilaisia operaatioita, tai muuten vain leikkiä koodilla. Tiedosto on nyt sinun, ja se on tarkoitettu oppimiseen.</p>
+</div>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Tehtävä: Vector from Scratch</p>
+<p>Tutustu <code>131_vector_from_scratch.py</code>-tiedostossa olevaan <code>Vector</code>-luokkaan. Luokka on toteutettu natiivilla Pythonilla ilman ulkoisia kirjastoja eli <em>from scratch</em>. Toivon mukaan luokan yksinkertaisten looppien kautta ymmärrät, millaista laskentaa tapahtuu, kun käytät <code>numpy</code>-kirjastolla vastaavia operaatioita. NumPy toki tekee saman tehokkaammin, hyödyntäen mahdollisuuksien mukaan vektoroituja operaatioita – loogisella tasolla operaatio on kuitenkin sama kuin <code>Vector</code>-luokassa.</p>
+</div>
+<h2 id="lahteet">Lähteet</h2>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:ml-for-tabular">
+<p>Massaron, L. &amp; Ryan, M. <em>Machine Learning for Tabular Data</em>. Manning. 2025.&#160;<a class="footnote-backref" href="#fnref:ml-for-tabular" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:practical-stats">
+<p>Bruce, P. &amp; Bruce, A. <em>Practical Statistics for Data Scientists</em>. O'Reilly. 2017.&#160;<a class="footnote-backref" href="#fnref:practical-stats" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:practical-stats" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:feature-engineering">
+<p>Ozdemir, S. <em>Feature Engineering Bookcamp</em>. Manning. 2022.&#160;<a class="footnote-backref" href="#fnref:feature-engineering" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:feature-engineering" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:feature-engineering" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:feature-engineering" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref5:feature-engineering" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:levels-of-measurement">
+<p>Siadati, S. <em>Different types of data</em>. DataBizx. https://medium.com/databizx/different-types-of-data-894cd8d0251e&#160;<a class="footnote-backref" href="#fnref:levels-of-measurement" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:tilastokeskus-käsitteet">
+<p>Tilastokeskus. <em>Käsitteet</em>. https://stat.fi/meta/kas/index.html&#160;<a class="footnote-backref" href="#fnref:tilastokeskus-käsitteet" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:pandas-essential">
+<p>Pandas documentation. <em>Essential Basic Functionality</em>. https://pandas.pydata.org/docs/user_guide/basics.html&#160;<a class="footnote-backref" href="#fnref:pandas-essential" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 <a href="https://www.kamk.fi">Kajaanin Ammattikorkeakoulu Oy</a>. 
+Licenced under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">BY-NC-SA 4.0</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Kopioitu leikep\u00f6yd\u00e4lle", "clipboard.copy": "Kopioi leikep\u00f6yd\u00e4lle", "search.result.more.one": "1 lis\u00e4\u00e4 t\u00e4ll\u00e4 sivulla", "search.result.more.other": "# lis\u00e4\u00e4 t\u00e4ll\u00e4 sivulla", "search.result.none": "Ei t\u00e4sm\u00e4\u00e4vi\u00e4 dokumentteja", "search.result.one": "1 t\u00e4sm\u00e4\u00e4v\u00e4 dokumentti", "search.result.other": "# t\u00e4sm\u00e4\u00e4v\u00e4\u00e4 dokumenttia", "search.result.placeholder": "Kirjoita aloittaaksesi haun", "search.result.term.missing": "Puuttuu", "select.version": "Valitse versio"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

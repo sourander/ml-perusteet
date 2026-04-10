@@ -1,0 +1,1442 @@
+
+<!doctype html>
+<html lang="fi" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../intuitio/">
+      
+      
+        <link rel="next" href="../../3_puut/suorituskyky/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Naive Bayes - Johdatus Koneoppimiseen</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#naive-bayes" class="md-skip">
+          Hyppää sisältöön
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Ylätunniste">
+    <a href="../.." title="Johdatus Koneoppimiseen" class="md-header__button md-logo" aria-label="Johdatus Koneoppimiseen" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Johdatus Koneoppimiseen
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Naive Bayes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Hae" placeholder="Hae" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Haku">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Tyhjää" aria-label="Tyhjää" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Aloitetaan hakua
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigaatio" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Johdatus Koneoppimiseen" class="md-nav__button md-logo" aria-label="Johdatus Koneoppimiseen" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Johdatus Koneoppimiseen
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tervetuloa kurssille
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Koneoppiminen
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Koneoppiminen
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1_koneoppiminen/yleista/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Yleistä
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1_koneoppiminen/miksi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Motivaatio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1_koneoppiminen/tyypit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tyypit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1_koneoppiminen/datasetti/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1_koneoppiminen/tyonkulku/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Työnkulku
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Naive Bayes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Naive Bayes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enkoodaus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Merkkijonojen enkoodaus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intuitio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intuitio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Naive Bayes
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Naive Bayes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Sisällysluettelo">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sisällysluettelo
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#teoreemasta-luokittelijaksi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Teoreemasta luokittelijaksi
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multinomiaalinen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multinomiaalinen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tehtavat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tehtävät
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lahteet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lähteet
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Puut ja Metsät
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Puut ja Metsät
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/suorituskyky/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luokittelumallin suorituskyky
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/entropia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entropia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/puu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Puu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/metsa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metsä
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. k-NN
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. k-NN
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_knn/skaalaus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skaalaus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_knn/dimensio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dimensiovähennys
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_knn/knn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k-NN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Klusterointi
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    5. Klusterointi
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5_klusterointi/sykliset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Syklinen enkoodaus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5_klusterointi/kMeans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K-Means
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exercises/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tehtäväkooste
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Sisällysluettelo">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sisällysluettelo
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#teoreemasta-luokittelijaksi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Teoreemasta luokittelijaksi
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multinomiaalinen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multinomiaalinen
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tehtavat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tehtävät
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lahteet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lähteet
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="naive-bayes">Naive Bayes</h1>
+<p>Aiemmat kaksi lukua ovat luoneet hyvän pohjan tälle aiheelle: tiedät jo, kuinka Count Vectorizer toimii, ja ymmärrät myös tapahtumien riippumattomuuden sekä ehdollisen todennäköisyyden perusidean. Naive Bayes on todennäköisyyksiin perustuva (engl. <em>probabilistic</em>) luokittelija, joka tekee naiivin oletuksen siitä, että piirteet, kuten sanat, ovat ehdollisesti riippumattomia silloin, kun luokka tiedetään <sup id="fnref:kämäräinen"><a class="footnote-ref" href="#fn:kämäräinen">1</a></sup>. Käytännössä tämä tarkoittaa, että kun viestiä arvioidaan esimerkiksi roskapostina tai ei-roskapostina, mallin oletetaan tarkastelevan kunkin sanan vaikutusta erillään muista sanoista. Esimerkiksi sana <em>“ilmainen”</em> voi kasvattaa todennäköisyyttä, että viesti kuuluu roskapostiluokkaan. Roskapostin tunnistus onkin yksi Naive Bayesin tunnetuimmista käytännön sovelluksista. <sup id="fnref:fromscratch"><a class="footnote-ref" href="#fn:fromscratch">2</a></sup></p>
+<p>Kämäräinen nostaa bayesilaista koneoppimista nostavat suomalaiset tutkijat esille. Heistä ensin mainittu on Aki Vehtari Aalto-yliopistosta. Kaksi muuta mainittua ovat Simo Särkkä ja Arno Solin. <sup id="fnref2:kämäräinen"><a class="footnote-ref" href="#fn:kämäräinen">1</a></sup> Ethän siis oleta, että algoritmi olisi hyödytön nykypäivänä. Esimerkiksi Facebookin Prophet-aikasarjaennustin hyödyntää bayesilaista lähestymistapaa. <sup id="fnref:fpppy"><a class="footnote-ref" href="#fn:fpppy">3</a></sup>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Käsittelemme tässä luvussa vain multinomiaalisen Naive Bayes luokittelijan, joka on erityisen suosittu tekstiluokittelussa. On olemassa muitakin bayesin teoreemaan perustuvia luokittelijoita (ja jopa regressoreita), mutta niitä ei käsitellä tässä luvussa. Näitä käsitellään esimerkiksi scikit-learn:n dokumentaatiossa.</p>
+</div>
+<h2 id="teoreemasta-luokittelijaksi">Teoreemasta luokittelijaksi</h2>
+<p>Päädyimme edellisessä luvussa Bayesin teoreemassa kaavaan, joka näkyy alla. Tällä kertaa olemme tosin korvanneet <code>A</code>:n sanalla belief ja <code>B</code>:n sanalla evidence. <em>Belief</em> tarkoittaa tarkasteltavaa hypoteesia (esim. roskaposti) ja <em>evidence</em> havaittua dataa (esim. tarkasteltavan viestin sanat).</p>
+<div class="arithmatex">\[
+P(\text{belief} \mid \text{evidence}) = \frac{P(\text{evidence} \mid \text{belief}) \times P(\text{belief})}{P(\text{evidence})}
+\]</div>
+<p>Tämän voisi kirjoittaa myös seuraavalla tavalla:</p>
+<div class="arithmatex">\[
+\text{posterior probability} = \frac{\text{likelihood} \times \text{prior probability}}{\text{evidence}}
+\]</div>
+<p>Kuten <a href="https://scikit-learn.org/stable/modules/naive_bayes.html">scikit-learnin dokumentaatio esittää</a>, jakaja on vakio annetulle syötteelle, joten sen voi jättää pois. Jakajan hylkääminen tekee lopputuloksesta normalisoimattoman, mutta se ei ole ongelma, koska meitä kiinnostaa vain suhteellinen todennäköisyys. Alla olevan kaavan kalan näköinen symboli luetaan "proportional to". Tämä tarkoittaa, että vasen puoli on suoraan verrannollinen oikean puolen tulon kanssa. <sup id="fnref:scikit-bayes"><a class="footnote-ref" href="#fn:scikit-bayes">4</a></sup></p>
+<div class="arithmatex">\[
+P(\text{belief}|\text{evidence}) \propto P(\text{evidence}|\text{belief}) \times P(\text{belief})
+\]</div>
+<p>Voimme myös korvata kaavasta sanan <code>belief</code> sanalla <code>spam</code> ja sanan <code>evidence</code> useita datasetissä olevia sanoja korvaavalla <code>x_1, x_2, ..., x_n</code>.</p>
+<div class="arithmatex">\[
+P(spam|x_1, x_2, ..., x_n) \propto P(x_1, x_2, ..., x_n|spam) \times P(spam)
+\]</div>
+<p>Kukin sana osallistuu todennäköisyyteen itsenäisesti (eli ehdollisesti riippumattomana annetun luokan suhteen). Multinomiaalisessa tekstiluokittelussa sanan vaikutus näkyy käytännössä sen esiintymismäärän kautta: useammin esiintyvä sana vaikuttaa enemmän kuin kerran esiintyvä sana. Toisin sanoen Count Vectorizer on hyvä pohjaoletus enkoodaustavaksi, joskin TF-IDF voi myös toimia <sup id="fnref2:scikit-bayes"><a class="footnote-ref" href="#fn:scikit-bayes">4</a></sup>. Tämän naiivin oletuksen kanssa luokittelusäännön kaava on:</p>
+<div class="arithmatex">\[
+\hat{y} = \arg\max_{y} P(y) \prod_{i=1}^{n} P(x_i|y)
+\]</div>
+<p>Eri bayesilaiset luokittelijat toteuttavat tämän kaavan <span class="arithmatex">\(P(x_i \mid y)\)</span> osan eri tavoin. Alla avataan, miten multinomiaalinen Naive Bayes estimoituu opetusdatasta.</p>
+<h2 id="multinomiaalinen">Multinomiaalinen</h2>
+<p>Scikit-learn:n dokumentaatiossa Multinomial Naive Bayes esitellään kaavana, joka näkyy tämän tekstikappaleen alla. Kaavassa <span class="arithmatex">\(y\)</span> on luokka (0, 1) ja <span class="arithmatex">\(i\)</span> on sarake (eli meidän tapauksessa sana). Näin multinomiaalisen luokittelijan tarvitsema todennäköisyys <span class="arithmatex">\(P(x_i|y)\)</span> estimoidaan opetusdatasta. Termi <span class="arithmatex">\(\theta_{yi}\)</span> on todennäköisyys, että piirre <span class="arithmatex">\(i\)</span> (eli sana) esiintyy näytteessä, joka kuuluu luokkaan <span class="arithmatex">\(y\)</span>. Eli siis <span class="arithmatex">\(P(x_i|y) \approx \hat{\theta}_{yi}\)</span>.</p>
+<div class="arithmatex">\[
+\hat{\theta}_{yi} = \frac{ N_{yi} + \alpha}{N_y + \alpha n}
+\]</div>
+<ul>
+<li><span class="arithmatex">\(N_{yi}\)</span> - kuinka monta kertaa kukin sana esiintyy luokan <span class="arithmatex">\(y\)</span> dokumenteissa</li>
+<li><span class="arithmatex">\(N_y\)</span> - kaikkien sanojen määrä luokassa <span class="arithmatex">\(y\)</span></li>
+<li><span class="arithmatex">\(n\)</span> - kaikkien sanojen yhteismäärä (eli <em>vocabulary</em>)</li>
+<li><span class="arithmatex">\(a\)</span> - smoothing eli silotusparametri</li>
+</ul>
+<p>Kun käyt läpi harjoituksessa annettua koodia, tulet yhdistämään yllä olevan kaavan seuraavaan koodin osaan. Alla koodin muuttujat on käännetty suomeksi ja siihen on lisätty kommentit.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">sanan_todennakoisyys_luokassa</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="mi">0</span><span class="p">:</span> <span class="p">{},</span> <span class="c1"># ei-roskaposti</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="mi">1</span><span class="p">:</span> <span class="p">{}</span>  <span class="c1"># roskaposti</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">}</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">sana_maarat_luokassa</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="mi">0</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;lorem&quot;</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span> <span class="s2">&quot;ipsum&quot;</span><span class="p">:</span> <span class="mi">32</span><span class="p">,</span> <span class="s2">&quot;dolor&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;sit&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;amet&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;viagra&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="mi">1</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;lorem&quot;</span><span class="p">:</span> <span class="mi">67</span><span class="p">,</span> <span class="s2">&quot;ipsum&quot;</span><span class="p">:</span> <span class="mi">33</span><span class="p">,</span> <span class="s2">&quot;dolor&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;sit&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;amet&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;viagra&quot;</span><span class="p">:</span> <span class="mi">1337</span><span class="p">}</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">}</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">luokan_sanat_totals</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">42</span><span class="o">+</span><span class="mi">32</span><span class="o">+</span><span class="mi">2</span><span class="o">+</span><span class="mi">3</span><span class="o">+</span><span class="mi">5</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">67</span><span class="o">+</span><span class="mi">33</span><span class="o">+</span><span class="mi">0</span><span class="o">+</span><span class="mi">3</span><span class="o">+</span><span class="mi">5</span><span class="o">+</span><span class="mi">1337</span><span class="p">}</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">n</span> <span class="o">=</span> <span class="mi">6</span>   <span class="c1"># sanaston koko</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">a</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="c1"># &quot;siloitus&quot; eli smoothing</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">for</span> <span class="n">luokka</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="n">jakaja</span> <span class="o">=</span> <span class="n">luokan_sanat_totals</span><span class="p">[</span><span class="n">luokka</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">n</span><span class="p">)</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="k">for</span> <span class="n">sana</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;lorem&quot;</span><span class="p">,</span> <span class="s2">&quot;ipsum&quot;</span><span class="p">,</span> <span class="s2">&quot;dolor&quot;</span><span class="p">,</span> <span class="s2">&quot;sit&quot;</span><span class="p">,</span> <span class="s2">&quot;amet&quot;</span><span class="p">,</span> <span class="s2">&quot;viagra&quot;</span><span class="p">):</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        <span class="n">jaettava</span> <span class="o">=</span> <span class="n">sana_maarat_luokassa</span><span class="p">[</span><span class="n">luokka</span><span class="p">][</span><span class="n">sana</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        <span class="n">sanan_todennakoisyys_luokassa</span><span class="p">[</span><span class="n">luokka</span><span class="p">][</span><span class="n">sana</span><span class="p">]</span> <span class="o">=</span> <span class="n">jaettava</span> <span class="o">/</span> <span class="n">jakaja</span>
+</span></code></pre></div>
+<p>Kun tutustut koodiin, yksi äärimmäisen yksinkertainen ja tehokas tapa selvittää sen toimintaa on lisätä <code>print()</code>-komentoja eri kohtiin. Tämä on erityisen toimiva pienen datasetin kanssa. Yllä olevan koodin saa tulostamaan esimerkiksi:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Käsitellään luokkaa:  0
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a> jakaja= 90
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  Käsitellään sanaa:  lorem
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    jaettava= 42.5
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    sanan_todennakoisyys_luokassa= 0.4722222222222222
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>  Käsitellään sanaa:  ipsum
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    jaettava= 32.5
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    sanan_todennakoisyys_luokassa= 0.3611111111111111
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>  Käsitellään sanaa:  dolor
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    jaettava= 2.5
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    sanan_todennakoisyys_luokassa= 0.027777777777777776
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>  Käsitellään sanaa:  sit
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    jaettava= 3.5
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>    sanan_todennakoisyys_luokassa= 0.03888888888888889
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>  Käsitellään sanaa:  amet
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>    jaettava= 5.5
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>    sanan_todennakoisyys_luokassa= 0.06111111111111111
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>  Käsitellään sanaa:  viagra
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>    jaettava= 3.5
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    sanan_todennakoisyys_luokassa= 0.03888888888888889
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>Käsitellään luokkaa:  1
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a> jakaja= 1448
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>  Käsitellään sanaa:  lorem
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>    jaettava= 67.5
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>    sanan_todennakoisyys_luokassa= 0.04661602209944751
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>  Käsitellään sanaa:  ipsum
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>    jaettava= 33.5
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>    sanan_todennakoisyys_luokassa= 0.0231353591160221
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>  Käsitellään sanaa:  dolor
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>    jaettava= 0.5
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>    sanan_todennakoisyys_luokassa= 0.0003453038674033149
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>  Käsitellään sanaa:  sit
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>    jaettava= 3.5
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>    sanan_todennakoisyys_luokassa= 0.0024171270718232043
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>  Käsitellään sanaa:  amet
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>    jaettava= 5.5
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>    sanan_todennakoisyys_luokassa= 0.003798342541436464
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>  Käsitellään sanaa:  viagra
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>    jaettava= 1337.5
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>    sanan_todennakoisyys_luokassa= 0.9236878453038674
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Termiä "smoothing" ei juuri tässä materiaalissa selitetty. Kenties tämän merkitys kannattaa tarkistaa lähteistä?</p>
+</div>
+<h2 id="tehtavat">Tehtävät</h2>
+<div class="admonition question">
+<p class="admonition-title">Tehtävä: Naive Bayes from Scratch</p>
+<p>Aja notebook <code>220_nb_from_scratch.py</code>. Tutustu koodiin ja vertaa sitä kurssin (sekä löytämiesi lähteiden) teoriaan.</p>
+<p>Voi olla suositeltavaa käyttää lähteenä esimerkiki StatQuest with Josh Starmeria. Hänen videonsa <a href="https://youtu.be/O2L2Uv9pdDA">Naive Bayes, Clearly Explained!!!</a> on juuri niin selkeä kuin voi huutomerkkien määrästä uskoa.</p>
+<p>P.S. Huomaa, että tässä ratkaisussa on huijattu sinänsä, että tämä ei ole aivan <em>from scratch</em>. Meillä on apuna Polars. Jos haluat tutustua pelkkään Pythoniin nojaavaan toteutukseen, suosittelen etsimään käsiisi Joel Grusin kirjan <em>Data Science from Scratch</em> tuoreimman painoksen.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Tehtävä: Vihapuheen luokittelu Naive Bayesillä</p>
+<p>Avaa notebook <code>221_nb_hate_speech.py</code>. Lataa Notebookin tarvitsema CSV-tiedosto repositoriosta: <a href="https://github.com/t-davidson/hate-speech-and-offensive-language">gh:t-davison/hate-speech-and-offensive-language</a> ja <mark>lue samassa hakemistossa oleva README</mark>-tiedosto. Kouluta Naive Bayes classifier, joka tunnistaa, onko viesti vihapuhetta vai ei. Raportoi tulokset oppimispäiväkirjassasi. </p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Tutustu repositoriossa linkattuun Cornellin yliopiston artikkeliin <a href="https://doi.org/10.1609/icwsm.v11i1.14955">Automated Hate Speech Detection and the Problem of Offensive Language</a>. Artikkelia ei ole pakollista lukea ajatuksella tämän kurssin puitteissa, mutta artikkelia silmäilemällä saat hyvää osviittaa siitä, miltä projektikurssin raportti voi näyttää, jos tehty työ on luokittelumalli. Kannattaa vähintään katsoa kuvaajat läpi, ja miettiä, voiko niistä oppia jotakin jo tämän harjoituksen toteutukseen.</p>
+</div>
+<p>Alla on pari sääntöä ja ohjaavaa väitettä, jotta työ pysyy kurssin aihealueissa ja laajuudessa sekä edistää sinun oppimistasi:</p>
+<ul>
+<li>Älä anna tekoälyn kirjoittaa mitään koodia, mitä et osaa itse selittää ja puolustaa.</li>
+<li>Älä tee <em>from scratch</em>-toteutusta (ellei sinulle ole kymmeniä tunteja ylimääräistä vapaa-aikaa).</li>
+<li>Älä käytä edistynyttä stemmausta, lemmatisointia, word2veciä ynnä muuta.</li>
+</ul>
+<p>Mikä sitten on sallittua?</p>
+<ul>
+<li>✅ Notebook on nyt sinun Notebook. Muokkaa, miten haluat.</li>
+<li>✅ Muuta hyperparametreja ja selvitä eri asetusten vaikutus mallin suorituskykyyn.</li>
+<li>✅ Käytä kielimallia <strong>haastamaan</strong> sinun ajatteluasi.</li>
+<li>✅ Suosi ymmärrettäviä menetelmiä.</li>
+</ul>
+<p>Korostan vielä, että lue tehtävänanto dataan liittyvissä ongelmissa huolellisesti. Esimerkiksi yllä on esitelty, että sinun tulee tunnistaa, onko viesti vihapuhetta vai ei. Vastaus on siis "Kyllä on" tai "Ei ole". <strong>Älä siis tee</strong> luokitusta, jossa on useampia luokkia, kuten "vihapuhe", "loukkaava puhe", "ei kumpikaan". </p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Voi olla perusteltua kokeilla, kuinka koulutetun mallin tarkkuus reagoi riippuen siitä, mitä teet <em>offensive</em>-luokan twiiteille. Sinulle on ainakin kolme vaihtoehtoa:</p>
+<ol>
+<li>Jätät ne pois kokonaan.</li>
+<li>Sisällytät ne ei-vihapuheeksi</li>
+<li>Sisällytät ne vihapuheeksi.</li>
+</ol>
+<p>Huomaa, että kohdassa kolme kouluttamastasi mallista tulee <em>is offensive or worse</em>-luokittelija, jolloin ongelma on eri kuin tehtävänannon alkuperäinen.</p>
+</div>
+</div>
+<h2 id="lahteet">Lähteet</h2>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:kämäräinen">
+<p>Kämäräinen, J. <em>Koneoppimisen perusteet</em>. Otatieto. 2023.&#160;<a class="footnote-backref" href="#fnref:kämäräinen" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:kämäräinen" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:fromscratch">
+<p>Grus, J. <em>Data Science from Scratch 2nd Edition</em>. O'Reilly Media. 2019.&#160;<a class="footnote-backref" href="#fnref:fromscratch" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:fpppy">
+<p>Hyndman, R. et. al. <em>Forecasting: Principles and Practice, the Pythonic Way</em>. https://otexts.com/fpppy/&#160;<a class="footnote-backref" href="#fnref:fpppy" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:scikit-bayes">
+<p>Scikit-learn. <em>Naive Bayes</em>. https://scikit-learn.org/stable/modules/naive_bayes.html&#160;<a class="footnote-backref" href="#fnref:scikit-bayes" title="Jump back to footnote 4 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:scikit-bayes" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 <a href="https://www.kamk.fi">Kajaanin Ammattikorkeakoulu Oy</a>. 
+Licenced under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">BY-NC-SA 4.0</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Kopioitu leikep\u00f6yd\u00e4lle", "clipboard.copy": "Kopioi leikep\u00f6yd\u00e4lle", "search.result.more.one": "1 lis\u00e4\u00e4 t\u00e4ll\u00e4 sivulla", "search.result.more.other": "# lis\u00e4\u00e4 t\u00e4ll\u00e4 sivulla", "search.result.none": "Ei t\u00e4sm\u00e4\u00e4vi\u00e4 dokumentteja", "search.result.one": "1 t\u00e4sm\u00e4\u00e4v\u00e4 dokumentti", "search.result.other": "# t\u00e4sm\u00e4\u00e4v\u00e4\u00e4 dokumenttia", "search.result.placeholder": "Kirjoita aloittaaksesi haun", "search.result.term.missing": "Puuttuu", "select.version": "Valitse versio"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

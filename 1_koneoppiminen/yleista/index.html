@@ -1,0 +1,1540 @@
+
+<!doctype html>
+<html lang="fi" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../miksi/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Yleistä - Johdatus Koneoppimiseen</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#yleista" class="md-skip">
+          Hyppää sisältöön
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Ylätunniste">
+    <a href="../.." title="Johdatus Koneoppimiseen" class="md-header__button md-logo" aria-label="Johdatus Koneoppimiseen" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Johdatus Koneoppimiseen
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Yleistä
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Hae" placeholder="Hae" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Haku">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Tyhjää" aria-label="Tyhjää" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Aloitetaan hakua
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigaatio" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Johdatus Koneoppimiseen" class="md-nav__button md-logo" aria-label="Johdatus Koneoppimiseen" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Johdatus Koneoppimiseen
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tervetuloa kurssille
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Koneoppiminen
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Koneoppiminen
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Yleistä
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Yleistä
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Sisällysluettelo">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sisällysluettelo
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mika-on-osa-mita" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mikä on osa mitä?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tekoaly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tekoäly
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tekoäly">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#historia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Historia
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maaritelma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Määritelmä
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#haarat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Haarat
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#koneoppiminen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Koneoppiminen
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Koneoppiminen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maaritelmia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Määritelmiä
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lahteet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lähteet
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../miksi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Motivaatio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tyypit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tyypit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datasetti/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tyonkulku/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Työnkulku
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Naive Bayes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Naive Bayes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2_naivebayes/enkoodaus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Merkkijonojen enkoodaus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2_naivebayes/intuitio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intuitio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2_naivebayes/naive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Naive Bayes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Puut ja Metsät
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Puut ja Metsät
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/suorituskyky/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luokittelumallin suorituskyky
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/entropia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entropia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/puu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Puu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/metsa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metsä
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. k-NN
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. k-NN
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_knn/skaalaus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skaalaus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_knn/dimensio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dimensiovähennys
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_knn/knn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k-NN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Klusterointi
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    5. Klusterointi
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5_klusterointi/sykliset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Syklinen enkoodaus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5_klusterointi/kMeans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K-Means
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exercises/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tehtäväkooste
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Sisällysluettelo">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sisällysluettelo
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mika-on-osa-mita" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mikä on osa mitä?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tekoaly" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tekoäly
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tekoäly">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#historia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Historia
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maaritelma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Määritelmä
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#haarat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Haarat
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#koneoppiminen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Koneoppiminen
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Koneoppiminen">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maaritelmia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Määritelmiä
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lahteet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lähteet
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="yleista">Yleistä</h1>
+<p>Keskitymme tässä ensimmäisessä luvussa alan tärkeimpiin termeihin, niiden määritelmiin, ja yleiskatsaukseen aiheen historiaan. Ensimmäisen opiskeluviikon jälkeen sinun tulisi osata selittää 5-vuotiaalle muun muassa se, että miten koneoppiminen ja tekoäly liittyvät toisiinsa ja mitä ongelmia koneoppiminen auttaa ratkaisemaan. </p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Muistutan vielä, että kurssimateriaali <mark>ei ole tehtäväkirja</mark>. Kunkin aiheen lopussa on tehtäviä, mutta niistä ei saa pisteitä. Oppimispäiväkirjasi tulee olla itsenäinen teos, joka koostuu viikkotason raporteista. Jos et tiedä yhtään, mitä sinun tulee tehdä, lue <a href="https://sourander.github.io/oat/">Oppimispäiväkirja 101</a> -ohjeistus.</p>
+</div>
+<h2 id="mika-on-osa-mita">Mikä on osa mitä?</h2>
+<p>KOKO-ontologian mukaan <a href="http://www.yso.fi/onto/koko/p59563">koneoppiminen</a> käsite, jonka yläkäsite on <a href="https://finto.fi/koko/fi/page/p36713">tekoäly</a>. Toisin sanoen kaikki koneoppiminen on tekoälyä, mutta kaikki tekoäly ei ole koneoppimista. Myöhemmillä kursseilla opittava <a href="http://www.yso.fi/onto/koko/p90875">syväoppiminen</a> on sen sijaan koneoppimisen alakäsite. <sup id="fnref:koko"><a class="footnote-ref" href="#fn:koko">1</a></sup> Täysin itsestäänselvää tämä ei kuitenkaan ole, eikä varsinkaan arkikielessä käytettynä.</p>
+<blockquote>
+<p>"Termejä koneoppiminen, hahmontunnistus ja tekoäly käytetään tarkoittamaan asmaa asiaa, ja no epäselvää miten ne eroavat toisistaan. [...] Kävin ensimmäisen kurssini koneoppimisesta 90-luvulla, ja sillloin Suomessa käytettiin termiä hahmontunnistus."</p>
+<p>– Joni Kämäräinen <sup id="fnref2:kämäräinen"><a class="footnote-ref" href="#fn:kämäräinen">2</a></sup></p>
+</blockquote>
+<p>Kaikkiin näihin liittyy käsite sekä tieteenala <em>datatieteet (engl. data sciences)</em>, ja tyypillinen titteli datetieteilijälle on <em>data scientist</em>. Opettajan näkemys on, että meiltä valmistuu todennäköisemmin esimerkiksi <em>data engineer</em> tai <em>ML engineer</em> tittelille kuin varsinaiseksi datatieteilijäksi – kyseiseen tehtävään olisi hyvä hankkia vankka tilastotieteen tausta. Voit verrata käymäsi koulutusohjelman sisältöä esimerkiksi Roadmap.sh-sivuston tarjoamiin uratiekarttoihin: <a href="https://roadmap.sh/ai-data-scientist">AI and Data Scientist Roadmap</a> ja <a href="https://roadmap.sh/machine-learning">ML engineer roadmap</a> ja <a href="https://roadmap.sh/data-engineer">Data Engineer Roadmap</a> ja <a href="https://roadmap.sh/mlops">MLOps Engineer Roadmap</a>.</p>
+<blockquote>
+<p>"Data Scientist (n.): Person who is better at statistics than any software engineer and better at software engineering than any statistician."</p>
+<p>– Josh Wills <sup id="fnref:joshwills"><a class="footnote-ref" href="#fn:joshwills">3</a></sup></p>
+</blockquote>
+<p>Saman KOKO-ontologian mukaan <a href="http://www.yso.fi/onto/koko/p77267">datatiede</a> on tieteenalan <a href="http://www.yso.fi/onto/koko/p51837">tietojenkäsittelytieteet</a> alakäsite. Alla on huumorivivahteinen Venn-kuvaaja, jossa esitellään eri aihealueiden päällekkäisyyksien luomat kombinaatiot (ks. Kuva 1). Jos pohdit, mikä sanan <em>danger zone</em> tilalla voisi olla ei-niin-humoristisessa mielessä, niin <a href="https://www.wikidata.org/wiki/Q2374463">wikidata: data science</a>-artikkelin kuvaajissa kyseisessä kohdassa lukee <mark>data processing</mark>.</p>
+<p><img alt="Data_Science_VD" src="../../images/100_data_science_venn.png" /></p>
+<p><strong>Kuva 1:</strong> <em>Venn-diagrammi datatieteistä. (CC-BY) <sup id="fnref:drewconway"><a class="footnote-ref" href="#fn:drewconway">4</a></sup></em></p>
+<p>Datatieteet ovat tieteenala, joka laittaa koneoppimisen käytäntöön. Se, millä tittelillä ja miten sinä osallistut tähän prosessiin, riippuu monesta tekijästä.</p>
+<h2 id="tekoaly">Tekoäly</h2>
+<p>Tekoäly on vahvasti elokuvateollisuuden ja muun fiktion värittämä käsite. Osa fiktion tarjoamasta tiedosta on täyttä humpuukia, ja todellisuudessa tekoälyn hupun alta paljastuu pikemminkin tilastotiedettä ja matematiikkaa. Tämä ei kuitenkaan vähennä tekoälyn arvoa liiketoiminnan kannalta tärkeiden ongelmien ratkaisijana. </p>
+<h3 id="historia">Historia</h3>
+<p>Tekoäly ei ole uusi keksintö. Ihmismielen päättelyn ymmärtämistä tai sitä vastaavan mekaanisen laitteen rakentamista on yritetty satoja ellei jopa tuhansia vuosia. Ensimmäinen neuroverkkotietokone, SNARC, rakennettiin vuonna 1950 Minskyn ja Edmondsin toimesta. Se koostui 40:stä keinotekoisesta neuronista, joiden rakennetta inspiroivat ihmisaivojen neuronit. <sup id="fnref:snarc"><a class="footnote-ref" href="#fn:snarc">5</a></sup> Neuroverkkojen historiaan tutustutaan kuitenkin enemmän kurssilla Syväoppiminen I, joten jätetään tämä osa historiaa syvemmin käsittelemättä.</p>
+<p>Koneoppimisen historiaa voidaan sen sijaan hieman sivuuttaa. Kirjassaan <em>Koneoppimisen perusteet</em> – joka kannattaa lukea jos käsiinsä saa – Kämäräinen mainitsee myös suomalaisia nimiä ja yhteisöjä, jotka toivat alan Suomeen. Näitä ovat seuran Hatutus (<em>Suomen hahmontunnistustutkimuksen seura</em>) perustajat Teuvo Kohonen, Erkki Oja ja Matti Pietikäinen. <sup id="fnref:kämäräinen"><a class="footnote-ref" href="#fn:kämäräinen">2</a></sup> Löydät tämän 1977 perustetun seuran tietoja helposti netistä, alken vaikkapa <a href="https://tsv.fi/fi/toiminta/jasenseurat/jasenseurahaku/hakutulos/tiedot?id=109">Tieteellisten seurain valtuuskunnan</a> tarjoamista seuran tiedoista.</p>
+<p>Opettajan kokemus on, että jos yrität tutustua koneoppimisen historiaan, joudut väistelemään neuroverkkoja ja syväoppimista jo 40—50-luvuilta asti. Tämän kurssin koneoppiminen, eli klassiset noin 90-luvun koneoppimismallit, ajavat sinut herkästi aiheisiin kuten <em>statistical signal processing</em> ja <em>statistical pattern recognition</em>. Meidän kurssilla käytäntö lähtee Bayesilaisesta tilastotieteestä, mistä edetään frekventistisen päättelyn keinoihin ja niihin perustuviin koneoppimismalleihin.  Myös </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Neuroverkkoihin syvennytään Syväoppiminen I -kurssilla, joten teethän kaikkesi, jotta et käsittele esimerkiksi nykyisiä kielimalleja aihepiirinä oppimispäiväkirjassasi. Tämän aikan tulee vielä.</p>
+</div>
+<h3 id="maaritelma">Määritelmä</h3>
+<p>Jotta meillä voisi olla ristiriidaton määritelmä tekoälylle, meillä tulisi olla ensin ristiriidaton määritelmä (ihmisen) älykkyydelle. Tällaista ei ole, joten myös AI:n suhteen joudumme tyytymään vaihteleviin määritelmiin. Kirjassa <em>Artificial Intelligence: A Modern Approach</em> <sup id="fnref:russell2010"><a class="footnote-ref" href="#fn:russell2010">6</a></sup> esitetään, että tekoäly on ala, joka pyrkii ei vain ymmärtämään, vaan myös rakentamaan älykkäitä toimijoita. Tekoälyn määritelmiä voidaan kirjan mukaan järjestää neljään kategoriaan: ihmismäisesti ajattelemiseen, rationaalisesti ajattelemiseen, ihmismäisesti toimimiseen ja rationaalisesti toimimiseen. Näiden neljän kategorian jakautuminen perustuu kahteen akseliin: <mark>rationaali-ihmismäinen</mark> (engl. rational-humanly) ja <mark>ajattelu-toiminta</mark> (engl. thinking-acting). Jos tekoäly <em>toimii ihmismäisesti</em> (engl. acting humanly), sen käyttäytyminen on vaikea erottaa ihmisen käyttäytymisestä. Esimerkiksi kuulustelija ei tietäisi, käykö hän keskustelua botin vai ihmisen kanssa. Vastakohta tälle molemmilla akselilla on <em>rationaalisesti ajattelu</em> (engl. thinking rationally). Tämän määritelmän mukaan botti noudattaisi täydellistä päättelyprosessia. Kaikki olisi täysin virheetöntä logiikkaa.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Voisi olla jossain määrin riskaabelia yrittää ratkaista todellisen maailman ongelmia käyttäen bottia, joka pyrkii täydellisesti aukottomaan, rationaaliseen ajatteluun, eikö?</p>
+</div>
+<p><em>Rationaalinen toiminta</em> (engl. rational-acting) vaikuttaa olevan parhaiten soveltuva lähestymistapa käytännön tekoälylle. Rationaalinen toimija on olio, joka havaitsee ympäristönsä erilaisten antureiden avulla ja toimii sen mukaisesti, mutta pystyy sopeutumaan muutoksiin ja tavoittelee päämääriä. Tämän kurssin aikana luomme useita erilaisia rationaalisia toimijoita ja niiden komponentteja: yksi niistä on koneoppiminen, joka on tällä hetkellä hallitseva tapa rakentaa tekoälyä.</p>
+<p>Tämän materiaalin puitteissa voit luottaa seuraavaan määritelmään: <em>AI eli tekoäly on mitä tahansa, mikä ulkoapäin vaikuttaa joltakin, mikä tyypillisesti vaatii ihmisen älykkyyttä</em>. Esimerkiksi kielioppivirheitä tai syntaksivirheitä voi poistaa tekstistä sääntöpohjaisella logiikalla käyttämättä koneoppimista laisinkaan. Myös esimerkiksi "älyliikennevaloja" voi ohjata hyvinkin sääntöpohjaisesti.</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Onko jokin alla listatuista teoksista tuttu? Mitä tekoäly tarkoittaa kyseisessä tarinassa? Mitkä muut elokuvat, tv-sarjat tai kirjat kuuluisivat listalle?</p>
+<ul>
+<li>2001: A Space Odyssey (1968)</li>
+<li>Hitchhiker's Guide to the Galaxy (1978/...)</li>
+<li>Terminator (1984/...)</li>
+<li>The Matrix (1999/...)</li>
+<li>A.I. Artificial Intelligence (2001)</li>
+<li>Moon (2009)</li>
+<li>Her (2013)</li>
+<li>Ex Machina (2014)</li>
+<li>Companion (2025)</li>
+</ul>
+</div>
+<h3 id="haarat">Haarat</h3>
+<p>Tekoäly on kattokäsite ja sen alle lukeutuu eri aloja. Kirjassa "Artificial Intelligence with Python" <sup id="fnref:joshi2017"><a class="footnote-ref" href="#fn:joshi2017">7</a></sup> esitellään tekoälyn eri haarat seuraavasti:</p>
+<ul>
+<li>Koneoppiminen ja hahmontunnistus (engl. machine learning and pattern recognition): datasta oppiminen ja siitä ennustaminen. Tämän kurssin AI edustaa pääasiassa tätä.</li>
+<li>Logiikkapohjainen AI (engl. logic-based AI): sääntöpohjaiset järjestelmät, jotka perustuvat logiikkaan. Käytetään esimerkiksi kielen parsimiseen.</li>
+<li>Haku (engl. search): algoritmit, jotka etsivät esimerkiksi optimaalista reittiä. Peleistä ja navigaattoreista tuttuja.</li>
+<li>Tiedon esittäminen (enlg. knowledge representation): yhteyksien luominen tiedon välille taksonomian tai muun hierarkisen järjestelmän avulla.</li>
+<li>Suunnittelu (engl. planning): algoritmit, jotka suunnittelevat toimintaa tavoitteiden saavuttamiseksi.</li>
+<li>Heuristiikka (engl. heuristics): reittien tai ratkaisuiden etsiminen tilanteessa, jossa optimaalista ratkaisua ei ole mahdollista tai käytännöllistä löytää, kenties nojaten nyrkkisääntöön tai akateemiseen arvaukseen, joka on osoitettavissa riittävän hyväksi.</li>
+<li>Geneettinen ohjelmointi (engl. genetic programming): algoritmit, jotka käyttävät evoluutioteoriaa ratkaisujen löytämiseen.</li>
+</ul>
+<h2 id="koneoppiminen">Koneoppiminen</h2>
+<p>Koneoppimisen määritelmään kuuluu, että koneoppimismalli oppii datasta. Malli oppii siis kokemuksesta. Koneoppimismallin luominen ("mallinnus") on prosessi, jossa valittu koneoppimisalgoritmi oppii datasta. Ihminen valitsee sekä algoritmin että datan - ja näiden valinnalla on merkittävä vaikutus valmiin mallin laatuun.</p>
+<h3 id="maaritelmia">Määritelmiä</h3>
+<blockquote>
+<p>"Machine learning (ML) is a collection of algorithms and techniques used to design systems that learn from data. These systems are then able to perform predictions or deduce patterns from the supplied data." </p>
+<p>– Wei-Meng Lee <sup id="fnref:lee2019"><a class="footnote-ref" href="#fn:lee2019">8</a></sup></p>
+</blockquote>
+<hr />
+<blockquote>
+<p>"The machine learning portion of the picture enabled an AI to perform these tasks:</p>
+<ul>
+<li>Adapt to new circumstances that the original developer didn't envision</li>
+<li>Detect patterns in all sorts of data sources</li>
+<li>Create new behaviors based on the recognized patterns</li>
+<li>Make decisions based on the success of failure of these behaviors."</li>
+</ul>
+<p>– Luca Massaron, John Paul Mueller <sup id="fnref:mueller2016"><a class="footnote-ref" href="#fn:mueller2016">9</a></sup></p>
+</blockquote>
+<hr />
+<blockquote>
+<p>"Difference between machine learning and AI: </p>
+<p>If it is written in Python, it's probably machine learning </p>
+<p>If it is written in PowerPoint, it's probably AI" </p>
+<p>– Matt Velloso <sup id="fnref:velloso2018"><a class="footnote-ref" href="#fn:velloso2018">10</a></sup></p>
+</blockquote>
+<hr />
+<blockquote>
+<p>"[Machine learning is the] field of study concerned with giving computers the ability to learn without being explicitly programmed." </p>
+<p>– Arthur Smith <sup id="fnref:tds-historical"><a class="footnote-ref" href="#fn:tds-historical">11</a></sup> <sup id="fnref:geronpytorch"><a class="footnote-ref" href="#fn:geronpytorch">12</a></sup></p>
+</blockquote>
+<hr />
+<blockquote>
+<p>"A computer program is said to learn from experience, E, with respect to a task, T, and a performance measure, P, if its performance on T, as measured by P, improves with experience E." </p>
+<p>– Tom Mitchell <sup id="fnref2:tds-historical"><a class="footnote-ref" href="#fn:tds-historical">11</a></sup> <sup id="fnref2:geronpytorch"><a class="footnote-ref" href="#fn:geronpytorch">12</a></sup></p>
+</blockquote>
+<hr />
+<blockquote>
+<p>"A program or system that builds (trains) a predictive model from input data. The system uses the learned model to make useful predictions from new (never-before-seen) data drawn from the same distribution as the one used to train the model. Machine learning also refers to the field of study concerned with these programs or systems." </p>
+<p>– Google Developers <sup id="fnref:googlemlglossary"><a class="footnote-ref" href="#fn:googlemlglossary">13</a></sup></p>
+</blockquote>
+<h2 id="lahteet">Lähteet</h2>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:koko">
+<p>Finto. <em>KOKO-ontologia</em>. https://finto.fi/koko/fi/&#160;<a class="footnote-backref" href="#fnref:koko" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:kämäräinen">
+<p>Kämäräinen, J. <em>Koneoppimisen perusteet</em>. Otatieto. 2023.&#160;<a class="footnote-backref" href="#fnref:kämäräinen" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:kämäräinen" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:joshwills">
+<p>Wills, J (<code>@josh_wills</code>). Twitter post (now X). 2012. https://x.com/josh_wills/status/198093512149958656&#160;<a class="footnote-backref" href="#fnref:joshwills" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:drewconway">
+<p>Conway, D. <em>The Data Science Venn Diagram</em>. http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram&#160;<a class="footnote-backref" href="#fnref:drewconway" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:snarc">
+<p>Parvez, Z. <em>The Pioneers of AI: Marvin Minsky and the SNARC</em>. Medium. 2023. https://zahid-parvez.medium.com/history-of-ai-the-first-neural-network-computer-marvin-minsky-231c8bd58409&#160;<a class="footnote-backref" href="#fnref:snarc" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:russell2010">
+<p>Russell, S. &amp; Norvig, P. <em>Artificial Intelligence: A Modern Approach</em>. 3rd edition. Pearson. 2010.&#160;<a class="footnote-backref" href="#fnref:russell2010" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:joshi2017">
+<p>Joshi, P. Artificial Intelligence with Python. Packt Publishing. 2017.&#160;<a class="footnote-backref" href="#fnref:joshi2017" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+<li id="fn:lee2019">
+<p>Lee, W. <em>Python Machine Learning</em>. Wiley. 2019.&#160;<a class="footnote-backref" href="#fnref:lee2019" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+</li>
+<li id="fn:mueller2016">
+<p>Mueller, P. &amp; Massaron, L. <em>Machine Learning for Dummies</em>. No Starch Press. 2016.&#160;<a class="footnote-backref" href="#fnref:mueller2016" title="Jump back to footnote 9 in the text">&#8617;</a></p>
+</li>
+<li id="fn:velloso2018">
+<p>Velloso, M (<code>@matvelloso</code>). Twitter post (now X). 2018. https://x.com/matvelloso/status/1065778379612282885?&#160;<a class="footnote-backref" href="#fnref:velloso2018" title="Jump back to footnote 10 in the text">&#8617;</a></p>
+</li>
+<li id="fn:tds-historical">
+<p>Krishna, D. <em>Your historical, theoretical and slightly mathematical introduction to the world of Machine…</em>. Towards Data Science. 2020. https://towardsdatascience.com/your-historical-theoretical-and-slightly-mathematical-introduction-to-the-world-of-machine-862b94fe8353/&#160;<a class="footnote-backref" href="#fnref:tds-historical" title="Jump back to footnote 11 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:tds-historical" title="Jump back to footnote 11 in the text">&#8617;</a></p>
+</li>
+<li id="fn:geronpytorch">
+<p>Géron, A. <em>Hands-On Machine Learning with Scikit-Learn and PyTorch</em>. O'Reilly. 2025.&#160;<a class="footnote-backref" href="#fnref:geronpytorch" title="Jump back to footnote 12 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:geronpytorch" title="Jump back to footnote 12 in the text">&#8617;</a></p>
+</li>
+<li id="fn:googlemlglossary">
+<p>Google Developers. <em>Machine Learning Glossary</em>. https://developers.google.com/machine-learning/glossary#m&#160;<a class="footnote-backref" href="#fnref:googlemlglossary" title="Jump back to footnote 13 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 <a href="https://www.kamk.fi">Kajaanin Ammattikorkeakoulu Oy</a>. 
+Licenced under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">BY-NC-SA 4.0</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Kopioitu leikep\u00f6yd\u00e4lle", "clipboard.copy": "Kopioi leikep\u00f6yd\u00e4lle", "search.result.more.one": "1 lis\u00e4\u00e4 t\u00e4ll\u00e4 sivulla", "search.result.more.other": "# lis\u00e4\u00e4 t\u00e4ll\u00e4 sivulla", "search.result.none": "Ei t\u00e4sm\u00e4\u00e4vi\u00e4 dokumentteja", "search.result.one": "1 t\u00e4sm\u00e4\u00e4v\u00e4 dokumentti", "search.result.other": "# t\u00e4sm\u00e4\u00e4v\u00e4\u00e4 dokumenttia", "search.result.placeholder": "Kirjoita aloittaaksesi haun", "search.result.term.missing": "Puuttuu", "select.version": "Valitse versio"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

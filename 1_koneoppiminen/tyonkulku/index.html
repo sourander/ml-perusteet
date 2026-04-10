@@ -1,0 +1,1528 @@
+
+<!doctype html>
+<html lang="fi" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../datasetti/">
+      
+      
+        <link rel="next" href="../../2_naivebayes/enkoodaus/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Työnkulku - Johdatus Koneoppimiseen</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tyonkulku" class="md-skip">
+          Hyppää sisältöön
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Ylätunniste">
+    <a href="../.." title="Johdatus Koneoppimiseen" class="md-header__button md-logo" aria-label="Johdatus Koneoppimiseen" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Johdatus Koneoppimiseen
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Työnkulku
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Hae" placeholder="Hae" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Haku">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Tyhjää" aria-label="Tyhjää" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Aloitetaan hakua
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigaatio" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Johdatus Koneoppimiseen" class="md-nav__button md-logo" aria-label="Johdatus Koneoppimiseen" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Johdatus Koneoppimiseen
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tervetuloa kurssille
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Koneoppiminen
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Koneoppiminen
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../yleista/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Yleistä
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../miksi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Motivaatio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tyypit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tyypit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datasetti/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Työnkulku
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Työnkulku
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Sisällysluettelo">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sisällysluettelo
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vaiheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vaiheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vaiheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-maarittele-ratkaistava-ongelma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Määrittele ratkaistava ongelma
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-hanki-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Hanki data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-tutki-dataa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Tutki dataa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-esikasittele-data-algoritmille-sopivaksi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Esikäsittele data algoritmille sopivaksi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-kokeile-useita-malleja-ja-valitse-parhaat-jatkoon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Kokeile useita malleja ja valitse parhaat jatkoon
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-mallin-tuunaus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Mallin tuunaus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-esittele-ratkaisusi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Esittele ratkaisusi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-mallin-kayttoonotto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Mallin käyttöönotto
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tehtavat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tehtävät
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lahteet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lähteet
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Naive Bayes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Naive Bayes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2_naivebayes/enkoodaus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Merkkijonojen enkoodaus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2_naivebayes/intuitio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intuitio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2_naivebayes/naive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Naive Bayes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Puut ja Metsät
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Puut ja Metsät
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/suorituskyky/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luokittelumallin suorituskyky
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/entropia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entropia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/puu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Puu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/metsa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metsä
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. k-NN
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. k-NN
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_knn/skaalaus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skaalaus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_knn/dimensio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dimensiovähennys
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_knn/knn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k-NN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Klusterointi
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    5. Klusterointi
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5_klusterointi/sykliset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Syklinen enkoodaus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5_klusterointi/kMeans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K-Means
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exercises/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tehtäväkooste
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Sisällysluettelo">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sisällysluettelo
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vaiheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vaiheet
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vaiheet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-maarittele-ratkaistava-ongelma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Määrittele ratkaistava ongelma
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-hanki-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Hanki data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-tutki-dataa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Tutki dataa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-esikasittele-data-algoritmille-sopivaksi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Esikäsittele data algoritmille sopivaksi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-kokeile-useita-malleja-ja-valitse-parhaat-jatkoon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Kokeile useita malleja ja valitse parhaat jatkoon
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-mallin-tuunaus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Mallin tuunaus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-esittele-ratkaisusi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Esittele ratkaisusi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-mallin-kayttoonotto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Mallin käyttöönotto
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tehtavat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tehtävät
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lahteet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lähteet
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="tyonkulku">Työnkulku</h1>
+<p>Ennen kuin tätä ohjetta seuraa pidemmälle, pitäisi olla selvillä, <strong>miksi</strong> kyseistä mallia ollaan ottamassa käyttöön. Toisin sanoen esivaatimus koko touhulle on vaihe, jossa ongelma ja siihen toivottu ratkaisu määritellään.</p>
+<p>Olettaen, että ongelma on jo määritelty, niin vaiheet voi jakaa muun muassa alla esitellyllä tavalla. Listaus löytyi kurssikirjan edeltäjän liitteistä, <em>Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 3rd Edition</em>, vuodelta 2022 <sup id="fnref:geron3rd"><a class="footnote-ref" href="#fn:geron3rd">1</a></sup>. Tuoreimmasta versiosta löytyy yhä lista, mutta ei enää liitteistä, vaan se on ulkoistettu <a href="https://github.com/ageron/handson-mlp/blob/main/ml-project-checklist.md">gh:ageron/handson-mlp/ml-project-checklist-md</a>-tiedostoon online. Lista on vapaasti suomennettuna:</p>
+<ol>
+<li>Määrittele ratkaistava ongelma</li>
+<li>Hanki data</li>
+<li>Tutki dataa saadaksesi ymmärrystä</li>
+<li>Esikäsittele data algoritmille sopivaksi</li>
+<li>Kokeile useita malleja ja valitse parhaat jatkoon</li>
+<li>Säädä mallien hyperparametreja</li>
+<li>Esittele ratkaisusi</li>
+<li>Mallin käyttöönotto</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Huomaa, että vaiheet ovat iteratiivisia ja niillä on keskenään vahvoja riippuvuuksia. Jos vaiheista piirtäisi kaavion, niin kukin vaihe sisältäisi takaisinkytkentöjä edellisiin vaiheisiin. Esimerkiksi mallin evaluoinnissa voi tulla ilmi, että malli ei saavuta riittävää tarkkuutta ilman lisädatan keräämistä. Käytännössä tällöin palataan takaisin lähtöruutuun (joskin hieman viisaampana).</p>
+</div>
+<p>Kurssikirjan luku 2 <sup id="fnref:geronpytorch"><a class="footnote-ref" href="#fn:geronpytorch">2</a></sup> käy nämä vaiheet läpi käyttäen California Housing -datasettiä esimerkkinä. Tässä materiaalissa ei toisinneta tätä tekstiä, eikä kyseinen kirja ole lähteenä seuraaville vaiheille, vaan ne on kirjoitettu omasta kokemuksesta ja muista lähteistä. Ne toimivat täydentävänä materiaalina. Tämän luvun, ja samalla ensimmäisen opiskeluviikon, lopettaa tehtävä, jossa sinun tulee lukea <code>140_first_model.py</code>-tiedostoon toteutettun Titanic-luokittelija. Näin pääset ensimmäisellä viikolla näkemään kaksi end-to-end -projektia: regressio-ongelma (California Housing) ja luokittelu-ongelma (Titanic). On ymmärrettävää, että ensimmäisellä viikolla osa aihepiiristä tulee menemään yli hilseen: keskity kokonaiskuvan ymmärtämiseen, älä yksityiskohtiin. Seuraavilla viikoilla sukelletaan algoritmeihin ja datan käsittelyyn tarkemmin.</p>
+<h2 id="vaiheet">Vaiheet</h2>
+<h3 id="1-maarittele-ratkaistava-ongelma">1. Määrittele ratkaistava ongelma</h3>
+<p>Tämä on varsinkin myöhemmillä projektikursseilla sekä opinnäytetyössä äärimmäisen tärkeää. Jos et osaa selittää tiivisti, minkä ongelman koneoppimismallisi valmiissa muodossaan ratkaisee, olet todennäköisesti hakoteillä. Hyvä tapa tutustua tähän on etsiä sinua kiinnostavan aihepiirin tutkimus käsiisi ja lukea sen <em>Johdanto</em> eli <em>Introduction</em>.</p>
+<ol>
+<li>Navigoi <a href="https://scholar.google.com/">Google Scholariin</a></li>
+<li>Etsi esimerkiksi <code>"horror games" AND "deep learning"</code> tai <code>"Red Palm Weevil" AND "deep learning"</code></li>
+<li>Avaa PDF-linkki</li>
+</ol>
+<p>Jos PDF:ään ei ole vapaata pääsyä, etsi seuraava. Voit etsiä myös <em>machine learning</em> aiheella, mutta näin 2020-luvulla tuoreimmat julkaisut ovat usein syväoppimiseen perustuvia. Ratkaistavaan ongelmaan tutustuessa ei ole sinänsä väliä, millä keinoin se on ratkaistu.</p>
+<h3 id="2-hanki-data">2. Hanki data</h3>
+<p>Koneoppimismallin rakentamiseen tarvitaan dataa. Datan pitää olla valitun ongelman kannalta merkitsevää. Ongelma on, että usein datan merkitsevyys ei ole itsestään selvää vaan paljastuu vasta myöhemmissä vaiheissa. Datan kerääminen on kuitenkin tiukasti säädeltyä (GDPR, AI Act).</p>
+<p>Dataa voidaan kerätä julkisista lähteistä, oman palvelun käyttäjiltä, kyselyillä, sensoreilta, jne. Datan keräämisessä tehdyt <mark>virheet kostautuvat kaikissa seuraavissa vaiheissa</mark>. Yrityksen data voi hyvin sijaita siiloutuneena eri järjestelmissä, jolloin datan yhdistäminen ja puhdistaminen voi olla yllättävänkin suuritöistä. Sivuoireena tästä saattaa syntyä data-alusta, joka tuottaa yritykselle arvoa myös muilla tavoin kuin koneoppimismallien kautta.</p>
+<p>Tähän vaiheeseen saattaa kuulua myös datan annotointi tai merkitseminen. Annotointi on työläs vaihe, jossa ihmiset merkkaavat, että onko kuvassa esimerkiksi kissa vai koira, tai onko sähköposti roskapostia vai ei. Laadukkaan, labelöidyn datan puute on herkästi pullonkaula. Projekti voi siis tyssätä jo alkuvaiheisiin.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Joskus annotointi saadaan joukkoistettua, jolloin useat ihmiset merkkaavat samaa dataa ja virheet voidaan havaita ja korjata. Jos olet joskus vastannut CAPTCHA-kyselyihin, olet todennäköisesti ollut osa joukkoistettua annotointia. Myös "Minkä ikäiseltä näytät?" -tyyppiset some-lelut ovat joukkoistettua annotointia. Kun merkkaat Gmailissa sähköpostia roskapostiksi, olet osa joukkoistettua annotointia.</p>
+</div>
+<h3 id="3-tutki-dataa">3. Tutki dataa</h3>
+<p>TODO</p>
+<h3 id="4-esikasittele-data-algoritmille-sopivaksi">4. Esikäsittele data algoritmille sopivaksi</h3>
+<p>Datan esikäsittelyssä käsitellään dataa ennen koneoppimismallin rakentamista. Tähän voi kuulua esimerkiksi puuttuvien arvojen täyttäminen, datan normalisointi, piirteiden yhdistäminen (esim. <code>etäisyys / aika = nopeus</code>), kategorisen datan enkoodaus useiksi binääripiirteiksi ja niin edelleen. Kenties datasetti sisältää päivämääriä, jotka ovat tulevaisuudessa. Se, kuinka näihin virheisiin reagoidaan, vaatii ymmärrystä siitä, kuinka data on kerätty, ja siitä, mitä data edustaa (eli substanssiosaamista.)</p>
+<p>Datan käsittely ei ole mekaaninen vaihe vaan vaatii ymmärrystä datan luonteesta. Tähän vaiheeseen sisältyy myös eksploratiivinen analyysi, jossa pyritään ymmärtämään datan piirteitä ja mahdollisia ongelmia. Esimerkiksi jatkuvien lukujen jakautumista voidaan tarkastella histogrammien avulla ja eri piirteiden välisiä korrelaatioita voidaan tarkastella korrelaatiomatriisin avulla. Tätä piirteiden yhdistämis- ja luomisprosessi tunnetaan englanninkielisellä termillä <em>feature engineering</em>.</p>
+<p>Datan käsittelyn aikana tulisi muun muassa selvittää ja dokumentoida, kuinka tasapainoista tai vinksahtanutta data on. Jos data on epätasapainoista, esimerkiksi 99 % negatiivisia ja 1 % positiivisia tapahtumia, mallin rakentaminen voi olla haastavampaa. Tällöin malli voi oppia ennustamaan kaikki tapahtumat negatiivisiksi ja silti saavuttaa korkean tarkkuuden.</p>
+<p>Alla koneoppimismalli, joka ennustaa reilusti yli 99 % tarkkuudella, että voittaako kyseinen käyttäjä huomenna Lotto-arvonnassa päävoiton.</p>
+<div class="language-python highlight"><span class="filename">IPython</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">is_lotto_winner_tomorrow</span><span class="p">(</span><span class="n">user_id</span><span class="p">):</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">return</span> <span class="kc">False</span>
+</span></code></pre></div>
+<h3 id="5-kokeile-useita-malleja-ja-valitse-parhaat-jatkoon">5. Kokeile useita malleja ja valitse parhaat jatkoon</h3>
+<p>Koneoppimismallin valinta riippuu siitä, millaista dataa on saatavilla ja mitä halutaan ennustaa. Katso aiempi luku <a href="../tyypit/">Tyypit</a> kertauksena eri koneoppimismallityypeistä. On kuitenkin tärkeää korostaa, että data ja sen laatu vaikuttavat lopputulokseen enemmän kuin käytetty malli.</p>
+<blockquote>
+<p>It [his observation] implies that model behavior is not determined by architecture, hyperparameters, or optimizer choices.It’s determined by your dataset, nothing else. Everything else is a means to an end in efficiently delivery compute to approximating that dataset.</p>
+<p>Then, when you refer to “Lambda”, “ChatGPT”, “Bard”, or “Claude” then, it’s not the model weights that you are referring to. It’s the dataset. </p>
+</blockquote>
+<p><strong>Lähde</strong>: James Betker (Open AI), kirjoitus: <a href="https://nonint.com/2023/06/10/the-it-in-ai-models-is-the-dataset/">The “it” in AI models is the dataset</a>.</p>
+<p>Scikit-learn tarjoaa vakaan API:n, joka mahdollistaa useiden eri mallien kouluttamisen ja käytön samoilla <code>.fit()</code> ja <code>.transform()</code> metodeilla. Mallien vertailun on siis kehittäjälle vaivatonta. Tästä syystä vaiheet 3-5 ovat usein iteratiivisia ja niiden välillä on paljon takaisinkytkentää. Mikäli käytetty data ei ole aivan big data -kokoluokassa, mallien kouluttaminen on usein kohtalaisen nopeaa, joten on täysin mahdollista vertailla useita eri malleja ja niiden hyperparametreja, vaikka näistä tulisikin melko suuri määrä testattavia kombinaatioita.</p>
+<h3 id="6-mallin-tuunaus">6. Mallin tuunaus</h3>
+<p>Koneoppimismallin tuunausta (engl. hyperparameter tuning) käytetään mallin suorituskyvyn parantamiseen.</p>
+<p>Aivan kuten mallin koulutuksessa, myös hienosäädössä käytetään koulutusdataa, jotta voidaan varmistaa, ettei mallin hyperparametreja optimoida testidatan suhteen. Tavoite on, että hyperparametrien arvot ovat sellaiset, että malli yleistyy parhaiten uuteen dataan - ei se, että se toimii parhaiten koulutusdatalla.</p>
+<p>Parametrien tuunaus voi tapahtua esimerkiksi ristivalidoinnin (engl. cross-validation) avulla. Ristivalidoinnissa data jaetaan useaan osaan, joista osa käytetään koulutukseen ja osa testaukseen. Tätä toistetaan useita kertoja, jolloin saadaan luotettavampi arvio mallin suorituskyvystä.</p>
+<p>Pseudoesimerkki alla. Esimerkkiä lukiessa sinun ei tarvitse tietää, mitä Lasso-malli tekee. Riittää, että hyväksyt, että  <code>alpha</code>-arvon on hyperparametri, ja sen arvon valinta vaikuttaa merkittävästi siihen, kuinka hyvin malli ennustaa. Hyperparametrien tuunaus on näiden arvojen haarukoimista. Jos haarukoitavia arvoja on monta (kuvitteellisina esimerkkeinä alpha, beta, gamma, ...), niin kaikki näiden kombinaatiot pitää testata.</p>
+<div class="language-python highlight"><span class="filename">IPython</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">alpha_grid</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">for</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="n">alpha_grid</span><span class="p">:</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">clf</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">Lasso</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">scores</span> <span class="o">=</span> <span class="n">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Alpha: </span><span class="si">{</span><span class="n">alpha</span><span class="si">}</span><span class="s2">, Scores: </span><span class="si">{</span><span class="n">scores</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="7-esittele-ratkaisusi">7. Esittele ratkaisusi</h3>
+<p>TODO!</p>
+<h3 id="8-mallin-kayttoonotto">8. Mallin käyttöönotto</h3>
+<p>Käyttöönotto (engl. deployment) on vaihe, jossa hyödylliseksi evaluoitu ja hienosäädetty malli otetaan käyttöön. Kevyt malli voidaan esimerkiksi julkaista yksinkertaisen REST-rajapinnan taakse (esim. Python FastAPI), jolloin se on helposti käytettävissä. Raskaampi malli voidaan julkaista hajautettuun järjestelmään, jossa kuormantasaajan takana olevat yksiköt skaalautuvat automaattisesti käyttäjämäärän mukaan (esim. Kubernetes).</p>
+<p>Käytännön tasolla projekti ei kuitenkaan ole välttämättä vielä ohi. Mallista voi mennä niin sanotusti parasta ennen päivä umpeen (engl. model decay, model rot, model drift). Tältä voi välttyä keräämällä jatkuvasti dataa ja päivittämällä mallia säännöllisesti. Toisin sanoen yllä olevista vaiheista tulee loop. Ideaalitilanteessa loppukäyttäjät osallistuvat virheellisten ennusteiden merkintään, jolloin he osallistuvat mallin jatkokehitykseen (ks. vaihe 1).</p>
+<h2 id="tehtavat">Tehtävät</h2>
+<p>TODO!</p>
+<h2 id="lahteet">Lähteet</h2>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:geron3rd">
+<p>Géron, A. <em>Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 3rd Edition</em>. O'Reilly. 2022.&#160;<a class="footnote-backref" href="#fnref:geron3rd" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:geronpytorch">
+<p>Géron, A. <em>Hands-On Machine Learning with Scikit-Learn and PyTorch</em>. O'Reilly. 2025.&#160;<a class="footnote-backref" href="#fnref:geronpytorch" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 <a href="https://www.kamk.fi">Kajaanin Ammattikorkeakoulu Oy</a>. 
+Licenced under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">BY-NC-SA 4.0</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Kopioitu leikep\u00f6yd\u00e4lle", "clipboard.copy": "Kopioi leikep\u00f6yd\u00e4lle", "search.result.more.one": "1 lis\u00e4\u00e4 t\u00e4ll\u00e4 sivulla", "search.result.more.other": "# lis\u00e4\u00e4 t\u00e4ll\u00e4 sivulla", "search.result.none": "Ei t\u00e4sm\u00e4\u00e4vi\u00e4 dokumentteja", "search.result.one": "1 t\u00e4sm\u00e4\u00e4v\u00e4 dokumentti", "search.result.other": "# t\u00e4sm\u00e4\u00e4v\u00e4\u00e4 dokumenttia", "search.result.placeholder": "Kirjoita aloittaaksesi haun", "search.result.term.missing": "Puuttuu", "select.version": "Valitse versio"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

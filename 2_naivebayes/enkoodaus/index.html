@@ -1,0 +1,2097 @@
+
+<!doctype html>
+<html lang="fi" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../1_koneoppiminen/tyonkulku/">
+      
+      
+        <link rel="next" href="../intuitio/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Merkkijonojen enkoodaus - Johdatus Koneoppimiseen</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#merkkijonojen-enkoodaus" class="md-skip">
+          Hyppää sisältöön
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Ylätunniste">
+    <a href="../.." title="Johdatus Koneoppimiseen" class="md-header__button md-logo" aria-label="Johdatus Koneoppimiseen" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Johdatus Koneoppimiseen
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Merkkijonojen enkoodaus
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Hae" placeholder="Hae" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Haku">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Tyhjää" aria-label="Tyhjää" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Aloitetaan hakua
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigaatio" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Johdatus Koneoppimiseen" class="md-nav__button md-logo" aria-label="Johdatus Koneoppimiseen" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Johdatus Koneoppimiseen
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tervetuloa kurssille
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Koneoppiminen
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Koneoppiminen
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1_koneoppiminen/yleista/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Yleistä
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1_koneoppiminen/miksi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Motivaatio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1_koneoppiminen/tyypit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tyypit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1_koneoppiminen/datasetti/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1_koneoppiminen/tyonkulku/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Työnkulku
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Naive Bayes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Naive Bayes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Merkkijonojen enkoodaus
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Merkkijonojen enkoodaus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Sisällysluettelo">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sisällysluettelo
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#menetelmat-sanalle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menetelmät sanalle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Menetelmät sanalle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#label-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Label encoding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordinal-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordinal Encoding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-hot-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Hot encoding
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#menetelmat-lauseelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menetelmät lauseelle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Menetelmät lauseelle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bag-of-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bag of Words
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tf-idf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TF-IDF
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TF-IDF">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#df" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IDF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-helppo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case: helppo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tehtavat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tehtävät
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lahteet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lähteet
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intuitio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intuitio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../naive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Naive Bayes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Puut ja Metsät
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Puut ja Metsät
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/suorituskyky/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luokittelumallin suorituskyky
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/entropia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entropia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/puu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Puu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/metsa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metsä
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. k-NN
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. k-NN
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_knn/skaalaus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skaalaus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_knn/dimensio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dimensiovähennys
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_knn/knn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k-NN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Klusterointi
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    5. Klusterointi
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5_klusterointi/sykliset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Syklinen enkoodaus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5_klusterointi/kMeans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K-Means
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exercises/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tehtäväkooste
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Sisällysluettelo">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sisällysluettelo
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#menetelmat-sanalle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menetelmät sanalle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Menetelmät sanalle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#label-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Label encoding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordinal-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ordinal Encoding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-hot-encoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One-Hot encoding
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#menetelmat-lauseelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menetelmät lauseelle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Menetelmät lauseelle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bag-of-words" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bag of Words
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tf-idf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TF-IDF
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TF-IDF">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#df" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idf" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        IDF
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case-helppo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Case: helppo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tehtavat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tehtävät
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lahteet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lähteet
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="merkkijonojen-enkoodaus">Merkkijonojen enkoodaus</h1>
+<p>Ennen kuin siirrymme Naive Bayes -algortimin intuition ymmärtämiseen ja itse algoritmin käsittelyyn, tutustutaan datan enkoodaukseen. Wikidata määritelmän (en)kooderi (<em>engl. encoder</em>) on: <em>"ohjelma tai laite, joka muuntaa datan toiseen muotoon määritettyjen sääntöjen mukaan"</em> <sup id="fnref:wiki-encoder"><a class="footnote-ref" href="#fn:wiki-encoder">1</a></sup>. Tässä kontekstissa enkooderi koodaa ASCII-muotoisen viestin kategoriseksi numeraaliseksi dataksi.</p>
+<p>Kurssilla on jo aiemmassa luvussa käynyt selväksi (ks. <a href="../../1_koneoppiminen/datasetti/#muuttujat">Muuttujat</a>), että koneoppimismallit vaativat numeerisista syötettä. Sanamuotoiset kategoriset muuttujat, kuten arvoavaruus <code>( "Cat", "Dog", "Hamster" )</code>, eivät ole numeerisia. Tästä syystä kategoriset muuttujat tulee enkoodata numeeriseen muotoon. Lauseet, kuten <code>Olipa kerran kissa</code>, vaativat vielä monimutkaisempaa käsittelyä.</p>
+<p>Tässä materiaalissa tutustut menetelmiin one-hot encoding, label encoding, ordinal encoding, BoW (bag or words) ja TF-IDF. Tutustutaan niihin seuraavan datasetin avulla:</p>
+<table>
+<thead>
+<tr>
+<th>age</th>
+<th>level</th>
+<th>lang</th>
+<th>feedback</th>
+<th>passed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>21</td>
+<td>matala</td>
+<td>Python</td>
+<td>selkeä teoria helppo selkeä tehtävä</td>
+<td>1</td>
+</tr>
+<tr>
+<td>34</td>
+<td>korkea</td>
+<td>R</td>
+<td>vaikea tehtävä paljon laskentaa</td>
+<td>0</td>
+</tr>
+<tr>
+<td>28</td>
+<td>keskitaso</td>
+<td>Python</td>
+<td>selkeä harjoitus hyödyllinen esimerkki</td>
+<td>1</td>
+</tr>
+<tr>
+<td>45</td>
+<td>korkea</td>
+<td>Julia</td>
+<td>raskas projekti paljon koodia</td>
+<td>0</td>
+</tr>
+<tr>
+<td>23</td>
+<td>matala</td>
+<td>R</td>
+<td>helppo harjoitus selkeä ohje</td>
+<td>1</td>
+</tr>
+<tr>
+<td>39</td>
+<td>keskitaso</td>
+<td>Python</td>
+<td>hyödyllinen projekti hyvä visualisointi</td>
+<td>1</td>
+</tr>
+<tr>
+<td>31</td>
+<td>korkea</td>
+<td>Julia</td>
+<td>vaikea teoria raskas tehtävä</td>
+<td>0</td>
+</tr>
+<tr>
+<td>26</td>
+<td>matala</td>
+<td>Python</td>
+<td>selkeä esimerkki helppo koodi</td>
+<td>1</td>
+</tr>
+<tr>
+<td>42</td>
+<td>keskitaso</td>
+<td>R</td>
+<td>paljon teoria hyödyllinen tehtävä</td>
+<td>0</td>
+</tr>
+<tr>
+<td>29</td>
+<td>matala</td>
+<td>Julia</td>
+<td>helppo alku selkeä harjoitus</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h2 id="menetelmat-sanalle">Menetelmät sanalle</h2>
+<p>Aloitetaan kategorisista muuttujista, jotka sisältävät yksittäistä sanaa edustavan merkkijonon, kuten <code>level</code>-sarakkeessa olevat "matala", "korkea" ja "keskitaso". Myöhemmin käsittelemme monimutkaisemman sarakkeen <code>feedback</code>, joka sisältää useita välilyönnillä erotettuja sanoja edustavan merkkijonon (lue: lauseen).</p>
+<h3 id="label-encoding">Label encoding</h3>
+<p>Käsitteet <em>ordinal encoding</em> ja <em>label encoding</em> menevät herkästi sekaisin termeinä <sup id="fnref:fe-cookbook"><a class="footnote-ref" href="#fn:fe-cookbook">4</a></sup>. Käsitellään ensimmäisenä <strong>label encoding</strong>, joka on täysin järjestyksetön, joten sarakkeen <code>level</code> enkoodaus näyttää tältä:</p>
+<table>
+<thead>
+<tr>
+<th>level</th>
+<th>level_encoded</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>matala</td>
+<td>0</td>
+</tr>
+<tr>
+<td>korkea</td>
+<td>1</td>
+</tr>
+<tr>
+<td>keskitaso</td>
+<td>2</td>
+</tr>
+<tr>
+<td>korkea</td>
+<td>1</td>
+</tr>
+<tr>
+<td>matala</td>
+<td>0</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<p>Huomaa, että arvot on määritelty esiintymisjärjestyksessä (engl. <em>the order of appearance</em>). Toisin sanoen ne voivat olla eri järjestyksessä kuin ihmisen käsittämä järjestys kyseisille kategorioilla <sup id="fnref:python-da"><a class="footnote-ref" href="#fn:python-da">3</a></sup>. Tästä tuleekin nimi <strong>LABEL</strong> encoding. Kyseinen enkoodaus on käytössä lähinnä ennustettavalle luokalle. Jos katsot scikit-learn <a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html">LabelEncoder</a> dokumentaatiota, huomaat, että: <em>"This transformer should be used to encode target values, i.e. <span class="arithmatex">\(y\)</span>, and not the input <span class="arithmatex">\(X\)</span>."</em></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Tällä Johdatus koneoppimiseen -kurssilla keskitymme pääasiassa binäärisiin ongelmiin, joten label on usein <code>0</code> tai <code>1</code> jo valmiiksi. Ongelmissa, joita voi kuvata esimerkiksi termein <em>multiclass, single-label classification</em>, luokkia on monia. Esimerkiksi kuuluisa CIFAR-10 dataset voitaisiin Label Encoodata seuraavasti: <code>1=plane</code>, <code>2=car</code>, <code>3=bird</code>, ... <code>10=truck</code>. Tähän aiheeseen palataan Syväoppiminen I -kurssilla.</p>
+</div>
+<h3 id="ordinal-encoding">Ordinal Encoding</h3>
+<p>Aiemmin mainittu sekaannus termien <strong>label</strong> ja <strong>ordinal encoding</strong> välillä mahdollistuu sillä, että scikit-learn:n <a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OrdinalEncoder.html">OrdinalEncoder</a> voi toimia myös ilman järjestystä (engl. <em>order</em>) – ja näin se myös vakiona tekeekin, koska <code>categories="auto"</code>, jolloin toiminnallisuus on: <em>"determine categories automatically from the training data."</em>. Tällöin reaalimaailman järjestys menenetään, joten <code>ordinal</code>-sana lakkaa olemasta merkityksellinen.</p>
+<p>Huomaa, että kummatkin näistä enkoodeneista (label ja ordinal) tekevät jostakin luokasta numerona suuremman kuin toisen. Tämä voi johtaa virheellisiin johtopäätöksiin, koska monet koneoppimismallit tulkitsevat suuruusjärjestyksen olevan merkityksellinen. Kategoriset muuttujat, kuten t-paidan koko (S, M, L, XL jne.) ovat järjestyksellisiä eli ordinaalisia. Tällöin niiden vaihtaminen numeroiksi <strong>järjestystä noudattaen</strong> voi olla perusteltua.</p>
+<table>
+<thead>
+<tr>
+<th>level</th>
+<th>level_encoded</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>matala</td>
+<td>0</td>
+</tr>
+<tr>
+<td>korkea</td>
+<td>2</td>
+</tr>
+<tr>
+<td>keskitaso</td>
+<td>1</td>
+</tr>
+<tr>
+<td>korkea</td>
+<td>2</td>
+</tr>
+<tr>
+<td>...</td>
+<td>.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Kaikki kategoriset muuttujat eivät kuitenkaan ole ordinaalisia. Jos datasetissä on esimerkiksi piirre lempiväri, joka on kokonaislukuina enkoodattuna: <code>0: oranssi</code>ja <code>6: Sininen</code>, koneoppimismalli voi tulkita, että sininen on kuusi kertaa niin suuri kuin oranssi.</p>
+</div>
+<h3 id="one-hot-encoding">One-Hot encoding</h3>
+<p>One-hot encoding on äärimmäisen yksinkertainen tapa enkoodata kategorinen muuttuja vektoriksi. Vektorista tulee yhtä pitkä kuin aineiston uniikit arvot. SQL-toteutus lienee helpoin lukea. Sen voi tehdä DuckDB:n esimerkkiä <sup id="fnref:duckdb-feat-eng"><a class="footnote-ref" href="#fn:duckdb-feat-eng">2</a></sup> myötäillen näin:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">SELECT</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="ss">&quot;level&quot;</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">level_keskitaso</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="ss">&quot;level&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;keskitaso&#39;</span><span class="p">)::</span><span class="n">UTINYINT</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="n">level_korkea</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="ss">&quot;level&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;korkea&#39;</span><span class="p">)::</span><span class="n">UTINYINT</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="n">level_matala</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="ss">&quot;level&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;matala&#39;</span><span class="p">)::</span><span class="n">UTINYINT</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">FROM</span><span class="w"> </span><span class="n">df</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>level</th>
+<th>level_keskitaso</th>
+<th>level_korkea</th>
+<th>level_matala</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>matala</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>korkea</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>keskitaso</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>korkea</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<p>Tässä tapauksessa siis <code>level_keskitaso</code> on vektori <code>[0, 1, 0]</code>. Scikit-learn kirjastossa vastaavan operaation toteuttaa <a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html">OneHotEncoder</a>. Polars tuntee tämän nimellä <a href="https://docs.pola.rs/api/python/stable/reference/dataframe/api/polars.DataFrame.to_dummies.html">DataFrame.to_dummies()</a> ja Pandas nimellä <a href="https://pandas.pydata.org/docs/reference/api/pandas.get_dummies.html">.get_dummies()</a>. On tärkeämpää ymmärtää kuinka one-hot encoding toimii kuin osata toteuttaa se jollain tietyllä kirjastolla. Kun ymmärrät periaatteen, voit toteuttaa sen jatkossa millä tahansa kirjastolla, mikä sattuukaan istumaan sinun projektisi teknologiapinoon.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Usein yksi vektorin arvoista pudotetaan pois. SQL:llä tekisit tämän siten, että kommentoit yhden yllä olevista riveistä pois. Polarsilla ja Pandasilla on tätä varten parametri <code>drop_first=True</code> (tai <code>drop="first</code>). Tähän aiheeseen palataan myöhemmin mallien kohdalla termin <em>multikollineaarisuus</em> kautta. Älä murehdi tästä vielä liika.</p>
+</div>
+<h2 id="menetelmat-lauseelle">Menetelmät lauseelle</h2>
+<p>Aiemmin keskityimme yksittäisen sanan sisältävään sarakkeeseen <code>level</code>, jossa koko sarakkeen merkkijonon tulkittiin oleva arvo itsessään. Sarake <code>feedback</code> on monimutkaisempi. Se sisältää arvon, kuten <code>selkeä teoria helppo selkeä tehtävä</code>.</p>
+<h3 id="bag-of-words">Bag of Words</h3>
+<p>Sarakkeessa <code>feedback</code> olevat lauseet, voidaan enkoodata käyttämällä <strong>bag of words</strong> -menetelmää <sup id="fnref:bow-beginners"><a class="footnote-ref" href="#fn:bow-beginners">5</a></sup> <sup id="fnref:buildingaiagents"><a class="footnote-ref" href="#fn:buildingaiagents">6</a></sup>. Scikit-learnin toteutus tästä kulkee nimellä <a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.CountVectorizer.html">CountVectorizer</a>. Kannattaa tutustua myös Christian S. Peronen blogista löytyvään selitykseen <a href="https://blog.christianperone.com/2011/09/machine-learning-text-feature-extraction-tf-idf-part-i/">Machine Learning :: Text feature extraction (tf-idf) – Part I</a>.</p>
+<p>Menetelmä on yksinkertaisuudessaan <sup id="fnref:hands-on-llm"><a class="footnote-ref" href="#fn:hands-on-llm">7</a></sup>:</p>
+<ol>
+<li>Ota lause kuten <code>"selkeä teoria helppo selkeä tehtävä"</code></li>
+<li>Tokenisoi se sanatokeneiksi <code>["selkeä", "teoria", "helppo", "selkeä", "tehtävä"]</code></li>
+<li>Lisää kukin sana sanastoon (<em>engl. vocabulary</em>): <code>{1: "selkeä, 2: "teoria, "3: "helppo, 4: tehtävä}</code></li>
+<li>Laske lauseessa esiintyvät sanat vocabulary-järjestyksessä: <code>[2, 1, 1, 1]</code></li>
+</ol>
+<p>Yllä purettiin vain yhden rivin yksi lause, joten <em>vocabulary</em> on hyvin suppea. Kun ajat tämän suuremmalle tekstimassalle, korpukselle, syntyy merkittävästi leveämpi taulu, koska <strong>kaikkien rivien kaikki sanat</strong> tulee ottaa huomioon. Yllä esitellyssä datasetissä on 18 uniikkia sanaa, joten vektorisointi lisää tauluun 18 saraketta. Taulukosta näytetään vain ensimmäinen ja 5 viimeistä saraketta. Miksi juuri viisi? Koska <code>selkeä</code>-sana on ainut, joka esiintyy kahdesti jossakin lauseessa, joten se on ainoa, joka saa arvon <code>2</code>. Kaikki muut sanat saavat arvon <code>0</code> tai <code>1</code>.</p>
+<table>
+<thead>
+<tr>
+<th>alku</th>
+<th>... loput sarakkeet ...</th>
+<th>selkeä</th>
+<th>tehtävä</th>
+<th>teoria</th>
+<th>vaikea</th>
+<th>visualisointi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>...</td>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>...</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>...</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>...</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>...</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>...</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>On äärimmäisen tärkeää huomata, että tämä on <em>häviöllinen</em> enkoodaus. Tiedämme, että ensimmäiseessä lauseessa on sana <code>selkeä</code>, mutta emme tiedä, missä kohtaa lauseessa se esiintyy <sup id="fnref2:hands-on-llm"><a class="footnote-ref" href="#fn:hands-on-llm">7</a></sup>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Periaatteessa pussiin voi pistää kyseisen <em>samplen</em> eli rivin osalta myös muita asioita kuin määrän. Olisi mahdollista muodostaa binäärinen eli one-hot versio pussista. Jos sinulla on aiempaa kokemusta koneoppimisesta ja haluat haastaa itseäsi oppimispäiväkirjaa kirjoittaessa, voit tutustua aiheeseen <strong>bag of visual words</strong>. Jos ei, suosittelen toistaiseksi välttelemään tätä aihetta.</p>
+</div>
+<h3 id="tf-idf">TF-IDF</h3>
+<p>Tämän luvun viimeinen aihe, TF-IDF (Term Frequency Inverse Document Frequency) on hieman monimutkaisempi kuin aiemmat, mutta ei silti varsinaista rakettitiedettä. TF-IDF muuttaa tekstin numeeriseen vektorimuotoon, jossa jokainen sarake vastaa sanaa ja jokainen rivi dokumenttia. Alla oleva Kuva 1, jossa esitellään <code>TF</code> ja <code>IDF</code> erikseen, on toivon mukaan intuition tasolla selkeä.</p>
+<p>Mikäli tutustuit Christian S. Peronen selitykseen aiemmasta enkoodausalgoritmista, on luontevaa jatkaa aihepiiriin tutustumista hänen Part II:n myötä: <a href="https://blog.christianperone.com/2011/10/machine-learning-text-feature-extraction-tf-idf-part-ii/">Machine Learning :: Text feature extraction (tf-idf) – Part II</a>. Peronen artikkelissa esitellään myös L1- ja L2-normalisaatiot, jotka liittyvät sekä tähän että tuleviin kurssin aiheisiin <sup id="fnref:perone"><a class="footnote-ref" href="#fn:perone">8</a></sup>.</p>
+<p><img alt="" src="../../images/200_TF_IDF.png" /></p>
+<p><strong>Kuva 1:</strong> <em>TF edustaa sanan frekvenssiä dokumentissa. IDF kuvaa sanan harvinaisuutta koko aineistossa. Kuva on mukaelma kirjan vastaavasta kuvasta <sup id="fnref2:buildingaiagents"><a class="footnote-ref" href="#fn:buildingaiagents">6</a></sup>.</em></p>
+<p>Kirjassa <em>Building AI Agents with LLMs, RAG, and Knowledge Graphs</em> esitellään logaritmin syyksi:</p>
+<blockquote>
+<p>"Instead of using raw frequency, we can use the logarithm in base 10, because a word that occurs 100 times in a document is not 100 times more relevant to its meaning in the document. Of course, since vectors can be very sparse, we assign 0 if the frequency is 0. Second, we want to pay more attention to words that are present only in some documents"</p>
+<p>— Salvatore Raieli &amp; Gabriele Iuculano</p>
+</blockquote>
+<p>TF, DF ja IDF ovat kolme erillistä askelta, joista TF-IDF muodostuu. Luvussa edetään samassa järjestyksessä kuin laskenta: ensin TF, sitten DF, sen jälkeen IDF. Lopuksi <code>TF x IDF</code> lasketaan, mistä syntyy lopullinen <code>TF-IDF</code>. Tämän voisi vielä L2-normalisoida; se tehdään tehtäviin liittyvissä Notebookeissa, ei tässä materiaalissa. Normalisaatiolla varmistetaan, että dokumenttien pituus ei vaikuta liikaa TF‑IDF‑vektorin normaaliarvoihin. Pitkät dokumentit eivät näin dominoi mallia.</p>
+<h4 id="tf">TF</h4>
+<p>TF on sanan frekvenssi dokumentissa. Toisin sanoen se kertoo, kuinka tärkeä sana on dokumentille itselleen. TF-arvo lasketaan kaavalla <sup id="fnref3:buildingaiagents"><a class="footnote-ref" href="#fn:buildingaiagents">6</a></sup>:</p>
+<div class="arithmatex">\[
+TF(d, t) = \frac{\text{number of times term } t \text{ appears in document } d}{\text{total number of terms in document } d}
+\]</div>
+<p>Lopputulos on nähtävissä alla. Mukaan on valittu vain sarakkeet, joilla on tämän aiheen kanssa merkitystä. Sarake <code>tf = term_count / doc_len</code> on laskettu kaavan mukaisesti. Kaiken kaikkiaan TF-taulussa on 40 riviä, koska taulu sisältää dokumentti–token-parit uniikkeina riveinä. Korpuksessa tokeneita on yhteensä 41, mutta sana <code>selkeä</code> esiintyy kahdesti ensimmäisessä dokumentissa, ja näkyy siksi TF-taulussa yhtenä rivinä, jonka <code>term_count = 2</code>.</p>
+<table>
+<thead>
+<tr>
+<th>doc_id</th>
+<th>token</th>
+<th>term_count</th>
+<th>doc_len</th>
+<th>tf</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>helppo</td>
+<td>1</td>
+<td>5</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>0</td>
+<td>tehtävä</td>
+<td>1</td>
+<td>5</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>0</td>
+<td>teoria</td>
+<td>1</td>
+<td>5</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>0</td>
+<td>selkeä</td>
+<td>2</td>
+<td>5</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td>1</td>
+<td>paljon</td>
+<td>1</td>
+<td>4</td>
+<td>0.25</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<h4 id="df">DF</h4>
+<p>DF-arvo on sanan dokumenttifrekvenssi eli sen esiintyvyys kaikissa dokumenteissa lukumääränä. lasketaan kaavalla <sup id="fnref4:buildingaiagents"><a class="footnote-ref" href="#fn:buildingaiagents">6</a></sup>:</p>
+<div class="arithmatex">\[
+DF(t) = \text{number of documents that contain term } t
+\]</div>
+<p>Lopputulos on nähtävissä alla. Kaiken kaikkiaan näitä rivejä on 18, koska aineistossa on 18 uniikkia sanaa.</p>
+<table>
+<thead>
+<tr>
+<th>token</th>
+<th>df</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ohje</td>
+<td>1</td>
+</tr>
+<tr>
+<td>alku</td>
+<td>1</td>
+</tr>
+<tr>
+<td>helppo</td>
+<td>4</td>
+</tr>
+<tr>
+<td>teoria</td>
+<td>3</td>
+</tr>
+<tr>
+<td>paljon</td>
+<td>3</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<h4 id="idf">IDF</h4>
+<p>IDF-arvo on DF:n <em>inverse</em> eli käänteinen lukema. Se kertoo, kuinka harvinainen sana on koko aineistossa. Logaritmi auttaa pitämään suuret lukemat aisoissa (ks. Raieli &amp; Iuculano lainaus yltä). Ero lainauksen ja tämän kurssin toteutuksen välillä on logaritmin kanta (<code>10</code> vastaan <code>e</code>). IDF lasketaan kaavalla <sup id="fnref5:buildingaiagents"><a class="footnote-ref" href="#fn:buildingaiagents">6</a></sup>:</p>
+<div class="arithmatex">\[
+IDF(t) = \log\left(\frac{\text{total number of documents}}{DF(t)}\right)
+\]</div>
+<p>Jos sana esiintyy kaikissa dokumenteissa, IDF on 0, koska <code>log(1) == 0</code>.</p>
+<p>Lopputulos alla taulukossa. Rivejä taulukossa on kaiken kaikkiaan 18, koska se on <em>vocabulary</em> koko.</p>
+<table>
+<thead>
+<tr>
+<th>token</th>
+<th>N</th>
+<th>df</th>
+<th>idf</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>esimerkki</td>
+<td>10</td>
+<td>2</td>
+<td>1.609438</td>
+</tr>
+<tr>
+<td>hyödyllinen</td>
+<td>10</td>
+<td>3</td>
+<td>1.203973</td>
+</tr>
+<tr>
+<td>ohje</td>
+<td>10</td>
+<td>1</td>
+<td>2.302585</td>
+</tr>
+<tr>
+<td>raskas</td>
+<td>10</td>
+<td>2</td>
+<td>1.609438</td>
+</tr>
+<tr>
+<td>visualisointi</td>
+<td>10</td>
+<td>1</td>
+<td>2.302585</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Meidän esimerkeissä IDF:n kaava on yksinkertainen <span class="arithmatex">\(log(\frac{N}{n})\)</span>, jossa <span class="arithmatex">\(N\)</span> on dokumenttien kokonaismäärä ja <span class="arithmatex">\(n\)</span> on dokumenttien määrä, joissa sana esiintyy. Eri kirjastojen, kuten scikit-learn, toteutuksissa kaava sisältää yleensä <em>smoothingia</em>. Näistä kahta arvoa voi säätää:</p>
+<ul>
+<li><code>smooth_idf=True</code> lisää sekä jakajaan että nimittäjään <code>+ 1</code>.</li>
+<li><code>sublinear_tf=True</code> lisää <span class="arithmatex">\(log(...) + 1\)</span>.</li>
+<li><code>norm='l2'</code> normalisoi vektorit L2-normalisaatiolla (rivikohtainen normalisointi).</li>
+</ul>
+<p>Voit tarkistaa scikit-learnin osalta näiden asetuksien vakioarvot dokumentaatiosta: <a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_extraction.text.TfidfVectorizer.html">TfidfVectorizer</a>:ssä.</p>
+</div>
+<h4 id="case-helppo">Case: helppo</h4>
+<p>Lasketaan vielä sanan <code>helppo</code> osalta koko putki.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>N = len(data)                   = 10
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>TF(helppo, data[0]) =       1/5 = 0.2
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>TF(helppo, data[4]) =       1/4 = 0.25
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>TF(helppo, data[7]) =       1/4 = 0.25
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>TF(helppo, data[9]) =       1/4 = 0.25
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>DF(helppo)                      = 4
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>IDF(helppo)         = log(10/4) = 0.916291
+</span></code></pre></div>
+<p>Näitä arvoja hyödyntäen voimme lopulta laskea:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>TFIDF(helppo, data[0]) = 0.20 x 0.916291 = 0.183258
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>TFIDF(helppo, data[4]) = 0.25 x 0.916291 = 0.229073
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>TFIDF(helppo, data[7]) = 0.25 x 0.916291 = 0.229073
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>TFIDF(helppo, data[9]) = 0.25 x 0.916291 = 0.229073
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Meidän TF-IDF enkooderi on nyt oppinut tavoille sanastolla, johon kuuluu 18 sanaa. Jos annamme mallille uuden lauseen, jossa on sanoja, joita ei esiintynyt koulutuskorpuksessa, nämä sanat jäävät sanaston ulkopuolelle (<em>out of vocabulary</em>) ja ne ohitetaan. Jos lauseen kaikki sanat ovat uusia, tuloksena on pelkkä nollavektori.</p>
+</div>
+<h2 id="tehtavat">Tehtävät</h2>
+<div class="admonition question">
+<p class="admonition-title">Tehtävä: Sanojen enkoodaus</p>
+<p>Aja ja tutustu Notebookiin <code>200_word_encoding.py</code>. Notebookissa esitellään sama dataset ja operaatiot kuin yllä. Muokkaa Notebookia rohkeasti.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Tehtävä: Lauseiden enkoodaus</p>
+<p>Aja ja tutustu <code>201_sentence_encoding.py</code>-tiedostoon, jossa esitellään TF-IDF paloissa. Kun olet lukenut Notebookin läpi, varmista oma ymmärrys seuraavan tehtävän avulla:</p>
+<ul>
+<li>Muokkaa dataa (feedback-saraketta) siten, että saat jollekin termille (eli tokenille) TF-IDF arvon nolla.</li>
+<li>... ja tämän jälkeen muokkaa Notebookia oman tahtosi mukaan. Se on nyt sinun Notebook.</li>
+</ul>
+</div>
+<h2 id="lahteet">Lähteet</h2>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:wiki-encoder">
+<p>Wikidata. Encoder. https://www.wikidata.org/wiki/Q42586063&#160;<a class="footnote-backref" href="#fnref:wiki-encoder" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:duckdb-feat-eng">
+<p>Leuca, P. <em>Basic Feature Engineering with DuckDB</em>. https://duckdb.org/2025/08/15/ml-data-preprocessing&#160;<a class="footnote-backref" href="#fnref:duckdb-feat-eng" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:python-da">
+<p>Navlani, A., Fandango, A. &amp; Idris, I. <em>Python Data Analysis - Third Edition</em>. Packt Publishing. 2021.&#160;<a class="footnote-backref" href="#fnref:python-da" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:fe-cookbook">
+<p>Galli, S. <em>Python Feature Engineering Cookbook - Third Edition</em>. O'Reilly. 2024.&#160;<a class="footnote-backref" href="#fnref:fe-cookbook" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:bow-beginners">
+<p>Gandhi, V. <em>Bag-of-Words Model for Beginners</em>. https://www.kaggle.com/code/vipulgandhi/bag-of-words-model-for-beginners&#160;<a class="footnote-backref" href="#fnref:bow-beginners" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:buildingaiagents">
+<p>Raieli, S. &amp; Iuculano, G. <em>Building AI Agents with LLMs, RAG, and Knowledge Graphs</em>. Packt. 2025.&#160;<a class="footnote-backref" href="#fnref:buildingaiagents" title="Jump back to footnote 6 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:buildingaiagents" title="Jump back to footnote 6 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:buildingaiagents" title="Jump back to footnote 6 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:buildingaiagents" title="Jump back to footnote 6 in the text">&#8617;</a><a class="footnote-backref" href="#fnref5:buildingaiagents" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
+<li id="fn:hands-on-llm">
+<p>Alammar, J. &amp; Grootendorst, M. <em>Hands-On Large Language Models</em>. O'Reilly. 2024.&#160;<a class="footnote-backref" href="#fnref:hands-on-llm" title="Jump back to footnote 7 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:hands-on-llm" title="Jump back to footnote 7 in the text">&#8617;</a></p>
+</li>
+<li id="fn:perone">
+<p>Perone, C. <em>Machine Learning :: Text feature extraction (tf-idf) – Part II</em>. https://blog.christianperone.com/2011/10/machine-learning-text-feature-extraction-tf-idf-part-ii/&#160;<a class="footnote-backref" href="#fnref:perone" title="Jump back to footnote 8 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 <a href="https://www.kamk.fi">Kajaanin Ammattikorkeakoulu Oy</a>. 
+Licenced under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">BY-NC-SA 4.0</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Kopioitu leikep\u00f6yd\u00e4lle", "clipboard.copy": "Kopioi leikep\u00f6yd\u00e4lle", "search.result.more.one": "1 lis\u00e4\u00e4 t\u00e4ll\u00e4 sivulla", "search.result.more.other": "# lis\u00e4\u00e4 t\u00e4ll\u00e4 sivulla", "search.result.none": "Ei t\u00e4sm\u00e4\u00e4vi\u00e4 dokumentteja", "search.result.one": "1 t\u00e4sm\u00e4\u00e4v\u00e4 dokumentti", "search.result.other": "# t\u00e4sm\u00e4\u00e4v\u00e4\u00e4 dokumenttia", "search.result.placeholder": "Kirjoita aloittaaksesi haun", "search.result.term.missing": "Puuttuu", "select.version": "Valitse versio"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

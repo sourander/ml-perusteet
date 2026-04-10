@@ -1,0 +1,1535 @@
+
+<!doctype html>
+<html lang="fi" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../skaalaus/">
+      
+      
+        <link rel="next" href="../knn/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Dimensiovähennys - Johdatus Koneoppimiseen</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#dimensiovahennys" class="md-skip">
+          Hyppää sisältöön
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Ylätunniste">
+    <a href="../.." title="Johdatus Koneoppimiseen" class="md-header__button md-logo" aria-label="Johdatus Koneoppimiseen" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Johdatus Koneoppimiseen
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Dimensiovähennys
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Hae" placeholder="Hae" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Haku">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Tyhjää" aria-label="Tyhjää" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Aloitetaan hakua
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigaatio" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Johdatus Koneoppimiseen" class="md-nav__button md-logo" aria-label="Johdatus Koneoppimiseen" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Johdatus Koneoppimiseen
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tervetuloa kurssille
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Koneoppiminen
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Koneoppiminen
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1_koneoppiminen/yleista/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Yleistä
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1_koneoppiminen/miksi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Motivaatio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1_koneoppiminen/tyypit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tyypit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1_koneoppiminen/datasetti/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1_koneoppiminen/tyonkulku/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Työnkulku
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Naive Bayes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Naive Bayes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2_naivebayes/enkoodaus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Merkkijonojen enkoodaus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2_naivebayes/intuitio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intuitio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2_naivebayes/naive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Naive Bayes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Puut ja Metsät
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Puut ja Metsät
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/suorituskyky/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luokittelumallin suorituskyky
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/entropia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entropia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/puu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Puu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/metsa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metsä
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. k-NN
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. k-NN
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../skaalaus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skaalaus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dimensiovähennys
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dimensiovähennys
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Sisällysluettelo">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sisällysluettelo
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#miksi-dimensioita-vahennetaan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Miksi dimensioita vähennetään?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Miksi dimensioita vähennetään?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visualisointi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visualisointi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yksinkertaisemman-mallin-rakentaminen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Yksinkertaisemman mallin rakentaminen
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pca" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PCA
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PCA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mika" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mikä?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ominaisuudet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ominaisuudet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#haasteet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Haasteet
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tehtavat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tehtävät
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lahteet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lähteet
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../knn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k-NN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Klusterointi
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    5. Klusterointi
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5_klusterointi/sykliset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Syklinen enkoodaus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5_klusterointi/kMeans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K-Means
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exercises/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tehtäväkooste
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Sisällysluettelo">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sisällysluettelo
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#miksi-dimensioita-vahennetaan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Miksi dimensioita vähennetään?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Miksi dimensioita vähennetään?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visualisointi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visualisointi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yksinkertaisemman-mallin-rakentaminen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Yksinkertaisemman mallin rakentaminen
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pca" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PCA
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PCA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mika" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mikä?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ominaisuudet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ominaisuudet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#haasteet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Haasteet
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tehtavat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tehtävät
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lahteet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lähteet
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="dimensiovahennys">Dimensiovähennys</h1>
+<p>Dimensiovähennys on prosessi, jossa esimerkiki 200 eri sarakkeesta koostuvasta datasta luodaan uusi datasetti, jossa on vain 2, 5 tai 10 saraketta. Ajoittain dimensiot voi vähentää hyvin luontevalla tavalla, kuten alla olevassa datasetissä:</p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(x_1\)</span></th>
+<th><span class="arithmatex">\(x_2\)</span></th>
+<th><span class="arithmatex">\(x_3\)</span></th>
+<th><span class="arithmatex">\(z\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>5</td>
+<td>2</td>
+<td>100</td>
+</tr>
+<tr>
+<td>20</td>
+<td>10</td>
+<td>4</td>
+<td>800</td>
+</tr>
+<tr>
+<td>30</td>
+<td>15</td>
+<td>6</td>
+<td>2700</td>
+</tr>
+</tbody>
+</table>
+<p>Muuttuja <span class="arithmatex">\(z\)</span> on laskettu kaavalla <span class="arithmatex">\(z = x_1 \cdot x_2 \cdot x_3\)</span>. Näin olemme pudottaneet dimensionalisuuden 3 → 1. Tämä operaatio tekee hetkessä järkeä, kun paljastan, että <span class="arithmatex">\(x_1\)</span>, <span class="arithmatex">\(x_2\)</span> ja <span class="arithmatex">\(x_3\)</span> ovat huoneen pituus, leveys ja korkeus metreinä. Täten <span class="arithmatex">\(z\)</span> on huoneen tilavuus kuutiometreinä. Tulet huomaamaan, että syntyvät uudet dimentiot, eivät ole aina yhtä intuitiivisia kuin tämä yksinkertainen esimerkki.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>PCA on ohjaamaton menetelmä. Se tarkoittaa, että se ei käytä hyväkseen datan labeleita tai luokkia, vaan ainoastaan datan ominaisuuksia (features).</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Yllä oleva esimerkki on <strong>käsin tehtyä</strong> piirremuotoilua. PCA voisi löytää pikemminkin sellaisen kombinaation, joka täyttää kaavan:</p>
+<div class="arithmatex">\[
+z = a_1 x_1 + a_2 + x_2 + a_3 + x_3
+\]</div>
+</div>
+<h2 id="miksi-dimensioita-vahennetaan">Miksi dimensioita vähennetään?</h2>
+<p>Kaksi päämotiivia dimensioiden vähemtämiselle ovat <strong>visualisointi</strong> ja <strong>yksinkertaisempien mallien rakentaminen</strong>. Jälkimmäiseen liittyy termi <em>curse of dimensionality</em>. Käsitellään nämä alla.</p>
+<h3 id="visualisointi">Visualisointi</h3>
+<p>Ihmisen on hyvin vaikea tulkita yli kolmiulotteisia avaruuksia, joten monilotteiden datan visualisointi on haastavaa. Tähän palataan Syväoppiminen I -kurssilla kielimallien embeddings-vektorien yhteydessä. Tämän kurssin puittteissa riittää, että tutustut asiaan pintapuoleisesti. Tästä voi olla sinulle hyötyä esimerkiksi projektityössä, jossa haluat visualisoida datasi.</p>
+<p>Esimerkiksi voit tutustua Plotly-kirjaston <a href="https://plotly.com/python/pca-visualization/">PCA Visualization in Python</a>-dokumenttiin. Kyseisessä esimerkissä käytetään kurjenmiekkojen (engl. iris) datasettiä, jossa on neljä muuttujaa: verholehden (engl. sepal) pituus ja leveys, sekä terälehden (engl. petal) pituus ja leveys. Näillä on hyvinkin intuitiivinen yhteys, aivan kuten huoneen pituudella, leveydellä ja korkeudella.</p>
+<h3 id="yksinkertaisemman-mallin-rakentaminen">Yksinkertaisemman mallin rakentaminen</h3>
+<p>Ensemblet ja neuroverkot ovat esimerkkejä malleista, jotka kykenevät käsittelemään suurta määrää muuttujia. Kuitenkin, mitä enemmän muuttujia datassa on, sitä vaikeampaa mallin on löytää niistä merkityksellisiä kuvioita. <sup id="fnref:hundredpage"><a class="footnote-ref" href="#fn:hundredpage">3</a></sup></p>
+<blockquote>
+<p>"In bioinformatics, for example, the potential dimension of a dataset can be enormous. Researchers may have thousands of gene expressions for each observation, many of which are highly correlated (and thus possibly redundant) with each other."</p>
+<p>— Alex J. Gutman &amp; Jordan Goldmeier <sup id="fnref4:data-head"><a class="footnote-ref" href="#fn:data-head">2</a></sup></p>
+</blockquote>
+<p>Riippuu siis mallista, ovatko päällekäiset tai turhat piirteet ongelma, tai onko niiden suuri määrä ongelma. Termi <em>curse of dimensionality</em> viittaa siihen, että datan dimensioiden kasvaessa, datan tiheys avaruudessa pienenee eksponentiaalisesti. Tämä ajaa tilanteeseen, jossa lähes kaikki dataparit ovat <code>avg(distance)</code>-etäisyydellä toisistaan <sup id="fnref:dl-java"><a class="footnote-ref" href="#fn:dl-java">5</a></sup>. Tämä rampauttaa erityisesti k-NN:n ja muut etäisyyspohjaiset algoritmit, jotka luottavat siihen, että lähellä olevat datapisteet ovat merkityksellisiä. Ratkaisu tähän on piirteiden poistaminen tai yhdistäminen – mutta tämä on helpommin sanottu kuin tehty.</p>
+<div class="admonition tip">
+<p class="admonition-title">Bonus: pakkaus</p>
+<p>Bonuksena mainittakoon kolmas mielenkiintoinen PCA:lle: kuvan pakkaus. PCA:n avulla voidaan luoda uusi datasetti, jossa on vähemmän sarakkeita kuin alkuperäisessä datasetissä, mutta joka säilyttää mahdollisimman paljon informaatiota alkuperäisestä datasta.</p>
+<p>Tähän voit tutustua Kaggle <a href="https://www.kaggle.com/code/mirzarahim/introduction-to-pca-image-compression-example">Introduction to PCA: Image Compression example</a> -Notebookin avulla, jonka on luonut Mirza Rahim. Esimerkissä pakataan <code>(768, 1040)</code>-muotoinen harmaasävykuva <code>(768, k)</code>-kokoiseksi dataksi. Kukin kuvan rivi pakkautuu siis murto-osaan alkuperäisestä koostaan. Millainen mössö kuvasta tulee, jos k on 10? Entä onko 250 jo täysin alkuperäisen tasoinen ihmissilmin nähtynä?</p>
+</div>
+<h2 id="pca">PCA</h2>
+<p>Burkovin mukaan <sup id="fnref2:hundredpage"><a class="footnote-ref" href="#fn:hundredpage">3</a></sup> dimensiovähennyksen eniten käytetyt tekniikat ovat:</p>
+<ul>
+<li>PCA (Principal Component Analysis)</li>
+<li>UMAP (Uniform Manifold Approximation and Projection)</li>
+<li>Autoencoderit</li>
+</ul>
+<h3 id="mika">Mikä?</h3>
+<p>PCA on yksi vanhimmista ja suosituimmista dimensionaalisuuden vähennysmenetelmistä, joten keskitymme tässä luvussa pääasiassa siihen. PCA on vuodelta 1901, jolloin Karl Pearson julkaisi artikkelin "On Lines and Planes of Closest Fit to Systems of Points in Space". <sup id="fnref:pearson-k"><a class="footnote-ref" href="#fn:pearson-k">4</a></sup> Scikit-learn-kirjastosta ei löydy UMAP:ia, joten kurssin Notebookissa on edustettuna sen korvaajana samaan manifold learning -perheeseen kuuluvat MDS (Multidimensional Scaling) ja t-SNE (t-distributed Stochastic Neighbor Embedding). Autoencoderit kuuluvat Syväoppiminen I -kurssin aihepiiriin, joten niihin ei tässä yhteydessä syvennytä.</p>
+<p>PCA:lla on juuret vahvasti lineaarialgebrassa. Olet todennäköisesti törmännyt termeihin ominaisvektori (engl. eigenvector) ja ominaisarvo (engl. eigenvalue) jossain vaiheessa matematiikan opintojasi, ja PCA on nimenomaan näihin käsitteisiin perustuva algoritmi.</p>
+<blockquote>
+<p>"The machine learning technique called principal component analysis (PCA) corresponds to applying SVD to a data matrix. Alternatively, you can think of the PCA as applying an eigendecomposition to the covariance matrix of the data."</p>
+<p>— Ivan Savov <sup id="fnref:no-bs-linalg"><a class="footnote-ref" href="#fn:no-bs-linalg">1</a></sup></p>
+</blockquote>
+<h3 id="ominaisuudet">Ominaisuudet</h3>
+<p>PCA ei valitse alkuperäisistä muuttujista osajoukkoa, vaan muodostaa uusia muuttujia eli pääkomponentteja. Jokainen pääkomponentti on alkuperäisten muuttujien painotettu summa eli siis uudet komponentit ovat alkuperäisten muuttujien lineaarikombinaatioita. Käytännössä PCA siis pyörittää (engl. rotate) dataa siten, että uusi koordinaatisto on suunnattu datan suurimman varianssin suuntaan. Tätä voi verrata valokuvaukseen: mistä suunnasta sinun tulee kuvata Gazan pyramidia, jotta tämä 3D-maailman esine säilyttää mahdollisimman paljon informaatiota 2D-esitysmuodossaan? <sup id="fnref:data-head"><a class="footnote-ref" href="#fn:data-head">2</a></sup></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>PCA on herkkä muuttujien mittakaavalle. Muuttujat yleensä keskitetään (keskiarvo vähennetään) ja usein myös standardisoidaan (Z-score) ennen PCA:ta, jotta yksittäinen suurella skaalalla oleva muuttuja ei dominoi komponentteja.</p>
+</div>
+<p>Jos päädyt kokeilemaan PCA:ta käytännössä, kannattaa tutustua <code>pca.explained_variance_ratio_</code>-attribuuttiin, joka kertoo, kuinka paljon informaatiota (varianssia) säilyy, kun data pakataan tiettyyn määrään komponentteja. Esimerkiksi, jos palautuva ratio on <code>[0.5, 0.3]</code>, se tarkoittaa, että ensimmäinen komponentti säilyttää 50% datan varianssista ja toinen komponentti säilyttää 30% datan varianssista. Näin ollen, jos valitset vain nämä kaksi komponenttia, säilytät yhteensä 80% datan varianssista.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>PCA ei itsessään vähennä dimensioita, vaan tarjoaa uuden koordinaatiston. Dimensiovähennys syntyy vasta, kun päätämme säilyttää vain osan pääkomponenteista.</p>
+</div>
+<h3 id="haasteet">Haasteet</h3>
+<p>PCA toimii parhaiten silloin, kun datassa on lineaarista rakennetta, sillä se perustuu kovarianssiin ja korrelaatioon. Menetelmät kuten MDS ja t-SNE kykenevät käsittelemään myös ei-lineaarista dataa, mutta niiden käyttöön liittyy omia haasteitaan, kuten parametrien säätöä.</p>
+<p>PCA:n pääkomponentit eivät ole aina helposti tulkittavia. Oppikirjaesimerkeissä niille voi löytyä intuitiivisia nimiä, mutta todellisessa datassa tällaiset tulkinnat ovat usein epävarmoja. PCA ei valitse alkuperäisistä muuttujista “parhaita” eikä poista niitä automaattisesti. Se muodostaa kaikista muuttujista uusia lineaarikombinaatioita, ja varsinainen dimensiovähennys tapahtuu vasta, kun analyytikko päättää, montako pääkomponenttia säilytetään. Tähän valintaan ei ole yhtä oikeaa sääntöä. <sup id="fnref2:data-head"><a class="footnote-ref" href="#fn:data-head">2</a></sup></p>
+<p>Lisäksi PCA olettaa, että suuri varianssi tarkoittaa jotakin tärkeää. Näin ei kuitenkaan aina ole: muuttuja voi vaihdella paljon mutta olla ilmiön kannalta epäolennainen. Tällöin PCA voi korostaa vaihtelua, joka ei auta ymmärtämään itse ongelmaa. Siksi PCA:ta ei pidä käyttää sokeasti, vaan sen hyödyllisyyttä kannattaa arvioida myös mallin suorituskykymittareiden ja oman domain-ymmärryksen avulla. <sup id="fnref3:data-head"><a class="footnote-ref" href="#fn:data-head">2</a></sup></p>
+<h2 id="tehtavat">Tehtävät</h2>
+<div class="admonition question">
+<p class="admonition-title">Tehtävä: Dimensiovähennyksen leikkikenttä</p>
+<p>Avaa <code>410_dimensionality_reduction.py</code> ja tutustu siihen. Notebookissa voit piirtää itse 2-ulotteisen datasetin Drawdata-widgetillä. Tarkoitus on rakentaa intuitiota siitä, miten PCA, MDS ja t-SNE muuttavat sen 2- tai 1-ulotteiseksi esitykseksi.</p>
+<ul>
+<li>Kaksi viivaa, jotka leikkaavat toisensa (X-muoto)</li>
+<li>Kaksi viivaa, jotka eivät leikkaa toisiaan (V tai II muoto)</li>
+<li>S-kirjain</li>
+<li>Windows-logon kaltainen neljän klusterin muoto.</li>
+</ul>
+<p>Huomaa, että tässä notebookissa mikään menetelmistä ei käytä pisteiden labeleita tai värejä. PCA, MDS ja t-SNE saavat syötteekseen vain pisteiden (x, y)-koordinaatit. Värit auttavat vain tulkitsemaan tulosta visuaalisesti: niiden avulla on helpompi nähdä, pysyvätkö datan eri osat erillään vai menevätkö ne sekaisin. Lopussa on lisäksi MNIST-datasetistä vastaava muunnos.</p>
+</div>
+<h2 id="lahteet">Lähteet</h2>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:no-bs-linalg">
+<p>Savov, I. <em>No bullshit guide to linear algebra (v2.1)</em>. Minireference. 2017.&#160;<a class="footnote-backref" href="#fnref:no-bs-linalg" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:data-head">
+<p>Gutman, A. &amp; Goldmeier, J. *Becoming a Data Head". Wiley. 2021.&#160;<a class="footnote-backref" href="#fnref:data-head" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:data-head" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:data-head" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:data-head" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:hundredpage">
+<p>Burkov, A. <em>The Hundred-Page Machine Learning Book</em>. Self-published, 2019.&#160;<a class="footnote-backref" href="#fnref:hundredpage" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:hundredpage" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:pearson-k">
+<p>Pearson, K. <em>On Lines and Planes of Closest Fit to Systems of Points in Space.</em> Philosophical Magazine. 1901. https://doi.org/10.1080/14786440109462720&#160;<a class="footnote-backref" href="#fnref:pearson-k" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:dl-java">
+<p>Sugomori, Y. et. al. <em>Deep Learning: Practical Neural Networks with Java</em>. Packt Publishing. 2017.&#160;<a class="footnote-backref" href="#fnref:dl-java" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 <a href="https://www.kamk.fi">Kajaanin Ammattikorkeakoulu Oy</a>. 
+Licenced under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">BY-NC-SA 4.0</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Kopioitu leikep\u00f6yd\u00e4lle", "clipboard.copy": "Kopioi leikep\u00f6yd\u00e4lle", "search.result.more.one": "1 lis\u00e4\u00e4 t\u00e4ll\u00e4 sivulla", "search.result.more.other": "# lis\u00e4\u00e4 t\u00e4ll\u00e4 sivulla", "search.result.none": "Ei t\u00e4sm\u00e4\u00e4vi\u00e4 dokumentteja", "search.result.one": "1 t\u00e4sm\u00e4\u00e4v\u00e4 dokumentti", "search.result.other": "# t\u00e4sm\u00e4\u00e4v\u00e4\u00e4 dokumenttia", "search.result.placeholder": "Kirjoita aloittaaksesi haun", "search.result.term.missing": "Puuttuu", "select.version": "Valitse versio"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
