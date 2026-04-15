@@ -18,13 +18,13 @@ Kaikki tähänastiset kurssilla käsitellyt mallit ovat olleet luokittelumalleja
 
 ## Intuitio
 
-![Hours Studies vs Exam Points diagram](../images/linreg_plot_study_time.png)
+![Hours Studies vs Exam Points diagram](../images/600_linreg_plot_study_time.png)
 
 **Kuvio 1:** *Opiskelun ja tenttipisteiden välisen suhteen havainnot.*
 
 Kuvion 1 kuvitteellissa datasetissa on vain yksi syöte tai piirre, joka kuvastaa opiskeluun käytettyjä tunteja. Tämä on x-akseli. Arvo, jota pyrimme jatkossa ennustamaan, on vastaus (*engl. response*) tai tuloste (*engl. output*), joka löytyy kuvaajan y-akselilta.
 
-![Hours Studies vs Exam Points with regression line](../images/linreg_plot_study_time_predict.png)
+![Hours Studies vs Exam Points with regression line](../images/600_linreg_plot_study_time_predict.png)
 
 **Kuvio 2:** *Opiskelun ja tenttipisteiden havaintoihin sovitettu suora.*
 
@@ -34,7 +34,7 @@ Se, kuinka löydetään parametrit, joilla malli saadaan sovitettua dataan, on l
 
 Kuvitellaan, että haluat selvittää, kuinka paljon :coffee:-kulutuksesi vaikuttaa ++backspace++ -näppäimen eli askelpalauttimen käyttöön. Asennat kahvikuppiisi sensorin, joka mittaa, kuinka monta kuppia kahvia juot päivässä. Lisäksi asennat keyloggerin, joka mittaa, kuinka monta kertaa painat backspace-näppäintä minuutissa ollessasi koodaamassa.
 
-![Coffee vs Backspace per Minute](../images/linreg_coffee_01_residuals.png)
+![Coffee vs Backspace per Minute](../images/600_linreg_coffee_01_residuals.png)
 
 **Kuvio 3:** *Kahvinjuonti ja backspace-näppäimen käytön havainnot pistekuvaajana. Havaintoja on vain 10. Kuvaajan otsikossa on tehty rohkea typoteesi, että typojen määrä ja askelpalauttimen klikkailut ovat kausaalisesti yhteydessä toisiinsa.*
 
@@ -65,7 +65,7 @@ def predict(x):
 
 Vakiotermi $b$ on $y$-akselin leikkauspiste, ja kulmakerroin $m$ kertoo, kuinka paljon $y$ kasvaa, kun $x$ kasvaa yhdellä. Pikaisella silmäyksellä vaikuttaa, ihan noin silmämääräisesti, että suora voisi leikata y-akselin noin $y = 1$ kohdalla ja kulkea noin $m = 1$ kulmakertoimella: eli kun x kasvaa yhdellä, y kasvaa yhdellä. Ei kuitenkaan *ihan* näin jyrkästi, joten arvataan seuraavat arvot: $y = 0.9x + 1$. Syötetään nämä arvot funktioon ja piirretään se kuvioon.
 
-![Coffee vs. Backspace Human Guess Plotted](../images/linreg_coffee_02_human_guess.png)
+![Coffee vs. Backspace Human Guess Plotted](../images/600_linreg_coffee_02_human_guess.png)
 
 **Kuvio 4:** *Kahvinjuonti ja backspace-näppäimen käytön havainnot sekä perstuntumalta valittu suora. Oikean Y:n ja viivan Y:n eroavaisuus on esitetty oranssina katkoviivana.*
 
@@ -118,7 +118,7 @@ x[9]: -1.50 (squared: 2.25)
 = SSE: 20.70
 ```
 
-![Coffee vs. Backspace with Squared Residuals](../images/linreg_coffee_03_squared_residuals.png)
+![Coffee vs. Backspace with Squared Residuals](../images/600_linreg_coffee_03_squared_residuals.png)
 
 **Kuvio 5:** *Residuaalit neliöityinä ovat, noh, neliöitä. Huomaa, että kaavion kuvasuhdetta on muutettu verrattuna aiempiin kaavioihin, jotta neliöt näyttäisivät oikeasti neliöltä.*
 
@@ -260,7 +260,7 @@ Toinen rajoitus liittyy laskentaan: jos selittäviä muuttujia on paljon, normaa
 
 Jos pohdit, mitä selittävien piirteiden lisääminen käytännössä tekee, niin se laittaa mallin sovittamaan n-ulotteiseen dataan n-ulotteisen suoran/tason. 2-piirteinen data näyttää esimerkiksi alla olevalta. Viiva ei ole enää sopiva ratkaisu, joten dataan tulisi sovittaa taso.
 
-![3D scatter plot](../images/linreg_plot_3d.png)
+![3D scatter plot](../images/600_linreg_plot_3d.png)
 
 **Kuvio 6:** *3-ulotteinen pistekuvaaja.*
 
