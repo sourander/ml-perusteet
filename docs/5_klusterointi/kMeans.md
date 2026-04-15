@@ -298,7 +298,7 @@ xychart
     line [0.57, 0.51, 0.409, 0.331, 0.325, 0.327, 0.339, 0.336, 0.329]
 ```
 
-Siluettiarvo lasketaan ensin jokaiselle pisteelle erikseen – jolloin se on tarkemmin otettuna siluettikerroin – ja lopuksi näistä yksittäisten näytteiden arvoista lasketaan keskiarvo. Yllä olevassa kuvitteellisessa esimerkissä $k=5$ siluettiarvo on selvästi laskenut, joten $2 > k > 4$ voisi olla järkevä alue, jolta valita $k$. [^ml-algorithms]
+Siluettiarvo lasketaan ensin jokaiselle pisteelle erikseen – jolloin se on tarkemmin otettuna siluettikerroin – ja lopuksi näistä yksittäisten näytteiden arvoista lasketaan keskiarvo. Yllä olevassa kuvitteellisessa esimerkissä $k=5$ siluettiarvo on selvästi laskenut, joten $2 < k < 4$ voisi olla järkevä alue, jolta valita $k$. [^ml-algorithms]
 
 Yhden pisteen $x$ kohdalla lasketaan ensin kaksi suuretta:
 

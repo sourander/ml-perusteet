@@ -4,9 +4,9 @@ priority: 500
 
 # Syklinen enkoodaus
 
-Käsittelemme tämän viikkoteeman tehtävissä k-means -algoritmilla dataa, jossa on syklinen piirre nimeltään hue eli värin sävy (HSV-mallista). Hue on kulma, joka kuvaa värisävyä. Hue-arvo on välillä `0-360` ja se on syklinen, koska `0` ja `360` kuvaavat samaa väriä, aivan kuten 24-tuntisessa kellossa ajat `00:00` ja `24:00` kuvaavat samaa hetkeä vuorokaudesta. 
+Käsittelemme tämän viikkoteeman tehtävissä k-means -algoritmilla dataa, jossa on syklinen piirre nimeltään hue eli värin sävy (HSV-mallista). Hue on kulma, joka kuvaa värisävyä. Hue-arvo on välillä `0-360` ja se on syklinen, koska `0` ja `360` kuvaavat samaa väriä, aivan kuten 24-tuntisessa kellossa ajat `00:00` ja `24:00` kuvaavat samaa hetkeä vuorokaudesta. [^fe-cookbook]
 
-Ilman syklistä enkoodausta esimerkiksi hue-arvot 1 ja 359 ovat kaukana toisistaan Euklidisessa avaruudessa, vaikka ne edustavat lähes samaa väriä. Tämä rikkoo monien algoritmien, kuten k-meansin, etäisyyslaskennan oletukset.
+Ilman syklistä enkoodausta esimerkiksi hue-arvot 1 ja 359 ovat kaukana toisistaan Euklidisessa avaruudessa, vaikka ne edustavat lähes samaa väriä. Tämä rikkoo monien algoritmien, kuten k-meansin, etäisyyslaskennan oletukset. [^fe-cookbook]
 
 Tyypillisin syklinen piirre, mihin törmäät jatkuvasti, on aika. Kellon tunnit, minuutit, viikonpäivät, kuukaudet... Kaikki nämä ovat syklisiä piirteitä, jotka vaativat erityistä käsittelyä.
 

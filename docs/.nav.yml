@@ -5,5 +5,6 @@ nav:
   - "3. Puut ja Metsät": "3_puut"
   - "4. k-NN": "4_knn"
   - "5. Klusterointi": "5_klusterointi"
+  - "6. Lineaarinen regressio": "6_linear"
   - exercises.md
 

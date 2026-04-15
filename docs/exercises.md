@@ -62,6 +62,14 @@ Kopioi tehtävälista leikepöydälle ja muokkaa se sinun käyttöösi sopivaksi
 - [ ] Tehtävä: k-Means from scratch
 - [ ] Tehtävä: Tikkurilan värikartta
 
+## Normaaliyhtälö (600)
+
+- [ ] Tehtävä: Vähin neliösumma Marimossa
+
+## Regressiomallin suorituskyky (610)
+
+- [ ] Tehtävä
+
 ## Metsä (999)
 
 - [ ] Tehtävä: Metsä from Scratch
