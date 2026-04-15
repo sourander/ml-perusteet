@@ -44,6 +44,11 @@ Kopioi tehtävälista leikepöydälle ja muokkaa se sinun käyttöösi sopivaksi
 
 - [ ] Tehtävä: Puu from Scratch
 
+## Metsä (330)
+
+- [ ] Tehtävä: Metsä from Scratch
+- [ ] Tehtävä: Automaattivaihteet metsässä
+
 ## Dimensiovähennys (410)
 
 - [ ] Tehtävä: Dimensiovähennyksen leikkikenttä
@@ -69,11 +74,6 @@ Kopioi tehtävälista leikepöydälle ja muokkaa se sinun käyttöösi sopivaksi
 ## Regressiomallin suorituskyky (610)
 
 - [ ] Tehtävä
-
-## Metsä (999)
-
-- [ ] Tehtävä: Metsä from Scratch
-- [ ] Tehtävä: Automaattivaihteet metsässä
 
 
 ```

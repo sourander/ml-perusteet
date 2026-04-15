@@ -1,3 +1,7 @@
+---
+priority: 330
+---
+
 # Metsä
 
 Päätöspuilla on taipumus ylisovittaa (engl. overfit) malli dataan. Tämä tarkoittaa sitä, että malli ei onnistu yleistämään (engl. generalize) sen taustalla olevaa ilmiötä vaan myötäilee dataa ulkoaopitun tarkasti. Päätöspuu on lisäksi ahne (engl. *greedy algorithm*); se löytää kenties hyvän, mutta ei globaalisti optimia ratkaisua. [^geronpytorch]
