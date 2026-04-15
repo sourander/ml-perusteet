@@ -146,7 +146,7 @@ Vika pisteiden yhdistämisessä on se, että syntynyt malli on herkkä poikkeami
 
 Mallin ali- ja ylisovittamista mitataan koulutuskäyrän avulla. Tällöin x-akselille asetetaan jokin hyperparametri, joka kuvastaa mallin monimutkaisuutta, kuten päätöspuun maksimisyvyys tai `PolynomialFeatures`-polynomisaste. Kun käytössä on numeerinen optimointimenetelmä, kuten myöhemmin kurssilla esiteltävä `SGD`, x-akseli voi olla myös `n_iterations`.
 
-![Model complexity vs errors](../images/optimization_model_complexity_intuition.png)
+![Model complexity vs errors](../images/610_optimization_model_complexity_intuition.png)
 
 **Kuva 2:** *Koulutuskäyrässä on esitetty mallin monimutkaisuuden vaikutus virheeseen. Huomaa, että tämä kehitystyö tulee tehdä nimenomaan ==validaatiodataa== vasten. Lopullinen totuus selviää testidatan avulla, joka on pidetty koulutusprosessista visusti erillään aivan viimeiseen vaiheeseen asti.*
 
