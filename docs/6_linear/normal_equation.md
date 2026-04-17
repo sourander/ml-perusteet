@@ -141,7 +141,27 @@ $$
 b = \frac{\sum y_i - m \sum x_i}{n}
 $$
 
-On kohtalaisen harvinaista, että koneoppimisongelmassa piirteitä on vain yksi, joten jätetään tämän suljetun muodon käsittely maininnan tasolle.
+!!! tip
+
+    Edellä esitetty OLS:n suljetun muodon kaava on monimutkainen. Onni on abstraktio! Sama ratkaisu voidaan esittää huomattavasti tiiviimmässä ja käsitteellisemmässä muodossa, jos otetaan käyttöön kaksi keskeistä tilastollista käsitettä: **Pearsonin korrelaatiokerroin** ja **keskihajonta**. Näistä keskihajonta on sinulle jo tuttu (ks. [Luokittelumallin suorituskyky](../3_puut/suorituskyky.md)). Pearsonin korrelaatiokerroin, jota merkataan kirjaimella $r$, esitellään [Regressiomallin suorituskyky](regressiomallinsuorituskyky.md)-materiaalissa eli heti seuraavana tällä kurssilla.
+
+    Tällöin kulmakertoimen kaava on seuraava:
+
+    $$
+    m = r \cdot \frac{\sigma_y}{\sigma_x}.
+    $$
+
+    Vakiotermi saadaan tällöin keskiarvojen ja kulmakertoimen avulla:
+
+    $$
+    b = \bar y - m \bar x.
+    $$
+
+    Tämä on täsmälleen sama OLS-ratkaisu kuin edellä, mutta esitettynä abstraktien käsitteiden kautta. Myöhemmin esiteltävä Pearsonin korrelaatiokerroin ja kovarianssi siis selittävät suoraan, mistä regression kulmakerroin syntyy ja miksi se käyttäytyy tietyllä tavalla.
+
+!!! note
+
+    On kohtalaisen harvinaista, että koneoppimisongelmassa piirteitä on vain yksi, joten jätetään tämän suljetun muodon käsittely maininnan tasolle.
 
 ### Matriisiratkaisu
 

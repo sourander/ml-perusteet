@@ -75,5 +75,9 @@ Kopioi tehtävälista leikepöydälle ja muokkaa se sinun käyttöösi sopivaksi
 
 - [ ] Tehtävä
 
+## Hill Climbing (620)
+
+- [ ] Tehtävä: Hill Climbing from Scratch
+
 
 ```
