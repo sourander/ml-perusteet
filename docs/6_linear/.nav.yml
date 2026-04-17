@@ -2,3 +2,4 @@ nav:
   - normal_equation.md
   - regressiomallinsuorituskyky.md
   - hill_climbing.md
+  - gradient_descent.md

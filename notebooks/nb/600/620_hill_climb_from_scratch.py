@@ -357,7 +357,7 @@ def _(mo):
     mo.md(r"""
     ## Predictions vs Actual
 
-    The red line is the ideal (perfect prediction). Orange dashed lines show the ±RMSE band.
+    The red line is the ideal case where $\hat{y} = y$. Orange dashed lines show the ±RMSE band.
     """)
     return
 

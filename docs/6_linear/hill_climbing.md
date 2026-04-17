@@ -162,7 +162,7 @@ Jatkamme saman käärmeenpuremia käsittelevän kuvittelevan datan kanssa, joka 
 
 Muistutuksena `x[0]` on :snake: mitta (cm) ja `x[1]` on sää (°C). Y on sairaslomapäivien määrä. Tavoitteena on siis ennustaa sairaslomapäivien määrä käärmeen pureman jälkeen, riippuen käärmeen pituudesta ja säästä. Tarkastellaan hieman oletuksia, mitä datasta voidaan päätellä. Alla on korrelaatio-matriisi, joka kertoo, kuinka paljon muuttujat korreloivat keskenään.
 
-![](../../images/hillclimb_snake_corr_heatmap.png)
+![](../images/620_hillclimb_snake_corr_heatmap.png)
 
 **Kuvio 1:** *Seabornin heatmap-funktiolla plotattu `df.corr()` -funktion palauttama korrelaatiomatriisi paljastaa numeraalisena arvona, kuinka samat parit korreloivat keskenään.*
 
@@ -178,7 +178,7 @@ Korrelaatiomatsiisista on pääteltävissä, että:
     * Lämpötila ja käärmeen pituus korreloivat miedon negatiivisesti keskenään
     * Jos lämpötila kasvaa, purevan käärmeen pituus laskee.
 
-![](../../images/hillclimb_snake_scatter_3d.gif)
+![](../images/620_hillclimb_snake_scatter_3d.gif)
 
 **Kuvio 2:** *Scatter 3D -kuvaaja, joka on luotu Plotly Express -kirjastolla. Kuvaajasta on ihmissilmin pääteltävissä, mihin kohtaan taso kuuluisi piirtää.*
 
@@ -369,7 +369,7 @@ plt.ylabel('MSE')
 plt.show()
 ```
 
-![](../../images/hillclimb_iterations_mse.png)
+![](../images/620_hillclimb_iterations_mse.png)
 
 **Kuvio 3:** *Virheen kehitys iteraatioittain. Algoritmi laskee virheen iteraatioiden määrän funktiona.*
 
@@ -390,7 +390,7 @@ Huomaa, että MSE edustaa "neliöpäiviä". Jos haluat tulkita sen tavallisina p
 
 Lopuksi voimme visualisoida ennusteen ja oikeat arvot parvikuvaajana.
 
-![](../../images/hillclimb_y_vs_yhat.png)
+![](../images/620_hillclimb_y_vs_yhat.png)
 
 **Kuvio 4:** *Ennusteen ja oikeiden arvojen vertailu. Punainen viiva kuvaa sellaisen ideaalimaailman tilannetta, jossa kaikki data on keskiarvoa, eli siis meidän mallimme ennustetta. Oranssi viiva on RMSE:n mukainen virhe (+-10.47 päivää).* 
 
