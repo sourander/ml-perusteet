@@ -52,11 +52,27 @@ Opettajan kokemus on, että jos yrität tutustua koneoppimisen historiaan, joudu
 
 Jotta meillä voisi olla ristiriidaton määritelmä tekoälylle, meillä tulisi olla ensin ristiriidaton määritelmä (ihmisen) älykkyydelle. Tällaista ei ole, joten myös AI:n suhteen joudumme tyytymään vaihteleviin määritelmiin. Kirjassa *Artificial Intelligence: A Modern Approach* [^russell2010] esitetään, että tekoäly on ala, joka pyrkii ei vain ymmärtämään, vaan myös rakentamaan älykkäitä toimijoita. Tekoälyn määritelmiä voidaan kirjan mukaan järjestää neljään kategoriaan: ihmismäisesti ajattelemiseen, rationaalisesti ajattelemiseen, ihmismäisesti toimimiseen ja rationaalisesti toimimiseen. Näiden neljän kategorian jakautuminen perustuu kahteen akseliin: ==rationaali-ihmismäinen== (engl. rational-humanly) ja ==ajattelu-toiminta== (engl. thinking-acting). Jos tekoäly *toimii ihmismäisesti* (engl. acting humanly), sen käyttäytyminen on vaikea erottaa ihmisen käyttäytymisestä. Esimerkiksi kuulustelija ei tietäisi, käykö hän keskustelua botin vai ihmisen kanssa. Vastakohta tälle molemmilla akselilla on *rationaalisesti ajattelu* (engl. thinking rationally). Tämän määritelmän mukaan botti noudattaisi täydellistä päättelyprosessia. Kaikki olisi täysin virheetöntä logiikkaa.
 
-!!! warning
+```mermaid
+quadrantChart
+    title Tekoälyn määritelmät (Russell & Norvig)
+    x-axis Ajattelu --> Toiminta
+    y-axis "Ihmimäisesti" --> Rationaalisesti
+    "Waymo (auto)": [0.90, 0.90]
+    "Claude Code": [0.90, 0.80]
+    "AlphaGo": [0.77, 0.85]
+    "Lean Mathlib": [0.10, 0.85]
+    "Z3 Theorem Prover": [0.15, 0.75]
+    "Meta TRIBE": [0.35, 0.35]
+    "General Problem Solver (GPS)": [0.25, 0.25]
+    "Eugene Goostman (Turing)": [0.80, 0.25]
+    "Character.ai -persoonabotti": [0.60, 0.15]
+```
 
-    Voisi olla jossain määrin riskaabelia yrittää ratkaista todellisen maailman ongelmia käyttäen bottia, joka pyrkii täydellisesti aukottomaan, rationaaliseen ajatteluun, eikö?
+Yllä on nelikenttäkuvaaja, johon on Geminin avustuksella sijoitettu erilaisia tekoälyjärjestelmiä, jotka istuvat kyseisen nelikentän osan määritelmiin parhaiten.
 
-*Rationaalinen toiminta* (engl. rational-acting) vaikuttaa olevan parhaiten soveltuva lähestymistapa käytännön tekoälylle. Rationaalinen toimija on olio, joka havaitsee ympäristönsä erilaisten antureiden avulla ja toimii sen mukaisesti, mutta pystyy sopeutumaan muutoksiin ja tavoittelee päämääriä. Tämän kurssin aikana luomme useita erilaisia rationaalisia toimijoita ja niiden komponentteja: yksi niistä on koneoppiminen, joka on tällä hetkellä hallitseva tapa rakentaa tekoälyä.
+*Rationaalinen toiminta* (engl. rational-acting) vaikuttaa olevan parhaiten soveltuva lähestymistapa arkielämässä hyödylliselle tekoälylle. Rationaalinen toimija on olio, joka havaitsee ympäristönsä erilaisten antureiden avulla ja toimii sen mukaisesti, mutta pystyy sopeutumaan muutoksiin ja tavoittelee päämääriä. Käytännössä tämä auttaa meitä luomaan itseohjautuvia autoja ja agenttisessa koodauksessa hyödyllisiä *agent harness*-työkaluja, kuten Claude Code tai OpenCode.
+
+Tämän kurssin aikana luomme koneoppimismalleja, jotka käytännössä voivat olla agentin komponentteja: algoritmit ovat se, mitä agentit käyttävät konepellin alla. Tämän takia et löydä nelikentästä yhtään tämän kurssin algoritmia.
 
 Tämän materiaalin puitteissa voit luottaa seuraavaan määritelmään: *AI eli tekoäly on mitä tahansa, mikä ulkoapäin vaikuttaa joltakin, mikä tyypillisesti vaatii ihmisen älykkyyttä*. Esimerkiksi kielioppivirheitä tai syntaksivirheitä voi poistaa tekstistä sääntöpohjaisella logiikalla käyttämättä koneoppimista laisinkaan. Myös esimerkiksi "älyliikennevaloja" voi ohjata hyvinkin sääntöpohjaisesti.
 
