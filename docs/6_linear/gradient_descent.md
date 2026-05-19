@@ -82,7 +82,7 @@ Jos palautuneista `mse_values`-arvoista piirretään kuvaaja, saadaan paraabeli,
 
 ![Convex of MSE by bmi](../images/630_gradient_descent_bmi_convex.png)
 
-**Kuvio 1:** *Mallin virheen muutos painoindeksin painokertoimen muuttuessa. Nykyinen arvottu painokerroin, `0.65`, on merkattu kuvaajaan punaisena katkoviivana.*
+**Kuva 1:** *Mallin virheen muutos painoindeksin painokertoimen muuttuessa. Nykyinen arvottu painokerroin, `0.65`, on merkattu kuvaajaan punaisena katkoviivana.*
 
 !!! warning
 
@@ -90,13 +90,13 @@ Jos palautuneista `mse_values`-arvoista piirretään kuvaaja, saadaan paraabeli,
 
 ![Convex of MSE by bmi zoomed in](../images/630_gradient_descent_bmi_convex_zoom.png)
 
-**Kuvio 2:** *Kuvio 1:n lähikuvaaja, jossa näkyy paremmin virheen muutos. Huomaa, että x-akseli kattaa nyt vain arvot `0.6-0.7`*
+**Kuva 2:** *Kuva 1:n lähikuvaaja, jossa näkyy paremmin virheen muutos. Huomaa, että x-akseli kattaa nyt vain arvot `0.6-0.7`*
 
 ![Convex of MSE with dy/dx](../images/630_gradient_descent_bmi_convex_slope.png)
 
-**Kuvio 3:** *Kuvio 2:n lähikuvaaja, jossa esitellään pieni delta (`+ 0.01`), ja sen vaikutus virheeseen. Virhefunktion kulmakertoimen voisi laskea myös näin. Pieni delta on valittu sattumanvaraisesti.*
+**Kuva 3:** *Kuva 2:n lähikuvaaja, jossa esitellään pieni delta (`+ 0.01`), ja sen vaikutus virheeseen. Virhefunktion kulmakertoimen voisi laskea myös näin. Pieni delta on valittu sattumanvaraisesti.*
 
-Huomaa, että vaikka Kuviossa 3 käyrä näyttää ihmissilmälle suoralta, se on yhä kaareva. Mitä pienemmän deltan avulla laskemme muutoksen, sitä tarkemman arvon saamme kulmakertoimesta. Alla olevassa taulukossa näkyy kulmakertoimen laskeminen eri deltoilla. Ensimmäinen sarake on siis askeleen koko, joka otetaan Kuvion 3 x-akselilla. Valitut askeleet ovat kymmenesosia toisistaan (`10 ** -2`, `10 ** -3`, `10 ** -4`, `10 ** -5`).
+Huomaa, että vaikka Kuvassa 3 käyrä näyttää ihmissilmälle suoralta, se on yhä kaareva. Mitä pienemmän deltan avulla laskemme muutoksen, sitä tarkemman arvon saamme kulmakertoimesta. Alla olevassa taulukossa näkyy kulmakertoimen laskeminen eri deltoilla. Ensimmäinen sarake on siis askeleen koko, joka otetaan Kuvan 3 x-akselilla. Valitut askeleet ovat kymmenesosia toisistaan (`10 ** -2`, `10 ** -3`, `10 ** -4`, `10 ** -5`).
 
 | Weight delta | MSE delta | Slope         |
 | ------------ | --------- | ------------- |
@@ -174,7 +174,7 @@ Ennuste on luonnollisesti väärä, koska painot ovat hyvin kaukana siitä, mit�
 
 ![Lines at epoch 0](../images/600_gradient_descent_lines_at_epoch_0.png)
 
-**Kuvio 4:** *Kuvaaja, jossa on feikkidatan datapisteet sinisinä ympyröinä, matemaattinen ideaali punaisena viivana, ja ennuste sinisenä viivana. Ennuste on merkitty sinisellä viivalla ja oikeat arvot punaisilla pisteillä.*
+**Kuva 4:** *Kuvaaja, jossa on feikkidatan datapisteet sinisinä ympyröinä, matemaattinen ideaali punaisena viivana, ja ennuste sinisenä viivana. Ennuste on merkitty sinisellä viivalla ja oikeat arvot punaisilla pisteillä.*
 
 #### Verifioidaan deltametodilla
 
@@ -331,7 +331,7 @@ Käytät navigointiin taskulamppua :flashlight:. Taskulampun paristot ovat vähi
 
 ![Flashlight lit in a nightly forest](../images/630_gradient_descent_flashlight_forest_dalle.jpg)
 
-**Kuvio 5:** *Kuva henkilöstä navigoimassa pimeässä metsässä taskulampun avulla. DALL-E 3:n näkemys.*
+**Kuva 5:** *Kuva henkilöstä navigoimassa pimeässä metsässä taskulampun avulla. DALL-E 3:n näkemys.*
 
 Kun laitat valot päälle, saat tietoa rinteen paikallisesta kallistuksesta. Gradientti osoittaa jyrkimmän ylämäen suuntaan, joten Gradient Descent kulkee vastakkaiseen suuntaan eli negatiivisen gradientin suuntaan. Kenties rinne viettää (lat, lon) -suunnassa `1.195` ja `12.01` -asteen kulmassa. Kun alat lähestyä alamäen syvintä kohtaa, mäki oletettavasti loiventuu. Mutta kuinka kaukana olet syvimmästä kohdasta? 100 metriä? 600 kilometriä? Tätä et voi tietää, joten sinun pitää yksinkertaisesti arvata, kuinka pitkän matkan kävelet taskulampun käytön jälkeen. ==Tämä arvaus on oppimisnopeus== (engl. learning rate).
 
@@ -361,15 +361,15 @@ Alla 2000 epookin yli koulutettu gradient descent animaationa. Data on yllä kä
 
 ![Animation of gradient descent](../images/630_gradient_descent_lines_over_epochs.gif)
 
-**Kuvio 6:** *Animaatio Gradient Descent -algoritmin toiminnasta. Valittu learning rate on `0.01`. Virhe on esitetty SSE:nä, jotta se ei lähestyisi yhtä nopeasti nollaa kuin MSE.*
+**Kuva 6:** *Animaatio Gradient Descent -algoritmin toiminnasta. Valittu learning rate on `0.01`. Virhe on esitetty SSE:nä, jotta se ei lähestyisi yhtä nopeasti nollaa kuin MSE.*
 
 ![Training error over epochs](../images/630_gradient_descent_training_plot_2000_epochs.png)
 
-**Kuvio 7:** *Kuvaaja, jossa on esitetty virheen muutos koulutuksen aikana 2000 epookin yli. Virhe on esitetty SSE:nä.*
+**Kuva 7:** *Kuvaaja, jossa on esitetty virheen muutos koulutuksen aikana 2000 epookin yli. Virhe on esitetty SSE:nä.*
 
 ![Contour Plot](../images/630_gradient_descent_contour_plot.png)
 
-**Kuvio 8:** *Kuvaaja, jossa on esitetty virhefunktion contour plot, minkä viivat muistuttaa mukavasti kartan korkeuskäyriä. Kuva on havainnollistava eikä vastaa numeerisesti tämän esimerkin arvoja.*
+**Kuva 8:** *Kuvaaja, jossa on esitetty virhefunktion contour plot, minkä viivat muistuttaa mukavasti kartan korkeuskäyriä. Kuva on havainnollistava eikä vastaa numeerisesti tämän esimerkin arvoja.*
 
 ## Lisää opiskeltavaa
 

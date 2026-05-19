@@ -16,7 +16,7 @@ Koneoppiminen voi myös auttaa löytämään uusia tietoa datasta, jota ihmiset 
 
 ![Comic about classification](../images/110_xkcd_sphere_tastiness.png)
 
-**Kuvio 1:** *Koneoppimista ja tilastotiedettä voi käyttää muun muassa luokitteluun. Lähde: [xkcd 2893 (CC BY-NC)](https://xkcd.com/2893/)*
+**Kuva 1:** *Koneoppimista ja tilastotiedettä voi käyttää muun muassa luokitteluun. Lähde: [xkcd 2893 (CC BY-NC)](https://xkcd.com/2893/)*
 
 Koneoppimisalgoritmeilla ratkaisu etsitään yleensä numeerisesti, eli iteratiivisen optimoinnin avulla, eikä analyyttisesti suljetulla kaavalla. Analyyttinen ratkaisu tarkoittaa kaavaa tai symbolista ratkaisua. Esimerkiksi summalle $0 + 1 + \ldots + N$ analyyttinen ratkaisu on $N * \frac{(N + 1)}{2}$, kun taas laskennallinen ratkaisu on laskea summa silmukassa. Monissa koneoppimisen ongelmissa analyyttistä ratkaisua ei tunneta tai se ei ole käytännöllinen, joten ratkaisu etsitään numeerisilla optimointimenetelmillä. [^essential-math-for-ai]
 
@@ -26,7 +26,7 @@ Jotta koneoppimisalgoritmin motivaatio pysyy konkretian tasolla, käsitellään 
 
 ![A tourist manually classifying images](../images/110_dalle_polaroid_classification.jpg)
 
-**Kuvio 2:** *Kuvien luokittelu käsin on aikaa vievää ja tylsää. Tässä DALL-E 3:n näkemys.*
+**Kuva 2:** *Kuvien luokittelu käsin on aikaa vievää ja tylsää. Tässä DALL-E 3:n näkemys.*
 
 Kuvittele, että olet ollut lomalla ja ottanut kuvia. Kävit lomalla kolmessa lokaatiossa: metsässä, vuorella ja museossa. Sinulla on yhteensä ==10,000 valokuvaa==. Kävit kussakin kohteessa useina eri päivinä, joten et voi tunnistaa kuvia helposti järjestämällä niitä päivämäärän tai juoksevan numeroinnin mukaan.
 
@@ -89,7 +89,7 @@ print(features)
 
 ![Vacation Images Training](../images/110_vacation_images_training.png)
 
-**Kuvio 2:** *Koneoppimismallin koulutus hoituisi syöttämällä mallille metsä-, vuori- ja museokuvien (vihreät, ruskeat, siniset neliöiden) piirrevektoreita.*
+**Kuva 2:** *Koneoppimismallin koulutus hoituisi syöttämällä mallille metsä-, vuori- ja museokuvien (vihreät, ruskeat, siniset neliöiden) piirrevektoreita.*
 
 Vaiheessa kaksi koulutamme koneoppimismallin. Koulutusdata koostuu kuvien piirteistä ja niiden luokista. Voisimme esimerkiksi luokitella käsin 200 metsä-, vuori- ja museokuvaa ja kouluttaa mallin näiden avulla. Näin meidän tarvisisi luokitella (engl. to label) vain 600 kuvaa käsin, eikä kaikkia 10,000 kuvaa. Malli oppii koulutusdatasta korrelaatioita piirteiden ja luokkien välillä. 
 
@@ -120,7 +120,7 @@ Kuvitellaan, että testaus on mennyt hyvin, ja malli on tunnistanut kuvat seuraa
 
 ![Kuvien inferenssi](../images/110_vacation_images_inference.png)
 
-**Kuvio 3:** *Koneoppimismallin käyttö. Kuvien piirteet syötetään mallille, joka antaa luokituksen.*
+**Kuva 3:** *Koneoppimismallin käyttö. Kuvien piirteet syötetään mallille, joka antaa luokituksen.*
 
 Lopulta mallia voi käyttää tunnistamaan kuvia, joita se ei ole nähnyt. Näin voimme käyttää sitä luokittelemaan ne 9,100 kuvaa, joita emme ole käsin luokitelleet koulutus- tai testausvaiheessa. Alla vielä selvyyden vuoksi koodiesimerkki, joka luokittelee kuvat:
 

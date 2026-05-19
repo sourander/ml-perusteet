@@ -7,5 +7,6 @@ nav:
   - "5. Klusterointi": "5_klusterointi"
   - "6. Lineaarinen regressio": "6_linear"
   - "7. Lineaarinen luokittelu": "7_luokittelu"
+  - "8. Aikasarjat": "8_aikasarjat"
   - exercises.md
 

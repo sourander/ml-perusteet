@@ -412,7 +412,7 @@ plot_tree(clf, filled=True)
 
 ![Decision Tree Scikit Learn visualisointina](../images/320_decision_tree_plot_by_scikit.png)
 
-**Kuvio 1:** *Päätöspuu, joka on luotu Scikit-learn-kirjastolla. Graafissa neliön taustaväri indikoi enemmistöluokkaa, joka on kyseisessä solmussa. Sininen viittaa autoon, oranssi pyörään.*
+**Kuva 1:** *Päätöspuu, joka on luotu Scikit-learn-kirjastolla. Graafissa neliön taustaväri indikoi enemmistöluokkaa, joka on kyseisessä solmussa. Sininen viittaa autoon, oranssi pyörään.*
 
 Huomaa, että nyt päätöspuu on löytänyt luvut, jotka ovat kohtalaisen lähellä meidän määrittelemättömän todellisuuden avainlukuja. Mallista ei löydy tarkkaa `20 km/h` arvoa, mutta läheltä liippaava `19.605 km/h` löytyy. Kuinka lähelle totuutta päästiin `15 km/h` ja `10 km/h` arvojen kanssa? Lue tämä graafista.
 

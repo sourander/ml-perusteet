@@ -12,7 +12,7 @@ Metriikoiden esittelyn jälkeen käsittelemme yli- ja alisovittamista tarkemmin 
 
 ### MSE ja RMSE
 
-MSE (Mean Squared Error) on virhefunktio, joka laskee virheiden neliöiden keskiarvon. Se on yksi yleisimmistä virhefunktioista (*engl. loss function*) regressiomalleissa, ja se lasketaan seuraavalla kaavalla:
+MSE (Mean Squared Error) on virhefunktio, joka laskee virheiden neliöiden keskiarvon. Se on yksi yleisimmistä virhefunktioista (*engl. loss function*) regressiomalleissa, ja se lasketaan seuraavalla kaavalla [^fromscratch]:
 
 $$
 MSE = \frac{1}{n} \sum_{i=1}^{n} (y_i - f(x_i))^2

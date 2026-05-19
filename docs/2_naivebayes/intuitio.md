@@ -164,11 +164,11 @@ $$
 
     ![Beta Distrubution of 32, 100 and 200 sample sizes](../images/210_pizza_pass_beta_distribution.png)
 
-    **Kuvio 1.** Kolmen eri otannan todennäköisyysjakaumat. 32 opiskelijan otannalla jakauma on leveämpi kuin 100 ja 200 opiskelijan otannoilla.
+    **Kuva 1.** Kolmen eri otannan todennäköisyysjakaumat. 32 opiskelijan otannalla jakauma on leveämpi kuin 100 ja 200 opiskelijan otannoilla.
 
     Tilanne on sama kuin jos heität kolikko tai kuusitahoista noppaa. Yksittäisellä heitolla et voi sanoa, että kolikon tai nopan todennäköisyys on 50 % tai 1/6. Mutta kun heität kolikkoa tai noppaa tarpeeksi monta kertaa, todennäköisyyslukema lähestyy todellista todennäköisyyttä. Todellinen todennäköisyys ei välttämättä ole tosielämän kolikolla tai nopalla tasan 50 % tai tasan 1/6.
 
-    Yllä näkyvän Kuvio 1:n voit generoida seuraavalla koodilla:
+    Yllä näkyvän Kuva 1:n voit generoida seuraavalla koodilla:
 
     ```python title="IPython"
     import numpy as np

@@ -18,7 +18,7 @@ Tervetuloa kurssille! Aiheita käydään läpi lyhyesti teoreettisesta näkökul
 
 ![genAI vs traditional AI](images/ml_vs_genai_madebytio.jpg)
 
-**Kuvio 1.** *Sarjakuvapiirros koneoppimisesta. (Copyright note: The memeified comic is by unknown author, but found from r/machinelearningmemes posted by u/joelllthedestoryer. Published with permission from the creator of the original comic strip MadeByTio.)*
+**Kuva 1.** *Sarjakuvapiirros koneoppimisesta. (Copyright note: The memeified comic is by unknown author, but found from r/machinelearningmemes posted by u/joelllthedestoryer. Published with permission from the creator of the original comic strip MadeByTio.)*
 
 ## Git LFS
 

@@ -79,5 +79,15 @@ Kopioi tehtävälista leikepöydälle ja muokkaa se sinun käyttöösi sopivaksi
 
 - [ ] Tehtävä: Hill Climbing from Scratch
 
+## Logistinen regressio (710)
+
+- [ ] Tehtävä: Binäärinen logistinen regressio
+- [ ] Tehtävä: Moniluokkainen logistinen regressio
+
+## Aikasarjat (800)
+
+- [ ] Tehtävä: StatsForecast ja Polars
+- [ ] Tehtävä: MLForecast tutuksi
+
 
 ```

@@ -164,7 +164,7 @@ Muistutuksena `x[0]` on :snake: mitta (cm) ja `x[1]` on sää (°C). Y on sairas
 
 ![](../images/620_hillclimb_snake_corr_heatmap.png)
 
-**Kuvio 1:** *Seabornin heatmap-funktiolla plotattu `df.corr()` -funktion palauttama korrelaatiomatriisi paljastaa numeraalisena arvona, kuinka samat parit korreloivat keskenään.*
+**Kuva 1:** *Seabornin heatmap-funktiolla plotattu `df.corr()` -funktion palauttama korrelaatiomatriisi paljastaa numeraalisena arvona, kuinka samat parit korreloivat keskenään.*
 
 Korrelaatiomatsiisista on pääteltävissä, että:
 
@@ -180,7 +180,7 @@ Korrelaatiomatsiisista on pääteltävissä, että:
 
 ![](../images/620_hillclimb_snake_scatter_3d.gif)
 
-**Kuvio 2:** *Scatter 3D -kuvaaja, joka on luotu Plotly Express -kirjastolla. Kuvaajasta on ihmissilmin pääteltävissä, mihin kohtaan taso kuuluisi piirtää.*
+**Kuva 2:** *Scatter 3D -kuvaaja, joka on luotu Plotly Express -kirjastolla. Kuvaajasta on ihmissilmin pääteltävissä, mihin kohtaan taso kuuluisi piirtää.*
 
 ## Hill Climb preparaatio
 
@@ -371,7 +371,7 @@ plt.show()
 
 ![](../images/620_hillclimb_iterations_mse.png)
 
-**Kuvio 3:** *Virheen kehitys iteraatioittain. Algoritmi laskee virheen iteraatioiden määrän funktiona.*
+**Kuva 3:** *Virheen kehitys iteraatioittain. Algoritmi laskee virheen iteraatioiden määrän funktiona.*
 
 Tuloksen sisältämät painot, `result.w`, on lopulta esimerkiksi `array([137.42809371,   2.29821156,  42.30948618])`. Voimme käyttää tätä ennustamaan `y_hat`-arvot käyttäen `predict`-funktiota. Tämä on laskettuna jo valmiiksi `result.y_hat`-muuttujassa. Lopulta voimme tarkistaa sekä MSE:n että RMSE:n seuraavalla koodilla:
 
@@ -392,7 +392,7 @@ Lopuksi voimme visualisoida ennusteen ja oikeat arvot parvikuvaajana.
 
 ![](../images/620_hillclimb_y_vs_yhat.png)
 
-**Kuvio 4:** *Ennusteen ja oikeiden arvojen vertailu. Punainen viiva kuvaa sellaisen ideaalimaailman tilannetta, jossa kaikki data on keskiarvoa, eli siis meidän mallimme ennustetta. Oranssi viiva on RMSE:n mukainen virhe (+-10.47 päivää).* 
+**Kuva 4:** *Ennusteen ja oikeiden arvojen vertailu. Punainen viiva kuvaa sellaisen ideaalimaailman tilannetta, jossa kaikki data on keskiarvoa, eli siis meidän mallimme ennustetta. Oranssi viiva on RMSE:n mukainen virhe (+-10.47 päivää).* 
 
 ## Tehtävät
 

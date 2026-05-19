@@ -25,9 +25,9 @@ Huomaa, että myös muita tyyppejä on olemassa, kuten puoliohjattu oppiminen (e
 
 ![Talon hinnan arviointi maalauksena](../images/120_dalle_house_price_prediction.jpg)
 
-**Kuvio 1.** *Talon hinnan arviointi DALL-E 3:n maalaamana. Huomaa talosta lentävät numerot, jotka edustavat joitakin talon piirteitä, kuten sijaintia, huoneiden määrää ja pinta-alaa.*
+**Kuva 1.** *Talon hinnan arviointi DALL-E 3:n maalaamana. Huomaa talosta lentävät numerot, jotka edustavat joitakin talon piirteitä, kuten sijaintia, huoneiden määrää ja pinta-alaa.*
 
-Ohjattu oppiminen on koneoppimisen tyypeistä ilmeisin. Se on yleisesti käytössä ja se on helppo ymmärtää: opetusdata sisältää oikean vastauksen. Koulutusvaiheessa algoritmi pyrkii löytämään korrelaatioita piirteiden ja oikean vastauksen välillä – tai tarkemmin, pyrkii optimoimaan mallin parametrit siten, että mallin tuottama virhe minimoidaan. Lineaarinen regressio (ks. Kuvio 2) eli suoran sovitus on yksi yksinkertaisimmista ohjatun oppimisen algoritmeista. Huomaa, että kone ei tässä tapauksessa opi mitään ilmiöiden kausaalisuhteista, vaan ainoastaan korrelaatioista. Kone ei tiedä mitään logiikasta: se vain palauttaa x:n perusteella y:n - eikä edes *oikeaa* y:n arvoa, vaan jonkin sortin mediaanin.
+Ohjattu oppiminen on koneoppimisen tyypeistä ilmeisin. Se on yleisesti käytössä ja se on helppo ymmärtää: opetusdata sisältää oikean vastauksen. Koulutusvaiheessa algoritmi pyrkii löytämään korrelaatioita piirteiden ja oikean vastauksen välillä – tai tarkemmin, pyrkii optimoimaan mallin parametrit siten, että mallin tuottama virhe minimoidaan. Lineaarinen regressio (ks. Kuva 2) eli suoran sovitus on yksi yksinkertaisimmista ohjatun oppimisen algoritmeista. Huomaa, että kone ei tässä tapauksessa opi mitään ilmiöiden kausaalisuhteista, vaan ainoastaan korrelaatioista. Kone ei tiedä mitään logiikasta: se vain palauttaa x:n perusteella y:n - eikä edes *oikeaa* y:n arvoa, vaan jonkin sortin mediaanin.
 
 Käytännön esimerkkejä:
 
@@ -38,13 +38,13 @@ Käytännön esimerkkejä:
 
 ![Regression vs. Classification kuvaaja](../images/120_types_regression_classification.png)
 
-**Kuvio 2.** *Regressio- ja luokitteluongelmien ero. Huomaa, että kumpikin näistä ongelmista on ohjattua oppimista. Regressio-ongelmassa y-akseli on se, mitä ennustetaan. Luokitteluongelmassa eläinlaji on se, mitä ennustetaan. Kumpikin näistä on tiedossa.*
+**Kuva 2.** *Regressio- ja luokitteluongelmien ero. Huomaa, että kumpikin näistä ongelmista on ohjattua oppimista. Regressio-ongelmassa y-akseli on se, mitä ennustetaan. Luokitteluongelmassa eläinlaji on se, mitä ennustetaan. Kumpikin näistä on tiedossa.*
 
 ### Ohjaamaton oppiminen
 
 ![DVD-elokuvien luokittelu](../images/120_dalle_dvd_genrefication.jpg)
 
-**Kuvio 2.** *DVD-elokuvien luokittelu DALL-E 3:n maalaamana. Huomaa, että algoritmi tuskin päätyisi ihmisen tuntemiin genreihin kuten draama, komedia ja animaatio. Luokitteluun vaikuttaa merkittävästi se, mitä piirteitä algoritmille syötetään. Jos piirrevektori sisältää pelkän elokuvan keston ja leikkauksien määrän, saat luokkia kuten "Pitkät elokuvat, joissa on vähän leikkauksia"*
+**Kuva 2.** *DVD-elokuvien luokittelu DALL-E 3:n maalaamana. Huomaa, että algoritmi tuskin päätyisi ihmisen tuntemiin genreihin kuten draama, komedia ja animaatio. Luokitteluun vaikuttaa merkittävästi se, mitä piirteitä algoritmille syötetään. Jos piirrevektori sisältää pelkän elokuvan keston ja leikkauksien määrän, saat luokkia kuten "Pitkät elokuvat, joissa on vähän leikkauksia"*
 
 Ohjaamaton oppiminen on ohjatun oppimisen vastakohta. Ohjaamattomassa oppimisessa **oikea vastaus puuttuu** kokonaan koulutusdatasta. Valittu algoritmi pyrkii tunnistamaan jonkin sortin rakenteita datasta. Käyttötarpeita ovat esimerkiksi:
 

@@ -45,7 +45,7 @@ graph TD
     A --> D1
 ```
 
-**Kuvio 1:** *Esimerkki satunnaismetsästä, joka koostuu kolmesta päätöspuusta. Kukin päätöspussi saa oman otoksensa koulutusdatasta eli "pussillisen dataa".*
+**Kuva 1:** *Esimerkki satunnaismetsästä, joka koostuu kolmesta päätöspuusta. Kukin päätöspussi saa oman otoksensa koulutusdatasta eli "pussillisen dataa".*
 
 !!! info
 
@@ -244,7 +244,7 @@ graph LR
     X3 --> O
 ```
 
-**Kuvio 2:** *Boostingin periaate: jokainen uusi oppija hyödyntää aiempien oppijoiden virheitä. Lopullinen ennuste muodostetaan yhdistämällä kaikkien oppijoiden ennusteet.*
+**Kuva 2:** *Boostingin periaate: jokainen uusi oppija hyödyntää aiempien oppijoiden virheitä. Lopullinen ennuste muodostetaan yhdistämällä kaikkien oppijoiden ennusteet.*
 
 ### AdaBoost
 

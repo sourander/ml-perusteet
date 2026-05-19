@@ -30,7 +30,7 @@ graph TD
     E -->|Ei| H(Gepardi)
 ```
 
-**Kuvio 1:** *Mikä eläin?-pelin päätöspuu, olettaen että ainoat sallitut eläimet ovat: gepardi, karhu, elefantti ja varis.*
+**Kuva 1:** *Mikä eläin?-pelin päätöspuu, olettaen että ainoat sallitut eläimet ovat: gepardi, karhu, elefantti ja varis.*
 
 ## Informaatioteoria
 

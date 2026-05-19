@@ -20,13 +20,13 @@ Kaikki tähänastiset kurssilla käsitellyt mallit ovat olleet luokittelumalleja
 
 ![Hours Studies vs Exam Points diagram](../images/600_linreg_plot_study_time.png)
 
-**Kuvio 1:** *Opiskelun ja tenttipisteiden välisen suhteen havainnot.*
+**Kuva 1:** *Opiskelun ja tenttipisteiden välisen suhteen havainnot.*
 
-Kuvion 1 kuvitteellissa datasetissa on vain yksi syöte tai piirre, joka kuvastaa opiskeluun käytettyjä tunteja. Tämä on x-akseli. Arvo, jota pyrimme jatkossa ennustamaan, on vastaus (*engl. response*) tai tuloste (*engl. output*), joka löytyy kuvaajan y-akselilta.
+Kuvan 1 kuvitteellissa datasetissa on vain yksi syöte tai piirre, joka kuvastaa opiskeluun käytettyjä tunteja. Tämä on x-akseli. Arvo, jota pyrimme jatkossa ennustamaan, on vastaus (*engl. response*) tai tuloste (*engl. output*), joka löytyy kuvaajan y-akselilta.
 
 ![Hours Studies vs Exam Points with regression line](../images/600_linreg_plot_study_time_predict.png)
 
-**Kuvio 2:** *Opiskelun ja tenttipisteiden havaintoihin sovitettu suora.*
+**Kuva 2:** *Opiskelun ja tenttipisteiden havaintoihin sovitettu suora.*
 
 Se, kuinka löydetään parametrit, joilla malli saadaan sovitettua dataan, on lineaarisen regression ydin. Käsitellään tätä seuraavaksi kahviesimerkin kautta.
 
@@ -36,7 +36,7 @@ Kuvitellaan, että haluat selvittää, kuinka paljon :coffee:-kulutuksesi vaikut
 
 ![Coffee vs Backspace per Minute](../images/600_linreg_coffee_01_residuals.png)
 
-**Kuvio 3:** *Kahvinjuonti ja backspace-näppäimen käytön havainnot pistekuvaajana. Havaintoja on vain 10. Kuvaajan otsikossa on tehty rohkea typoteesi, että typojen määrä ja askelpalauttimen klikkailut ovat kausaalisesti yhteydessä toisiinsa.*
+**Kuva 3:** *Kahvinjuonti ja backspace-näppäimen käytön havainnot pistekuvaajana. Havaintoja on vain 10. Kuvaajan otsikossa on tehty rohkea typoteesi, että typojen määrä ja askelpalauttimen klikkailut ovat kausaalisesti yhteydessä toisiinsa.*
 
 ### Suora
 
@@ -63,17 +63,17 @@ def predict(x):
     return m * x + b
 ```
 
-Vakiotermi $b$ on $y$-akselin leikkauspiste, ja kulmakerroin $m$ kertoo, kuinka paljon $y$ kasvaa, kun $x$ kasvaa yhdellä. Pikaisella silmäyksellä vaikuttaa, ihan noin silmämääräisesti, että suora voisi leikata y-akselin noin $y = 1$ kohdalla ja kulkea noin $m = 1$ kulmakertoimella: eli kun x kasvaa yhdellä, y kasvaa yhdellä. Ei kuitenkaan *ihan* näin jyrkästi, joten arvataan seuraavat arvot: $y = 0.9x + 1$. Syötetään nämä arvot funktioon ja piirretään se kuvioon.
+Vakiotermi $b$ on $y$-akselin leikkauspiste, ja kulmakerroin $m$ kertoo, kuinka paljon $y$ kasvaa, kun $x$ kasvaa yhdellä. Pikaisella silmäyksellä vaikuttaa, ihan noin silmämääräisesti, että suora voisi leikata y-akselin noin $y = 1$ kohdalla ja kulkea noin $m = 1$ kulmakertoimella: eli kun x kasvaa yhdellä, y kasvaa yhdellä. Ei kuitenkaan *ihan* näin jyrkästi, joten arvataan seuraavat arvot: $y = 0.9x + 1$. Syötetään nämä arvot funktioon ja piirretään se Kuvaon.
 
 ![Coffee vs. Backspace Human Guess Plotted](../images/600_linreg_coffee_02_human_guess.png)
 
-**Kuvio 4:** *Kahvinjuonti ja backspace-näppäimen käytön havainnot sekä perstuntumalta valittu suora. Oikean Y:n ja viivan Y:n eroavaisuus on esitetty oranssina katkoviivana.*
+**Kuva 4:** *Kahvinjuonti ja backspace-näppäimen käytön havainnot sekä perstuntumalta valittu suora. Oikean Y:n ja viivan Y:n eroavaisuus on esitetty oranssina katkoviivana.*
 
-Kuvion 3 perusteella näyttää siltä, että valitsemamme suora on ihan kohtalaisen lähellä, mutta tulevana asiantuntijana olisi hyvä kysyä, että *kuinka* lähellä se on. Tätä varten meidän pitää määritellä virhe, mikä tehdään seuraavaksi.
+Kuvan 3 perusteella näyttää siltä, että valitsemamme suora on ihan kohtalaisen lähellä, mutta tulevana asiantuntijana olisi hyvä kysyä, että *kuinka* lähellä se on. Tätä varten meidän pitää määritellä virhe, mikä tehdään seuraavaksi.
 
 ### Virhe
 
-Kuten kuvasta voi silmämääräisesti päätellä, suoraa ei voi ikinä sovittaa siten, että se läpäisisi **kaikki** pisteet. Kunkin pisteen virhettä edustaa ==jäännös== (engl. residuaal) eli Kuvio 3:n oranssit katkoviivat. 
+Kuten kuvasta voi silmämääräisesti päätellä, suoraa ei voi ikinä sovittaa siten, että se läpäisisi **kaikki** pisteet. Kunkin pisteen virhettä edustaa ==jäännös== (engl. residuaal) eli Kuva 3:n oranssit katkoviivat. 
 
 $$
 residual = y_i - \hat{y}_i
@@ -120,7 +120,7 @@ x[9]: -1.50 (squared: 2.25)
 
 ![Coffee vs. Backspace with Squared Residuals](../images/600_linreg_coffee_03_squared_residuals.png)
 
-**Kuvio 5:** *Residuaalit neliöityinä ovat, noh, neliöitä. Huomaa, että kaavion kuvasuhdetta on muutettu verrattuna aiempiin kaavioihin, jotta neliöt näyttäisivät oikeasti neliöltä.*
+**Kuva 5:** *Residuaalit neliöityinä ovat, noh, neliöitä. Huomaa, että kaavion kuvasuhdetta on muutettu verrattuna aiempiin kaavioihin, jotta neliöt näyttäisivät oikeasti neliöltä.*
 
 Neliöity virhe penalisoi suurempia virheitä enemmän kuin pieniä virheitä. Tämä on yksi syy sille, miksi neliösummaa käytetään yleisesti lineaarisen regressiomallin optimoinnissa: vaihtoehto olisi itseisarvo (`abs(x)`). Toinen syy liittyy derivoitavuuteen, mutta tähän palataan logistisen regression ja SGD-algoritmin yhteydessä.
 
@@ -241,7 +241,7 @@ Näiden algoritmien kasaaminen pienemmistä paloista käsin voi olla oppimisen k
 
 > "From the implementation point of view, this is just plain Ordinary Least Squares ([scipy.linalg.lstsq](https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lstsq.html)) or Non Negative Least Squares ([scipy.optimize.nnls](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.nnls.html)) wrapped as a predictor object."
 >
-> — [^scikir-lr]
+> — [^scikit-lr]
 
 !!! tip
 
@@ -282,7 +282,7 @@ Jos pohdit, mitä selittävien piirteiden lisääminen käytännössä tekee, ni
 
 ![3D scatter plot](../images/600_linreg_plot_3d.png)
 
-**Kuvio 6:** *3-ulotteinen pistekuvaaja.*
+**Kuva 6:** *3-ulotteinen pistekuvaaja.*
 
 Piirteiden määrän vaikutusta laskenta-aikaan voi testata seuraavalla koodinpätkällä:
 

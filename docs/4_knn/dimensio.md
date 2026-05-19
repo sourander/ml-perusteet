@@ -38,7 +38,7 @@ Esimerkiksi voit tutustua Plotly-kirjaston [PCA Visualization in Python](https:/
 
 ### Yksinkertaisemman mallin rakentaminen
 
-Ensemblet ja neuroverkot ovat esimerkkejä malleista, jotka kykenevät käsittelemään suurta määrää muuttujia. Kuitenkin, mitä enemmän muuttujia datassa on, sitä vaikeampaa mallin on löytää niistä merkityksellisiä kuvioita. [^hundredpage]
+Ensemblet ja neuroverkot ovat esimerkkejä malleista, jotka kykenevät käsittelemään suurta määrää muuttujia. Kuitenkin, mitä enemmän muuttujia datassa on, sitä vaikeampaa mallin on löytää niistä merkityksellisiä Kuvaita. [^hundredpage]
 
 > "In bioinformatics, for example, the potential dimension of a dataset can be enormous. Researchers may have thousands of gene expressions for each observation, many of which are highly correlated (and thus possibly redundant) with each other."
 >

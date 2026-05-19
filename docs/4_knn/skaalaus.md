@@ -89,7 +89,7 @@ def center(x):
 
 ![Centering data before and after](../images/400_scaling_centered.png)
 
-**Kuvio 1:** *Vasemmassa histogrammissa näkyy alkuperäinen data, joka noudattaa suunnilleen normaalijakaumaa. Oikeassa histogrammissa näkyy keskitetty data, jossa keskiarvo on 0.*
+**Kuva 1:** *Vasemmassa histogrammissa näkyy alkuperäinen data, joka noudattaa suunnilleen normaalijakaumaa. Oikeassa histogrammissa näkyy keskitetty data, jossa keskiarvo on 0.*
 
 ### Z-score
 
@@ -106,7 +106,7 @@ def z_score(x: Vector):
 
 ![Z-score scaling before and after](../images/400_scaling_z_score.png)
 
-**Kuvio 2:** *Vasemmassa histogrammissa on sama data kuin Kuviossa 1. Oikeassa histogrammissa näkyy Z-pisteytetty data, jossa keskiarvo on 0 ja keskihajonta on 1.*
+**Kuva 2:** *Vasemmassa histogrammissa on sama data kuin Kuvassa 1. Oikeassa histogrammissa näkyy Z-pisteytetty data, jossa keskiarvo on 0 ja keskihajonta on 1.*
 
 !!! tip
 

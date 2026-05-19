@@ -1,3 +1,13 @@
+---
+priority: 700
+---
+
+# Jakauma
+
+!!! tip "Off-topic warning"
+
+    Tämä luku on kurssilla hieman *nice-to-know* -tyyppinen, eikä sen sisältöä hyödynnetä missään tehtävissä suoraan. Se toimii kuitenkin ponnahduslautana kohti logistisen regression sigmoid-muunnoksen ymmärtämistä, ja lisäksi, se voi auttaa sinua ymmärtämään eri lähteissä vastaan tulevaa tekstiä. Esimerkiksi myöhemmin aikasarjojen kohdalla voit törmätä esimerkkeihin, joissa datasta tehdään *stationaarinen* käyttäen box-cox -muunnosta. Äskeinen lause ei kenties tarkoita tällä hetkellä mitään; voit palata siihen kun siirryt tutkimaan aikasarjoja.
+
 Transformaatiot muokkaavat datan jakautumista (engl. distribution), toisin kuin skaalaukseen käytettävät menetelmät. Tämä on tarpeellista ajoittain, kun data on vinoutunutta (engl. skewed) tai siinä on reilusti poikkeamia, mikä johtaa . Transformatiivinen muunnos voi auttaa tasaamaan vinoutunutta dataa ja tekemään siitä normaalijakautunutta.
 
 ## Vinous (skew)
@@ -79,7 +89,7 @@ Syntyvä data näyttää seuraavalta:
 
 ![Palkkadata plotattuna](../images/skewness_salaries.png)
 
-**Kuvio 1:** *Palkkadata, joka on vinoutunut kohti suuria arvoja.*
+**Kuva 1:** *Palkkadata, joka on vinoutunut kohti suuria arvoja.*
 
 Huomaa, että suurin osa palkoista sijaitsee välillä 0-60 000. Vasemmalla puolella data leikkautuu nollan kohdalla. Oikealla on hajanaisia suuria palkkoja. Suurin palkka tässä tasasetissä on 268 898. Jos datasetistä lasketaan vinouma ja huipukkuus, saadaan seuraavat tulokset:
 
@@ -172,7 +182,7 @@ np.allclose(salaries, inverted_salaries)
 
 ![Palkkadata muunneltuna](../images/skewness_salaries_boxcox.png)
 
-**Kuvio 2:** *Palkkadata muunnettuna Box-Cox-muunnoksella.*
+**Kuva 2:** *Palkkadata muunnettuna Box-Cox-muunnoksella.*
 
 Huomaa, että ongelma ei ole täysin hävinnyt, mutta loiventunut huomattavasti.
 
