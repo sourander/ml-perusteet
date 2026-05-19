@@ -1,0 +1,2080 @@
+
+<!doctype html>
+<html lang="fi" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../5_klusterointi/kMeans/">
+      
+      
+        <link rel="next" href="../regressiomallinsuorituskyky/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Normaaliyhtälö - Johdatus Koneoppimiseen</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#normaaliyhtalo" class="md-skip">
+          Hyppää sisältöön
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Ylätunniste">
+    <a href="../.." title="Johdatus Koneoppimiseen" class="md-header__button md-logo" aria-label="Johdatus Koneoppimiseen" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Johdatus Koneoppimiseen
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Normaaliyhtälö
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Hae" placeholder="Hae" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Haku">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Tyhjää" aria-label="Tyhjää" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Aloitetaan hakua
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigaatio" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Johdatus Koneoppimiseen" class="md-nav__button md-logo" aria-label="Johdatus Koneoppimiseen" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Johdatus Koneoppimiseen
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tervetuloa kurssille
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Koneoppiminen
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Koneoppiminen
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1_koneoppiminen/yleista/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Yleistä
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1_koneoppiminen/miksi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Motivaatio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1_koneoppiminen/tyypit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tyypit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1_koneoppiminen/datasetti/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1_koneoppiminen/tyonkulku/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Työnkulku
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Naive Bayes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Naive Bayes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2_naivebayes/enkoodaus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Merkkijonojen enkoodaus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2_naivebayes/intuitio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intuitio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2_naivebayes/naive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Naive Bayes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Puut ja Metsät
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Puut ja Metsät
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/suorituskyky/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luokittelumallin suorituskyky
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/entropia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entropia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/puu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Puu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/metsa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metsä
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. k-NN
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. k-NN
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_knn/skaalaus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skaalaus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_knn/dimensio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dimensiovähennys
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_knn/knn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k-NN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Klusterointi
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    5. Klusterointi
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5_klusterointi/sykliset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Syklinen enkoodaus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5_klusterointi/kMeans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K-Means
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Lineaarinen regressio
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    6. Lineaarinen regressio
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Normaaliyhtälö
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Normaaliyhtälö
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Sisällysluettelo">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sisällysluettelo
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#intuitio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intuitio
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kahviesimerkki" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kahviesimerkki
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kahviesimerkki">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#suora" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Suora
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#virhe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Virhe
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#neliosumman-minimointi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Neliösumman minimointi
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Neliösumman minimointi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#suljettu-muoto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Suljettu muoto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matriisiratkaisu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matriisiratkaisu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QR
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#normaaliyhtalon-rajoitukset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normaaliyhtälön rajoitukset
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tehtavat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tehtävät
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lahteet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lähteet
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../regressiomallinsuorituskyky/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Regressiomallin suorituskyky
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hill_climbing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hill Climbing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gradient_descent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gradient Descent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Lineaarinen luokittelu
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    7. Lineaarinen luokittelu
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../7_luokittelu/jakauma/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jakauma
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../7_luokittelu/logistic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logistinen regressio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Aikasarjat
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    8. Aikasarjat
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../8_aikasarjat/aikasarjat/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aikasarjat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exercises/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tehtäväkooste
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Sisällysluettelo">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sisällysluettelo
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#intuitio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intuitio
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kahviesimerkki" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kahviesimerkki
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Kahviesimerkki">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#suora" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Suora
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#virhe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Virhe
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#neliosumman-minimointi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Neliösumman minimointi
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Neliösumman minimointi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#suljettu-muoto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Suljettu muoto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matriisiratkaisu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matriisiratkaisu
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QR
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#normaaliyhtalon-rajoitukset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normaaliyhtälön rajoitukset
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tehtavat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tehtävät
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lahteet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lähteet
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="normaaliyhtalo">Normaaliyhtälö</h1>
+<p>Kaikki tähänastiset kurssilla käsitellyt mallit ovat olleet luokittelumalleja (tai ryvästysmalleja eli klusterointimalleja). Tämän viikon teema on lineaarinen regessio, joka ennustaa jatkuvaa arvoa. Aiemmin olemme siis pyrkineet ennustamaan, että <code>Onko havainto 1 vai 0</code> tai <code>Onko havainto 1, 2, 3, 4 vai 5</code>. Tällä kertaa ennustamme jatkuvia lukuja, joten vastaus voi olla esimerkiksi <code>5.5</code> tai <code>3.14159</code>. </p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Monista luokitteluun soveltumista algoritmeista, kuten kNN ja Naive Bayes, löytyy myös regressio-ongelmiin soveltuvia toteutuksia.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Myöhemmin tutustumme toiseen lineaariseen malliin, nimeltään logistinen regressio, joka on – toisin kuin nimi antaa ymmärtää – luokittelualgoritmi . Kumpaakin näitä yhdistää lineaarisuus. Lineaarisuus tarkoittaa, että malli pyrkii löytämään <mark>suoran</mark> (tai tason), joka <mark>minimoi virheen</mark>.</p>
+</div>
+<h2 id="intuitio">Intuitio</h2>
+<p><img alt="Hours Studies vs Exam Points diagram" src="../../images/600_linreg_plot_study_time.png" /></p>
+<p><strong>Kuva 1:</strong> <em>Opiskelun ja tenttipisteiden välisen suhteen havainnot.</em></p>
+<p>Kuvan 1 kuvitteellissa datasetissa on vain yksi syöte tai piirre, joka kuvastaa opiskeluun käytettyjä tunteja. Tämä on x-akseli. Arvo, jota pyrimme jatkossa ennustamaan, on vastaus (<em>engl. response</em>) tai tuloste (<em>engl. output</em>), joka löytyy kuvaajan y-akselilta.</p>
+<p><img alt="Hours Studies vs Exam Points with regression line" src="../../images/600_linreg_plot_study_time_predict.png" /></p>
+<p><strong>Kuva 2:</strong> <em>Opiskelun ja tenttipisteiden havaintoihin sovitettu suora.</em></p>
+<p>Se, kuinka löydetään parametrit, joilla malli saadaan sovitettua dataan, on lineaarisen regression ydin. Käsitellään tätä seuraavaksi kahviesimerkin kautta.</p>
+<h2 id="kahviesimerkki">Kahviesimerkki</h2>
+<p>Kuvitellaan, että haluat selvittää, kuinka paljon <img alt="☕" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2615.svg" title=":coffee:" />-kulutuksesi vaikuttaa <span class="keys"><kbd class="key-backspace">Backspace</kbd></span> -näppäimen eli askelpalauttimen käyttöön. Asennat kahvikuppiisi sensorin, joka mittaa, kuinka monta kuppia kahvia juot päivässä. Lisäksi asennat keyloggerin, joka mittaa, kuinka monta kertaa painat backspace-näppäintä minuutissa ollessasi koodaamassa.</p>
+<p><img alt="Coffee vs Backspace per Minute" src="../../images/600_linreg_coffee_01_residuals.png" /></p>
+<p><strong>Kuva 3:</strong> <em>Kahvinjuonti ja backspace-näppäimen käytön havainnot pistekuvaajana. Havaintoja on vain 10. Kuvaajan otsikossa on tehty rohkea typoteesi, että typojen määrä ja askelpalauttimen klikkailut ovat kausaalisesti yhteydessä toisiinsa.</em></p>
+<h3 id="suora">Suora</h3>
+<p>Yllä totesimme, että lineaarinen algoritmi pyrkii löytämään <mark>suoran</mark>, joka minimoi virheen. Suora on peruskoulun matematiikasta tuttu käsite <sup id="fnref:kämäräinen"><a class="footnote-ref" href="#fn:kämäräinen">1</a></sup> , ja sen yhtälö on <sup id="fnref:fromscratch"><a class="footnote-ref" href="#fn:fromscratch">2</a></sup>:</p>
+<div class="arithmatex">\[
+y = f(x) = mx + b
+\]</div>
+<p>Yhtälön osatekijät ovat seuraavat:</p>
+<ul>
+<li><span class="arithmatex">\(y\)</span> on selitettävä muuttuja (engl. dependent variable)</li>
+<li><span class="arithmatex">\(x\)</span> on selittävä muuttuja (engl. predictor)</li>
+<li><span class="arithmatex">\(f(x)\)</span> on lineaarinen malli, jonka <mark>parametreja</mark> ovat...</li>
+<li><span class="arithmatex">\(m\)</span> on kulmakerroin (engl. slope)</li>
+<li><span class="arithmatex">\(b\)</span> on vakiotermi (engl. intercept, y-intercept)</li>
+</ul>
+<p>Mallin parametrit <span class="arithmatex">\(m\)</span> ja <span class="arithmatex">\(b\)</span> ovat arvot, jotka yritämme datan avulla selvittää. Saman funktion voi luonnollisesti toteuttaa myös Pythonilla.</p>
+<div class="language-python highlight"><span class="filename">IPython</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="n">m</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># We need to find this</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="n">b</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># as well as this</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="k">return</span> <span class="n">m</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">b</span>
+</span></code></pre></div>
+<p>Vakiotermi <span class="arithmatex">\(b\)</span> on <span class="arithmatex">\(y\)</span>-akselin leikkauspiste, ja kulmakerroin <span class="arithmatex">\(m\)</span> kertoo, kuinka paljon <span class="arithmatex">\(y\)</span> kasvaa, kun <span class="arithmatex">\(x\)</span> kasvaa yhdellä. Pikaisella silmäyksellä vaikuttaa, ihan noin silmämääräisesti, että suora voisi leikata y-akselin noin <span class="arithmatex">\(y = 1\)</span> kohdalla ja kulkea noin <span class="arithmatex">\(m = 1\)</span> kulmakertoimella: eli kun x kasvaa yhdellä, y kasvaa yhdellä. Ei kuitenkaan <em>ihan</em> näin jyrkästi, joten arvataan seuraavat arvot: <span class="arithmatex">\(y = 0.9x + 1\)</span>. Syötetään nämä arvot funktioon ja piirretään se Kuvaon.</p>
+<p><img alt="Coffee vs. Backspace Human Guess Plotted" src="../../images/600_linreg_coffee_02_human_guess.png" /></p>
+<p><strong>Kuva 4:</strong> <em>Kahvinjuonti ja backspace-näppäimen käytön havainnot sekä perstuntumalta valittu suora. Oikean Y:n ja viivan Y:n eroavaisuus on esitetty oranssina katkoviivana.</em></p>
+<p>Kuvan 3 perusteella näyttää siltä, että valitsemamme suora on ihan kohtalaisen lähellä, mutta tulevana asiantuntijana olisi hyvä kysyä, että <em>kuinka</em> lähellä se on. Tätä varten meidän pitää määritellä virhe, mikä tehdään seuraavaksi.</p>
+<h3 id="virhe">Virhe</h3>
+<p>Kuten kuvasta voi silmämääräisesti päätellä, suoraa ei voi ikinä sovittaa siten, että se läpäisisi <strong>kaikki</strong> pisteet. Kunkin pisteen virhettä edustaa <mark>jäännös</mark> (engl. residuaal) eli Kuva 3:n oranssit katkoviivat. </p>
+<div class="arithmatex">\[
+residual = y_i - \hat{y}_i
+\]</div>
+<p>Yksittäinen jäännös on siis y:n todellinen arvo miinus y:n ennustettu arvo (<span class="arithmatex">\(\hat{y}\)</span> eli "y hat"). Intuitio kertoo, toivon mukaan, että näiden jäännösten summan minimointi on hyvä tapa löytää paras suora. Tätä prosessia kutsutaan <strong>optimoinniksi</strong>. Tarkastellaan yllä valitun viivan residuaaleja.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>x[0]: -0.95
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>x[1]: -1.65
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>x[2]: +1.48
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>x[3]: -0.68
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>x[4]: +0.45
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>x[5]: -1.45
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>x[6]: -3.08
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>x[7]: -0.48
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>x[8]: +0.45
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>x[9]: -1.50
+</span></code></pre></div>
+<p>Virhettä voi mitata monella tavalla. Tässä kappaleessa käytämme yksinkertaisinta eli <strong>SSE</strong> (Sum of Squared Error) eli neliövirhe. Tällöin meidän optimoinnin tavoitteena on <strong>pienimmän neliösumman</strong> löytäminen (engl. least squares).</p>
+<div class="arithmatex">\[
+SSE = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
+\]</div>
+<p>Pythonina sama on luonnollisesti:</p>
+<div class="language-python highlight"><span class="filename">IPython</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">sse</span><span class="p">(</span><span class="n">residuals</span><span class="p">):</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">residual</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">residual</span> <span class="ow">in</span> <span class="n">residuals</span><span class="p">])</span>
+</span></code></pre></div>
+<p>Jos yllä näkyvät residuaalit syötetään yllä olevaan funktioon, saadaan seuraava tulos:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>x[0]: -0.95 (squared: 0.90)
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>x[1]: -1.65 (squared: 2.72)
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>x[n]: ...
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>x[8]: +0.45 (squared: 0.20)
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>x[9]: -1.50 (squared: 2.25)
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>= SSE: 20.70
+</span></code></pre></div>
+<p><img alt="Coffee vs. Backspace with Squared Residuals" src="../../images/600_linreg_coffee_03_squared_residuals.png" /></p>
+<p><strong>Kuva 5:</strong> <em>Residuaalit neliöityinä ovat, noh, neliöitä. Huomaa, että kaavion kuvasuhdetta on muutettu verrattuna aiempiin kaavioihin, jotta neliöt näyttäisivät oikeasti neliöltä.</em></p>
+<p>Neliöity virhe penalisoi suurempia virheitä enemmän kuin pieniä virheitä. Tämä on yksi syy sille, miksi neliösummaa käytetään yleisesti lineaarisen regressiomallin optimoinnissa: vaihtoehto olisi itseisarvo (<code>abs(x)</code>). Toinen syy liittyy derivoitavuuteen, mutta tähän palataan logistisen regression ja SGD-algoritmin yhteydessä.</p>
+<p>Sellaista yksittäistä suoraa, joka kulkisi kaikkien kahvinjuontia kuvaavien datapisteiden kautta, ei voi piirtää. Toisin sanoen yhtälöparia tai -ryhmä ei ole ratkaisu. Voisit toki piirtää viivan, joka yhdistää pisteet, mutta tämä johtaa <em>ylisovittamisen</em>, mitä käsitellään seuraavissa luvuissa lisää. Vaihtoehtoisesti voisit piirtää käyrän, mutta tämäkin on aihe, jota käsitellään myöhemmin lisää. Tarkastellaan ensin suoran viivan sovittamista siten, että neliösumma tulee minimoiduksi.</p>
+<h2 id="neliosumman-minimointi">Neliösumman minimointi</h2>
+<h3 id="suljettu-muoto">Suljettu muoto</h3>
+<p>OLS (Ordinary Least Squares) on yleinen menetelmä, jolla estimoidaan lineaarisen regression kertoimet minimoimalla residuaalien neliösumma. Jos muuttujia on vain yksi, kuten kahviesimerkissä, neliösumman minimointi voidaan toteuttaa suljetulla muodon ratkaisulla (<em>engl. closed form solution</em>) <sup id="fnref2:kämäräinen"><a class="footnote-ref" href="#fn:kämäräinen">1</a></sup>. Kaava antaa ratkaisun ilman iterointia eli on analyyttinen – vastakohdan ollessa numeerinen ratkaisu. Kyseinen kaava on nimeltään pienimmän neliösumman menetelmä (engl. <em>least squares method, ordinary least squares, OLS</em>), ja se on seuraava <sup id="fnref:essential-math-for-ds"><a class="footnote-ref" href="#fn:essential-math-for-ds">3</a></sup>:</p>
+<div class="arithmatex">\[
+m = \frac{n \sum x_i y_i - \sum x_i \sum y_i}{n \sum x_i^2 - (\sum x_i)^2}
+\]</div>
+<div class="arithmatex">\[
+b = \frac{\sum y_i - m \sum x_i}{n}
+\]</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Edellä esitetty OLS:n suljetun muodon kaava on monimutkainen. Onni on abstraktio! Sama ratkaisu voidaan esittää huomattavasti tiiviimmässä ja käsitteellisemmässä muodossa, jos otetaan käyttöön kaksi keskeistä tilastollista käsitettä: <strong>Pearsonin korrelaatiokerroin</strong> ja <strong>keskihajonta</strong>. Näistä keskihajonta on sinulle jo tuttu (ks. <a href="../../3_puut/suorituskyky/">Luokittelumallin suorituskyky</a>). Pearsonin korrelaatiokerroin, jota merkataan kirjaimella <span class="arithmatex">\(r\)</span>, esitellään <a href="../regressiomallinsuorituskyky/">Regressiomallin suorituskyky</a>-materiaalissa eli heti seuraavana tällä kurssilla.</p>
+<p>Tällöin kulmakertoimen kaava on seuraava:</p>
+<div class="arithmatex">\[
+m = r \cdot \frac{\sigma_y}{\sigma_x}.
+\]</div>
+<p>Vakiotermi saadaan tällöin keskiarvojen ja kulmakertoimen avulla:</p>
+<div class="arithmatex">\[
+b = \bar y - m \bar x.
+\]</div>
+<p>Tämä on täsmälleen sama OLS-ratkaisu kuin edellä, mutta esitettynä abstraktien käsitteiden kautta. Myöhemmin esiteltävä Pearsonin korrelaatiokerroin ja kovarianssi siis selittävät suoraan, mistä regression kulmakerroin syntyy ja miksi se käyttäytyy tietyllä tavalla.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On kohtalaisen harvinaista, että koneoppimisongelmassa piirteitä on vain yksi, joten jätetään tämän suljetun muodon käsittely maininnan tasolle.</p>
+</div>
+<h3 id="matriisiratkaisu">Matriisiratkaisu</h3>
+<p>Monen muuttujan tapauksessa OLS voidaan kirjoittaa matriisimuodossa. Tätä kutsutaan usein normaaliyhtälöksi. Tällöin <span class="arithmatex">\(X\)</span> sisältää kaikki selittävät muuttujat, <span class="arithmatex">\(x_1\)</span>, <span class="arithmatex">\(x_2\)</span>, ..., <span class="arithmatex">\(x_n\)</span>, ja <span class="arithmatex">\(y\)</span> sisältää selitettävän muuttujan. <span class="arithmatex">\(X\)</span> on siis...</p>
+<div class="arithmatex">\[
+X =
+\begin{bmatrix}
+1 &amp; x_{11} &amp; x_{12} &amp; \cdots &amp; x_{1p} \\
+1 &amp; x_{21} &amp; x_{22} &amp; \cdots &amp; x_{2p} \\
+1 &amp; x_{31} &amp; x_{32} &amp; \cdots &amp; x_{3p} \\
+\vdots &amp; \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+1 &amp; x_{N1} &amp; x_{N2} &amp; \cdots &amp; x_{Np}
+\end{bmatrix}
+\]</div>
+<p>missä <span class="arithmatex">\(N\)</span> on havaintojen lukumäärä ja <span class="arithmatex">\(p\)</span> selittävien muuttujien lukumäärä. Tästä syntyvä kaava on seuraava, jossa <span class="arithmatex">\(w\)</span> on kertoimien vektori <sup id="fnref2:essential-math-for-ds"><a class="footnote-ref" href="#fn:essential-math-for-ds">3</a></sup>:</p>
+<div class="arithmatex">\[
+w = (X^T X)^{-1} X^T y
+\]</div>
+<p>Syntyvä painovektori <span class="arithmatex">\(w\)</span> sisältää kaikki mallin kertoimet, mukaan lukien vakiotermin. Sen sisältö on muotoa:</p>
+<div class="arithmatex">\[
+w =
+\begin{bmatrix}
+b \\
+w_1 \\
+w_2 \\
+\vdots \\
+w_p
+\end{bmatrix}
+\]</div>
+<p>Pythonissa saman voi toteuttaa Numpyn avulla seuraavasti:</p>
+<div class="language-python highlight"><span class="filename">IPython</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">numpy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">inv</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Add the bias term and convert to numpy arrays</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">x</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="c1"># Calculate the coefficients</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="n">coefficients</span> <span class="o">=</span> <span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Y</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="n">b</span> <span class="o">=</span> <span class="n">coefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># intercept</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="n">w</span> <span class="o">=</span> <span class="n">coefficients</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="c1"># slopes, weights</span>
+</span></code></pre></div>
+<h3 id="qr">QR</h3>
+<p>Tämä käsitellään kurssilla hyvin lyhyesti lähinnä maininnan tasolla. Matriisin voi hajottaa Q ja R matriiseiksi <sup id="fnref3:essential-math-for-ds"><a class="footnote-ref" href="#fn:essential-math-for-ds">3</a></sup> prosessilla hieman vastaavalla tavalla kuin PCA-koordinaattimuunnoksessa. Näiden matriisitulo on alkuperäinen X:</p>
+<div class="arithmatex">\[
+X = QR
+\]</div>
+<p>Painojen arvot löytäisi Q ja R matriiseja hyödyntäen näin:</p>
+<div class="arithmatex">\[
+w = R^{-1}  Q^T  y
+\]</div>
+<p>Jos haluat kokeilla tätä Pythonissa, niin seuraavalla koodilla pääset alkuun:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">numpy.linalg</span><span class="w"> </span><span class="kn">import</span> <span class="n">qr</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="mi">1</span><span class="p">,</span> <span class="o">*</span><span class="n">x</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">Q</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">qr</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Näiden algoritmien kasaaminen pienemmistä paloista käsin voi olla oppimisen kannalta hyödyllistä, mutta kun ratkaiset oikeaa koneoppimisen ongelmaa, on luontevaa käyttää valmista kirjaston toteutusta. Scikit-learn tarjoaa <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html">LinearRegression</a>-mallin. Dokumentaatiossa lukee, että:</p>
+<blockquote>
+<p>"From the implementation point of view, this is just plain Ordinary Least Squares (<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.linalg.lstsq.html">scipy.linalg.lstsq</a>) or Non Negative Least Squares (<a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.nnls.html">scipy.optimize.nnls</a>) wrapped as a predictor object."</p>
+<p>— <sup id="fnref:scikit-lr"><a class="footnote-ref" href="#fn:scikit-lr">4</a></sup></p>
+</blockquote>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Jos haluat kokeilla yllä esiteltyjä ratkaisuja (OLS, matriisi, QR) käytännössä, voit käyttää alla olevaa dataa selvittämään, mitkä arvot <span class="arithmatex">\(m\)</span> ja <span class="arithmatex">\(b\)</span> kahviesimerkissä saavat, kun käytät Numpy tai Scikit (tai Scipy linagl) lähestymistapaa. Laske myös virheiden neliösumma näitä arvoja käyttäen. </p>
+<p>Datasetti on seuraavanlainen:</p>
+<div class="language-python highlight"><span class="filename">IPython</span><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">data</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">),</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="p">(</span><span class="mf">2.25</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">),</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="p">(</span><span class="mf">3.25</span><span class="p">,</span> <span class="mf">3.25</span><span class="p">),</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="p">(</span><span class="mf">4.5</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">),</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>    <span class="p">(</span><span class="mf">5.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">),</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    <span class="p">(</span><span class="mf">6.75</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">),</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    <span class="p">(</span><span class="mf">7.75</span><span class="p">,</span> <span class="mf">7.50</span><span class="p">),</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    <span class="p">(</span><span class="mf">9.0</span><span class="p">,</span> <span class="mf">9.55</span><span class="p">),</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    <span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">8.5</span><span class="p">)</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="p">]</span>
+</span></code></pre></div>
+</div>
+<h2 id="normaaliyhtalon-rajoitukset">Normaaliyhtälön rajoitukset</h2>
+<p>Normaaliyhtälö on tehokas tapa laskea lineaarisen regressiomallin kertoimet, mutta sillä on rajoituksensa. Normaaliyhtälö toimii epävakaasti, jos <span class="arithmatex">\(X^T X\)</span> ei ole kääntyvä (<em>engl. invertible, non-singular</em>) <sup id="fnref:linear-algebra"><a class="footnote-ref" href="#fn:linear-algebra">5</a></sup>. Jos muuttujat ovat voimakkaasti lineaarisesti riippuvia toisistaan, matriisi voi olla singulaarinen tai lähes singulaarinen. Tätä ongelmaa kutsutaan multikollineaarisuudeksi. Multikollinearisuus tarkoittaa, että kaksi tai useampi selittävä muuttujaa korreloivat keskenään, eli esimerkiksi <code>x[0] == x[1] * 1.5 + 0.02</code>. </p>
+<p>Multikollinearisuutta voidaan tutkia esimerkiksi:</p>
+<ul>
+<li>korrelaatiomatriisilla</li>
+<li>VIF-mittarilla</li>
+</ul>
+<p>VIF (<em>Variance Inflation Factor</em>) mittaa, kuinka paljon kunkin piirteen varianssi kasvaa, kun muut piirteet otetaan malliin mukaan. Tähän löytyy valmis toteutus <code>statsmodels</code>-kirjastosta: ks. <a href="https://www.statsmodels.org/dev/generated/statsmodels.stats.outliers_influence.variance_inflation_factor.html">variance_inflation_factor</a> ja avuksi vaikkapa <a href="https://www.datacamp.com/tutorial/variance-inflation-factor">DataCamp tutoriaali</a>.</p>
+<p>Toinen rajoitus liittyy laskentaan: jos selittäviä muuttujia on paljon, normaaliyhtälön ratkaisu voi muuttua raskaaksi ja numeerisesti hankalaksi. Tämän vuoksi käytännössä käytetään usein suoraan least squares -ratkaisijoita, QR-hajotelmaa tai iteratiivisia optimointimenetelmiä.</p>
+<p>Jos pohdit, mitä selittävien piirteiden lisääminen käytännössä tekee, niin se laittaa mallin sovittamaan n-ulotteiseen dataan n-ulotteisen suoran/tason. 2-piirteinen data näyttää esimerkiksi alla olevalta. Viiva ei ole enää sopiva ratkaisu, joten dataan tulisi sovittaa taso.</p>
+<p><img alt="3D scatter plot" src="../../images/600_linreg_plot_3d.png" /></p>
+<p><strong>Kuva 6:</strong> <em>3-ulotteinen pistekuvaaja.</em></p>
+<p>Piirteiden määrän vaikutusta laskenta-aikaan voi testata seuraavalla koodinpätkällä:</p>
+<div class="language-python highlight"><span class="filename">IPython</span><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">datasets</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="k">def</span><span class="w"> </span><span class="nf">run_normal_equation_n_feats</span><span class="p">(</span><span class="n">n_features</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">10_000</span><span class="p">):</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="c1"># Generate</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">make_regression</span><span class="p">(</span><span class="n">n_features</span><span class="o">=</span><span class="n">n_features</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>    <span class="c1"># Start the timer</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    <span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>    <span class="c1"># Do the math</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>    <span class="n">bias</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(((</span><span class="n">n_samples</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">bias</span><span class="p">,</span> <span class="n">X</span><span class="p">]</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>    <span class="c1"># Return the time delta between stop and start</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>    <span class="k">return</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="c1"># Test with different number of features</span>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="n">feature_counts</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1_000</span><span class="p">,</span> <span class="mi">10_000</span><span class="p">]</span>
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a><span class="c1"># Store the times</span>
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a><span class="n">times</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">feature_counts</span><span class="p">:</span>
+</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a>    <span class="n">start</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a>    <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">run_normal_equation_n_feats</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Jos haluat, voit kokeilla, kuinka paljon nopeampi QR-solver on tässä. Valmis toteutus löytyy scikit-learnin <code>LinearRegression</code>-mallista.</p>
+</div>
+<h2 id="tehtavat">Tehtävät</h2>
+<div class="admonition question">
+<p class="admonition-title">Tehtävä: Vähin neliösumma Marimossa</p>
+<p>Avaa <code>600_least_squares_problem.py</code> Notebook. Notebook sallii sinun piirtää datasetin <code>drawdata</code>-widgetin avulla, jonka jälkeen voit:</p>
+<ul>
+<li>Sovittaa <code>m</code> ja <code>b</code> arvoilla viivan dataan ja laskea SSE:n.</li>
+<li>...ja seuraavaksi antaa algoritmien tehdä saman</li>
+</ul>
+<p>Tehtävän lopussa on tärkeänä osuutena slider kuvauksella <em>Polynomial degree</em>. Tämä aihepiiri on tarkoituksella jätetty käsittelemättä: tässä materiaalissa, kurssikirjassa ja scikit-learnin dokumentaatiossa on kuitenkin kaikki tiedonjyvät, joiden avulla sinun tulisi pystyä ymmärtää, mitä kyseinen slider tekee. Kokeile sitä ja mieti, mitä tapahtuu, kun polynomiaste kasvaa. Tämä on tärkeää pohjustusta seuraavaan aiheeseen eli suorituskykymittareihin ja alisovittamiseen/ylisovittamiseen.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Vinkki: Piirrä xy-kuvaajaan scatter, joka ei ole aivan viivasuora, vaan vaikkapa U-kirjaimen tai ~-merkin muotoinen. Kokeile sitten, mitä tapahtuu, kun polynomiaste kasvaa.</p>
+</div>
+</div>
+<h2 id="lahteet">Lähteet</h2>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:kämäräinen">
+<p>Kämäräinen, J. <em>Koneoppimisen perusteet</em>. Otatieto. 2023.&#160;<a class="footnote-backref" href="#fnref:kämäräinen" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:kämäräinen" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:fromscratch">
+<p>Grus, J. <em>Data Science from Scratch 2nd Edition</em>. O'Reilly Media. 2019.&#160;<a class="footnote-backref" href="#fnref:fromscratch" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:essential-math-for-ds">
+<p>Nield, T. <em>Essential Math for Data Science</em>. O'Reilly. 2022.&#160;<a class="footnote-backref" href="#fnref:essential-math-for-ds" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:essential-math-for-ds" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:essential-math-for-ds" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:scikit-lr">
+<p>scikit-learn developers. <em>LinearRegression</em>. https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html&#160;<a class="footnote-backref" href="#fnref:scikit-lr" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:linear-algebra">
+<p>Friedberg, S., Insel, A. &amp; Spence, L. <em>Linear Algebra, 5th Edition</em>. Pearson. 2018.&#160;<a class="footnote-backref" href="#fnref:linear-algebra" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 <a href="https://www.kamk.fi">Kajaanin Ammattikorkeakoulu Oy</a>. 
+Licenced under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">BY-NC-SA 4.0</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Kopioitu leikep\u00f6yd\u00e4lle", "clipboard.copy": "Kopioi leikep\u00f6yd\u00e4lle", "search.result.more.one": "1 lis\u00e4\u00e4 t\u00e4ll\u00e4 sivulla", "search.result.more.other": "# lis\u00e4\u00e4 t\u00e4ll\u00e4 sivulla", "search.result.none": "Ei t\u00e4sm\u00e4\u00e4vi\u00e4 dokumentteja", "search.result.one": "1 t\u00e4sm\u00e4\u00e4v\u00e4 dokumentti", "search.result.other": "# t\u00e4sm\u00e4\u00e4v\u00e4\u00e4 dokumenttia", "search.result.placeholder": "Kirjoita aloittaaksesi haun", "search.result.term.missing": "Puuttuu", "select.version": "Valitse versio"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
