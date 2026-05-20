@@ -12,6 +12,10 @@ Kopioi tehtävälista leikepöydälle ja muokkaa se sinun käyttöösi sopivaksi
 
 
 ```markdown
+## Yleistä (100)
+
+- [ ] Tehtävä: Määrittele tekoäly ja koneoppiminen
+
 ## Tyypit (120)
 
 - [ ] Tehtävä: Miellekarttaan tutustuminen

@@ -151,6 +151,22 @@ Koneoppimisen määritelmään kuuluu, että koneoppimismalli oppii datasta. Mal
 > 
 > – Google Developers [^googlemlglossary]
 
+## Tehtävät
+
+!!! question "Tehtävä: Määrittele tekoäly ja koneoppiminen"
+
+    Tämä on siinä mielessä hieman *epätehtävä*, että oppimispäiväkirjaa tai muuta raporttia kirjoittaessa on oletus, että käsiteltävän aihepiirin keskeiset termit määritellään. Tehtävä on kuitenkin lisätty tähän materiaalin alkuun eksplisiittisesti, jotta tämä ei jäisi missään nimessä epäselväksi. Toimi siis seuraavasti:
+
+    * Lue [Oppimispäiväkirja 101](https://sourander.github.io/oat/) ohjeistus ajatuksella, jos et ole jo.
+    * Alusta Oppimispäiväkirja 101 ohjeiden mukaisesti, jos et ole jo.
+    * Kirjoita oppimispäiväkirjasi Johdanto, jos et ole jo.
+    * Aloita ensimmäinen viikkomerkintä määritelmillä (koneoppiminen, tekoäly, ...)
+    * Pidä git origin eli GitLab ajan tasalla.
+    * Tarkista, että GitLab Pages -hostattu versio sivusta toimii.
+    * Kuvittele, että tällainen **Määrittele ${VIIKKO_TEEMAN_AIHE}** -tehtävä on jatkossa aivan jokaisen viikon yhteydessä.
+
+    Jos sinulla on teknisiä ongelmia tai muita epäselvyyksiä, ota yhteyttä opettajaan. Ongelmien ratkominen heti kurssin alussa on tärkeää, jotta pääset sujuvasti jatkossa etenemään.
+
 ## Lähteet
 
 [^koko]: Finto. *KOKO-ontologia*. https://finto.fi/koko/fi/
