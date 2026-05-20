@@ -71,10 +71,6 @@ Kopioi tehtävälista leikepöydälle ja muokkaa se sinun käyttöösi sopivaksi
 
 - [ ] Tehtävä: Vähin neliösumma Marimossa
 
-## Regressiomallin suorituskyky (610)
-
-- [ ] Tehtävä
-
 ## Hill Climbing (620)
 
 - [ ] Tehtävä: Hill Climbing from Scratch

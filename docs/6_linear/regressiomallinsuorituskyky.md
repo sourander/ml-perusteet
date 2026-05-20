@@ -197,9 +197,6 @@ Alla olevassa Kuva 4:ssä on tilanne, jossa malli on biased. Ei ole sellaista su
 
 **Kuva 4:** *Malli on yhä liian yksinkertainen eli alisovittaa dataa. Eri otannat (bootstrapit) tuottavat kaikki suuren virheen.*
 
-!!! question "Tehtävä"
-
-    Ihminen on eräänlainen koneoppimismalli, joka osaa luokitella näkemäänsä. Tutustu aiheeseen **kognitiivinen vinouma** ja mieti, miten se suhtautuu koneoppimismallin vinoumaan.
 
 ### Hajonta
 
