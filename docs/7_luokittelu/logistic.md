@@ -305,7 +305,7 @@ Scikit-learn kirjaston datasetteihin kuuluu iris-datasetti. Suomeksi iris on kur
     X = np.c_[X_no_bias, np.ones(X_no_bias.shape[0])]
     ```
 
-Arvomme myös alkuarvot painoille. Tässä tapauksessa käytämme arvoja `[5.67, 2.34, 0.67]`. Arvon on tarkoituksenmukaisesti valittu siten, että se on hyvin kaukana oikeasta arvosta. Lähtötilanne ei ole kolikonheiton parempi.
+Arvomme myös alkuarvot painoille. Tässä tapauksessa käytämme arvoja `[5.67, 2.34, 0.67]`. Arvot ovat tarkoituksenmukaisesti valittu siten, että ennuste on hyvin kaukana oikeasta. Lähtötilanne on siis epäonnisen huono kolikko.
 
 ![Iris Dataset and Decision Boundary](../images/710_logistic_regression_iris_scatter_epoch_0.png)
 
@@ -375,6 +375,15 @@ Osoittautuu, että painoilla `[ 5.67, -4.10,  0.84]` syntyy ennnuste, joka minim
     2. Laskea painojen päivitysaskel
     3. Näyttää rinnakkain vanhat ja uudet painot `mo.ui.matrix`-funktiolla
     4. Laskea uusi tappio ja tulostaa tappio (ennen ja jälkeen)
+
+!!! question "Tehtävä: Kurjenmiekat ja logistinen regressio"
+
+    Avaa Marimo Notebook `712_iris_interactive.py`. Tutustu koodiin ja aja se. On äärimmäisen suositeltavaa vaihtaa App View päälle (Tallennus-näppäimen alla oleva `Toggle View`-näppäin), jotta kuvaajat mahtuvat yhtä aikaa ruutuun widgettien kanssa.
+
+    1. Vääntele w1, w2, bias ja threshold -widgettejä.
+    2. Tarkkaile, miten rajaviiva ja sigmoid-käyrä muuttuvat.
+
+    Tämä tehtävän idea on pyrkiä auttamaan sinua löytämään intuitio (binäärisen) logistisen regression toiminnasta.
 
 ## Lähteet
 

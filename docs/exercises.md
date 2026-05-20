@@ -83,6 +83,7 @@ Kopioi tehtävälista leikepöydälle ja muokkaa se sinun käyttöösi sopivaksi
 
 - [ ] Tehtävä: Binäärinen logistinen regressio
 - [ ] Tehtävä: Moniluokkainen logistinen regressio
+- [ ] Tehtävä: Kurjenmiekat ja logistinen regressio
 
 ## Aikasarjat (800)
 
