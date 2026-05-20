@@ -19,8 +19,14 @@ Kopioi tehtävälista leikepöydälle ja muokkaa se sinun käyttöösi sopivaksi
 
 ## Data (130)
 
-- [ ] Tehtävä: Data Handling Basics (TODO EXTEND)
+- [ ] Tehtävä: Pohjusta kehitysympäristösi
+- [ ] Tehtävä: Data Handling Basics
 - [ ] Tehtävä: Vector from Scratch
+
+## Työnkulku (140)
+
+- [ ] Tehtävä: Titanic EDA ja malli
+- [ ] Tehtävä: Titanic-luokittelija
 
 ## Merkkijonojen enkoodaus (200)
 

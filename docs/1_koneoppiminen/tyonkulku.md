@@ -49,7 +49,7 @@ Tähän vaiheeseen saattaa kuulua myös datan annotointi tai merkitseminen. Anno
 
 ### 3. Tutki dataa
 
-TODO
+Tämän vaiheen pohtiminen jää sinun tehtäväksesi kokonaan. Tähän löytyy alta tehtävä, jossa on tehty EDA (Exploratory Data Analysis) eli eksploratiivinen data-analyysi Titanic-datasetille.
 
 ### 4. Esikäsittele data algoritmille sopivaksi
 
@@ -99,7 +99,7 @@ for alpha in alpha_grid:
 
 ### 7. Esittele ratkaisusi
 
-TODO!
+Aivan kuten EDA-kohta yllä, myös tämä jää sinun pohdittavaksesi. Voit heijastaa tätä alla olevaan Titanic-tehtävään. Mitä opettajan tekemästä Notebookista lukijalle välittyy? Jos kohdeyleisönä ovat bisnespäättäjät, kuinka aihetta pitäisi kenties käsitellä diaesityksessä, joka laadittaisiin Marimo Notebookista?
 
 ### 8. Mallin käyttöönotto
 
@@ -109,7 +109,23 @@ Käytännön tasolla projekti ei kuitenkaan ole välttämättä vielä ohi. Mall
 
 ## Tehtävät
 
-TODO!
+!!! question "Tehtävä: Titanic EDA ja malli"
+
+    Avaa Marimo Notebook `140_first_EDA_titanic.py`. Tutustu koodiin ja aja se, mieluiten solu solulta. Heijasta tätä yllä oleviin työvaiheisiin: erityisesti kohtiin 1–4 (Määrittele ratkaistava ongelma; Hanki data; Tutki dataa; Esikäsittele data).
+
+!!! question "Tehtävä: Titanic-luokittelija"
+
+    Toimi kuten yllä olevan Notebookin kanssa. Avaa Marimo Notebook `140_first_model.py`. Tutustu koodiin ja aja se, mieluiten solu solulta. 
+    
+    * Heijasta tätä yllä oleviin työvaiheisiin: erityisesti kohtiin 5–7 (Kokeile useita malleja ja valitse parhaat jatkoon; Mallin tuunaus; Esittele ratkaisusi). Löydätkö vaiheet Notebookista? Tee muistiinpanoja.
+    * Kurssinkirjan [^geronpytorch] Luku 2 (End-to-End Machine Learning Project) käy vastaavat vaiheet läpi toista datasettiä käyttäen. Lue luku läpi muistiinpanoja tehden.
+    * Vertaile kahden yllä olevan vaiheen yhtäläisyyksiä, eroavaisuuksia ja nosta esille yllättäviä havaintoja. Kirjaa nämä havainnot oppimispäiväkirjaasi.
+
+    Pohdi erityisesti kohdan 7, *Esittele ratkaisusi*, osalta, että kuinka ratkaisu on esitelty ja kenelle. Olet kenties aihepiirin kanssa vielä tuore. Meneekö homma yli hilseen? Jos, mitä voit oppia tästä esimerkistä, jotta osaat itse työelämässä kohdentaa insinööriviritelmät bisnespäättäjille sopiviksi?
+
+    !!! tip
+
+        Python ja scikit-learn:n API ovat kumpikin yllättävän intuitiivisia; koodia voi lukea osin kuin englantia. Yritä ymmärtää pääpiirteet: älä takerru niihin yksityiskohtiin, joista et ymmärrä edes tekoälyn kanssa keskustelemalla vielä mitään. Palaa tähän Notebookiin ==kurssin loppuviikoilla==; todennäköisesti huomaat, että koodissa esitetyt ratkaisut ovat alkaneet aukeamaan sinulle.
 
 ## Lähteet
 

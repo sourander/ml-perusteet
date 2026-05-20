@@ -246,7 +246,65 @@ y: np.ndarray = np.array([1, 0, 1, 1, 0])
 
 ## Tehtävät
 
-!!! question "Tehtävä: Data Handling Basics (TODO EXTEND)"
+
+!!! question "Tehtävä: Pohjusta kehitysympäristösi"
+
+    Varmista jo nyt heti kurssin alussa, että sinulla on ympäristö, jossa voit ajaa koodia. Käymäsi kurssitoteutuksen YouTube-videoissa ja/tai Teams-aloitusluennoissa on neuvottu, mikä on juuri tämän hetken suositeltu ympäristö. Alla oleva on karvalakkiversio ohjeesta, jolla pääset hätätapauksessa alkuun. Noudata kuitenkin mieluummin juuri sitä ohjetta, mikä kurssin nykyisessä toteutuksessa on annettu. Se voi poiketa hieman tästä (esim. kenties CSC hostaa nykyään Marimon-ympäristön, jolloin koko setup poistuu.)
+    
+    !!! warning
+    
+        Tässä on pohjana oletus, että sinulla on:
+
+        1. Oppimispäiväkirja alustettu (`~/Code/ml-perusteet-20xx/etunimisukunimi`-hakemistossa)
+        2. Komentorivityökalu `uv` asennettuna, koska se on yllä olevan riippuvuus.
+        3. Git asennettuna.
+
+        Jos näin ei ole, lue [Oppimispäiväkirja 101](https://sourander.github.io/oat/) ohjeet läpi, joissa neuvotaan oppimispäiväkirjan alustus ja repoon pusku [kamk-cookiecutters](https://github.com/sourander/kamk-cookiecutters)-templaatia hyödyntäen.
+
+    Olettaen, että yllä olevat asiat ovat kunnossa, saat ns. opettajan setupin näin helposti käyttöön:
+
+    ```bash
+    TOTEUTUKSENNIMI="ml-perusteet-20xx" # esim. 2027
+    REPONNIMESI="etunimisukunimi"       # eli <TÄMÄ>@kamk.fi s-postin etuosa
+
+    # Kloonaa opettajan repo
+    mkdir -p ~/Code/sourander/ && cd ~/Code/sourander/
+    git clone https://github.com/sourander/ml-perusteet.git
+    
+    # Kopioi notebook-hakemisto sinulle
+    cd ~/Code/
+    cp -r sourander/ml-perusteet/notebooks ./$TOTEUTUKSENNIMI/$REPONNIMESI/
+
+    # Testaa
+    cd ./$TOTEUTUKSENNIMI/$REPONNIMESI/notebooks
+    uv run marimo edit
+    # Avaa alemman tehtävän 130_data_handling_basics.py-tiedosto, aja se ja katso että menee läpi.
+
+    # Puske gittiin
+    cd ~/Code/$TOTEUTUKSENNIMI/$REPONNIMESI
+    git add .
+    git commit -m "Pohjustettu kehitysympäristö"
+    git push
+    ```
+
+    Jatkossa kun työskentelet millä tahansa koneella, saat Notebookit auki niinkin helposti, kuin:
+
+    ```bash
+    cd ~/Code/$TOTEUTUKSENNIMI/$REPONNIMESI
+    git pull
+    cd notebooks
+    uv run marimo edit
+    ```
+
+    Ethän kopioi sokkona komentoja terminaaliin vaan mietit, mitä olet tekemässä. Olet IT-alan opiskelija, toimi sen mukaisesti. Jos sinulla on epäselvyyksiä, kysy rohkeasti apua opettajalta. 
+    
+    !!! tip
+    
+        Jos vastustat jo alkuun ihan vain vanhakantaisuuttasi Marimoa, niin suosittelen lukemaan pohjalle blogipostauksen [Why Stanford scientists needed a new Python notebook](https://marimo.io/blog/slac-marimo). Marimo ei ole täydellinen, mutta se on opettajan näkökulmasta askel kohti oikeaa. Lainaus postauksesta: *"The reproducibility crisis affecting Jupyter notebooks is well-documented. In 2019, a study from New York University and Federal Fluminense University found that of the 863,878 Jupyter notebooks on GitHub with valid execution orders, only 24% could be re-run, and just 4% reproduced the same results."*
+
+
+
+!!! question "Tehtävä: Data Handling Basics"
 
     Tutustu `130_data_handling_basics.py`-tiedostoon, joka on Marimo Notebook. Kyseisessä tiedostossa käsitellään tämän materiaalin aihepiiriä Notebook-muodossa, koodia ajaen.
 
@@ -256,7 +314,7 @@ y: np.ndarray = np.array([1, 0, 1, 1, 0])
     * on kannattavaa kloonata koko repositorio koneellesi. Avaa tuo `notebooks/`-hakemisto Visual Studio Codessa.
     * ... ja/tai kopioi koko hakemisto johonkin toiseen lokaatioon, kuten esimerkiksi siihen hakemistoon, mistä löytyy sinun oppimispäiväkirjasi.
 
-    Tämä on esimerkki Marimo Notebookista, missä ei ole varsinaista *tehtävää*. Sinun kuuluu ajaa tiedosto, tutkia koodia ja raportoida oppimispäiväkirjaasi kurssin aihepiiriin liittyvät havainnot ja opit. Numpyn osalta tiedosto on todennäköisesti kertausta aiemmpilta kursseilta, kuten Datan käsittelyn kehittyneet menetelmät, mutta Polars on uusi tuttavuus: sinun pitää ulosoppia Pandasin käytänteistä ja hyväksyä Polarsin hieman erilainen API.
+    Tämä on esimerkki Marimo Notebookista, missä ei ole varsinaista *tehtävää*. Sinun kuuluu ajaa tiedosto, tutkia koodia ja raportoida oppimispäiväkirjaasi kurssin aihepiiriin liittyvät havainnot ja opit. Numpyn osalta tiedosto on todennäköisesti kertausta aiemmpilta kursseilta, kuten Datan käsittelyn kehittyneet menetelmät, mutta Polars on kenties uusi tuttavuus: sinun pitää ulosoppia Pandasin käytänteistä ja hyväksyä Polarsin hieman erilainen API.
 
     !!! tip
 
