@@ -96,6 +96,12 @@ probabilities = [0.5, 0.25, 0.125, 0.125]
 print("H(X) = ", entropy(probabilities))
 ```
 
+On äärimmäisen suositeltavaa katsoa 3Blue1Brownin video otsikolla **Reinventing Entropy | Compression & Intelligence Part 1**. Se sitoo tähän asti yllä käsitellyt konseptit näppärästi yhteen: entropian, pakkaamisen, ja niiden yhteyden koneoppimismalleihin. Video on upotettuna alla. Video pohjustaa myös siirtymistä Syväoppiminen -kurssin aiheita kohti.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/l6DKRf-fAAM?si=H3KlyiB9oU4-cMKu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+**Video 2:* *3Blue1Brownin video entropiasta, pakkaamisesta ja koneoppimisesta. Video menee hieman syvemmälle aiheeeseen kuin on tarve tällä kurssilla, mutta ota videosta se sisältö, minkä järjesllisesti pystyt vastaanottaa. Videon katsominen Syväoppiminen I -kurssin jälkeen uusiksi voi olla hyödyllistä.*
+
 ### Gini
 
 Gini impurity on entropian tavoin **datan epäpuhtauden mitta**. Sitä käytetään päätöspuissa valitsemaan jako, joka erottaa luokat mahdollisimman puhtaasti. Mitä pienempi Gini impurity, sitä puhtaampi solmu.
