@@ -1,0 +1,2373 @@
+
+<!doctype html>
+<html lang="fi" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../7_luokittelu/logistic/">
+      
+      
+        <link rel="next" href="../../exercises/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Aikasarjat - Johdatus Koneoppimiseen</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#aikasarjat" class="md-skip">
+          Hyppää sisältöön
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Ylätunniste">
+    <a href="../.." title="Johdatus Koneoppimiseen" class="md-header__button md-logo" aria-label="Johdatus Koneoppimiseen" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Johdatus Koneoppimiseen
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Aikasarjat
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Hae" placeholder="Hae" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Haku">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Tyhjää" aria-label="Tyhjää" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Aloitetaan hakua
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigaatio" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Johdatus Koneoppimiseen" class="md-nav__button md-logo" aria-label="Johdatus Koneoppimiseen" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Johdatus Koneoppimiseen
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tervetuloa kurssille
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Koneoppiminen
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    1. Koneoppiminen
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1_koneoppiminen/yleista/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Yleistä
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1_koneoppiminen/miksi/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Motivaatio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1_koneoppiminen/tyypit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tyypit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1_koneoppiminen/datasetti/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../1_koneoppiminen/tyonkulku/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Työnkulku
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Naive Bayes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    2. Naive Bayes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2_naivebayes/enkoodaus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Merkkijonojen enkoodaus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2_naivebayes/intuitio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Intuitio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../2_naivebayes/naive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Naive Bayes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Puut ja Metsät
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    3. Puut ja Metsät
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/suorituskyky/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Luokittelumallin suorituskyky
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/entropia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Entropia
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/puu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Puu
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_puut/metsa/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metsä
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. k-NN
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    4. k-NN
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_knn/skaalaus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Skaalaus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_knn/dimensio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dimensiovähennys
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../4_knn/knn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    k-NN
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Klusterointi
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    5. Klusterointi
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5_klusterointi/sykliset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Syklinen enkoodaus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../5_klusterointi/kMeans/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K-Means
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Lineaarinen regressio
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    6. Lineaarinen regressio
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../6_linear/normal_equation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Normaaliyhtälö
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../6_linear/regressiomallinsuorituskyky/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Regressiomallin suorituskyky
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../6_linear/hill_climbing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hill Climbing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../6_linear/gradient_descent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gradient Descent
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Lineaarinen luokittelu
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    7. Lineaarinen luokittelu
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../7_luokittelu/jakauma/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jakauma
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../7_luokittelu/logistic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Logistinen regressio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Aikasarjat
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    8. Aikasarjat
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aikasarjat
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Aikasarjat
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Sisällysluettelo">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sisällysluettelo
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#maaritelma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Määritelmä
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Määritelmä">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#komponentit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Komponentit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ennustamisen-termisto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ennustamisen termistö
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datan-kasittely-perinteinen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Datan käsittely (Perinteinen)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Datan käsittely (Perinteinen)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LAG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kalenteri-ja-ulkoiset-piirteet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kalenteri- ja ulkoiset piirteet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#train-test-jako" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Train-test-jako
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stationaarisuus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stationaarisuus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autokorrelaatio-ja-piirteiden-valinta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Autokorrelaatio ja piirteiden valinta
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lokaalit-mallit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lokaalit mallit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sama-videona" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sama videona
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mallin-koulutus-perinteinen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mallin koulutus (Perinteinen)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mallin koulutus (Perinteinen)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aloita-baselinesta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aloita baselinesta
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arima-ja-sarima" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ARIMA ja SARIMA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exponential-smoothing-ja-ets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exponential Smoothing ja ETS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lineaarinen-regressio-viivepiirteilla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lineaarinen regressio viivepiirteillä
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lightgbm-ja-muut-boosting-mallit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LightGBM ja muut boosting-mallit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validointi-ja-mallin-valinta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validointi ja mallin valinta
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tehtavat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tehtävät
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lahteet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lähteet
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../exercises/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tehtäväkooste
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Sisällysluettelo">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Sisällysluettelo
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#maaritelma" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Määritelmä
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Määritelmä">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#komponentit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Komponentit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ennustamisen-termisto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ennustamisen termistö
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datan-kasittely-perinteinen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Datan käsittely (Perinteinen)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Datan käsittely (Perinteinen)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lag" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LAG
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kalenteri-ja-ulkoiset-piirteet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kalenteri- ja ulkoiset piirteet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#train-test-jako" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Train-test-jako
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stationaarisuus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stationaarisuus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autokorrelaatio-ja-piirteiden-valinta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Autokorrelaatio ja piirteiden valinta
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lokaalit-mallit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lokaalit mallit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sama-videona" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sama videona
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mallin-koulutus-perinteinen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mallin koulutus (Perinteinen)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mallin koulutus (Perinteinen)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aloita-baselinesta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aloita baselinesta
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arima-ja-sarima" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ARIMA ja SARIMA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exponential-smoothing-ja-ets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exponential Smoothing ja ETS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lineaarinen-regressio-viivepiirteilla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lineaarinen regressio viivepiirteillä
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lightgbm-ja-muut-boosting-mallit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LightGBM ja muut boosting-mallit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#validointi-ja-mallin-valinta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validointi ja mallin valinta
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tehtavat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tehtävät
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lahteet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lähteet
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="aikasarjat">Aikasarjat</h1>
+<h2 id="maaritelma">Määritelmä</h2>
+<p>Aloitetaan määrittelemällä, mitä aikasarjat ovat. Yksinkertainen, yhden muuttujan aikasarja on helppo kuvata kuvaajalla, kuten alla:</p>
+<pre class="mermaid"><code>xychart
+    x-axis [jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec]
+    y-axis "Myynti" 4000 --&gt; 11000
+    bar [5000, 6200, 4800, 6500, 7800, 6200, 8000, 9300, 7700, 9500, 10800, 9200]
+    line [5000, 6200, 4800, 6500, 7800, 6200, 8000, 9300, 7700, 9500, 10800, 9200]
+</code></pre>
+<p>Tässä tapauksessa dataa on yhdeltä vuodelta ja se on kerätty kuukausittain – eli <em>granulariteetti</em> on kuukausittainen. Jokainen datapiste kuvaa tietyn ajanhetken (tässä tapauksessa kuukauden aloituspäivän) ja siihen liittyvän arvon (tässä tapauksessa myynti). Myyntidata on intuitiivinen esimerkki, mutta valtava osuus maailman aikasarjadatasta kertyy erilaisilta IoT-laitteilta. Aikasarja voi kuvastaa vaikkapa palvelinkeskuksen kiintolevyjen hajoamista: sarakkeista löytyy SMART-metriikoita ja binäärinen tieto siitä, onko levy hajonnut kyseisenä päivänä.</p>
+<details class="info">
+<summary>Taulukkomuoto</summary>
+<p>Taulukkomuodossa sama data näyttäisi tältä:</p>
+<table>
+<thead>
+<tr>
+<th><code>month_start</code></th>
+<th><code>sales</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-01-01</td>
+<td>5000</td>
+</tr>
+<tr>
+<td>2026-02-01</td>
+<td>6200</td>
+</tr>
+<tr>
+<td>2026-03-01</td>
+<td>4800</td>
+</tr>
+<tr>
+<td>2026-04-01</td>
+<td>6500</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>2026-11-01</td>
+<td>10800</td>
+</tr>
+<tr>
+<td>2026-12-01</td>
+<td>9200</td>
+</tr>
+</tbody>
+</table>
+</details>
+<h3 id="komponentit">Komponentit</h3>
+<p>Kun puhutaan <em>ennustamisesta</em>, pyrimme mallintamaan aikasarjan tulevia arvoja. Kuvaajan tapauksessa tämä tarkoittaa, että meitä kiinnostaisi ensi vuoden tammikuu (helmikuu, maaliskuu, ...). Ennustamisen lisäksi on hyvä huomioida, että on olemassa myös aikasarjojen analysointia (engl. time series analysis), joka keskittyy ymmärtämään aikasarjan rakennetta, kuten kausivaihteluita, trendejä ja satunnaisuutta. Aikasarja-analyysiin kuuluu neljä pääkomponenttia <sup id="fnref:ml-forecasting-py"><a class="footnote-ref" href="#fn:ml-forecasting-py">1</a></sup>:</p>
+<ul>
+<li><img alt="1⃣" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/31-20e3.svg" title=":one:" /> <strong>Trendi</strong> eli pitkän ajan liike. Yllä olevassa kuvaajassa on noususuuntainen trendi.</li>
+<li>Lyhyen ajan vaihtelut:<ul>
+<li><img alt="2⃣" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/32-20e3.svg" title=":two:" /> <strong>Kausivaihtelut</strong> eli säännölliset vaihtelut, jotka toistuvat tietyn ajan välein. Yllä olevassa kuvassa on 4 kuukauden "hain evä".</li>
+<li><img alt="3⃣" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/33-20e3.svg" title=":three:" /> <strong>Sykliset vaihtelut</strong> ovat nousuja ja laskuja, joiden ei ole kiinteää jaksoa (esim. suhdannevaihtelu).</li>
+</ul>
+</li>
+<li><img alt="4⃣" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/34-20e3.svg" title=":four:" /> <strong>Satunnaisuus</strong> eli täysin ennustamattomat pienet tai suuret vaihtelut. Tämä on kohinaa.</li>
+</ul>
+<p>Nämä ovat tekstinä abstrakteja käsitteitä, joten kannattaa etsiä kuva avuksi. Voit löytyää kuvia esimerkiksi <code>statsmodel</code>-kirjaston esimerkistä <a href="https://www.statsmodels.org/stable/examples/notebooks/generated/stl_decomposition.html">Seasonal-Trend decomposition using LOESS (STL)</a></p>
+<h3 id="ennustamisen-termisto">Ennustamisen termistö</h3>
+<p>Datan suhteen muita tärkeitä termejä ovat <sup id="fnref2:ml-forecasting-py"><a class="footnote-ref" href="#fn:ml-forecasting-py">1</a></sup>:</p>
+<ul>
+<li><strong>(aika)granulariteetti</strong>: Kuinka usein dataa kerätään (esim. päivittäin, kuukausittain, vuosittain).</li>
+<li><strong>aikahorisontti</strong>: Kuinka pitkälle tulevaisuuteen haluamme ennustaa.</li>
+<li><strong>exogeeniset muuttujat</strong>: Muut muuttujat (<em>engl. feature</em>), jotka vaikuttavat ennustettavaan arvoon, mutta eivät ole osa aikasarjaa. Esimerkiksi <code>is_holiday</code> tai <code>outdoor_temperature</code> tai <code>sensor_type</code>.</li>
+<li><strong>yksi- tai monimuuttuja</strong>: Onko aikasarja yhden vai useamman muuttujan sarja (<em>engl. monovariate, multivariate</em>).</li>
+<li><strong>ennustehorisontin rakenne</strong>: Ennustetaanko vain seuraava aika-askel (<em>engl. single-step</em>) vai useampi askel (<em>engl. multi-step</em>). Multi-step -ennusteita voidaan tehdä kolmella eri tavalla (plus yhdellä hybridillä, joka on pudotettu pois listalta):<ul>
+<li><strong>rekursiivinen ennuste</strong> (<em>recursive multi-step</em>): Käytetään yhtä mallia, joka ennustaa seuraavan askeleen. Tulos syötetään takaisin malliin seuraavan askeleen ennustamiseksi.</li>
+<li><strong>suora ennuste</strong> (<em>direct multi-step</em>): Luodaan erillinen malli jokaiselle ennustettavalle aika-askeleelle (esim. yksi malli tunnille <span class="arithmatex">\(t+1\)</span> ja toinen tunnille <span class="arithmatex">\(t+2\)</span>).</li>
+<li><strong>moniulotteinen tuloste</strong> (<em>multiple output</em>): Yksi malli ennustaa koko sekvenssin kerralla vektorina.</li>
+</ul>
+</li>
+</ul>
+<p>Kannattaa tutustua näihin <a href="https://skforecast.org/0.20.1/introduction-forecasting/introduction-forecasting">skforecast.org: Intro to Forecasting</a>-sivulla, jossa ne on esitelty visuaalisesti.</p>
+<h2 id="datan-kasittely-perinteinen">Datan käsittely (Perinteinen)</h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Tässä materiaalissa ei käsitellä puuttuvien arvojen imputointia syvällisesti. Ota kuitenkin huomioon, että aikasarjasta puuttuvat arvot täytyy käsitellä ennen mallinnusta esimerkiksi interpoloimalla, forward fill -menetelmällä tai poistamalla käyttökelvottomat rivit.</p>
+</div>
+<h3 id="lag">LAG</h3>
+<p>Tässä kohtaa on hyvä erottaa kaksi perinnettä toisistaan. <strong>Taulukkomuotoiset koneoppimismallit</strong> – kuten lineaarinen regressio, random forest, XGBoost ja LightGBM – tarvitsevat yleensä eksplisiittisesti rakennetut viivepiirteet (<em>lag features</em>). Sen sijaan <strong>klassiset aikasarjamallit</strong>, kuten ARIMA tai Exponential Smoothing, mallintavat ajallista rakennetta suoremmin eivätkä välttämättä vaadi sitä, että rakennat lag-sarakkeet itse <sup id="fnref:modern-ts-forecasting"><a class="footnote-ref" href="#fn:modern-ts-forecasting">2</a></sup> <sup id="fnref:ts-cookbook"><a class="footnote-ref" href="#fn:ts-cookbook">3</a></sup>.</p>
+<p>Jos käytössä on siis tavallinen regressiomalli tai boosting-malli, 1-ulotteinen aikasarja täytyy käytännössä kääntää moniulotteiseksi <em>sliding window</em> -menetelmällä. Tämän voi tehdä Pandasilla, SQL:llä, Excelillä tai valitsemallaan aikasarjakirjastolla (esim. <code>sktime</code> tai <code>MLForecast</code>). Koska SQL on yleismaailmallisesti ymmärrettävä kieli, näytetään esimerkki SQL:llä:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">sales_features</span><span class="w"> </span><span class="k">AS</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">SELECT</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">month_start</span><span class="p">,</span><span class="w">                                       </span><span class="c1">-- kuukauden aloituspvm</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="n">LAG</span><span class="p">(</span><span class="n">sales</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">month_start</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">lag_2</span><span class="p">,</span><span class="w"> </span><span class="c1">-- toissakuukauden myynti</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="n">LAG</span><span class="p">(</span><span class="n">sales</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">month_start</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">lag_1</span><span class="p">,</span><span class="w"> </span><span class="c1">-- viime kuukauden myynti</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="n">sales</span><span class="w">                                              </span><span class="c1">-- tämän kuukauden myynti</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">FROM</span><span class="w"> </span><span class="n">sales</span><span class="p">;</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><code>month_start</code></th>
+<th style="text-align: center;"><code>lag_2 (x_0)</code></th>
+<th style="text-align: center;"><code>lag_1 (x_1)</code></th>
+<th style="text-align: center;"><code>sales (y)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">2026-01-01</td>
+<td style="text-align: center;"><img alt="⬇" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2b07.svg" title=":down_arrow:" /></td>
+<td style="text-align: center;"><img alt="⬇" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2b07.svg" title=":down_arrow:" /></td>
+<td style="text-align: center;">5000</td>
+</tr>
+<tr>
+<td style="text-align: center;">2026-02-01</td>
+<td style="text-align: center;"><img alt="⬇" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2b07.svg" title=":down_arrow:" /></td>
+<td style="text-align: center;">5000</td>
+<td style="text-align: center;">6200</td>
+</tr>
+<tr>
+<td style="text-align: center;">2026-03-01</td>
+<td style="text-align: center;">5000</td>
+<td style="text-align: center;">6200</td>
+<td style="text-align: center;">4800</td>
+</tr>
+<tr>
+<td style="text-align: center;">2026-04-01</td>
+<td style="text-align: center;">6200</td>
+<td style="text-align: center;">4800</td>
+<td style="text-align: center;">6500</td>
+</tr>
+<tr>
+<td style="text-align: center;">...</td>
+<td style="text-align: center;">4800</td>
+<td style="text-align: center;">6500</td>
+<td style="text-align: center;">...</td>
+</tr>
+<tr>
+<td style="text-align: center;">...</td>
+<td style="text-align: center;">6500</td>
+<td style="text-align: center;">...</td>
+<td style="text-align: center;">...</td>
+</tr>
+</tbody>
+</table>
+<p>Lopputulos syntyy siten, että jokaiselle kuukaudelle luodaan uusi sarake (<em>engl. column</em>), jossa on kyseisen kuukauden myynti ja sitä edeltävien kuukausien myynnit. Näin saadaan luotua uusia ominaisuuksia (features), jotka kuvaavat aikasarjan rakennetta. Perinteinen tilastollinen malli käsittelee näitä samalla tavalla kuin muitakin ominaisuuksia. Jos kuvittelet tilalle lukemaan <code>n_rooms</code>, <code>distance_to_city_center</code> ja <code>area</code>, niin on helppo hyväksyä, että tilastollinen malli voi löytää painot, jotka kuvaavat, kuinka paljon kukin näistä ominaisuuksista vaikuttaa ennustettavaan arvoon. Mallille syötettäisiin siis:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">X</span><span class="o">=</span><span class="n">df</span><span class="p">[[</span><span class="s2">&quot;lag_2&quot;</span><span class="p">,</span> <span class="s2">&quot;lag_1&quot;</span><span class="p">]],</span> 
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">y</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;sales&quot;</span><span class="p">]</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">)</span>
+</span></code></pre></div>
+<details class="tip">
+<summary>Mitä muuta voi lisätä?</summary>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">sales_features</span><span class="w"> </span><span class="k">AS</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">SELECT</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="n">month_start</span><span class="p">,</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="n">sales</span><span class="p">,</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="c1">-- ....</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="c1">-- ...</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="c1">-- (endogeeninen) liukuva keskiarvo, joka kuvaa viimeisten 7 päivän myyntiä</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="k">AVG</span><span class="p">(</span><span class="n">sales</span><span class="p">)</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">        </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">month_start</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">        </span><span class="k">ROWS</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="n">PRECEDING</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="k">CURRENT</span><span class="w"> </span><span class="k">ROW</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">rolling_7d_avg</span><span class="p">,</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="c1">-- kalenteripiirre: alkoiko kuukausi maanantaina?</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="k">CASE</span><span class="w"> </span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">        </span><span class="k">WHEN</span><span class="w"> </span><span class="k">EXTRACT</span><span class="p">(</span><span class="n">ISODOW</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">month_start</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">        </span><span class="k">THEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">ELSE</span><span class="w"> </span><span class="mi">0</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">month_started_on_monday</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="k">FROM</span><span class="w"> </span><span class="n">sales</span>
+</span></code></pre></div>
+<p>Taulusta pitäisi lopuksi poistaa tai imputoida rivit, joissa on <code>NULL</code>-arvoja, koska <code>LAG()</code> tuottaa niitä ensimmäisille riveille.</p>
+</details>
+<h3 id="kalenteri-ja-ulkoiset-piirteet">Kalenteri- ja ulkoiset piirteet</h3>
+<p>Pelkkä viivehistoria ei riitä kaikissa ongelmissa. Monissa liiketoiminta- ja IoT-ongelmissa ennuste tarkentuu merkittävästi, kun mukaan lisätään:</p>
+<ul>
+<li><strong>kalenteripiirteitä</strong>, kuten viikonpäivä, kuukausi, tunti, lomapäivä tai kampanjapäivä</li>
+<li><strong>exogeenisiä muuttujia</strong>, kuten lämpötila, hinta, säätila tai sensorin tyyppi</li>
+<li><strong>tilastollisia aggregaatteja</strong>, kuten liukuvia keskiarvoja, minimejä, maksimeja ja volatiliteettia</li>
+</ul>
+<p>Tärkeä käytännön sääntö on tämä: piirteessä saa käyttää vain sellaista tietoa, joka olisi ollut aidosti saatavilla ennustushetkellä. Jos rakennat esimerkiksi 7 päivän liukuvan keskiarvon, sitä ei saa laskea tulevien päivien arvoista. Muuten syntyy <em>data leakage</em>.</p>
+<h3 id="train-test-jako">Train-test-jako</h3>
+<p>Tavallisessa koneoppimisessa aineisto voidaan usein sekoittaa ja jakaa satunnaisesti opetus- ja testijoukkoihin. Aikasarjojen kanssa näin ei voida tehdä, sillä ajan suuntaa on ehdottomasti kunnioitettava: tarkoituksena on ennustaa tulevaisuutta menneisyyden datan perusteella, eikä päinvastoin <sup id="fnref2:ts-cookbook"><a class="footnote-ref" href="#fn:ts-cookbook">3</a></sup>. Siksi testijoukoksi on aina varattava aikasarjan kronologisesti tuorein osa <sup id="fnref3:ts-cookbook"><a class="footnote-ref" href="#fn:ts-cookbook">3</a></sup>. Sama periaate pätee myös mallin validointiin. Aikasarjojen ristiinvalidoinnissa (cross-validation) ei voida käyttää perinteistä k-fold-menetelmää datan satunnaistuksella. Sen sijaan hyödynnetään aikasidonnaisia menetelmiä, kuten laajenevaa ikkunaa (expanding window) tai liukuvaa ikkunaa (sliding window), jotta mallin arviointi tapahtuu aina aidosti tulevaa ennustamalla <sup id="fnref2:modern-ts-forecasting"><a class="footnote-ref" href="#fn:modern-ts-forecasting">2</a></sup>.</p>
+<p>Käytännössä yksinkertainen jako voi näyttää tältä:</p>
+<ul>
+<li>vanhin 70–80 % datasta koulutukseen</li>
+<li>seuraava siivu validointiin</li>
+<li>tuorein siivu testiin</li>
+</ul>
+<p>Jos dataa on vähän, erillisen validointijoukon sijasta voidaan käyttää useita peräkkäisiä validointi-ikkunoita.</p>
+<h3 id="stationaarisuus">Stationaarisuus</h3>
+<p>Stationaarisuus on perusoletus klassisille autoregressiivisille malleille, kuten ARIMA:lle. Stationaarinen aikasarja tarkoittaa sitä, että sen tilastolliset perusominaisuudet (mean, std) pysyvät ajan suhteen vakaina. Riippuvuus menneisyyden arvoihin määräytyy ensisijaisesti viiveen, ei absoluuttisen ajanhetken, perusteella <sup id="fnref3:modern-ts-forecasting"><a class="footnote-ref" href="#fn:modern-ts-forecasting">2</a></sup>.</p>
+<p>Ongelmana on, että suuri osa todellisen maailman datasta sisältää trendiä, kausivaihtelua tai rakennemuutoksia, jolloin sarja ei ole luonnostaan stationaarinen <sup id="fnref4:ts-cookbook"><a class="footnote-ref" href="#fn:ts-cookbook">3</a></sup>. Tällöin datasta tehdään väkisin stationaarista metodeilla, kuten:</p>
+<ul>
+<li><strong>differointi</strong> (<em>differencing</em>) trendin poistamiseen (eli <span class="arithmatex">\(y_t' = y_t - y_{t-1}\)</span>)</li>
+<li><strong>kausidifferointi</strong> kausirakenteen poistamiseen (eli <span class="arithmatex">\(y_t'' = y_t - y_{t-m}\)</span>, missä <span class="arithmatex">\(m\)</span> on kausijakson pituus)</li>
+<li><strong>logaritmimuunnos</strong> tai muuta skaalaavaa muunnosta varianssin vakiointiin</li>
+</ul>
+<p>Kaikki perinteiset mallit eivät kuitenkaan vaadi stationaarisuutta. Esimerkiksi puupohjaiset regressiomallit voivat toimia epästationaarisella datalla. <sup id="fnref3:ml-forecasting-py"><a class="footnote-ref" href="#fn:ml-forecasting-py">1</a></sup></p>
+<h3 id="autokorrelaatio-ja-piirteiden-valinta">Autokorrelaatio ja piirteiden valinta</h3>
+<p>Autokorrelaatio kertoo, kuinka vahvasti sarja korreloi oman menneisyytensä kanssa. Tämä on sinulle kielimalleista jo tuttua: edelliset sanat korreloivat siihen, mikä tulee seuraavaksi. Jos tämän päivän myynti muistuttaa eilisen myyntiä, yhden päivän viiveellä on positiivinen autokorrelaatio. Aikasarja-analyysissä tätä tarkastellaan usein kahdella työkalulla <sup id="fnref4:ml-forecasting-py"><a class="footnote-ref" href="#fn:ml-forecasting-py">1</a></sup> <sup id="fnref5:ts-cookbook"><a class="footnote-ref" href="#fn:ts-cookbook">3</a></sup>:</p>
+<ul>
+<li><strong>ACF</strong> (<em>autocorrelation function</em>): näyttää, kuinka vahva korrelaatio kullakin viiveellä on</li>
+<li><strong>PACF</strong> (<em>partial autocorrelation function</em>): näyttää viiveen "oman" vaikutuksen, kun välistä tulevien lyhyempien viiveiden vaikutus on vakioitu</li>
+</ul>
+<p>Idea on seuraava:</p>
+<ul>
+<li>jos ACF:ssä näkyy piikkejä viiveillä 7, 14 ja 21, datassa voi olla viikkokausivaihtelua</li>
+<li>jos PACF:ssä näkyy selvä piikki viiveellä 1 tai 2, nämä lagit voivat olla hyödyllisiä autoregressiivisessä mallissa</li>
+<li>jos ACF hiipuu hitaasti, sarjassa voi olla trendiä eikä se ehkä ole stationaarinen</li>
+</ul>
+<p>Näihin kannattaa tutustua kuvien kautta. Myös tähän löytyy <code>statsmodels</code>-kirjaston esimerkeistä valmis kuvaaja, esimerkiksi: <a href="https://www.statsmodels.org/stable/examples/notebooks/generated/tsa_arma_0.html">Autoregressive Moving Average (ARMA): Sunspots data</a></p>
+<p>Taulukkomuotoisten mallien kanssa ACF ja PACF auttavat ennen kaikkea valitsemaan, mitkä viiveet kannattaa ottaa mukaan piirteinä. Jos sarjassa on vahva 24 tunnin tai 7 päivän rytmi, nämä viiveet kannattaa usein mallintaa eksplisiittisesti.</p>
+<h3 id="lokaalit-mallit">Lokaalit mallit</h3>
+<p><strong>Lokaali malli</strong> tarkoittaa sitä, että jokaiselle aikasarjalle koulutetaan oma malli. Jos ennustat 500 tuotteen kysyntää, lokaalissa lähestymistavassa rakennetaan 500 erillistä mallia <sup id="fnref4:modern-ts-forecasting"><a class="footnote-ref" href="#fn:modern-ts-forecasting">2</a></sup>. Tämä on klassisen aikasarja-analyysin oletustapa.</p>
+<p>Lokaalien mallien etuja ovat:</p>
+<ul>
+<li>helppo tulkittavuus yhdelle sarjalle kerrallaan</li>
+<li>hyvä toiminta silloin, kun sarjoja on vähän mutta kutakin sarjaa on mitattu pitkään</li>
+<li>yksinkertainen ajatusmalli: yhden sensorin historiaa käytetään saman sensorin tulevaisuuden ennustamiseen</li>
+</ul>
+<p>Haittoja puolestaan ovat:</p>
+<ul>
+<li>mallit eivät jaa oppimaansa keskenään</li>
+<li>ylläpidettävien mallien määrä kasvaa nopeasti</li>
+<li>lyhyiden tai kohinaisten sarjojen ennustaminen on vaikeaa, koska yhdellä sarjalla on vähän opetusdataa</li>
+</ul>
+<p>Lokaali malli on usein erinomainen valinta silloin, kun ennustettava ilmiö on yksi selkeä sarja – esimerkiksi sähkönkulutus yhdessä rakennuksessa tai yhden tuotteen kysyntä yhdessä myymälässä.</p>
+<h3 id="sama-videona">Sama videona</h3>
+<p>Alla olevasta upotetusta videosta löydät samat asiat kuin yltä (ja vähän enemmänkin) selkeän visuaalisessa muodossa.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/9QtL7m3YS9I?si=-t5pqekYzaRJjMXf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<p><strong>Video:</strong> <em>Kishan Manani esittelee PyData London 2022 -konferenssissa aihetta "Feature Engineering for Time Series Forecasting".</em></p>
+<h2 id="mallin-koulutus-perinteinen">Mallin koulutus (Perinteinen)</h2>
+<p>Perinteisten mallien vahvuus on siinä, että ne ovat usein nopeita, tulkittavia ja kilpailukykyisiä yllättävän vahvoina baselineina. Käytännössä on tavallista kokeilla useita eri malliperheitä rinnakkain ja valita niistä paras validaation perusteella <sup id="fnref5:modern-ts-forecasting"><a class="footnote-ref" href="#fn:modern-ts-forecasting">2</a></sup>. Huomaa, että kaikkea mallinnusta ei tarvitse tehdä ilman apuja. Esimerkiksi Nixtlan <code>StatsForecast</code> ja <code>MLForecast</code> voivat olla avuksi. Pienten datasettien kanssa, erityisesti asiaa opiskellessa, myös <code>skforecast</code> on hyvä ja helppokäyttöinen työkalu.</p>
+<blockquote>
+<p>"Time series forecasting has been around since the early 1920s, and through the years, many brilliant people have come up with different models, some statistical and some heuristic-based. I refer to them collectively as classical statistical models or econometrics models, although they are not strictly statistical/econometric."</p>
+<p>— Joseph &amp; Tackes <sup id="fnref8:modern-ts-forecasting"><a class="footnote-ref" href="#fn:modern-ts-forecasting">2</a></sup></p>
+</blockquote>
+<h3 id="aloita-baselinesta">Aloita baselinesta</h3>
+<p>Ennen kuin koulutat yhtään monimutkaista mallia, rakenna vähintään yksi yksinkertainen baseline. Aikasarjoissa hyvä baseline ei ole satunnainen arvaus vaan jokin ilmiön rakennetta hyödyntävä nyrkkisääntö. Tyypillisiä baselineja ovat:</p>
+<ul>
+<li><strong>naive</strong>: huominen arvo = tämän päivän arvo (eli <span class="arithmatex">\(y_{t+1} = y_t\)</span>)</li>
+<li><strong>seasonal naive</strong>: ensi maanantai = viime maanantai (eli <span class="arithmatex">\(y_{t+7} = y_t\)</span>)</li>
+<li><strong>moving average</strong>: ennuste = viimeisten havaintojen keskiarvo</li>
+</ul>
+<p>Huomaa, että nämä <mark>eivät siis varsinaisesti ennusta mitään</mark>. Jos valitsemasi <em>forecast horizon</em> on 7 päivää, ja ajat ennusteen sunnuntaina, niin naive baseline toimii siten, että:</p>
+<ul>
+<li>maanantain arvo on sunnuntain arvo</li>
+<li>tiistain arvo on sunnuntain arvo</li>
+<li>keskiviikon arvo on sunnuntain arvo</li>
+<li>...</li>
+<li>joka päivä jatkossa on sama kuin sunnuntai</li>
+</ul>
+<p><img alt="" src="../../images/800_gemini-naive-classifier-SAME-stamp.jpg" /></p>
+<p><strong>Kuva 1:</strong> <em>Nano Banana 2:n näkemys Naive Baseline -hahmosta, joka ennustaa kalenteria aina samalla kumileimasimella.</em></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Jos monimutkainen malli ei voita näitä, ongelma on joko mallissa, datassa tai arviointitavassa. Mikäli törmäät online-kirjoitukseen, jossa rakennetaan monimutkainen malli ennustamaan esimerkiksi osakehintaa vertaamatta sitä edes naive-baselineen, voit olla melko varma siitä, että kyseessä on clickbait-artikkeli.</p>
+</div>
+<h3 id="arima-ja-sarima">ARIMA ja SARIMA</h3>
+<p>ARIMA rakentuu kolmesta osasta: autoregressiivinen osa (AR), differointi (I) ja liukuva keskiarvo virheille (MA). Mallin hyperparametrit kirjoitetaan yleensä muotoon <span class="arithmatex">\((p, d, q)\)</span>, ja kausillinen versio laajennetaan usein muotoon <span class="arithmatex">\((P, D, Q, m)\)</span> <sup id="fnref6:ts-cookbook"><a class="footnote-ref" href="#fn:ts-cookbook">3</a></sup>. ARIMA-tyyppiset mallit sopivat erityisesti silloin, kun sarjoja on vähän, mieluiten yksi, ja ongelma on melko "siisti", taipuen helposti stationaariseksi.</p>
+<p>Kyseessä on erittäin klassinen lokaali malli. Se on usein hyvä ensimmäinen vakava vertailukohta yhdelle selkeälle aikasarjalle.</p>
+<h3 id="exponential-smoothing-ja-ets">Exponential Smoothing ja ETS</h3>
+<p>Exponential Smoothing -malliperhe painottaa tuoreita havaintoja vanhoja enemmän. ETS-mallit (<em>Error, Trend, Seasonality</em>) ovat erityisen käyttökelpoisia silloin, kun sarjassa näkyy selkeä taso-, trendi- ja kausirakenne <sup id="fnref6:modern-ts-forecasting"><a class="footnote-ref" href="#fn:modern-ts-forecasting">2</a></sup>. Käytännössä tämä on vaihtoehto ARIMA:lle, ja on myös <em>state space model</em>, joten se on helppo napata vertailuun mukaan.</p>
+<h3 id="lineaarinen-regressio-viivepiirteilla">Lineaarinen regressio viivepiirteillä</h3>
+<p>Kun aikasarja muutetaan taulukkomuotoon lag-piirteiden avulla, tavallinen lineaarinen regressio muuttuu täysin käyttökelpoiseksi ennustajaksi. Tällöin malli oppii painot esimerkiksi piirteille <code>lag_1</code>, <code>lag_24</code>, <code>lag_168</code>, <code>is_weekend</code> ja <code>temperature</code>. <sup id="fnref7:modern-ts-forecasting"><a class="footnote-ref" href="#fn:modern-ts-forecasting">2</a></sup> Jos piirteitä on paljon, käytetään usein regularisoituja versioita, kuten Ridge- tai Lasso-regressiota.</p>
+<div class="admonition tip">
+<p class="admonition-title">Regressio ja forecast horizon</p>
+<p>Huomaa, että lineaarinen regressio on luonteeltaan single-step-malli. Jos haluat ennustaa useamman askeleen päähän, sinun täytyy joko:</p>
+<ul>
+<li>käyttää rekursiivista lähestymistapaa, jossa ennuste syötetään takaisin malliin seuraavan askeleen ennustamiseksi</li>
+<li>tai rakentaa erillinen malli jokaiselle ennustettavalle askeleelle</li>
+</ul>
+</div>
+<h3 id="lightgbm-ja-muut-boosting-mallit">LightGBM ja muut boosting-mallit</h3>
+<p>Kun lagit, kalenteripiirteet ja exogeeniset muuttujat on rakennettu taulukoksi, puupohjaiset boosting-mallit ovat usein erittäin vahvoja ennustajia. Ne pystyvät mallintamaan epälineaarisuuksia ja piirteiden välisiä interaktioita ilman, että analyytikon tarvitsee määritellä niitä käsin.</p>
+<p>LightGBM, XGBoost tai Catboost ovat käytännössä hyvä valinta silloin, kun ilmiössä on epälineaarisuutta.</p>
+<p>Aiheeseen voit tutustua esimerkiksi sk-forecastin examples-osion artikkelia lukemalla: <a href="https://cienciadedatos.net/documentos/py39-forecasting-time-series-with-skforecast-xgboost-lightgbm-catboost.html">Forecasting time series with gradient boosting: Skforecast, XGBoost, LightGBM, Scikit-learn and CatBoost</a>.</p>
+<h3 id="validointi-ja-mallin-valinta">Validointi ja mallin valinta</h3>
+<p>Perinteisten mallien koulutusprosessissa ei riitä, että ajetaan yksi malli yhdellä parametrilla. Tämä on toivon mukaan Johdatus koneoppimiseen -kurssilta tuttua. Mallit ovat kevyitä kouluttaa, ja frameworkit tarjoavat helpon tavan kokeilla useita malleja. Tyypillinen työnkulku on:</p>
+<ol>
+<li>rakenna naiivi baseline</li>
+<li>valitse useita malleja ja malliperheitä</li>
+<li>kouluta kaikki mallit koulutusdatalla</li>
+<li>arvioi kaikki mallit validointidatalla ja vertaa niitä baselineen</li>
+<li>valitse paras malli ja arvioi se testidatalla</li>
+<li>jos tulos jää heikoksi, palaa piirrevalintaan, validaatioasetelmaan ja malliperheiden vertailuun</li>
+</ol>
+<p>Tyypillisiä arviointimittareita ovat MAE, RMSE, MAPE ja sMAPE. Miten valita näiden väliltä, ja mitä backtesting edes ylipäätänsä on? Kannattaa katsoa seuraava video:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dSTXd8Hx728?si=OSn2ul0KDPBpK4rN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<p><strong>Video:</strong> <em>Kishan Manani esittelee PyData London 2024 -konferenssissa aihetta "Backtesting and error metrics for modern time series forecasting".</em></p>
+<div class="admonition tip">
+<p class="admonition-title">State ja backtesting</p>
+<p>State space -mallit, kuten ARIMA, käsittelevät aikaa hyvin eri tavalla kuin lag-piirteisiin perustuvat tilattomat (stateless) regressiomallit. Ne ylläpitävät sisäistä tilaa, joka riippuu havaintojen järjestyksestä. Tämä tarkoittaa, että ARIMA-malli voi tuottaa ennusteita vain viimeisestä havainnosta eteenpäin.</p>
+<blockquote>
+<p>"Unlike machine learning models, statistical models like ARIMA maintain an internal state that depends on the sequence of observations. They can only generate predictions starting from the last observed time step — they cannot "jump" to an arbitrary point in the future without knowing all previous values. During backtesting, when the validation window moves forward, the model must be refitted to incorporate the new observations and update its internal state."</p>
+<p>— Rodrigo, Ortiz and Akay <sup id="fnref:skforecast-statistical"><a class="footnote-ref" href="#fn:skforecast-statistical">4</a></sup></p>
+</blockquote>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Saatat törmätä myös termeihin <em>in-sample</em> ja <em>out-of-sample</em>. In-sample-ennuste tarkoittaa mallin kykyä selittää dataa, jonka se on nähnyt koulutuksen aikana. Forecasting-tehtävässä kiinnostavampi suure on lähes aina <em>out-of-sample</em>-suorituskyky eli ennuste täysin tulevaan aikaan <sup id="fnref9:modern-ts-forecasting"><a class="footnote-ref" href="#fn:modern-ts-forecasting">2</a></sup>.</p>
+</div>
+<h2 id="tehtavat">Tehtävät</h2>
+<div class="admonition question">
+<p class="admonition-title">Tehtävä: StatsForecast ja Polars</p>
+<p>Avaa ja aja notebook <code>notebooks/nb/800/800_statsforecast_polars.py</code>. Notebook on kurssille sovitettu versio Nixtlan StatsForecast-dokumentaation tutoriaalista <a href="https://nixtlaverse.nixtla.io/statsforecast/docs/getting-started/getting_started_complete_polars.html">End to End Walkthrough with Polars</a>.</p>
+<p>Tee notebookissa seuraavat asiat:</p>
+<ol>
+<li><strong>Tiedon rajaus:</strong> Notebook rajaa alussa datan kymmeneen aikasarjaan (<code>uids = ...[:10]</code>) ja viimeiseen viikkoon (<code>tail(7 * 24)</code>). Kokeile suurentaa näitä arvoja (esim. 50 aikasarjaan ja 2 viikkoon). Miten tämä vaikuttaa ajoaikoihin ja parhaiden mallien jakautumaan?</li>
+<li><strong>Kausivaihtelun pituus:</strong> Mallit <code>SeasonalNaive</code> ja <code>DynamicOptimizedTheta</code> (DOT) saavat parametrin <code>season_length=24</code>. Koska kyseessä on tuntitason data, 24 edustaa vuorokautta. Kokeile muuttaa arvoksi esimerkiksi viikkovaihtelu (168) asettamalla <code>season_length=168</code>. Vaikuttaako tämä "best model" -tuloksiin?</li>
+<li><strong>Virhefunktio:</strong> Notebook käyttää oletuksena Mean Squared Error (<code>mse</code>) -funktiota paremmuuden arviointiin (<code>from utilsforecast.losses import mse</code>). Vaihda tämä esimerkiksi Mean Absolute Erroriin (<code>mae</code>). Tuo se samasta kirjastosta ja muuta <code>evaluate_cv</code>-kutsua. Muuttuuko mallien paremmuusjärjestys?</li>
+<li><strong>Oma analyysi:</strong> Valitse kaksi yksittäistä aikasarjaa notebookin loppupuolen kuvaajista. Kirjoita lyhyt tulkinta siitä, miksi juuri kyseiselle sarjalle valittu paras malli vaikuttaa onnistuneelta (onko datassa selkeä taso, toistuva sykli vai voimakasta kohinaa?).</li>
+</ol>
+<p>Vastaa lopuksi lyhyesti seuraaviin kysymyksiin:</p>
+<ul>
+<li>Miksi tulosten vertailussa ristivalidointi (Cross-Validation) liukuvilla ikkunoilla (sliding window) on luotettavampaa kuin yksi ainoa datajako (esim. testiksi jätettävä viimeinen päivä)?</li>
+<li>Minkälaiselle aikasarjalle Kuvaiden perusteella <code>SeasonalNaive</code> osoittautui erityisen vahvaksi baselineksi ja raskaampien mallien voittajaksi?</li>
+</ul>
+<p><strong>Lisähaaste:</strong> Ota käyttöön jokin "Auto"-malli StatsForecast-kirjastosta (kuten <code>AutoARIMA</code> tai <code>AutoETS</code>). Tuo se samoin kuin muut mallit ja lisää se <code>models</code>-listaan. Tarkista, paransiko auto-malli ennustusten laatua valituilla aikasarjoilla ja huomaatko muutoksen solujen suoritusajoissa.</p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Tehtävä: MLForecast tutuksi</p>
+<p>Avaa ja aja notebook <code>notebooks/nb/800/801_mlforecast_polars_quickstart.py</code>. Tämä lyhyt notebook esittelee <code>MLForecast</code>-kirjaston perusteet, jolla aikasarja voidaan muuttaa taulukkomuotoon ja ennustaa perinteisellä koneoppimismallilla (tässä tapauksessa lineaarisella regressiolla).</p>
+<p>Tee notebookissa seuraavat kokeilut:</p>
+<ol>
+<li><strong>Mallin vaihto:</strong> Vaihda <code>LinearRegression</code> johonkin toiseen regressiomalliin (esim. <code>RandomForestRegressor</code>).</li>
+<li><strong>Viiveiden (lags) lisäys:</strong> Kokeile muuttaa <code>lags</code>-parametria. Nyt malli käyttää vain 12 kuukauden viivettä <code>lags=[12]</code>. Kokeile lisätä viiveitä. Kuinka evaluioisit, mitkä viiveet voivat olla hyödyllisiä?</li>
+</ol>
+<p>Pohdi lyhyesti: Miksi taulukkomuotoisissa koneoppimismalleissa piirteiksi täytyy itse määritellä erikseen viiveet (lags), kun taas edellisen tehtävän perinteiset mallit osasivat hyödyntää historian sellaisenaan?</p>
+</div>
+<h2 id="lahteet">Lähteet</h2>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:ml-forecasting-py">
+<p>Lazzeri, F. <em>Machine Learning for Time Series Forecasting with Python</em>. 2020. Wiley.&#160;<a class="footnote-backref" href="#fnref:ml-forecasting-py" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:ml-forecasting-py" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:ml-forecasting-py" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:ml-forecasting-py" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:modern-ts-forecasting">
+<p>Joseph, M. &amp; Tackes, J. <em>Modern Time Series Forecasting with Python - Second Edition</em>. Packt. 2024.&#160;<a class="footnote-backref" href="#fnref:modern-ts-forecasting" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:modern-ts-forecasting" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:modern-ts-forecasting" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:modern-ts-forecasting" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref5:modern-ts-forecasting" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref6:modern-ts-forecasting" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref7:modern-ts-forecasting" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref8:modern-ts-forecasting" title="Jump back to footnote 2 in the text">&#8617;</a><a class="footnote-backref" href="#fnref9:modern-ts-forecasting" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:ts-cookbook">
+<p>Atwan, T. <em>Time Series Analysis with Python Cookbook - Second Edition</em>. Packt. 2026.&#160;<a class="footnote-backref" href="#fnref:ts-cookbook" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:ts-cookbook" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref3:ts-cookbook" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref4:ts-cookbook" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref5:ts-cookbook" title="Jump back to footnote 3 in the text">&#8617;</a><a class="footnote-backref" href="#fnref6:ts-cookbook" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:skforecast-statistical">
+<p>Rodrigo, J. Ortiz, J. &amp; Akay, R. <em>Forecasting with statistical models</em>. 2026. https://cienciadedatos.net/documentos/py77-forecasting-statistical-models.html&#160;<a class="footnote-backref" href="#fnref:skforecast-statistical" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 <a href="https://www.kamk.fi">Kajaanin Ammattikorkeakoulu Oy</a>. 
+Licenced under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">BY-NC-SA 4.0</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Kopioitu leikep\u00f6yd\u00e4lle", "clipboard.copy": "Kopioi leikep\u00f6yd\u00e4lle", "search.result.more.one": "1 lis\u00e4\u00e4 t\u00e4ll\u00e4 sivulla", "search.result.more.other": "# lis\u00e4\u00e4 t\u00e4ll\u00e4 sivulla", "search.result.none": "Ei t\u00e4sm\u00e4\u00e4vi\u00e4 dokumentteja", "search.result.one": "1 t\u00e4sm\u00e4\u00e4v\u00e4 dokumentti", "search.result.other": "# t\u00e4sm\u00e4\u00e4v\u00e4\u00e4 dokumenttia", "search.result.placeholder": "Kirjoita aloittaaksesi haun", "search.result.term.missing": "Puuttuu", "select.version": "Valitse versio"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
