@@ -161,7 +161,7 @@ Koneoppimisen määritelmään kuuluu, että koneoppimismalli oppii datasta. Mal
     * Alusta Oppimispäiväkirja 101 ohjeiden mukaisesti, jos et ole jo.
     * Kirjoita oppimispäiväkirjasi Johdanto, jos et ole jo.
     * Aloita ensimmäinen viikkomerkintä määritelmillä (koneoppiminen, tekoäly, ...)
-    * Pidä git origin eli GitLab ajan tasalla.
+    * Pidä git etärepositorio eli GitLab ajan tasalla.
     * Tarkista, että GitLab Pages -hostattu versio sivusta toimii.
     * Kuvittele, että tällainen **Määrittele ${VIIKKO_TEEMAN_AIHE}** -tehtävä on jatkossa aivan jokaisen viikon yhteydessä.
 

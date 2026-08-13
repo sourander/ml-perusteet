@@ -1,42 +1,10 @@
 # Tervetuloa kurssille
 
-!!! danger
-
-    Tämä oppimateriaali on refaktoroinnin alla. Rakenne vaihdetaan vastaamaan [Syväoppiminen I](https://sourander.github.io/syvaoppiminen/) -kurssin rakennetta, jossa suuri osa tehtävistä on Marimo Notebookeja, jotka ovat samassa repositoryssa. Päivitys valmistuu syksyllä 2026.
-
-    Jos tarvitset vanhan version auki, käytä git tagia `v2025`. Hoituu näin:
-
-    ```bash
-    git clone https://github.com/sourander/ml-perusteet && cd ml-perusteet
-    git checkout v2025
-    uv run mkdocs serve --open --livereload
-    ```
-
-    Tämä varoitus poistuu, kun sivun rakenne on päivitetty lopulliseen muotoonsa.
-
 Tervetuloa kurssille! Aiheita käydään läpi lyhyesti teoreettisesta näkökulmasta, mutta pääpaino on käytännön toteutuksissa. Klassiset koneoppimismallit eivät kenties ole yhtä jännittäviä kuin syväoppimismallit, mutta ne ovat tärkeitä ymmärtää, jotta ymmärrät syväoppimisen perusteet. Lisäksi ne ovat tuotannossa käypiä ratkaisuja yhä vieläkin. Alla on aihetta pohjustava sarjakuvapiirros.
 
 ![genAI vs traditional AI](images/ml_vs_genai_madebytio.jpg)
 
 **Kuva 1.** *Sarjakuvapiirros koneoppimisesta. (Copyright note: The memeified comic is by unknown author, but found from r/machinelearningmemes posted by u/joelllthedestoryer. Published with permission from the creator of the original comic strip MadeByTio.)*
-
-## Git LFS
-
-Ennen kuin kloonaat tätä repoa, sinun tulee aktivoida Git LFS (Large File Storage), jotta saat kurssin datatiedostot ladattua. Jos olet Windowsissa ja sinulla on Git for Windows, Git LFS on jo asennettu, mutta se tulee aktivoida. Jos olet macOS:ssä tai Ubuntussa, katso asennusohje [How to Git > Käyttö > Gitlab: LFS](https://sourander.github.io/how-to-git/kaytto/lfs/) tai etsi ohje valitsemastasi paikasta. Tämä tarvitsee tehdä vain kerran per tietokone.
-
-```bash
-# Ennen kuin kloonaat
-git lfs install
-
-# Ja nyt on turvallista...
-mkdir -p ~/Code/sourander
-cd ~/Code/sourander
-git clone https://github.com/sourander/ml-perusteet
-```
-
-!!! tip
-
-    Tarvitset repositoriosta vain `notebooks/`-kansion, mutta GitHubin web-käyttöliittymä ei tue Git LFS:ää, joten sinun tulee kloonata koko repository. Kloonaamisen jälkeen voit kopioida `notebooks/`-kansion haluamaasi paikkaan ja tarpeen mukaan poistaa koko repositoryn.
 
 ## Oppimistavoitteet
 
@@ -48,7 +16,7 @@ Viralliset oppimistavoitteet löydät OPS:sta, mutta pääpiirteittäin kurssin 
 * Olet luonut oppimispäiväkirjan, joka mahdollistaa kertauksen ja jatko-opiskelun.
 * Olet valmis jatkamaan Syväoppiminen I -kurssin suuntaan.
 
-## Tehtävien numerointi
+## Tavoitteena oppimispäiväkirja
 
 Kurssi sisältää tehtäviä, jotka tukevat syväoppimisen keskeisten käsitteiden ja menetelmien ymmärtämistä. Tehtävien tarkoitus ei ole tuottaa yksittäisiä *“oikeita vastauksia”*, vaan toimia lähtökohtana oppimiselle, kokeilulle ja reflektoinnille.
 
@@ -62,7 +30,7 @@ Tehtäviin ei odoteta kysymys–vastaus-tyyppisiä ratkaisuja oppimispäiväkirj
 
 Tehtävät löytyvät kunkin osion lopusta. Lisäksi **kaikki** tehtävät ovat koostettuna [Tehtäväkooste](exercises.md)-sivulle. Tehtävät palautetaan [Oppimispäiväkirja 101](https://sourander.github.io/oat/) -ohjeistuksen mukaisesti eli Gitlab Pages:ssa hostattuna staattisena sivustona.
 
-Useat tehtävät viittaavat [Marimo](https://marimo.io/)-työkalulla tehtyihin notebookeihin. Kyseessä on Jupyter Notebook -työkalun seuraaja. Notebookit löydät kurssin repositoriosta polusta [gh:sourander/syvaoppiminen/notebooks](https://github.com/sourander/syvaoppiminen/tree/main/notebooks).
+Useat tehtävät viittaavat [Marimo](https://marimo.io/)-työkalulla tehtyihin notebookeihin. Kyseessä on Jupyter Notebook -työkalun seuraaja. Notebookit löydät kurssin repositoriosta polusta [gh:sourander/syvaoppiminen/notebooks](https://github.com/sourander/syvaoppiminen/tree/main/notebooks). Koodin ajaminen neuvotaan alla.
 
 ## Numerointi
 
@@ -93,7 +61,30 @@ Sama pätee esimerkiksi kurssin videoihin. Jos videon otsikossa on luku välill�
 
 ## Koodin ajaminen
 
-TODO!
+### Git LFS
+
+Ennen kuin kloonaat tätä repoa, sinun tulee aktivoida Git LFS (Large File Storage), jotta saat kurssin datatiedostot ladattua. Jos olet Windowsissa ja sinulla on Git for Windows, Git LFS on jo asennettu, mutta se tulee aktivoida. Jos olet macOS:ssä tai Ubuntussa, katso asennusohje [How to Git > Käyttö > Gitlab: LFS](https://sourander.github.io/how-to-git/kaytto/lfs/) tai etsi ohje valitsemastasi paikasta. Tämä tarvitsee tehdä vain kerran per tietokone.
+
+```bash
+# Ennen kuin kloonaat
+git lfs install
+```
+
+!!! tip
+
+    Tarvitset repositoriosta vain `notebooks/`-kansion, mutta GitHubin web-käyttöliittymä ei tue Git LFS:ää, joten sinun tulee kloonata koko repository. Kloonaamisen jälkeen voit kopioida `notebooks/`-kansion haluamaasi paikkaan ja tarpeen mukaan poistaa koko repositoryn.
+
+### Lokaalisti
+
+Kehitysympäristön pohjustamista varten on oma tehtävä [Data](1_koneoppiminen/datasetti.md#tehtavat) -luvussa eli heti ensimmäisellä viikolla. Koska nämä ohjeet päivittyvät todennäköisesti joka vuosi, niistä on soittolistan alussa oma setup-video.
+
+### CSC Roihu supertietokoneella
+
+Kurssin tehtävät on mahdollista ajaa myös CSC Roihu-supertietokoneella, jossa on valmiiksi asennettuna interaktiivinen Marimo-ympäristö. Jos tähän löytyy kiinnostusta, luon siitä oman Setup-ohjevideon.
+
+!!! tip "Miksi CSC?"
+
+    CSC Roihua käytetään myöhemmillä kurssilla, erityisesti Syväoppinen II -kurssilla. On myös äärimmäisen suositeltavaa, että käytät CSC:n palveluita (Roihu, ePouta, Rahti) projektikurssien yhteydessä, erityisesti jos sinua kiinnostaa platform engineering tai MLops tulevaisuuden työurana.
 
 ## Kurssikirjallisuus
 

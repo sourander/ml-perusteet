@@ -249,17 +249,17 @@ y: np.ndarray = np.array([1, 0, 1, 1, 0])
 
 !!! question "Tehtävä: Pohjusta kehitysympäristösi"
 
-    Varmista jo nyt heti kurssin alussa, että sinulla on ympäristö, jossa voit ajaa koodia. Käymäsi kurssitoteutuksen YouTube-videoissa ja/tai Teams-aloitusluennoissa on neuvottu, mikä on juuri tämän hetken suositeltu ympäristö. Alla oleva on karvalakkiversio ohjeesta, jolla pääset hätätapauksessa alkuun. Noudata kuitenkin mieluummin juuri sitä ohjetta, mikä kurssin nykyisessä toteutuksessa on annettu. Se voi poiketa hieman tästä (esim. kenties CSC hostaa nykyään Marimon-ympäristön, jolloin koko setup poistuu.)
+    Varmista jo nyt heti kurssin alussa, että sinulla on ympäristö, jossa voit ajaa koodia. Käymäsi kurssitoteutuksen YouTube-soittolistasta löytyy video, jossa nämä vaiheet neuvotaan tarkemmin. Alla ovat referenssiä varten komennot, jotka esiintyvät videolla. Vaihtoehtona on ajaa koodi esimerkiksi CSC Roihu -ympäristössä, mistä annetaan kysynnän mukaan tarkemmat ohjeet erikseen.
     
     !!! warning
     
         Tässä on pohjana oletus, että sinulla on:
 
-        1. Oppimispäiväkirja alustettu (`~/Code/ml-perusteet-20xx/etunimisukunimi`-hakemistossa)
-        2. Komentorivityökalu `uv` asennettuna, koska se on yllä olevan riippuvuus.
-        3. Git asennettuna.
+        1. Oppimispäiväkirja alustettu (`~/Code/ml-perusteet-20xx/etunimisukunimi`-hakemistossa). Lue [Oppimispäiväkirja 101](https://sourander.github.io/oat/) ohjeet läpi, jos et ole vielä tehnyt tätä.
+        2. Komentorivityökalu `uv` asennettuna.
+        3. Git asennettuna ja Git LFS aktivoituna.
 
-        Jos näin ei ole, lue [Oppimispäiväkirja 101](https://sourander.github.io/oat/) ohjeet läpi, joissa neuvotaan oppimispäiväkirjan alustus ja repoon pusku [kamk-cookiecutters](https://github.com/sourander/kamk-cookiecutters)-templaatia hyödyntäen.
+        Jos näin ei ole, lue [Oppimispäiväkirja 101](https://sourander.github.io/oat/) ohjeet läpi, joissa neuvotaan oppimispäiväkirjan alustus ja repoon pusku [kamk-cookiecutters](https://github.com/sourander/kamk-cookiecutters)-templaatia hyödyntäen. Git LFS -ohjeet löydät [How to Git > Käyttö > Gitlab: LFS](https://sourander.github.io/how-to-git/kaytto/lfs/) -apusivulta.
 
     Olettaen, että yllä olevat asiat ovat kunnossa, saat ns. opettajan setupin näin helposti käyttöön:
 
@@ -269,6 +269,7 @@ y: np.ndarray = np.array([1, 0, 1, 1, 0])
 
     # Kloonaa opettajan repo
     mkdir -p ~/Code/sourander/ && cd ~/Code/sourander/
+    git lfs version
     git clone https://github.com/sourander/ml-perusteet.git
     
     # Kopioi notebook-hakemisto sinulle
@@ -277,6 +278,7 @@ y: np.ndarray = np.array([1, 0, 1, 1, 0])
 
     # Testaa
     cd ./$TOTEUTUKSENNIMI/$REPONNIMESI/notebooks
+    uv python install 3.13
     uv run marimo edit
     # Avaa alemman tehtävän 130_data_handling_basics.py-tiedosto, aja se ja katso että menee läpi.
 
