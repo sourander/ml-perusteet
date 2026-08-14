@@ -14,7 +14,7 @@ Keskitymme tässä ensimmäisessä luvussa alan tärkeimpiin termeihin, niiden m
 
 KOKO-ontologian mukaan [koneoppiminen](http://www.yso.fi/onto/koko/p59563) käsite, jonka yläkäsite on [tekoäly](https://finto.fi/koko/fi/page/p36713). Toisin sanoen kaikki koneoppiminen on tekoälyä, mutta kaikki tekoäly ei ole koneoppimista. Myöhemmillä kursseilla opittava [syväoppiminen](http://www.yso.fi/onto/koko/p90875) on sen sijaan koneoppimisen alakäsite. [^koko] Täysin itsestäänselvää tämä ei kuitenkaan ole, eikä varsinkaan arkikielessä käytettynä.
 
-> "Termejä koneoppiminen, hahmontunnistus ja tekoäly käytetään tarkoittamaan asmaa asiaa, ja no epäselvää miten ne eroavat toisistaan. [...] Kävin ensimmäisen kurssini koneoppimisesta 90-luvulla, ja sillloin Suomessa käytettiin termiä hahmontunnistus."
+> "Termejä koneoppiminen, hahmontunnistus ja tekoäly käytetään tarkoittamaan samaa asiaa, ja on epäselvää miten ne eroavat toisistaan. [...] Kävin ensimmäisen kurssini koneoppimisesta 90-luvulla, ja sillloin Suomessa käytettiin termiä hahmontunnistus."
 >
 > – Joni Kämäräinen [^kämäräinen]
 
@@ -42,7 +42,7 @@ Tekoäly ei ole uusi keksintö. Ihmismielen päättelyn ymmärtämistä tai sit�
 
 Koneoppimisen historiaa voidaan sen sijaan hieman sivuuttaa. Kirjassaan *Koneoppimisen perusteet* – joka kannattaa lukea jos käsiinsä saa – Kämäräinen mainitsee myös suomalaisia nimiä ja yhteisöjä, jotka toivat alan Suomeen. Näitä ovat seuran Hatutus (*Suomen hahmontunnistustutkimuksen seura*) perustajat Teuvo Kohonen, Erkki Oja ja Matti Pietikäinen. [^kämäräinen] Löydät tämän 1977 perustetun seuran tietoja helposti netistä, alken vaikkapa [Tieteellisten seurain valtuuskunnan](https://tsv.fi/fi/toiminta/jasenseurat/jasenseurahaku/hakutulos/tiedot?id=109) tarjoamista seuran tiedoista.
 
-Opettajan kokemus on, että jos yrität tutustua koneoppimisen historiaan, joudut väistelemään neuroverkkoja ja syväoppimista jo 40—50-luvuilta asti. Tämän kurssin koneoppiminen, eli klassiset noin 90-luvun koneoppimismallit, ajavat sinut herkästi aiheisiin kuten *statistical signal processing* ja *statistical pattern recognition*. Meidän kurssilla käytäntö lähtee Bayesilaisesta tilastotieteestä, mistä edetään frekventistisen päättelyn keinoihin ja niihin perustuviin koneoppimismalleihin.  Myös 
+Opettajan kokemus on, että jos yrität tutustua koneoppimisen historiaan, joudut väistelemään neuroverkkoja ja syväoppimista jo 40—50-luvuilta asti. Tämän kurssin koneoppiminen, eli klassiset noin 90-luvun koneoppimismallit, ajavat sinut herkästi aiheisiin kuten *statistical signal processing* ja *statistical pattern recognition*. Meidän kurssilla käytäntö lähtee Bayesilaisesta tilastotieteestä, mistä edetään frekventistisen päättelyn keinoihin ja niihin perustuviin koneoppimismalleihin. 
 
 !!! warning
 
