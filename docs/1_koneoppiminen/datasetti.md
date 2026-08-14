@@ -64,7 +64,7 @@ Yllä näkyvän kaltaista dataa voi louhia koneellisesti esimerkiksi Wikipediast
 
 Data, joka on täysin vailla struktuuria (engl. unstructured data), on kaikkein haastavinta käsitellä. Sanat *täysin vailla struktuuria* eivät suinkaan tarkoita, että kyseessä olisi täysin kaoottinen data. Yksittäinen havainto voi olla esimerkiksi äänitiedosto, kuva, video tai täysin vapaamuotoinen teksti. Tiedostolla itsellään, kuten `.JPG`-tiedostolla, on oma rakenne, mutta *informaatio* tiedostossa on epästrukturoitua. Esimerkiksi kuvan pikseli xy-koordinaatissa `(100, 100)` ei itsessään kerro mitään siitä, onko kyseessä kissa vai koira. Kuvan sisältöä tulee siis *kuvailla* jollakin muulla tavalla numeraalisesti.
 
-Mikäli koulutat tekoälyä, joka pyrkii tunnistamaan onko kuvassa kissa vai koira, sinun dataset voi vaikkapa hakemistorakenne:
+Mikäli koulutat koneoppimismallia, joka pyrkii tunnistamaan onko kuvassa kissa vai koira, sinun dataset voi vaikkapa hakemistorakenne:
 
 ```
 dataset/
@@ -198,7 +198,7 @@ X: list[tuple] = [
 y: list[int] = [1, 0, 1, 1, 0]
 ```
 
-On tärkeää huomata, että on ==ihmisen päätös==, että mikä muuttuja on selittävä ja mitkä ovat selittäviä. Kukaan ei estä meitä ottamasta yllä näkyvää datasettiä ja kouluttamasta tekoälyä, joka pyrkii kolmen muun sarakkeen arvon perusteella ennustamaan arvon `Python` tai `R`.
+On tärkeää huomata, että on ==ihmisen päätös==, että mikä muuttuja on selittävä ja mitkä ovat selittäviä. Kukaan ei estä meitä ottamasta yllä näkyvää datasettiä ja kouluttamasta koneoppimismallia, joka pyrkii kolmen muun sarakkeen arvon perusteella ennustamaan arvon `Python` tai `R`.
 
 On yllättävänkin tyypillistä, että jokin data puuttuu. Täydellisiin datasetteihin törmäät lähinnä akateemisissa esimerkeissä. Paras tapa korjata `NULL`-ongelma on tehostaa datan keräysprosessia. Emme elä täydellisessä maailmassa, joten valitettavasti meidän on kuitenkin opittava käsittelemään puuttuvaa dataa. Puuttuvaa dataa voidaan käsitellä monin eri tavoin, kuten poistamalla vialliset havainnot, täyttämällä puuttuvat arvot keskiarvolla tai mediaanilla. Puuttuvan datan paikkauksessa tai poistamisessa pitää olla kuitenkin tarkkana: arvon puuttuminen voi olla merkityksellistä. Eli siis se, että arvo puuttuu, voi olla itsessään tietoa, joka auttaa ennustamaan selitettävää muuttujaa.
 
