@@ -30,9 +30,9 @@ Excel-tiedosto on toki tabulaarista dataa, mutta paremmassa tapauksessa data on 
 | 0.97  | N/A    | R      | 1     |
 | 1.00  | 96141  | Python | 0     |
 
-Yllä olevassa taulukossa on neljä saraketta ($X = [\, x_0 \; x_1 \; x_2 \; x_3 \,]$). Tässä tapauksessa voi siis sanoa, että taulu $X$ on reaaliluvuista koostuva $n$-rivin ja 4-sarakkeen taulukko. ($X \in \mathbb{R}^{n \times 4}$)
+Yllä olevassa taulukossa on neljä saraketta ($X = [\, x_0 \; x_1 \; x_2 \; x_3 \,]$). Tässä tapauksessa voi siis sanoa, että taulu $X$ on reaaliluvuista koostuva $n$-rivin ja 4-sarakkeen taulukko ($X \in \mathbb{R}^{n \times 4}$). Tai noh, *melkein* näin, koska sarake $x_2$ on kategorinen (engl. categorical) ja se tulisi kääntää numeeriseen muotoon esimerkiksi korvaamalla `R` arvolla 0 ja `Python` arvolla 1.
 
-Taulukon ensimmäinen olio, eli `X[0]` on siis silloin monikko eli *tuple* `(1.01, 512, R, 1)`, jonka skeema on `tuple[float, int, str, bool]`. 
+Jos käsitellään taulukkoa nimenomaan listana Pythonin monikkoja (engl. tuple), niin taulukon ensimmäinen olio, eli `X[0]` on `(1.01, 512, R, 1)`, jonka skeema on `tuple[float, int, str, bool]`. Tämä skeema voi olla jollakin kirjastolla tai skriptillä määritelty ja validoitu, tai voi olla, että yksittäinen rivi voi sisältää mitä tahansa, jolloin olisi kovin rohkeaa puhua strukturoidusta datasta.
 
 ### Osittain strukturoitu data
 
