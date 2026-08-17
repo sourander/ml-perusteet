@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.21.1"
+__generated_with = "0.23.16"
 app = marimo.App(width="medium")
 
 with app.setup:
@@ -20,6 +20,7 @@ with app.setup:
     from sklearn.linear_model import LogisticRegression
     from sklearn.ensemble import RandomForestClassifier
     from sklearn.svm import SVC
+    from sklearn.calibration import CalibratedClassifierCV
     from sklearn.model_selection import GridSearchCV, train_test_split
 
     from sklearn.metrics import (
@@ -114,7 +115,7 @@ def _(CATEGORICALS, NUMERICS, X_test, X_train):
         return pl.concat([
             X.select(NUMERICS),
             pl.DataFrame(encoded, schema=ohe_feature_names)
-        ], how="horizontal")
+        ], how="horizontal_extend")
 
     # Pre-fit OneHotEncoder on training data only, outside of GridSearch
     ohe = OneHotEncoder(handle_unknown='ignore', sparse_output=False, min_frequency=0.1, drop="if_binary")
@@ -146,63 +147,64 @@ def _(mo):
 
 @app.cell
 def _(NUMERICS):
-    pipe_nums = Pipeline(steps=[
-        ('imputer', SimpleImputer()),
-        ('scaler', StandardScaler())
-    ])
+    pipe_nums = Pipeline(
+        steps=[("imputer", SimpleImputer()), ("scaler", StandardScaler())]
+    )
 
     preprocessor = ColumnTransformer(
         transformers=[
-            ('nums', pipe_nums, NUMERICS),
+            ("nums", pipe_nums, NUMERICS),
         ],
-        remainder='passthrough'
+        remainder="passthrough",
     )
 
-    pipeline = Pipeline(steps=[
-        ('preprocessor', preprocessor),
-        ('classifier', LogisticRegression())
-    ])
+    pipeline = Pipeline(
+        steps=[
+            ("preprocessor", preprocessor),
+            ("classifier", LogisticRegression()),
+        ]
+    )
 
     param_grid = [
         {
-            'classifier': [
+            "classifier": [
                 LogisticRegression(),
             ],
-            'classifier__C': [0.1, 0.2, 0.4, 0.6, 0.8, 1.0],
-            'preprocessor__nums__imputer': [
-                SimpleImputer(strategy='mean'),
-                SimpleImputer(strategy='median'),
-                KNNImputer(n_neighbors=3, weights='uniform'),
-                KNNImputer(n_neighbors=5, weights='uniform'),
-                KNNImputer(n_neighbors=3, weights='distance'),
-                KNNImputer(n_neighbors=5, weights='distance'),
+            "classifier__C": [0.1, 0.2, 0.4, 0.6, 0.8, 1.0],
+            "preprocessor__nums__imputer": [
+                SimpleImputer(strategy="mean"),
+                SimpleImputer(strategy="median"),
+                KNNImputer(n_neighbors=3, weights="uniform"),
+                KNNImputer(n_neighbors=5, weights="uniform"),
+                KNNImputer(n_neighbors=3, weights="distance"),
+                KNNImputer(n_neighbors=5, weights="distance"),
             ],
-            'preprocessor__nums__scaler': [StandardScaler()],
+            "preprocessor__nums__scaler": [StandardScaler()],
         },
         {
-            'classifier': [RandomForestClassifier(random_state=42)],
-            'classifier__n_estimators': [50, 100],
-            'classifier__max_depth': [None, 5, 10],
-            'preprocessor__nums__imputer': [
-                SimpleImputer(strategy='mean'),
-                SimpleImputer(strategy='median'),
-                KNNImputer(n_neighbors=3, weights='uniform'),
-                KNNImputer(n_neighbors=5, weights='uniform'),
-                KNNImputer(n_neighbors=3, weights='distance'),
-                KNNImputer(n_neighbors=5, weights='distance'),
+            "classifier": [RandomForestClassifier(random_state=42)],
+            "classifier__n_estimators": [50, 100],
+            "classifier__max_depth": [None, 5, 10],
+            "preprocessor__nums__imputer": [
+                SimpleImputer(strategy="mean"),
+                SimpleImputer(strategy="median"),
+                KNNImputer(n_neighbors=3, weights="uniform"),
+                KNNImputer(n_neighbors=5, weights="uniform"),
+                KNNImputer(n_neighbors=3, weights="distance"),
+                KNNImputer(n_neighbors=5, weights="distance"),
             ],
-            'preprocessor__nums__scaler': ['passthrough'],
+            "preprocessor__nums__scaler": ["passthrough"],
         },
         {
-            'classifier': [SVC(probability=True, random_state=42)],
-            'classifier__C': [0.1, 1.0, 10.0],
-            'classifier__kernel': ['rbf', 'linear'],
-            'preprocessor__nums__imputer': [
-                SimpleImputer(strategy='mean'),
-                SimpleImputer(strategy='median'),
-                KNNImputer(n_neighbors=5, weights='uniform'),
+            "classifier": [SVC()],
+            "classifier__C": [0.1, 1.0, 10.0],
+            "classifier__kernel": ["rbf", "linear"],
+            "preprocessor__nums__imputer": [
+                SimpleImputer(strategy="mean"),
+                SimpleImputer(strategy="median"),
+                KNNImputer(n_neighbors=5, weights="uniform"),
             ],
-            'preprocessor__nums__scaler': [StandardScaler()],
+            "preprocessor__nums__scaler": [StandardScaler()],
         },
     ]
     return param_grid, pipeline
@@ -343,6 +345,11 @@ def _(X_train_encoded, df_best_per_family, grid_search, y_train):
 
         model = clone(grid_search.estimator)
         model.set_params(**best_params)
+
+        # SVC has no predict_proba; calibrate once here on full training data instead of inside GridSearchCV
+        if clf_name == "SVC":
+            model.set_params(classifier=CalibratedClassifierCV(estimator=model.named_steps["classifier"], ensemble=False, cv=5))
+
         model.fit(X_train_encoded, y_train)
 
         best_models[clf_name] = model
