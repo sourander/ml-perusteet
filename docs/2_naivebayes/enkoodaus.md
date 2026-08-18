@@ -102,8 +102,8 @@ Sarakkeessa `feedback` olevat lauseet, voidaan enkoodata käyttämällä **bag o
 Menetelmä on yksinkertaisuudessaan [^hands-on-llm]:
 
 1. Ota lause kuten `"selkeä teoria helppo selkeä tehtävä"`
-2. Tokenisoi sanoiksi `["selkeä", "teoria", "helppo", "selkeä", "tehtävä"]` (lue: tunnista uniikit sanat).
-3. Lisää kukin sana sanastoon (*engl. vocabulary*): `{1: "selkeä", 2: "teoria", 3: "helppo", 4: "tehtävä"}`
+2. Tokenisoi sanoiksi `["selkeä", "teoria", "helppo", "selkeä", "tehtävä"]`.
+3. Lisää kukin uniikki sana sanastoon (*engl. vocabulary*): `{1: "selkeä", 2: "teoria", 3: "helppo", 4: "tehtävä"}`
 4. Laske sanojen esiintymisfrekvenssit: `[2, 1, 1, 1]`
 
 Yllä purettiin vain yhden rivin yksi lause, joten *vocabulary* on hyvin suppea. Kun ajat tämän suuremmalle tekstimassalle, korpukselle, syntyy merkittävästi leveämpi taulu, koska **kaikkien rivien kaikki sanat** tulee ottaa huomioon. Yllä esitellyssä datasetissä on 18 uniikkia sanaa, joten vektorisointi lisää tauluun 18 saraketta. Taulukosta näytetään vain ensimmäinen ja 5 viimeistä saraketta. Miksi juuri viisi? Koska `selkeä`-sana on ainut, joka esiintyy kahdesti jossakin lauseessa, joten se on ainoa, joka saa arvon `2`. Kaikki muut sanat saavat arvon `0` tai `1`.
