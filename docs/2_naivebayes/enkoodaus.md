@@ -130,7 +130,7 @@ On äärimmäisen tärkeää huomata, että tämä on *häviöllinen* enkoodaus.
     1. Olisi mahdollista muodostaa binäärinen eli one-hot versio pussista. 
     2. Tai, sanojen sijasta meillä voi olla esimerkiksi *feature descriptor*:n tuottamia *visuaalisia sanoja*, jos käsittelemme tekstin sijasta kuvia. Tällöin voimme luoda kokonaisuuden nimeltään **bag of visual words**.
 
-    Näistä jälkimmäinen on melko edistynyt konsepti. Jos se menee pahasti yli hilseen, keskity kurssin kanssa olennaisempaan sisältöön. Jos kuitenkin haluat tutustua aiheeseen, suosittelen lukemaan artikkelin *Bag of Visual Words for Image Classification* [^bow-beginners].
+    Näistä jälkimmäinen on melko edistynyt konsepti. Jos se menee pahasti yli hilseen, keskity kurssin kanssa olennaisempaan sisältöön.
 
 ### TF-IDF
 
