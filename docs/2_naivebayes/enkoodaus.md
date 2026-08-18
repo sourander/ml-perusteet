@@ -62,7 +62,7 @@ Huomaa, että kummatkin näistä enkoodeneista (label ja ordinal) tekevät josta
 
 !!! warning
 
-    Kaikki kategoriset muuttujat eivät kuitenkaan ole ordinaalisia. Jos datasetissä on esimerkiksi piirre lempiväri, joka on kokonaislukuina enkoodattuna: `0: oranssi`ja `6: Sininen`, koneoppimismalli voi tulkita, että sininen on kuusi kertaa niin suuri kuin oranssi.
+    Muistutus vielä, että kaikki kategoriset muuttujat eivät kuitenkaan ole ordinaalisia. Jos datasetissä on esimerkiksi piirre lempiväri, joka on kokonaislukuina enkoodattuna: `0: oranssi`ja `6: Sininen`, koneoppimismalli voi tulkita, että sininen on kuusi kertaa niin suuri kuin oranssi.
 
 ### One-Hot encoding
 
@@ -85,11 +85,11 @@ FROM df
 | korkea    | 0               | 1            | 0            |
 | ...       | ...             | ...          | ...          |
 
-Tässä tapauksessa siis `level_keskitaso` on vektori `[0, 1, 0]`. Scikit-learn kirjastossa vastaavan operaation toteuttaa [OneHotEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html). Polars tuntee tämän nimellä [DataFrame.to_dummies()](https://docs.pola.rs/api/python/stable/reference/dataframe/api/polars.DataFrame.to_dummies.html) ja Pandas nimellä [.get_dummies()](https://pandas.pydata.org/docs/reference/api/pandas.get_dummies.html). On tärkeämpää ymmärtää kuinka one-hot encoding toimii kuin osata toteuttaa se jollain tietyllä kirjastolla. Kun ymmärrät periaatteen, voit toteuttaa sen jatkossa millä tahansa kirjastolla, mikä sattuukaan istumaan sinun projektisi teknologiapinoon.
+Tässä tapauksessa siis arvo `keskitaso` tuottaa vektorin `[1, 0, 0]`. Scikit-learn kirjastossa vastaavan operaation toteuttaa [OneHotEncoder](https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html). Polars tuntee tämän nimellä [DataFrame.to_dummies()](https://docs.pola.rs/api/python/stable/reference/dataframe/api/polars.DataFrame.to_dummies.html) ja Pandas nimellä [.get_dummies()](https://pandas.pydata.org/docs/reference/api/pandas.get_dummies.html). On tärkeämpää ymmärtää kuinka one-hot encoding toimii kuin osata toteuttaa se jollain tietyllä kirjastolla. Kun ymmärrät periaatteen, voit toteuttaa sen jatkossa millä tahansa kirjastolla, mikä sattuukaan istumaan sinun projektisi teknologiapinoon.
 
 !!! tip
 
-    Usein yksi vektorin arvoista pudotetaan pois. SQL:llä tekisit tämän siten, että kommentoit yhden yllä olevista riveistä pois. Polarsilla ja Pandasilla on tätä varten parametri `drop_first=True` (tai `drop="first`). Tähän aiheeseen palataan myöhemmin mallien kohdalla termin *multikollineaarisuus* kautta. Älä murehdi tästä vielä liika.
+    Usein yksi vektorin arvoista pudotetaan pois. SQL:llä tekisit tämän siten, että kommentoit yhden yllä olevista riveistä pois. Polarsilla ja Pandasilla on tätä varten parametri `drop_first=True` (tai `drop="first"`). Tähän aiheeseen palataan myöhemmin mallien kohdalla termin *multikollineaarisuus* kautta. Älä murehdi tästä vielä liikaa.
 
 ## Menetelmät lauseelle
 
@@ -102,9 +102,9 @@ Sarakkeessa `feedback` olevat lauseet, voidaan enkoodata käyttämällä **bag o
 Menetelmä on yksinkertaisuudessaan [^hands-on-llm]:
 
 1. Ota lause kuten `"selkeä teoria helppo selkeä tehtävä"`
-2. Tokenisoi se sanatokeneiksi `["selkeä", "teoria", "helppo", "selkeä", "tehtävä"]`
-3. Lisää kukin sana sanastoon (*engl. vocabulary*): `{1: "selkeä, 2: "teoria, "3: "helppo, 4: tehtävä}`
-4. Laske lauseessa esiintyvät sanat vocabulary-järjestyksessä: `[2, 1, 1, 1]`
+2. Tokenisoi sanoiksi `["selkeä", "teoria", "helppo", "selkeä", "tehtävä"]` (lue: tunnista uniikit sanat).
+3. Lisää kukin sana sanastoon (*engl. vocabulary*): `{1: "selkeä", 2: "teoria", 3: "helppo", 4: "tehtävä"}`
+4. Laske sanojen esiintymisfrekvenssit: `[2, 1, 1, 1]`
 
 Yllä purettiin vain yhden rivin yksi lause, joten *vocabulary* on hyvin suppea. Kun ajat tämän suuremmalle tekstimassalle, korpukselle, syntyy merkittävästi leveämpi taulu, koska **kaikkien rivien kaikki sanat** tulee ottaa huomioon. Yllä esitellyssä datasetissä on 18 uniikkia sanaa, joten vektorisointi lisää tauluun 18 saraketta. Taulukosta näytetään vain ensimmäinen ja 5 viimeistä saraketta. Miksi juuri viisi? Koska `selkeä`-sana on ainut, joka esiintyy kahdesti jossakin lauseessa, joten se on ainoa, joka saa arvon `2`. Kaikki muut sanat saavat arvon `0` tai `1`.
 
@@ -125,7 +125,12 @@ On äärimmäisen tärkeää huomata, että tämä on *häviöllinen* enkoodaus.
 
 !!! tip
 
-    Periaatteessa pussiin voi pistää kyseisen *samplen* eli rivin osalta myös muita asioita kuin määrän. Olisi mahdollista muodostaa binäärinen eli one-hot versio pussista. Jos sinulla on aiempaa kokemusta koneoppimisesta ja haluat haastaa itseäsi oppimispäiväkirjaa kirjoittaessa, voit tutustua aiheeseen **bag of visual words**. Jos ei, suosittelen toistaiseksi välttelemään tätä aihetta.
+    Periaatteessa pussiin voi pistää kyseisen *samplen* eli rivin osalta myös muita asioita kuin määrän. Esimerkiksi:
+    
+    1. Olisi mahdollista muodostaa binäärinen eli one-hot versio pussista. 
+    2. Tai, sanojen sijasta meillä voi olla esimerkiksi *feature descriptor*:n tuottamia *visuaalisia sanoja*, jos käsittelemme tekstin sijasta kuvia. Tällöin voimme luoda kokonaisuuden nimeltään **bag of visual words**.
+
+    Näistä jälkimmäinen on melko edistynyt konsepti. Jos se menee pahasti yli hilseen, keskity kurssin kanssa olennaisempaan sisältöön. Jos kuitenkin haluat tutustua aiheeseen, suosittelen lukemaan artikkelin *Bag of Visual Words for Image Classification* [^bow-beginners].
 
 ### TF-IDF
 
@@ -254,6 +259,27 @@ TFIDF(helppo, data[9]) = 0.25 x 0.916291 = 0.229073
     
     * Muokkaa dataa (feedback-saraketta) siten, että saat jollekin termille (eli tokenille) TF-IDF arvon nolla.
     * ... ja tämän jälkeen muokkaa Notebookia oman tahtosi mukaan. Se on nyt sinun Notebook.
+
+    ??? tip "Vinkki tehtävään"
+
+        Sinun tulee saada kyseisen sanan `IDF(t)` arvo nollaksi muokkaamalla lauseita, eli työ on tehtävissä muokkaamalla dataa, joka näkyy alla olevassa snippetissä. Tämän jälkeen kyseisen sanan IDF tulee olemaan nolla, joten myöskin `TF * IDF` tulee olemaan nolla:
+
+        ```python
+            "feedback": [
+            "selkeä teoria helppo selkeä tehtävä",
+            "vaikea tehtävä paljon laskentaa",
+            "selkeä harjoitus hyödyllinen esimerkki",
+            "raskas projekti paljon koodia",
+            "helppo harjoitus selkeä ohje",
+            "hyödyllinen projekti hyvä visualisointi",
+            "vaikea teoria raskas tehtävä",
+            "selkeä esimerkki helppo koodi",
+            "paljon teoria hyödyllinen tehtävä",
+            "helppo alku selkeä harjoitus",
+        ],
+        ```
+
+        Lisävinkki on, että $log(\frac{10}{10}) = 0$.
 
 ## Lähteet
 

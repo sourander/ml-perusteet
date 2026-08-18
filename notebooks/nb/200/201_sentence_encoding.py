@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.21.1"
+__generated_with = "0.23.16"
 app = marimo.App(width="medium")
 
 with app.setup:
@@ -129,7 +129,7 @@ def _(mo):
 def _(df_token):
     df_tokens = (
         df_token.select(["doc_id", "tokens"])
-        .explode("tokens")
+        .explode("tokens", empty_as_null=True)
         .rename({"tokens": "token"})
         .filter(pl.col("token").is_not_null() & (pl.col("token") != ""))
     )
@@ -177,7 +177,7 @@ def _(df_tokens, doc_lengths):
         .join(doc_lengths, on="doc_id", how="left")
         .with_columns((pl.col("term_count") / pl.col("doc_len")).alias("tf"))
     )
-    TF
+    TF.sort("doc_id", "tf", descending=[False, True])
     return (TF,)
 
 
@@ -278,6 +278,7 @@ def _(TF_IDF, df):
                 "feedback",
                 "token",
                 "term_count",
+                "tf",
                 "idf",
                 "tf_idf",
                 "age",
