@@ -213,7 +213,7 @@ def _(P, P_given, bayes):
     print(f"  Direct: P(male | 70k+) = {P_given(is_male, high_income):.2f}")
     print(f"  Reverse: P(70k+ | male) = {P_given(high_income, is_male):.2f}")
     print("\nOr the same reverse with ...")
-    print(f"  BAYES(male | high salary) = {bayes(high_income, is_male):.2f}")
+    print(f"  BAYES(70k+ | male) = {bayes(high_income, is_male):.2f}")
     return (high_income,)
 
 
