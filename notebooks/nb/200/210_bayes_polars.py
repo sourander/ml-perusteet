@@ -23,11 +23,16 @@ def _(mo):
 
     > –	© Tilastokeskus, Työssäkäynnin opetuskäyttöaineisto, 2011 (assumed year)
 
-    After filtering, we will keep the following columns. Within this subset, the values are as follows:
+    We will be filtering the data so that we only keep the latest year, the year `15`. We do not really know what year that is, but it is the latest year in the dataset. The column are are filtering is originally...
 
     | field | desc                                             | uniq | null |
     | ----- | ------------------------------------------------ | ---- | ---- |
     | vuosi | (surrogate) year of the data. (filtered with 15) | 15   | 0    |
+
+    After filtering, and dropping the year column, we will keep the following columns. Within this subset, the values are as follows:
+
+    | field | desc                                             | uniq | null |
+    | ----- | ------------------------------------------------ | ---- | ---- |
     | sukup      | 1=male, 2=female                          | 2    | 0    |
     | syntyv     | birth year (1940-1995)                    | 76   | 0    |
     | kieli      | fi = Finnish, sv = Swedish, 9 = other     | 3    | 0    |
