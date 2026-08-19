@@ -46,7 +46,7 @@ $$
 
 Eri bayesilaiset luokittelijat toteuttavat tämän kaavan $P(x_i \mid y)$ osan eri tavoin. Alla avataan, miten multinomiaalinen Naive Bayes estimoituu opetusdatasta.
 
-## Multinomiaalinen
+## Naive Bayes
 
 Scikit-learn:n dokumentaatiossa Multinomial Naive Bayes esitellään kaavana, joka näkyy tämän tekstikappaleen alla. Kaavassa $y$ on luokka (0, 1) ja $i$ on sarake (eli meidän tapauksessa sana). Näin multinomiaalisen luokittelijan tarvitsema todennäköisyys $P(x_i|y)$ estimoidaan opetusdatasta. Termi $\theta_{yi}$ on todennäköisyys, että piirre $i$ (eli sana) esiintyy näytteessä, joka kuuluu luokkaan $y$. Eli siis $P(x_i|y) \approx \hat{\theta}_{yi}$.
 
@@ -58,6 +58,8 @@ $$
 * $N_y$ - kaikkien sanojen määrä luokassa $y$
 * $n$ - kaikkien sanojen yhteismäärä (eli *vocabulary*)
 * $a$ - smoothing eli silotusparametri
+
+### Todennäköisyyksien laskeminen
 
 Kun käyt läpi harjoituksessa annettua koodia, tulet yhdistämään yllä olevan kaavan seuraavaan koodin osaan. Alla koodin muuttujat on käännetty suomeksi ja siihen on lisätty kommentit.
 
@@ -132,6 +134,39 @@ Käsitellään luokkaa:  1
 
     Termiä "smoothing" ei juuri tässä materiaalissa selitetty. Kenties tämän merkitys kannattaa tarkistaa lähteistä?
 
+### Ennustus
+
+Sanojen todennäköisyydet eivät vielä itsessään ole ennustus. Muistele kaavaa:
+
+$$
+\hat{y} = \arg\max_{y} P(y) \prod_{i=1}^{n} P(x_i|y)
+$$
+
+Käytännössä tämä tarkoittaa, että kullekin luokalle lasketaan pistemäärä kertomalla luokan priori-todennäköisyys $P(y)$ ja jokaisen viestissä esiintyvän sanan todennäköisyys $P(x_i|y)$ keskenään. Lopuksi valitaan luokka, jonka pistemäärä on suurin. Jatketaan siis edellisen koodiesimerkin `sanan_todennakoisyys_luokassa`-sanakirjalla:
+
+```python
+priorit = {0: 0.5, 1: 0.5}  # P(luokka), tässä oletettu tasajakauma
+
+viesti = ["viagra"]
+
+pisteet = {}
+
+for luokka in (0, 1):
+    pistemaara = priorit[luokka]
+
+    for sana in viesti:
+        pistemaara *= sanan_todennakoisyys_luokassa[luokka][sana]
+
+    pisteet[luokka] = pistemaara
+
+ennustettu_luokka = max(pisteet, key=pisteet.get)
+```
+
+Koska sana *"viagra"* on selvästi todennäköisempi roskapostiluokassa (`0.92` vs. `0.04`), myös lopullinen pistemäärä on suurempi luokalle 1, ja `ennustettu_luokka` saa arvon `1`. Useamman sanan viestillä silmukka `for sana in viesti` vain kertoo useamman todennäköisyyden keskenään.
+
+!!! tip
+
+    Todennäköisyyksien kertominen keskenään voi pitkillä viesteillä johtaa erittäin pieniin lukuihin, jotka tietokone pyöristää lopulta nollaksi (engl. *numerical underflow*). Tästä syystä notebookissa `220_nb_from_scratch.py` pisteet lasketaan logaritmien summana kertolaskun sijaan. Tämä ei muuta lopputuloksen järjestystä, mutta sivuoireena luokkien pistemäärät ovat negatiivisia.
 
 ## Tehtävät
 
