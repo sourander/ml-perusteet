@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.21.1"
+__generated_with = "0.23.16"
 app = marimo.App(width="medium")
 
 with app.setup:
@@ -301,14 +301,14 @@ def _(mo):
 def _(X_test, X_train, pipeline2, y_test, y_train):
     # Toggle this ONLY AS THE LAST STEP. You should not tune your
     # model against the test set. This is supposed to be fully unseen
-    I_AM_SURE_I_HAVE_CHOSEN_MY_HYPERPARAMETERS = True
+    I_AM_SURE_I_HAVE_CHOSEN_MY_HYPERPARAMETERS = False
 
     if I_AM_SURE_I_HAVE_CHOSEN_MY_HYPERPARAMETERS:
         best_pipeline = pipeline2 # <- CHANGE THIS
-    
+
         best_pipeline.fit(X_train, y_train)
         _y_pred = best_pipeline.predict(X_test)
-    
+
         print(f"Accuracy: {accuracy_score(y_test, _y_pred):.4f}")
         print()
         print(classification_report(y_test, _y_pred))
