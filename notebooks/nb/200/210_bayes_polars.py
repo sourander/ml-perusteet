@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.21.1"
+__generated_with = "0.23.16"
 app = marimo.App(width="medium")
 
 with app.setup:
@@ -23,15 +23,12 @@ def _(mo):
 
     > –	© Tilastokeskus, Työssäkäynnin opetuskäyttöaineisto, 2011 (assumed year)
 
+    After filtering, we will keep the following columns. Within this subset, the values are as follows:
+
     | field | desc                                             | uniq | null |
     | ----- | ------------------------------------------------ | ---- | ---- |
     | vuosi | (surrogate) year of the data. (filtered with 15) | 15   | 0    |
-
-    After filtering, we will keep the following columns. Within this subset, the values are as follows:
-
-    | field      | desc                                      | uniq | null |
-    | ---------- | ----------------------------------------- | ---- | ---- |
-    | sukup      | 1=male, 2=female                            | 2    | 0    |
+    | sukup      | 1=male, 2=female                          | 2    | 0    |
     | syntyv     | birth year (1940-1995)                    | 76   | 0    |
     | kieli      | fi = Finnish, sv = Swedish, 9 = other     | 3    | 0    |
     | sose       | socio-economic status (check `sose_map`)  | 5    | 0    |
@@ -71,7 +68,7 @@ def _(CSV_PATH):
         """Probability that expr is true."""
         return df.select(expr).to_series().mean()
 
-    def P_given(expr_A, expr_B, smooth=False):
+    def P_given(expr_A, expr_B):
         """Conditional probability P(A | B)."""
         p_b = P(expr_B)
         if p_b == 0:
