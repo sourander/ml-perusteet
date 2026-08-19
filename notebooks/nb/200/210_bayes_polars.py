@@ -135,7 +135,7 @@ def _(CSV_PATH):
     df = df.with_columns(pl.col("suuralue12").fill_null(1))
 
     df
-    return P, P_given, bayes, df
+    return P, P_given, bayes, df, likelihood
 
 
 @app.cell
@@ -245,7 +245,10 @@ def _(P_given, df, high_income):
     conditioning_expr = high_income & in_north & is_female
 
     P_direct = P_given(is_upper, conditioning_expr)
-    print(f"P(upper white-collar | 70k+, female, Northern Finland) = {P_direct:.2f}") # 1.00
+    if P_direct is None:
+        print("Oh no! No lines passed the filter.")
+    else:
+        print(f"P(upper white-collar | all_your_conditions) = {P_direct:.2f}") # 1.00
     df.filter(conditioning_expr)
     return in_north, is_female, is_upper
 
@@ -295,17 +298,28 @@ def _(mo):
 
 
 @app.cell
-def _(P, P_given, high_income, in_north, is_female, is_upper):
+def _(P, high_income, in_north, is_female, is_upper, likelihood):
     P_A = P(is_upper)
 
-    L_salary = P_given(high_income, is_upper)
-    L_region = P_given(in_north, is_upper)
-    L_gender = P_given(is_female, is_upper)
+    L_salary = likelihood(is_upper, high_income) # Or: P_given(high_income, is_upper)
+    L_region = likelihood(is_upper, in_north)
+    L_gender = likelihood(is_upper, is_female)
 
     print(f"P(A) = P(upper white-collar) = {P_A:.2f}")
     print(f"P(70k+ | A) = {L_salary:.2f}")
     print(f"P(northern Finland | A) = {L_region:.2f}")
     print(f"P(female | A) = {L_gender:.2f}")
+    return L_gender, L_region, L_salary
+
+
+@app.cell
+def _(L_gender, L_region, L_salary, P, is_upper):
+    # No division by evidence, so this is not yet a valid probability on its own.
+    naive_bayes_score_upper = P(is_upper) * L_salary * L_region * L_gender
+
+    print(
+        f"Naive Bayes score (unnormalized) for upper white-collar: {naive_bayes_score_upper:.6f}"
+    )
     return
 
 
@@ -318,7 +332,7 @@ def _(mo):
 
     To convert it into a real probability, we compare it to the score of the *alternative class*. In a binary setting, that means: NOT upper white-collar. Thus, we compute the Naive Bayes score for both:
 
-    - score_upper_white_collar
+    - score_upper_white_collar (equals: `naive_bayes_score_upper`)
     - score_other
 
     Then we treat these as the $Z$ from previous cells. Using them, we normalize the score just like in the denominator of Bayes formula:
@@ -345,28 +359,25 @@ def _(mo):
 def _(P, P_given, high_income, in_north, is_female, is_upper):
     is_not_upper = ~is_upper
 
-    score_upper_white_collar = (
-        P(is_upper)
-        * P_given(high_income, is_upper)
-        * P_given(in_north, is_upper)
-        * P_given(is_female, is_upper)
+    def score(class_expr) -> float:
+        """A hard-coded function, sorry for that. :)
+        If you need more conditions, add them manually."""
+        return (
+            P(class_expr)
+            * P_given(high_income, class_expr) # Or: likelihood(class_expr, high_income)
+            * P_given(in_north, class_expr)
+            * P_given(is_female, class_expr)
+        )
+
+    score_upper = score(is_upper)
+    score_other = score(~is_upper)
+
+    posterior_upper_white_collar = score_upper / (
+        score_upper + score_other
     )
-
-
-    score_other = (
-        P(is_not_upper)
-        * P_given(high_income, is_not_upper)
-        * P_given(in_north, is_not_upper)
-        * P_given(is_female, is_not_upper)
-    )
-
-    posterior_upper_white_collar = score_upper_white_collar / (
-        score_upper_white_collar + score_other
-    )
-
 
     print(
-        f"Unnormalized Naive Bayes score for upper white-collar: {score_upper_white_collar:.6f}"
+        f"Unnormalized Naive Bayes score for upper white-collar: {score_upper:.6f}"
     )
     print(
         f"Unnormalized Naive Bayes score for not upper white-collar: {score_other:.6f}"
