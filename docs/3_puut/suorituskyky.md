@@ -6,12 +6,14 @@ priority: 300
 
 !!! tip "Motivaattori"
 
-    Tämän puita ja metsiä käsittelevän viikon alkuun sopii mainita pari julkaisua, jotka toivon mukaan kasvattavat tiedonjanoa aiheen suhteen. Jos edellisen luvun Naive Bayes tuntui historian havinalta, jota ei kenties sinällään käytä juuri kukaan, niin metsien ja puiden osalta tilanne on toinen. Alla kaksi julkaisua, joissa verrataan neuroverkkojen ja erilaisten metsämallien suorituskykyä:
+    Tämän puita ja metsiä käsittelevän viikon alkuun sopii mainita pari julkaisua, jotka toivon mukaan kasvattavat tiedonjanoa aiheen suhteen. Jos edellisen luvun Naive Bayes tuntui historian havinalta, jota ei kenties sinällään käytä juuri kukaan, niin metsien ja puiden osalta tilanne on toinen. Alla muutama julkaisu, joissa verrataan neuroverkkojen ja erilaisten metsämallien suorituskykyä:
 
     * [Tabular Data: Deep Learning is Not All You Need (2021)](https://arxiv.org/abs/2106.03253)
     * [Why do tree-based models still outperform deep learning on tabular data? (2022)](https://arxiv.org/abs/2207.08815)
+    * [When Do Neural Nets Outperform Boosted Trees on Tabular Data? (2023)](https://arxiv.org/abs/2305.02997)
+    * [A Closer Look at Deep Learning Methods on Tabular Datasets (2024)](https://arxiv.org/abs/2407.00956)
 
-    Yksi hyvin varteenotettava myöhemmän projektikurssin idea onkin, että voit katsoa esimerkiksi jälkimmäisen julkaisun liitteistä listan käytetyistä dataseteistä, valita niistä pienen osan, ja toisintaa julkaisun tuloksia metsien osalta (RandomForest, \[Hist\]GradientBoostingTrees, XGBoost), ja kenties lisätä vertailuun aiemmin siitä puuttunut malli, kuten LightGBM tai CatBoost, joiden valinnassa voi auttaa vaikkapa [Benchmarking state-of-the-art gradient boosting algorithms for classification (2023)](https://arxiv.org/abs/2305.17094)
+    Yksi hyvin varteenotettava myöhemmän projektikurssin idea onkin, että voit katsoa jonkin yllä mainitun paperin listan dataseteistä, valita niistä pienen osan, ja toisintaa julkaisun tuloksia metsien osalta (RandomForest, \[Hist\]GradientBoostingTrees, XGBoost), ja kenties lisätä vertailuun aiemmin siitä puuttunut malli, kuten LightGBM tai CatBoost, joiden valinnassa voi auttaa vaikkapa [Benchmarking state-of-the-art gradient boosting algorithms for classification (2023)](https://arxiv.org/abs/2305.17094)
 
 ## Aiemmin nähtyä
 
