@@ -4,6 +4,15 @@ priority: 300
 
 # Luokittelumallin suorituskyky
 
+!!! tip "Motivaattori"
+
+    Tämän puita ja metsiä käsittelevän viikon alkuun sopii mainita pari julkaisua, jotka toivon mukaan kasvattavat tiedonjanoa aiheen suhteen. Jos edellisen luvun Naive Bayes tuntui historian havinalta, jota ei kenties sinällään käytä juuri kukaan, niin metsien ja puiden osalta tilanne on toinen. Alla kaksi julkaisua, joissa verrataan neuroverkkojen ja erilaisten metsämallien suorituskykyä:
+
+    * [Tabular Data: Deep Learning is Not All You Need (2021)](https://arxiv.org/abs/2106.03253)
+    * [Why do tree-based models still outperform deep learning on tabular data? (2022)](https://arxiv.org/abs/2207.08815)
+
+    Yksi hyvin varteenotettava myöhemmän projektikurssin idea onkin, että voit katsoa esimerkiksi jälkimmäisen julkaisun liitteistä listan käytetyistä dataseteistä, valita niistä pienen osan, ja toisinsaa julkaisun tuloksia metsien osalta (RAndomForest, (Hist), XGBoost), ja kenties heittää vertailuun aiemmin siitä puuttuneen mallin, kuten LightGBM tai CatBoost, joiden valinnassa voi auttaa vaikkapa [Benchmarking state-of-the-art gradient boosting algorithms for classification (2023)](https://arxiv.org/abs/2305.17094)
+
 ## Aiemmin nähtyä
 
 Olet kouluttanut tällä kurssilla jo ainakin kahteen eri luokittelutehtävään malleja: pari Titanic-luokittelijaa ja muutamia vihapuheluokittelijoita. Toivon mukaan olet jo päätynyt pohtimaan aihetta, että onko `accuracy` oikea mittari mallin suorituskyvyn mittaamiseen, ja olet vähän väkisinkin törmännyt esimerkiksi `f1`-mittariin. Nämä ovat kertauksen vuoksi alla olevissa *admonition*-laatikoissa.
