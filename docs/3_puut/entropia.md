@@ -16,7 +16,7 @@ Kämäräinen jakaa koneoppimisen lähestymistapoja kahteen kategoriaan: insinö
 >
 > — Joni Kämäräinen [^kämäräinen]
 
-Päätöspuu on myös toimintansa puolesta sekä intuitiivinen että läpinäkyvä. Päätöspuusta saa jälkikäteen helposti ulos säännöt, jotka kuvaavat mallin päätöksentekoprosessia. Tämä on tärkeää luottamusta vaativissa sovelluksissa, kuten lääketieteessä [^kämäräinen]. 
+Päätöspuu on toimintansa puolesta sekä intuitiivinen että läpinäkyvä. Päätöspuusta saa jälkikäteen helposti ulos säännöt, jotka kuvaavat mallin päätöksentekoprosessia. Tämä on tärkeää luottamusta vaativissa sovelluksissa, kuten lääketieteessä [^kämäräinen]. 
 
 Päätöspuu on puun muotoon järjestetty joukko sääntöjä, jotka auttavat ennustamaan tietyn datapisteen luokan [^grokking]. Jokainen solmu (tai *oksan haara*) testaa tietyn arvon. Jos olet joskus pelannut "Arvaa kuka?" tai "Mikä eläin?" pelejä, konsepti on sinulle jo valmiiksi tuttu. Lopulta puu päättyy lehtiin, jotka edustavat valmiita vastauksia eli luokkia. [^fromscratch]
 
@@ -51,7 +51,7 @@ Informaation ja entropian käsitteet liittyvät myös tiedostojen pakkaamiseen, 
 
 ### Entropia
 
-Informaatio on tiedon yllättävyyttä (engl. surprise). Jos jokin tapahtuma on äärimmäisen epätodennäköinen, mutta tapahtuu silti, se on yllättävä (eli sisältää paljon informaatiota.) Tapahtuma "Näin eilen metsässä eläimen" ei ole laisinkaan yllättävä, mutta "Näin eilen metsässä leijonan" on erittäin yllättävä. Ei siis ole lainkaan yhdentekevää, mikä kysymys ja missä järjestyksessä päätöspuussa esitetään [^fromscratch].
+Informaatio on tiedon yllättävyyttä (engl. surprise). Jos jokin tapahtuma on äärimmäisen epätodennäköinen, mutta tapahtuu silti, se on yllättävä (eli sisältää paljon informaatiota.) Tapahtuma *"Näin eilen metsässä eläimen"* ei ole laisinkaan yllättävä, mutta *"Näin eilen metsässä leijonan"* on erittäin yllättävä. Ei siis ole lainkaan yhdentekevää, mikä kysymys ja missä järjestyksessä päätöspuussa esitetään [^fromscratch]. Miksikö sitten outo termi *entropia*? Tähän liittyy kuuluisa letkautus von Neumannilta, joka ehdotti entropiaa termiksi, ja sanoi: *"no one really knows what entropy really is, so in a debate you will always have the advantage."* [^entropyterm]
 
 !!! tip
 
@@ -100,7 +100,7 @@ On äärimmäisen suositeltavaa katsoa 3Blue1Brownin video otsikolla **Reinventi
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/l6DKRf-fAAM?si=H3KlyiB9oU4-cMKu" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-**Video 2:* *3Blue1Brownin video entropiasta, pakkaamisesta ja koneoppimisesta. Video menee hieman syvemmälle aiheeeseen kuin on tarve tällä kurssilla, mutta ota videosta se sisältö, minkä järjesllisesti pystyt vastaanottaa. Videon katsominen Syväoppiminen I -kurssin jälkeen uusiksi voi olla hyödyllistä.*
+**Video 2:** *3Blue1Brownin video entropiasta, pakkaamisesta ja koneoppimisesta. Video menee hieman syvemmälle aiheeeseen kuin on tarve tällä kurssilla, mutta ota videosta se sisältö, minkä järjesllisesti pystyt vastaanottaa. Videon katsominen Syväoppiminen I -kurssin jälkeen uusiksi voi olla hyödyllistä.*
 
 ### Gini
 
@@ -145,4 +145,5 @@ Tämän kurssin esimerkeissä esiintyy kuitenkin nimenomaan Shannonin alkuperäi
 [^code]: Petzold, C. *Code: The Hidden Language of Computer Hardware and Software*. Microsoft Press. 2000.
 [^the-unknown]: Kampakis, S. *Predicting the Unknown: The History and Future of Data Science and Artificial Intelligence*. Apress. 2023.
 [^compression]: McAnlis, C. & Haecky, A. *Understanding Compression*. O'Reilly Media. 2016.
+[^entropyterm]: Rocke, A. *John von Neumann's remark on entropy*. https://mathoverflow.net/questions/403036/john-von-neumanns-remark-on-entropy
 [^geronpytorch]: Géron, A. *Hands-On Machine Learning with Scikit-Learn and PyTorch*. O'Reilly. 2025.
