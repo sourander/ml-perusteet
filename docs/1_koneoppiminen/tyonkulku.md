@@ -72,9 +72,9 @@ Koneoppimismallin valinta riippuu siitä, millaista dataa on saatavilla ja mitä
 
 > It [his observation] implies that model behavior is not determined by architecture, hyperparameters, or optimizer choices.It’s determined by your dataset, nothing else. Everything else is a means to an end in efficiently delivery compute to approximating that dataset.
 > 
-> Then, when you refer to “Lambda”, “ChatGPT”, “Bard”, or “Claude” then, it’s not the model weights that you are referring to. It’s the dataset. 
-
-**Lähde**: James Betker (Open AI), kirjoitus: [The “it” in AI models is the dataset](https://nonint.com/2023/06/10/the-it-in-ai-models-is-the-dataset/).
+> Then, when you refer to “Lambda”, “ChatGPT”, “Bard”, or “Claude” then, it’s not the model weights that you are referring to. It’s the dataset.
+>
+> — James Betker, Open AI [^betker]
 
 Scikit-learn tarjoaa vakaan API:n, joka mahdollistaa useiden eri mallien kouluttamisen ja käytön samoilla `.fit()` ja `.transform()` metodeilla. Mallien vertailun on siis kehittäjälle vaivatonta. Tästä syystä vaiheet 3-5 ovat usein iteratiivisia ja niiden välillä on paljon takaisinkytkentää. Mikäli käytetty data ei ole aivan big data -kokoluokassa, mallien kouluttaminen on usein kohtalaisen nopeaa, joten on täysin mahdollista vertailla useita eri malleja ja niiden hyperparametreja, vaikka näistä tulisikin melko suuri määrä testattavia kombinaatioita.
 
@@ -131,3 +131,4 @@ Käytännön tasolla projekti ei kuitenkaan ole välttämättä vielä ohi. Mall
 
 [^geron3rd]: Géron, A. *Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 3rd Edition*. O'Reilly. 2022.
 [^geronpytorch]: Géron, A. *Hands-On Machine Learning with Scikit-Learn and PyTorch*. O'Reilly. 2025.
+[^betker]: Betker, J. *The AI Dilemma*. 2023. https://jamesbetker.com/the-ai-dilemma
