@@ -294,7 +294,8 @@ def fit_weighted_weak_learner(X, y_signed, weights):
 
 
 def predict_with_weak_learner(h_m, X):
-    # Ennusteet muodossa [-1, +1, ...]
+    # Esimerkiksi neljälle havainnolle:
+    # predictions = np.array([-1, -1, -1, +1])
     return predictions
 
 learners = []
@@ -308,19 +309,43 @@ for m in range(M):
     # 2.2 Laske painotettu virhe
     misclassified = preds != y_signed
     err_m = weights[misclassified].sum()
+    # Esimerkiksi:
+    # y_signed      = [-1, -1, +1, +1]
+    # preds         = [-1, -1, -1, +1]
+    # misclassified = [False, False, True, False]
+    # err_m         = 0.25 (koska vain yksi oli väärin luokiteltu)
 
     # 2.3 Oppijan paino alpha (Schapire & Freund: 0.5 * ln((1 - ε)/ε))
-    alpha_m = 0.5 * math.log((1 - err_m) / err_m)
+    # Oletetaan tässä, että 0 < err_m < 0.5
+    alpha_m = 0.50 * math.log((1 - err_m) / err_m)
+    # Esimerkiksi:
+    # alpha_m = 0.50 * math.log((1 - 0.25) / 0.25) 
+    #         = 0.50 * math.log(3) 
+    #         ≈ 0.55
 
-    learners.append(h_m)
-    alphas.append(alpha_m)
+    learners.append(h_m)   # Eka kierros: [h_1]
+    alphas.append(alpha_m) # Eka kierros: [0.55]
 
     # 2.4 Päivitä painot eksponenttikaavalla
     weights *= np.exp(-alpha_m * y_signed * preds)
+    # Esimerkiksi:
+    #                                                      VÄÄRÄ
+    # exp_vektori = exp(-0.55 * [-1, -1, +1, +1] * [-1, -1, -1, +1])
+    #             = exp(-0.55 * [+1, +1, -1, +1])
+    #             = exp([-0.55, -0.55, 0.55, -0.55])
+    #             = [0.58, 0.58, 1.73, 0.58]
+    #
+    # weights = [0.25, 0.25, 0.25, 0.25] 
+    #         * [0.58, 0.58, 1.73, 0.58] (exp_vektori)
+    #         = [0.14, 0.14, 0.43, 0.14]
+    #                        VÄÄRÄ
 
     # Normalisoi painot (Z_m)
     Z_m = weights.sum()
     weights /= Z_m
+    # Esimerkiksi:
+    # weights = [0.14, 0.14, 0.43, 0.14] / 0.85
+    #         = [0.16, 0.16, 0.52, 0.16]
 ```
 
 Keskeinen idea:
@@ -350,18 +375,18 @@ H(x) = \operatorname{sign}\left(\sum_{m=1}^{M} \alpha_m h_m(x)\right)
 def adaboost_predict(x, learners, alphas):
     score = 0.0
     for alpha_m, h_m in zip(alphas, learners):
-        h_pred = predict_with_weak_learner(h_m, x)   # -1 / +1
+        h_pred = predict_with_weak_learner(h_m, x)[0] # skaalari -1 tai +1
         score += alpha_m * h_pred
 
+    # Palautetaan painotettu score ennusteeksi +/- 1
     signed_prediction = +1 if score > 0 else -1
-
-    # Palautetaan alkuperäiseen 0/1 -muotoon
-    return 1 if signed_prediction == +1 else 0
+    return signed_prediction
 
 # Käytä ennustamiseen
 x_new = np.array([1.5, 1.8])   # Uusi havainto
 prediction = adaboost_predict(x_new, learners, alphas)
 print("Ennuste:", prediction)
+# -1 tai +1
 ```
 
 !!! tip
