@@ -23,7 +23,7 @@ Muuttuja $z$ on laskettu kaavalla $z = x_1 \cdot x_2 \cdot x_3$. Näin olemme pu
     Yllä oleva esimerkki on **käsin tehtyä** piirremuotoilua. PCA voisi löytää pikemminkin sellaisen kombinaation, joka täyttää kaavan:
 
     $$
-    z = a_1 x_1 + a_2 + x_2 + a_3 + x_3
+    z = a_1 x_1 + a_2 x_2 + a_3 x_3
     $$
 
 ## Miksi dimensioita vähennetään?
