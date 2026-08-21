@@ -12,7 +12,7 @@ Dimensiovähennys on prosessi, jossa esimerkiki 200 eri sarakkeesta koostuvasta 
 | 20    | 10    | 4     | 800  |
 | 30    | 15    | 6     | 2700 |
 
-Muuttuja $z$ on laskettu kaavalla $z = x_1 \cdot x_2 \cdot x_3$. Näin olemme pudottaneet dimensionalisuuden 3 → 1. Tämä operaatio tekee hetkessä järkeä, kun paljastan, että $x_1$, $x_2$ ja $x_3$ ovat huoneen pituus, leveys ja korkeus metreinä. Täten $z$ on huoneen tilavuus kuutiometreinä. Tulet huomaamaan, että syntyvät uudet dimentiot, eivät ole aina yhtä intuitiivisia kuin tämä yksinkertainen esimerkki.
+Muuttuja $z$ on laskettu kaavalla $z = x_1 \cdot x_2 \cdot x_3$. Näin olemme muotoilleet uuden piirteen, joka ei säilytä alkuperäistä informaatiota kokonaisuudessaan, mutta voi olla hyödyllinen korvaaja näille kaikille kolmelle. Tämä operaatio tekee hetkessä järkeä, kun paljastan, että $x_1$, $x_2$ ja $x_3$ ovat huoneen pituus, leveys ja korkeus metreinä. Täten $z$ on huoneen tilavuus kuutiometreinä. Tulet huomaamaan, että syntyvät uudet dimentiot, eivät ole aina yhtä intuitiivisia kuin tämä yksinkertainen esimerkki.
 
 !!! tip
 
@@ -20,11 +20,13 @@ Muuttuja $z$ on laskettu kaavalla $z = x_1 \cdot x_2 \cdot x_3$. Näin olemme pu
 
 !!! warning
 
-    Yllä oleva esimerkki on **käsin tehtyä** piirremuotoilua. PCA voisi löytää pikemminkin sellaisen kombinaation, joka täyttää kaavan:
+    Yllä oleva esimerkki on käsin tehtyä piirremuotoilua. PCA muodostaa uuden dimension alkuperäisten muuttujien painotettuna summana:
 
     $$
     z = a_1 x_1 + a_2 x_2 + a_3 x_3
     $$
+
+    Kertoimet ($a_1$, $a_2$, $a_3$) valitaan siten, että uudessa dimensiossa säilyy mahdollisimman paljon alkuperäisen datan vaihtelusta.
 
 ## Miksi dimensioita vähennetään?
 
