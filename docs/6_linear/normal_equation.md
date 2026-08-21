@@ -143,7 +143,7 @@ $$
 
 !!! tip
 
-    Edellä esitetty OLS:n suljetun muodon kaava on monimutkainen. Onni on abstraktio! Sama ratkaisu voidaan esittää huomattavasti tiiviimmässä ja käsitteellisemmässä muodossa, jos otetaan käyttöön kaksi keskeistä tilastollista käsitettä: **Pearsonin korrelaatiokerroin** ja **keskihajonta**. Näistä keskihajonta on sinulle jo tuttu (ks. [Luokittelumallin suorituskyky](../3_puut/suorituskyky.md)). Pearsonin korrelaatiokerroin, jota merkataan kirjaimella $r$, esitellään [Regressiomallin suorituskyky](regressiomallinsuorituskyky.md)-materiaalissa eli heti seuraavana tällä kurssilla.
+    Edellä esitetty OLS:n suljetun muodon kaava on monimutkainen. Onni on abstraktio! Sama ratkaisu voidaan esittää huomattavasti tiiviimmässä ja käsitteellisemmässä muodossa, jos otetaan käyttöön kaksi keskeistä tilastollista käsitettä: **Pearsonin korrelaatiokerroin** ja **keskihajonta**. Pearsonin korrelaatiokerroin, jota merkataan kirjaimella $r$, esitellään [Regressiomallin suorituskyky](regressiomallinsuorituskyky.md)-materiaalissa eli heti seuraavana tällä kurssilla.
 
     Tällöin kulmakertoimen kaava on seuraava:
 
