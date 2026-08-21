@@ -31,7 +31,6 @@ with app.setup:
 
     @dataclass
     class Decision(Node):
-        count: int
         ig: IGScore
         left: Node
         right: Node
@@ -307,7 +306,6 @@ def _(find_max_column_information_gain):
         node = Decision(
             n_samples=len(data),
             depth=depth,
-            count=len(data),
             ig=ig,
             left=build_tree(left, depth + 1, **kwargs),
             right=build_tree(right, depth + 1, **kwargs),
