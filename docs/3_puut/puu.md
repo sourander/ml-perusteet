@@ -114,8 +114,8 @@ def information_gain(parent, child1, child2):
 X = [
 #   x0, x1, y
     (1, 1, 0),  #  ┌─────> x[0] => 1/3 equals true
-    (1, 1, 1),  #  │
-    (1, 1, 0),  #  ┘ ┌───> x[1] => 3/5 equals true
+    (1, 1, 1),  # =┘─┐
+    (1, 1, 0),  #    ├───> x[1] => 3/5 equals true
     (0, 1, 1),  #  ──┤
     (0, 0, 0),  #    │
     (0, 1, 1),  #  ──┘
