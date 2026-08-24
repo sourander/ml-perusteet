@@ -4,7 +4,7 @@ priority: 410
 
 # Dimensiovähennys
 
-Dimensiovähennys on prosessi, jossa esimerkiki 200 eri sarakkeesta koostuvasta datasta luodaan uusi datasetti, jossa on vain 2, 5 tai 10 saraketta. Ajoittain dimensiot voi vähentää hyvin luontevalla tavalla, kuten alla olevassa datasetissä:
+Dimensiovähennys on prosessi, jossa esimerkiksi 200 eri sarakkeesta koostuvasta datasta luodaan uusi datasetti, jossa on vain 2, 5 tai 10 saraketta. Ajoittain dimensiot voi vähentää hyvin luontevalla tavalla piirromuotoilun keinoin (*engl. feature engineering*), kuten alla olevassa datasetissä:
 
 | $x_1$ | $x_2$ | $x_3$ | $z$  |
 | ----- | ----- | ----- | ---- |
@@ -40,7 +40,7 @@ Esimerkiksi voit tutustua Plotly-kirjaston [PCA Visualization in Python](https:/
 
 ### Yksinkertaisemman mallin rakentaminen
 
-Ensemblet ja neuroverkot ovat esimerkkejä malleista, jotka kykenevät käsittelemään suurta määrää muuttujia. Kuitenkin, mitä enemmän muuttujia datassa on, sitä vaikeampaa mallin on löytää niistä merkityksellisiä Kuvaita. [^hundredpage]
+Ensemblet ja neuroverkot ovat esimerkkejä malleista, jotka kykenevät käsittelemään suurta määrää muuttujia. Kuitenkin, mitä enemmän muuttujia datassa on, sitä vaikeampaa mallin on löytää niistä merkityksellisiä kuvioita. [^hundredpage]
 
 > "In bioinformatics, for example, the potential dimension of a dataset can be enormous. Researchers may have thousands of gene expressions for each observation, many of which are highly correlated (and thus possibly redundant) with each other."
 >
