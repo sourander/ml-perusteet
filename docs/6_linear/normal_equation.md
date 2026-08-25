@@ -36,7 +36,7 @@ Kuvitellaan, että haluat selvittää, kuinka paljon :coffee:-kulutuksesi vaikut
 
 ![Coffee vs Backspace per Minute](../images/600_linreg_coffee_01_residuals.png)
 
-**Kuva 3:** *Kahvinjuonti ja backspace-näppäimen käytön havainnot pistekuvaajana. Havaintoja on vain 10. Kuvaajan otsikossa on tehty rohkea typoteesi, että typojen määrä ja askelpalauttimen klikkailut ovat kausaalisesti yhteydessä toisiinsa.*
+**Kuva 3:** *Kahvinjuonti ja backspace-näppäimen käytön havainnot pistekuvaajana. Havaintoja on vain 10. Kuvaajan otsikossa on tehty rohkea hypoteesi, että typojen määrä ja askelpalauttimen klikkailut ovat kausaalisesti yhteydessä toisiinsa.*
 
 ### Suora
 
@@ -63,7 +63,7 @@ def predict(x):
     return m * x + b
 ```
 
-Vakiotermi $b$ on $y$-akselin leikkauspiste, ja kulmakerroin $m$ kertoo, kuinka paljon $y$ kasvaa, kun $x$ kasvaa yhdellä. Pikaisella silmäyksellä vaikuttaa, ihan noin silmämääräisesti, että suora voisi leikata y-akselin noin $y = 1$ kohdalla ja kulkea noin $m = 1$ kulmakertoimella: eli kun x kasvaa yhdellä, y kasvaa yhdellä. Ei kuitenkaan *ihan* näin jyrkästi, joten arvataan seuraavat arvot: $y = 0.9x + 1$. Syötetään nämä arvot funktioon ja piirretään se Kuvaon.
+Vakiotermi $b$ on $y$-akselin leikkauspiste, ja kulmakerroin $m$ kertoo, kuinka paljon $y$ kasvaa, kun $x$ kasvaa yhdellä. Pikaisella silmäyksellä vaikuttaa, ihan noin silmämääräisesti, että suora voisi leikata y-akselin noin $y = 1$ kohdalla ja kulkea noin $m = 1$ kulmakertoimella: eli kun x kasvaa yhdellä, y kasvaa yhdellä. Ei kuitenkaan *ihan* näin jyrkästi, joten arvataan seuraavat arvot: $y = 0.9x + 1$. Syötetään nämä arvot funktioon ja piirretään se kuvaajaan (ks. Kuva 4).
 
 ![Coffee vs. Backspace Human Guess Plotted](../images/600_linreg_coffee_02_human_guess.png)
 
@@ -122,7 +122,7 @@ x[9]: -1.50 (squared: 2.25)
 
 **Kuva 5:** *Residuaalit neliöityinä ovat, noh, neliöitä. Huomaa, että kaavion kuvasuhdetta on muutettu verrattuna aiempiin kaavioihin, jotta neliöt näyttäisivät oikeasti neliöltä.*
 
-Neliöity virhe penalisoi suurempia virheitä enemmän kuin pieniä virheitä. Tämä on yksi syy sille, miksi neliösummaa käytetään yleisesti lineaarisen regressiomallin optimoinnissa: vaihtoehto olisi itseisarvo (`abs(x)`). Toinen syy liittyy derivoitavuuteen, mutta tähän palataan logistisen regression ja SGD-algoritmin yhteydessä.
+Neliöity virhe penalisoi suurempia virheitä enemmän kuin pieniä virheitä. Tämä on yksi syy sille, miksi neliösummaa käytetään yleisesti lineaarisen regressiomallin optimoinnissa: vaihtoehto olisi itseisarvo (`abs(x)`). Toinen syy liittyy derivoitavuuteen, mutta tähän palataan Gradient Descent -algoritmin yhteydessä.
 
 Sellaista yksittäistä suoraa, joka kulkisi kaikkien kahvinjuontia kuvaavien datapisteiden kautta, ei voi piirtää. Toisin sanoen yhtälöparia tai -ryhmä ei ole ratkaisu. Voisit toki piirtää viivan, joka yhdistää pisteet, mutta tämä johtaa *ylisovittamisen*, mitä käsitellään seuraavissa luvuissa lisää. Vaihtoehtoisesti voisit piirtää käyrän, mutta tämäkin on aihe, jota käsitellään myöhemmin lisää. Tarkastellaan ensin suoran viivan sovittamista siten, että neliösumma tulee minimoiduksi.
 
