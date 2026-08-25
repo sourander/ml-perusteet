@@ -5,7 +5,7 @@ priority: 600
 
 # Normaaliyhtälö
 
-Kaikki tähänastiset kurssilla käsitellyt mallit ovat olleet luokittelumalleja (tai ryvästysmalleja eli klusterointimalleja). Tämän viikon teema on lineaarinen regessio, joka ennustaa jatkuvaa arvoa. Aiemmin olemme siis pyrkineet ennustamaan, että `Onko havainto 1 vai 0` tai `Onko havainto 1, 2, 3, 4 vai 5`. Tällä kertaa ennustamme jatkuvia lukuja, joten vastaus voi olla esimerkiksi `5.5` tai `3.14159`. 
+Kaikki tähänastiset kurssilla käsitellyt mallit ovat olleet luokittelumalleja (tai ryvästysmalleja eli klusterointimalleja). Tämän viikon teema on lineaarinen regressio, joka ennustaa jatkuvaa arvoa. Aiemmin olemme siis pyrkineet ennustamaan, että `Onko havainto 1 vai 0` tai `Onko havainto 1, 2, 3, 4 vai 5`. Tällä kertaa ennustamme jatkuvia lukuja, joten vastaus voi olla esimerkiksi `5.5` tai `3.14159`. 
 
 !!! tip
 
