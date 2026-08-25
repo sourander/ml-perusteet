@@ -293,12 +293,12 @@ Elbow-metodi on yksinkertainen. Aja k-means eri $k$ arvoilla, ynnää kaikkien p
 ```mermaid
 xychart
     x-axis "k" [2, 3, 4, 5, 6, 7, 8, 9, 10]
-    y-axis "Siluettiarvo" 0.32 --> 0.6
-    bar [0.57, 0.51, 0.409, 0.331, 0.325, 0.327, 0.339, 0.336, 0.329]
-    line [0.57, 0.51, 0.409, 0.331, 0.325, 0.327, 0.339, 0.336, 0.329]
+    y-axis "Siluettiarvo" 0.3 --> 0.6
+    bar [0.44, 0.52, 0.57, 0.46, 0.4, 0.36, 0.34, 0.33, 0.32]
+    line [0.44, 0.52, 0.57, 0.46, 0.4, 0.36, 0.34, 0.33, 0.32]
 ```
 
-Siluettiarvo lasketaan ensin jokaiselle pisteelle erikseen – jolloin se on tarkemmin otettuna siluettikerroin – ja lopuksi näistä yksittäisten näytteiden arvoista lasketaan keskiarvo. Yllä olevassa kuvitteellisessa esimerkissä $k=5$ siluettiarvo on selvästi laskenut, joten $2 < k < 4$ voisi olla järkevä alue, jolta valita $k$. [^ml-algorithms]
+Neliövirheiden summan sijasta voimme käyttää vaihtoehtoista mittaria, kuten siluettiarvoa (engl. silhouette score). Siluettiarvo lasketaan ensin jokaiselle pisteelle erikseen – jolloin se on tarkemmin otettuna siluettikerroin – ja lopuksi näistä yksittäisten näytteiden arvoista lasketaan keskiarvo. Toisin kuin edeltävässä kyynärpäämenetelmässä, siluettiarvon tapauksessa etsitään ==suurinta== arvoa, ei kyynärpäätä tai laskevaa trendiä. Yllä olevassa kuvitteellisessa esimerkissä siluettiarvo on suurimmillaan kohdassa $k=4$, joten se olisi tässä tapauksessa järkevä valinta $k$:lle – ja tulos sopii myös yhteen aiemman kyynärpäämenetelmän löydöksen kanssa. [^ml-algorithms]
 
 Yhden pisteen $x$ kohdalla lasketaan ensin kaksi suuretta:
 
