@@ -137,15 +137,15 @@ Decision Tree jakaisi siis avaruutta kahteen osaan, ja niitä taas kahteen osaan
 
 ### Naive Bayes
 
-Naive Bayes sen sijaan arvioi kunkin pisteen kohdalla, kuinka todennäköistä on, että uusi havainto kuuluu luokkaan kunkin sen piirteen perusteella. Esimerkiksi havainnon x-piirteen arvo 6 on merkittävästi todennäköisempi oranssi kuin sininen, koska oransseja on enemmän korkeilla x-arvoilla.
+(Gaussian) Naive Bayes sen sijaan arvioi kunkin pisteen kohdalla, kuinka todennäköistä on, että uusi havainto kuuluu luokkaan kunkin sen piirteen perusteella. Esimerkiksi havainnon x-piirteen arvo 6 on merkittävästi todennäköisempi oranssi kuin sininen, koska oransseja on enemmän korkeilla x-arvoilla.
 
 ### Kaikki visualisoituna
 
-Algoritmien ero tulee selväksi, kun piirrämme kuvaajaan kunkin algoritmin luokittelurajat. Kuvassa 3 on esitetty Naive Bayes, Decision Tree ja k-NN:n luokittelurajat käyttäen dataa, joka on luotu Scikit Learn:n `make_circles`-funktiolla.
+Algoritmien ero tulee selväksi, kun piirrämme kuvaajaan kunkin algoritmin luokittelurajat. Kuvassa 3 on esitetty (Gaussian) Naive Bayes, Decision Tree ja k-NN:n luokittelurajat käyttäen dataa, joka on luotu Scikit Learn:n `make_circles`-funktiolla.
 
 ![Naive vs Tree vs k-NN decision boundaries](../images/420_naive_decision_knn_decision_boundaries.png)
 
-**Kuva 4:** *Naive Bayes, Decision Tree ja k-NN:n luokittelurajat. Naive Bayes on ympyrän muotoinen, Decision Tree on jaettu kuin Yhdysvallat osavaltioihin, ja k-NN on epäsäännöllinen. Kannattaa klikata kuva auki uuteen välilehteen, jotta se näkyy suurempana.*
+**Kuva 4:** *(Gaussian) Naive Bayes, Decision Tree ja k-NN:n luokittelurajat. (Gaussian) Naive Bayes on ympyrän muotoinen, Decision Tree on jaettu kuin Yhdysvallat osavaltioihin, ja k-NN on epäsäännöllinen. Kannattaa klikata kuva auki uuteen välilehteen, jotta se näkyy suurempana.*
 
 ## Tehtävät
 
