@@ -230,6 +230,13 @@ Myös ensemble-menetelmät ovat hyviä tapoja vähentää ylisovittamista.
 
     Ali- ja ylisovittaminen pätee aiheena regressio- kuin luokittelumalleihin. Tällä kurssilla se käsitellään regressiomallien yhteydessä muun muassa siksi, että niiden kohdalla se on helpompi havainnollistaa.
 
+## Tehtävät
+
+!!! question "Tehtävä: Auton hintaennustimen suorituskyky (TODO)"
+
+    Tämä tehtävänanto on toistaiseksi keskeneräinen. Tehtävä on tarkoitus julkaista myöhemmin. 
+    
+    **Spoiler:** Tehtävänä tulee olemaan kouluttaa aiemmin tutuksi tulleeksi datasetistä regressiomalli ja arvioida sen suorituskykyä. Data on aiemmin käsitelty `notebooks/data/car/data.csv`, mutta tällä kertaa emme luokittele autoja vaihteiston perusteella vaan ennustamme auton hintaa -- eli siis käytämme datasettiä siihen, mihin se on alkuperäisen repositorion mallin mukaisesti tarkoitettu.
 
 ## Lähteet
 

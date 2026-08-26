@@ -385,6 +385,12 @@ Osoittautuu, että painoilla `[ 5.67, -4.10,  0.84]` syntyy ennnuste, joka minim
 
     Tämä tehtävän idea on pyrkiä auttamaan sinua löytämään intuitio (binäärisen) logistisen regression toiminnasta.
 
+!!! question "Tehtävä: Kyberviha (TODO)"
+
+    Tämä tehtävänanto on toistaiseksi keskeneräinen. Tehtävä on tarkoitus julkaista myöhemmin. 
+
+    Spoiler: Teemme luokittelijan, joka ennustaa, onko henkilö kokenut kybervihaa vai ei. Käytetty data on [Digital skills among youth: A dataset from a three-wave longitudinal survey in six European countries](https://www.sciencedirect.com/science/article/pii/S2352340924003652)-julkaisusta, mutta opettaja tulee antamaan osittain valmiiksi käsitellyn datan tehtävän helpottamiseksi.
+
 ## Lähteet
 
 [^wiki-multinomial-lr]: Wikipedia Community. *Multinomial logistic regression*. Wikipedia. https://en.wikipedia.org/wiki/Multinomial_logistic_regression

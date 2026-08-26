@@ -81,6 +81,10 @@ Kopioi tehtävälista leikepöydälle ja muokkaa se sinun käyttöösi sopivaksi
 
 - [ ] Tehtävä: Vähin neliösumma Marimossa
 
+## Regressiomallin suorituskyky (610)
+
+- [ ] Tehtävä: Auton hintaennustimen suorituskyky (TODO)
+
 ## Hill Climbing (620)
 
 - [ ] Tehtävä: Hill Climbing from Scratch
@@ -90,6 +94,7 @@ Kopioi tehtävälista leikepöydälle ja muokkaa se sinun käyttöösi sopivaksi
 - [ ] Tehtävä: Binäärinen logistinen regressio
 - [ ] Tehtävä: Moniluokkainen logistinen regressio
 - [ ] Tehtävä: Kurjenmiekat ja logistinen regressio
+- [ ] Tehtävä: Kyberviha (TODO)
 
 ## Aikasarjat (800)
 
