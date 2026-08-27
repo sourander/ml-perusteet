@@ -9,7 +9,7 @@ Edellisessä luvussa käytimme normaaliyhtälöä, joka sovittaa suoran dataan y
 
 ## Hill Climbing
 
-Stokastinen hill Climbing on yksinkertainen algoritmi [^clever-algorithms], joka pyrkii löytämään paikallisen maksimin tai minimin. Se toimii seuraavasti [^essential-math-for-ds]:
+Stokastinen Hill Climbing on yksinkertainen algoritmi [^clever-algorithms], joka pyrkii löytämään paikallisen maksimin tai minimin. Se toimii seuraavasti [^essential-math-for-ds]:
 
 1. Alusta kertoimet satunnaisesti (tai aloita nollasta)
 2. Laske virhe
@@ -83,16 +83,22 @@ X = [
     (1, 208.11, 0.00),
     (1, 100.00, 7.22)
 ]
-y = ... # Doesn't matter when predicting
+y = ...  # Doesn't matter when predicting
 
-m_features = len(X[0])           # 3
-n_samples = len(X)               # 4
-w = [random() for i in range(m)] # Randomize all three
+# Number of features
+m_features = len(X[0])
 
+# Random weights
+w = [random() for _ in range(m_features)]
+
+# Predicted values
 y_hat = []
+
 for row in X:
-    y_feat = sum([row[i] * w[i] for i in range(m)])
-    y_hat.append(y_feat
+    y_feat = sum(row[i] * w[i] for i in range(m_features))
+    y_hat.append(y_feat)
+
+print(y_hat)
 ```
 
 ### Matriisitulona
