@@ -4,7 +4,11 @@ priority: 630
 
 # Gradient Descent
 
-Edellisessä luvussa käsittelimme Hill Climbing algoritmia. Algoritmin koulutus koostui n-määrästä iteraatioita, joissa kussakin arvottiin sattumanvaraiset muutokset painoille ja laskettiin niiden perusteella mallin virhe. Eikö oliskin varsin kätevää, jos satunnaisuuden sijasta voisimme laskea, mihin suuntaan painoja tulisi muuttaa. Tämän meille mahdollistaa Gradient Descent algoritmi! Materiaalissa käytämme nimenomaan *eräajo*-versiota algoritmista – *vanilla*-toteutusta – eli Batch Gradient Descentia, joka laskee gradientin ==koko datasetin== perusteella. Tämä on hyvä vertailukohta Hill Climbing -algoritmille, joka myös arvioi muutokset koko datasetin perusteella. Materiaalin lopussa on lyhyesti esiteltynä myös Stochastic Gradient Descent, joka laskee gradientin vain yhden havainnon perusteella, ja Mini-batch Gradient Descent, joka laskee gradientin pienen otoksen perusteella [^dl4cv]. Näistä jälkimmäinen on tehokäytössä Syväoppiminen I -kurssilla. 
+Edellisessä luvussa käsittelimme Hill Climbing -algoritmia. Sen koulutus koostui n iteraatiosta. Jokaisella iteraatiolla painoihin tehtiin satunnaisia muutoksia, minkä jälkeen laskettiin muutosten perusteella mallin virhe. Satunnaisten muutosten sijaan olisi kuitenkin hyödyllistä pystyä laskemaan, mihin suuntaan painoja kannattaa muuttaa. Tämän mahdollistaa Gradient Descent -algoritmi.
+
+Tässä materiaalissa käytämme algoritmin eräajo-versiota eli Batch Gradient Descentia. Kyseessä on algoritmin yksinkertainen vanilla-toteutus, jossa gradientti lasketaan ==koko datasetin== perusteella. Tämä tarjoaa hyvän vertailukohdan Hill Climbing -algoritmille, sillä myös siinä muutoksia arvioidaan koko datasetin perusteella.
+
+Materiaalin lopussa esitellään lyhyesti myös Stochastic Gradient Descent, jossa gradientti lasketaan yhden havainnon perusteella, sekä Mini-batch Gradient Descent, jossa laskentaan käytetään pientä otosta datasetistä [^dl4cv]. Mini-batch Gradient Descentia käytetään myöhemmin Syväoppiminen I -kurssilla.
 
 !!! warning
 
