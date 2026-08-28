@@ -109,7 +109,7 @@ Huomaa, että vaikka Kuvassa 3 käyrä näyttää ihmissilmälle suoralta, se on
 | 0.00010      | -0.00884  | -88.420479769 |
 | 0.00001      | -0.00088  | -88.420569591 |
 
-!!! info
+!!! info "Tuloksen verifiointi tulevaisuuden tiedolla"
 
     Derivointi on seuraavan otsikon aihe, mutta otetaan aikahyppy tulevaisuuteen toistaiseksi vieraan `magic()`-funktion toiminnallisuuden avulla. Toistaiseksi riittää, että hyväksyt, että `slope = magic()`-rivi palauttaa koko datasetin perusteella lasketun gradientin: yhden kulmakertoimen jokaista painokerrointa kohti. Ajattele tätä niin, että kaikki havainnot ‘äänestävät’, mihin suuntaan kutakin painoa pitäisi siirtää.
 
