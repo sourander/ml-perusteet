@@ -13,7 +13,7 @@ priority: 700
 
 Kaikki muuttujan arvoihin kohdistuvat käsittelyt ovat eräänlaisia transformaatioita eli muunnoksia. Tämän materiaalin transformaatiot muokkaavat datan jakautumista (engl. distribution), toisin kuin skaalaukseen käytettävät menetelmät, kuten Z-score. Törmäät tähän kirjallisuuden esimerkeissä, joissa data on vinoutunutta (engl. skewed), ja datasta halutaan saada ulos selkeitä tilastollisia lukemia [^regression-analysis]. Logaritminen muunnos linearisoi eksponentiaalisen trendin, ja oikessa tilanteessa käytettynä se voi parantaa mallin tulkittavuutta, optimointialgoritmin konvergenssin nopeutta tai mallin yksinkertaisuutta [^datax-study-guide].
 
-Datasetin yksittäisten muuttujien ei kuitenkaan ole pakko olla yksinään tarkasteltuina normaalijakaumaa noudattavia, jotta sitä voidaan käyttää koneoppimismallien kanssa. Feature-engine -kirjaston dokumentaatio vahvistaa, että lineaarinen regressio odottaa, että on olemassa lineaarinen riippuvuus selittävän ja selitettävien muuttujien välillä. [^feature-engine-boxcox] Jäännösvirheen tarkkailu voi siis käytännössä vihjata, josko lineaarinen malli hyötyisi alla mainituista muunnoksista. Epälineaariseen malliin, kuten puihin tai neuroverkkoihin, siirtyminen voi olla myös tällöin varteenotettava vaihtoehto [^datax-study-guide].
+Datasetin yksittäisten muuttujien ei kuitenkaan ole pakko olla yksinään tarkasteltuina normaalijakaumaa noudattavia, jotta sitä voidaan käyttää koneoppimismallien kanssa. Feature-engine -kirjaston dokumentaatio vahvistaa, että lineaarinen regressio odottaa, että on olemassa lineaarinen riippuvuus (yhden tai useamman) selittävän ja selitettävän muuttujan välillä (eli `x_i` ja `y` välillä). [^feature-engine-boxcox] Jäännösvirheen tarkkailu voi siis käytännössä vihjata, josko lineaarinen malli hyötyisi alla mainituista muunnoksista. Epälineaariseen malliin, kuten puihin tai neuroverkkoihin, siirtyminen voi olla myös tällöin varteenotettava vaihtoehto [^datax-study-guide].
 
 ## Palkkadatan luomiskertomus
 
@@ -53,9 +53,9 @@ Syntyvä data näyttää seuraavalta:
 
 ![Palkkadata plotattuna](../images/700_skewness_salaries.png)
 
-Vinouma on positiivinen, mikä johtuu dataan tarkoituksella upotetuista suurista palkoista. Jos aivan tarkkoja ollaan datan syntytarinan suhteen, niin data on *multi-* tai *bimodaalista*, eli sillä on kaksi huippua. Lopputulemasta tätä on kuitenkin huomattavan vaikea sanoa, joten datan voidaan nyt tulkita olevan vinoutunutta seuraavia esimerkkejä varten.
-
 **Kuva 1:** *Palkkadata, joka on vinoutunut kohti suuria arvoja.*
+
+Vinouma on positiivinen, mikä johtuu dataan tarkoituksella upotetuista suurista palkoista. Jos aivan tarkkoja ollaan datan syntytarinan suhteen, niin data on *multi-* tai *bimodaalista*, eli sillä on kaksi huippua. Lopputulemasta tätä on kuitenkin huomattavan vaikea sanoa, joten datan voidaan nyt tulkita olevan vinoutunutta seuraavia esimerkkejä varten.
 
 Huomaa, että suurin osa palkoista sijaitsee välillä 0-60 000. Vasemmalla puolella data leikkautuu nollan kohdalla. Oikealla on hajanaisia suuria palkkoja. Suurin palkka tässä tasasetissä on 268 898. 
 
