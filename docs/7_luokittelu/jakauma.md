@@ -6,52 +6,16 @@ priority: 700
 
 !!! tip "Off-topic warning"
 
-    Tämä luku on kurssilla hieman *nice-to-know* -tyyppinen, eikä sen sisältöä hyödynnetä missään tehtävissä suoraan. Se toimii kuitenkin ponnahduslautana kohti logistisen regression sigmoid-muunnoksen ymmärtämistä, ja lisäksi, se voi auttaa sinua ymmärtämään eri lähteissä vastaan tulevaa tekstiä. Esimerkiksi myöhemmin aikasarjojen kohdalla voit törmätä esimerkkeihin, joissa datasta tehdään *stationaarinen* käyttäen box-cox -muunnosta. Äskeinen lause ei kenties tarkoita tällä hetkellä mitään; voit palata siihen kun siirryt tutkimaan aikasarjoja.
+    Tämä luku on kurssilla hieman *nice-to-know* -tyyppinen, eikä sen sisältöä hyödynnetä missään tehtävissä suoraan. Luku auttaa kuitenkin ymmärtämään, miksi muuttujille tehdään joskus epälineaarisia muunnoksia, kuten logaritminen tai Box–Cox-muunnos.
 
-Transformaatiot muokkaavat datan jakautumista (engl. distribution), toisin kuin skaalaukseen käytettävät menetelmät. Tämä on tarpeellista ajoittain, kun data on vinoutunutta (engl. skewed) tai siinä on reilusti poikkeamia, mikä johtaa . Transformatiivinen muunnos voi auttaa tasaamaan vinoutunutta dataa ja tekemään siitä normaalijakautunutta.
+    Samat käsitteet tulevat vastaan myös myöhemmissä aiheissa. Esimerkiksi logistisessa regressiossa todennäköisyyden ja mallin lineaarisen osan
+    välillä käytetään epälineaarista yhteysfunktiota (*engl. link function*). Aikasarjoissa Box–Cox-muunnosta voidaan puolestaan käyttää esimerkiksi varianssin vakauttamiseen ennen muita stationaarisuuteen tähtääviä käsittelyvaiheita.
 
-## Vinous (skew)
+Kaikki muuttujan arvoihin kohdistuvat käsittelyt ovat eräänlaisia transformaatioita eli muunnoksia. Tämän materiaalin transformaatiot muokkaavat datan jakautumista (engl. distribution), toisin kuin skaalaukseen käytettävät menetelmät, kuten Z-score. Törmäät tähän kirjallisuuden esimerkeissä, joissa data on vinoutunutta (engl. skewed), ja datasta halutaan saada ulos selkeitä tilastollisia lukemia [^regression-analysis]. Logaritminen muunnos linearisoi eksponentiaalisen trendin, ja oikessa tilanteessa käytettynä se voi parantaa mallin tulkittavuutta, optimointialgoritmin konvergenssin nopeutta tai mallin yksinkertaisuutta [^datax-study-guide].
 
-Vinous kuvaa datan jakautumista. Normaalijakautuneessa dataa vinous on nolla. Tosielämän datasetit poikkeavat usein normaalijakautuneesta datasta. Vinous voi olla positiivinen tai negatiivinen.
+Datasetin yksittäisten muuttujien ei kuitenkaan ole pakko olla yksinään tarkasteltuina normaalijakaumaa noudattavia, jotta sitä voidaan käyttää koneoppimismallien kanssa. Feature-engine -kirjaston dokumentaatio vahvistaa, että lineaarinen regressio odottaa, että on olemassa lineaarinen riippuvuus selittävän ja selitettävien muuttujien välillä. [^feature-engine-boxcox] Jäännösvirheen tarkkailu voi siis käytännössä vihjata, josko lineaarinen malli hyötyisi alla mainituista muunnoksista. Epälineaariseen malliin, kuten puihin tai neuroverkkoihin, siirtyminen voi olla myös tällöin varteenotettava vaihtoehto [^datax-study-guide].
 
-Vinouman laskemiseksi käytetään seuraavaa kaavaa:
-
-$$
-g_1 = \frac{\frac{1}{n} \sum (x_i - \overline{x})^3}{(\frac{1}{n}\sum (x_i - \overline{x})^2)^\frac{3}{2}}
-$$
-
-```python title="IPython"
-
-def skew(x):
-    n = len(x)
-    mean = np.mean(x)
-
-    nominator = 1/n * np.sum((x - mean) ** 3)
-    denominator = (1/n * np.sum((x - mean) ** 2)) ** (3/2)
-
-    return nominator / denominator
-```
-
-## Huipukkuus (Kurtosis)
-
-Huippuus kuvaa jakauman muotoa. Huipukkuuden kaava on seuraava:
-
-$$
-g_2 = \frac{\frac{1}{n} \sum (x_i - \overline{x})^4}{\frac{1}{n}(\sum (x_i - \overline{x})^2)^2} - 3 
-$$
-
-```python title="IPython"
-def kurtosis(x):
-    n = len(x)
-    mean = np.mean(x)
-
-    nominator = 1/n * np.sum((x - mean) ** 4)
-    denominator = (1/n * np.sum((x - mean) ** 2)) ** 2
-
-    return (nominator / denominator) - 3
-```
-
-## Palkkaesimerkki
+## Palkkadatan luomiskertomus
 
 Generoidaan satunnaisesti dataa, joka edustaa normaalijakaumaa siten, että keskiarvo on 30 000 ja keskihajonta 10 000. Lisätään dataan noin 1 % ihmisiä, joiden keskipalkka on 150 000 ja keskihajonta 50 000. Tämä luo vinoutunutta dataa, jossa vinouma on positiivinen (eli kohti suurempia arvoja).
 
@@ -89,9 +53,56 @@ Syntyvä data näyttää seuraavalta:
 
 ![Palkkadata plotattuna](../images/700_skewness_salaries.png)
 
+Vinouma on positiivinen, mikä johtuu dataan tarkoituksella upotetuista suurista palkoista. Jos aivan tarkkoja ollaan datan syntytarinan suhteen, niin data on *multi-* tai *bimodaalista*, eli sillä on kaksi huippua. Lopputulemasta tätä on kuitenkin huomattavan vaikea sanoa, joten datan voidaan nyt tulkita olevan vinoutunutta seuraavia esimerkkejä varten.
+
 **Kuva 1:** *Palkkadata, joka on vinoutunut kohti suuria arvoja.*
 
-Huomaa, että suurin osa palkoista sijaitsee välillä 0-60 000. Vasemmalla puolella data leikkautuu nollan kohdalla. Oikealla on hajanaisia suuria palkkoja. Suurin palkka tässä tasasetissä on 268 898. Jos datasetistä lasketaan vinouma ja huipukkuus, saadaan seuraavat tulokset:
+Huomaa, että suurin osa palkoista sijaitsee välillä 0-60 000. Vasemmalla puolella data leikkautuu nollan kohdalla. Oikealla on hajanaisia suuria palkkoja. Suurin palkka tässä tasasetissä on 268 898. 
+
+### Vinous (skew)
+
+Vinous kuvaa datan jakautumista. Normaalijakautuneessa dataa vinous on nolla. Tosielämän datasetit poikkeavat usein normaalijakautuneesta datasta. Vinous voi olla positiivinen tai negatiivinen.
+
+Vinouman laskemiseksi käytetään seuraavaa kaavaa:
+
+$$
+g_1 = \frac{\frac{1}{n} \sum (x_i - \overline{x})^3}{(\frac{1}{n}\sum (x_i - \overline{x})^2)^\frac{3}{2}}
+$$
+
+```python title="IPython"
+
+def skew(x):
+    n = len(x)
+    mean = np.mean(x)
+
+    nominator = 1/n * np.sum((x - mean) ** 3)
+    denominator = (1/n * np.sum((x - mean) ** 2)) ** (3/2)
+
+    return nominator / denominator
+```
+
+### Huipukkuus (kurtosis)
+
+Huippuus kuvaa jakauman muotoa. Huipukkuuden kaava on seuraava:
+
+$$
+g_2 = \frac{\frac{1}{n} \sum (x_i - \overline{x})^4}{\frac{1}{n}(\sum (x_i - \overline{x})^2)^2} - 3 
+$$
+
+```python title="IPython"
+def kurtosis(x):
+    n = len(x)
+    mean = np.mean(x)
+
+    nominator = 1/n * np.sum((x - mean) ** 4)
+    denominator = (1/n * np.sum((x - mean) ** 2)) ** 2
+
+    return (nominator / denominator) - 3
+```
+
+### Laskuoperaatiot
+
+Jos datasetistä lasketaan vinouma ja huipukkuus, saadaan seuraavat tulokset:
 
 ```python title="REPL"
 >>> skewness(salaries)
@@ -100,13 +111,9 @@ Huomaa, että suurin osa palkoista sijaitsee välillä 0-60 000. Vasemmalla puol
 62.35
 ```
 
-Data on kuvitteellista, joten se ei tietenkään noudata tosimaailman monimutkaisuutta, mutta tässä esimerkissä vinouma on 6.17 ja huipukkuus 62.35. Vinouma on positiivinen, mikä johtuu dataan tarkoituksella upotetuista suurista palkoista. Huipukkuus on korkea johtuen samasta syystä: outlierit nostavat huipukkuuden arvoa. Datalla, joka noudattaa keskihajontaa (esim. `np.random.normal(size=100_000)`) kummatkin arvot ovat teoreettisesti 0.
+## Vinouman korjaus
 
-Koneoppimismallit, jotka pyrkivät sovittamaan lineaarisen viivan normaalijakaumaan, kärsivät vinoutuneesta datasta. Tähän lukeutuvat varsinkin lineaariset regressiomallit, mutta edes neuroverkot eivät ole immuuneja vinoutuneelle datalle.
-
-### Vinouman korjaus
-
-Vinoumaa voi pyrkiä korjaamaan useilla eri funktioilla. Idea on simppeli: aja kukin arvo jonkin funktion, kuten neliöjuuren, läpi. Alla on muutama tyypillinen keino esiteltynä.
+Vinoumaa voi pyrkiä korjaamaan useilla eri funktioilla. Idea on simppeli: aja kukin arvo jonkin funktion, kuten neliöjuuren, läpi. Alla on muutama keino esiteltynä, jotka toimivat nimenomaan silloin, kun data on positiivisesti vinoutunutta (eli kohti oikeaa). Jos data olisi negatiivisesti vinoutunutta, vinoumaa voisi korvata neliö tai kuutiofunktion avulla (`salaries ** 2` tai `salaries ** 3`). [^sas]
 
 #### Log transformation
 
@@ -168,6 +175,10 @@ Oikean lambdan löytäminen on haastavaa, joten käytetään tässä yhteydessä
 6.90
 ```
 
+![Palkkadata muunneltuna](../images/700_skewness_salaries_boxcox.png)
+
+**Kuva 2:** *Palkkadata muunnettuna Box-Cox-muunnoksella. Huomaa, että ongelma ei ole täysin hävinnyt, mutta loiventunut huomattavasti.*
+
 Muokattu datasetti voidaan palauttaa takaisin alkuperäiseen skaalaan käyttämällä `scipy.special.inv_boxcox`-funktiota.
 
 ```python title="IPython"
@@ -180,12 +191,6 @@ inverted_salaries = inv_boxcox(boxcox_salaries, best_lambda)
 np.allclose(salaries, inverted_salaries)
 ```
 
-![Palkkadata muunneltuna](../images/700_skewness_salaries_boxcox.png)
-
-**Kuva 2:** *Palkkadata muunnettuna Box-Cox-muunnoksella.*
-
-Huomaa, että ongelma ei ole täysin hävinnyt, mutta loiventunut huomattavasti.
-
 #### Muut vaihtoehdot
 
 Jatkuvan datan pakottaminen lähemmäs normaalia jakautumista voi parantaa mallin suorituskykyä. Muista kuitenkin, että on olemassa muitakin tapoja käsitellä vinoutunutta dataa.
@@ -197,3 +202,10 @@ Näitä ovat muiden muassa:
     * Pienituloiset, keskituloiset, suurituloiset, ...
     * Tai käytä kvantiileja (alin 10 %, seuraava 10 %, ..., ylimmät 10 %)
 * Poista outlierit kokonaan (riski!)
+
+## Lähteet
+
+[^regression-analysis]: Massaron, L. & Boschetti, A. *Regression Analysis with Python*. Packt Publishing. 2016.
+[^datax-study-guide]: Nwanganga, F. *CompTIA DataX Study Guide*. Sybex. 2024.
+[^feature-engine-boxcox]: Feature-engine developers. *BoxCoxTransformer*. https://feature-engine.trainindata.com/en/latest/user_guide/transformation/BoxCoxTransformer.html
+[^sas]: Gearheart, J. *End-to-End Data Science with SAS*. SAS Institute. 2020.
