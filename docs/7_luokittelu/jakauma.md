@@ -87,7 +87,7 @@ salaries = salaries[salaries > 0]
 
 Syntyvä data näyttää seuraavalta:
 
-![Palkkadata plotattuna](../images/skewness_salaries.png)
+![Palkkadata plotattuna](../images/700_skewness_salaries.png)
 
 **Kuva 1:** *Palkkadata, joka on vinoutunut kohti suuria arvoja.*
 
@@ -180,7 +180,7 @@ inverted_salaries = inv_boxcox(boxcox_salaries, best_lambda)
 np.allclose(salaries, inverted_salaries)
 ```
 
-![Palkkadata muunneltuna](../images/skewness_salaries_boxcox.png)
+![Palkkadata muunneltuna](../images/700_skewness_salaries_boxcox.png)
 
 **Kuva 2:** *Palkkadata muunnettuna Box-Cox-muunnoksella.*
 
