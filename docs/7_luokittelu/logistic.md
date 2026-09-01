@@ -245,16 +245,26 @@ Jos myös tämä toteutetaan koodina, ==mutta vain ensimmäiselle näytteelle==,
 
 
 ```python title="IPython"
-def categorical_cross_entropy(p, y):        
-    return -np.mean(np.log(p[np.arange(len(y)),y]))
+def categorical_cross_entropy(probs, y):
+    # Lukuohje: 
+    #   np.arange(len(y)) luo listan rivien indekseistä: 
+    #     [0, 1, 2, ..., N-1]
+    #   y sisältää oikeiden luokkien indeksit: 
+    #     [2, 0, 1, ..., d-1]
+    #   probs[np.arange(len(y)), y] parittaa ne koordinaateiksi:
+    #     (0, y[0])  -> tässä (0,2)
+    #     (1, y[1]), -> tässä (1,0)
+    #     (2, y[2]), -> tässä (2,1)
+    #     ...,
+    return -np.mean(np.log(probs[np.arange(len(y)), y]))
 
-# The true label for the first observation is class 2
+# Oikea luokka ensimmäiselle havainnolle on 2
 y = np.array([2])
 
-# Values from softmax (above), but 
-probs = probs.reshape(1, -1)
-
-loss = categorical_cross_entropy(p, y)
+# Käytetään aiemmassa solussa laskettuja softmax-todennäköisyyksiä.
+# probs on muodossa (1, 3), eli sisältää vain yhden havainnon 
+# todennäköisyydet kolmelle luokalle.
+loss = categorical_cross_entropy(probs, y)
 print(loss)
 ```
 
