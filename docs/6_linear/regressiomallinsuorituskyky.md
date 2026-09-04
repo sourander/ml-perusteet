@@ -232,11 +232,21 @@ Myös ensemble-menetelmät ovat hyviä tapoja vähentää ylisovittamista.
 
 ## Tehtävät
 
-!!! question "Tehtävä: Auton hintaennustimen suorituskyky (TODO)"
+!!! question "Tehtävä: Auton hintaennustimen suorituskyky"
 
-    Tämä tehtävänanto on toistaiseksi keskeneräinen. Tehtävä on tarkoitus julkaista myöhemmin. 
-    
-    **Spoiler:** Tehtävänä tulee olemaan kouluttaa aiemmin tutuksi tulleeksi datasetistä regressiomalli ja arvioida sen suorituskykyä. Data on aiemmin käsitelty `notebooks/data/car/data.csv`, mutta tällä kertaa emme luokittele autoja vaihteiston perusteella vaan ennustamme auton hintaa -- eli siis käytämme datasettiä siihen, mihin se on alkuperäisen repositorion mallin mukaisesti tarkoitettu.
+    Avaa `610_car_price.py`. Notebook sisältää valmiit solut datan lataamiseen (`notebooks/data/car/data.csv`) sekä alustavaan EDA:han.
+
+    Tällä kertaa emme luokittele autoja vaihteiston perusteella (kuten `331_automatic_transmission.py`- ja `421_automatic_transmission_knn.py`-tehtävissä), vaan ennustamme `MSRP`:tä (*Manufacturer's Suggested Retail Price*), joka on juuri se muuttuja, jota varten [gh:suhasmaddali/Car-Prices-Prediction](https://github.com/suhasmaddali/Car-Prices-Prediction) -datasetti on alun perin koottu. Käy tarvittaessa katsomassa repositoriosta, kuinka Suhas Maddali on ratkaissut saman ennustusongelman.
+
+    Tehtävänäsi on täydentää Notebookin loput solut. Sinun pitää ainakin:
+
+    * Rakenna esikäsittelyputki (`ColumnTransformer`/`Pipeline`), joka koodaa kategoriset muuttujat (esim. `OneHotEncoder`), täyttää puuttuvat arvot ja skaalaa numeeriset piirteet.
+    * Kouluta Linear Regression -malli.
+    * Kokeile `PolynomialFeatures`-piirteillä rikastettua mallia ja vertaa sen suorituskykyä tavalliseen malliin.
+    * Arvostele malleja tässä luvussa esitellyillä mittareilla: MSE, RMSE, MAE ja R².
+    * Tutki mallin selitettävyyttä: mitkä piirteet (kertoimet) vaikuttavat `MSRP`:hen eniten?
+
+    Ylisovittaako polynomisten piirteiden lisääminen mallia, vai parantaako se suorituskykyä?
 
 ## Lähteet
 

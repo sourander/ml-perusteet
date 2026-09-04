@@ -83,7 +83,7 @@ Kopioi tehtävälista leikepöydälle ja muokkaa se sinun käyttöösi sopivaksi
 
 ## Regressiomallin suorituskyky (610)
 
-- [ ] Tehtävä: Auton hintaennustimen suorituskyky (TODO)
+- [ ] Tehtävä: Auton hintaennustimen suorituskyky
 
 ## Hill Climbing (620)
 
