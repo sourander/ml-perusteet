@@ -397,9 +397,16 @@ Osoittautuu, että painoilla `[ 5.67, -4.10,  0.84]` syntyy ennnuste, joka minim
 
 !!! question "Tehtävä: Kyberviha (TODO)"
 
-    Tämä tehtävänanto on toistaiseksi keskeneräinen. Tehtävä on tarkoitus julkaista myöhemmin. 
+    Teemme luokittelijan, joka ennustaa, onko henkilö kokenut vuoden aikana kybervihaa vai ei. Käytetty data on [Digital skills among youth: A dataset from a three-wave longitudinal survey in six European countries](https://www.sciencedirect.com/science/article/pii/S2352340924003652)-julkaisusta, mutta opettaja tulee antamaan osittain valmiiksi käsitellyn datan tehtävän helpottamiseksi. Vaiheet ovat siis:
 
-    Spoiler: Teemme luokittelijan, joka ennustaa, onko henkilö kokenut kybervihaa vai ei. Käytetty data on [Digital skills among youth: A dataset from a three-wave longitudinal survey in six European countries](https://www.sciencedirect.com/science/article/pii/S2352340924003652)-julkaisusta, mutta opettaja tulee antamaan osittain valmiiksi käsitellyn datan tehtävän helpottamiseksi.
+    1. Avaa `713_y_skills_EDA.py`
+    2. Tutustu koodiin ja tarkastele, mitä datalle on tehty.
+    3. (Vaihtoehtoinen:) Lataa alkuperäinen data (CSV-tiedosto) ja aja Notebook. Näin näet myös kuvaajat.
+    4. Avaa `714_y_skills_logreg.py` ja tutustu koodiin.
+    5. Kouluta logistinen regressio käyttäen `LogisticRegression` ja/tai `SGDClassifier(loss="log_loss")`-luokkia. Mikä olisi sopiva scoring-metriikka koulutuksen aikana?
+    6. Arvioi mallin suorituskyky käyttäen useita eri metriikoita.
+
+    Tavoite on saada malli, jonka F1-score on ainakin `0.80` tai parempi. Opettajalla se oli noin `0.84`.
 
 ## Lähteet
 
