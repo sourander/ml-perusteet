@@ -1,0 +1,90 @@
+[project]
+variant = "modern"
+site_name = "Johdatus Koneoppimiseen"
+site_url = "https://sourander.github.io/ml-perusteet/"
+site_author = "Jani Sourander"
+repo_name = "sourander/ml-perusteet"
+repo_url = "https://github.com/sourander/ml-perusteet"
+language = "fi"
+
+copyright = """
+Copyright &copy; 2026 <a href="https://www.kamk.fi">Kajaanin Ammattikorkeakoulu Oy</a>.
+Licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">BY-NC-SA 4.0</a>
+"""
+# MathJax
+extra_javascript = [
+    "javascripts/mathjax.js",
+    "https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"
+]
+
+
+# Built-in plugins
+[project.plugins.awesome-nav]
+[project.plugins.glightbox]
+
+# Theme
+[project.theme]
+features = [
+  "content.code.annotate",      # Code annotation
+  "content.code.copy",          # Copy code button
+  "content.code.select",        # Toggle line selection button
+  "content.footnote.tooltips",  # Footnote popup review
+  "navigation.footer",          # Next and prev page buttons
+  "navigation.sections",        # Directory contents as nav headers
+  "navigation.tracking",        # Update URL fragment when scrolling
+  "search.highlight",           # Highlight search results
+]
+
+[project.theme.icon]
+#logo = "lucide/smile"
+repo = "fontawesome/brands/github"
+
+# Theme palettes
+[[project.theme.palette]]
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to light mode"
+
+# Markdown extensions
+[project.markdown_extensions]
+pymdownx.superfences.custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
+]
+
+# Syntax highlighting
+pymdownx.highlight.anchor_linenums = true
+pymdownx.highlight.line_spans = "__span"
+pymdownx.highlight.pygments_lang_class = true
+pymdownx.inlinehilite = {}
+
+# Admonitions
+admonition = {}
+pymdownx.details = {}
+
+# Emojis
+pymdownx.emoji.emoji_index = "zensical.extensions.emoji.twemoji"
+pymdownx.emoji.emoji_generator = "zensical.extensions.emoji.to_svg"
+
+# Keyboard symbols
+pymdownx.keys = {}
+
+# Caret, Mark and Tilde
+pymdownx.caret = {}
+pymdownx.mark = {}
+pymdownx.tilde = {}
+
+# Task lists
+pymdownx.tasklist.custom_checkbox = true
+
+# Content tabs
+pymdownx.tabbed.alternate_style = true
+
+# Footnotes
+footnotes = {}
+# Mathjax
+pymdownx.arithmatex.generic = true
