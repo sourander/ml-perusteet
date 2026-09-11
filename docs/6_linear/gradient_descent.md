@@ -266,16 +266,16 @@ for obs_i, x in enumerate(X):
 
 Raa'an tulosteen sijasta esitän saman datan taulukkomuodossa, jotta sitä on helpompi tulkita. Taulukossa on riveinä yksittäisten havaintojen derivaatat sekä näistä koostettu (engl. aggregrated) tulos. Kun tämä tulos jaetaan havaintojen määrällä, saadaan keskiarvo (engl. mean) ja tämä on osittaisderivaatta.
 
-| X              | Derivative w_0 | Derivative w_1 |
+| X (x0, x1)     | Derivative w_0 | Derivative w_1 |
 | -------------- | -------------- | -------------- |
-| [1, 0]         | -4.04          | -0.00          |
-| [1, 1]         | -2.48          | -2.48          |
-| [1, 2]         | -1.06          | -2.12          |
-| [1, 3]         | 0.34           | 1.02           |
-| [1, 4]         | 2.02           | 8.08           |
-| [1, 5]         | 3.52           | 17.60          |
-| [1, 6]         | 4.84           | 29.04          |
-| [1, 7]         | 6.42           | 44.94          |
+| (1, 0)         | -4.04          | -0.00          |
+| (1, 1)         | -2.48          | -2.48          |
+| (1, 2)         | -1.06          | -2.12          |
+| (1, 3)         | 0.34           | 1.02           |
+| (1, 4)         | 2.02           | 8.08           |
+| (1, 5)         | 3.52           | 17.60          |
+| (1, 6)         | 4.84           | 29.04          |
+| (1, 7)         | 6.42           | 44.94          |
 | ::::           | ::::           | ::::           |
 | TOTAL          | 9.55           | 96.08          |
 | MEAN (total/8) | 1.19           | 12.01          |

@@ -70,9 +70,9 @@ def is_lotto_winner_tomorrow(user_id):
 
 Koneoppimismallin valinta riippuu siitä, millaista dataa on saatavilla ja mitä halutaan ennustaa. Katso aiempi luku [Tyypit](tyypit.md) kertauksena eri koneoppimismallityypeistä. On kuitenkin tärkeää korostaa, että data ja sen laatu vaikuttavat lopputulokseen enemmän kuin käytetty malli.
 
-> It [his observation] implies that model behavior is not determined by architecture, hyperparameters, or optimizer choices.It’s determined by your dataset, nothing else. Everything else is a means to an end in efficiently delivery compute to approximating that dataset.
+> It (his observation) implies that model behavior is not determined by architecture, hyperparameters, or optimizer choices.It's determined by your dataset, nothing else. Everything else is a means to an end in efficiently delivery compute to approximating that dataset.
 > 
-> Then, when you refer to “Lambda”, “ChatGPT”, “Bard”, or “Claude” then, it’s not the model weights that you are referring to. It’s the dataset.
+> Then, when you refer to “Lambda”, “ChatGPT”, “Bard”, or “Claude” then, it's not the model weights that you are referring to. It's the dataset.
 >
 > — James Betker, Open AI [^betker]
 

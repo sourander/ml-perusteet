@@ -121,7 +121,7 @@ mindmap
 
     **Ongelma 4: Palvelinkeskus**
 
-    Datasetti sisältää palvelimen metriikoita [CPU-lämpötila, HDD-lämpötila, HDD-kuorma, ...]. Sinun tulee luoda sovellus, joka varoittaa, jos palvelin käyttäytyy epätavallisesti.
+    Datasetti sisältää palvelimen metriikoita (CPU-lämpötila, HDD-lämpötila, HDD-kuorma, ...). Sinun tulee luoda sovellus, joka varoittaa, jos palvelin käyttäytyy epätavallisesti.
 
     !!! note
 

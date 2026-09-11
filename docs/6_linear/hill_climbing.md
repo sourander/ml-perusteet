@@ -4,8 +4,7 @@ priority: 620
 
 # Hill Climbing
 
-Edellisessä luvussa käytimme normaaliyhtälöä, joka sovittaa suoran dataan yhden kaavan ratkaisuna. Tässä luvussa käsitellään optimointia toisella tavalla: hill climbing -algoritmilla. Hill climbing on yksinkertainen paikallishakumenetelmä, joka etsii ratkaisua iteratiivisesti parantamalla nykyistä ratkaisua askel kerrallaan. Se on numeerinen ja gradientiton menetelmä [^clever-algorithms]. Hill Climbing on tuskin tuotantokäyttöön soveltuva algoritmi koneoppimisen kontekstissa, mutta se toimii pohjustuksena Gradient Descent -algoritmille [^essential-math-for-ds]. Sitä käsitellään seuraavassa luvussa. 
-
+Edellisessä luvussa käytimme normaaliyhtälöä, joka sovittaa suoran dataan yhden kaavan ratkaisuna. Tässä luvussa käsitellään optimointia toisella tavalla: hill climbing -algoritmilla. Hill climbing on yksinkertainen paikallishakumenetelmä, joka etsii ratkaisua iteratiivisesti parantamalla nykyistä ratkaisua askel kerrallaan. Se on numeerinen ja gradientiton menetelmä [^clever-algorithms]. Hill Climbing on tuskin tuotantokäyttöön soveltuva algoritmi koneoppimisen kontekstissa, mutta se toimii pohjustuksena Gradient Descent -algoritmille [^essential-math-for-ds]. Sitä käsitellään seuraavassa luvussa.
 
 ## Hill Climbing
 
@@ -18,7 +17,7 @@ Stokastinen Hill Climbing on yksinkertainen algoritmi [^clever-algorithms], joka
 5. Jos virhe pienenee, hyväksy muutos
 6. Toista 3-5 kunnes pysäytyskriteeri täyttyy
 
-Luonnollinen pysäytyskriteeri on brute force -menetelmän vuoksi `max_iter` eli iteraatioiden maksimimäärä, mutta voisimme käyttää myös ehtoa: *parannusta ei ole tapahtunut viimeiseen `n` iteraatioon*.
+Luonnollinen pysäytyskriteeri on brute force -menetelmän vuoksi `max_iter` eli iteraatioiden maksimimäärä, mutta voisimme käyttää myös ehtoa: _parannusta ei ole tapahtunut viimeiseen `n` iteraatioon_.
 
 Tämän yksinkertaisen metodin sijasta voisimme käyttää Gradient Descent -algoritmia, joka on tehokkaampi ja yleisempi menetelmä optimointiin. Gradient Descent on algoritmi, joka pyrkii löytämään virhefunktion minimin iteratiivisesti derivoimalla funktion ja liikkumalla vastakkaiseen suuntaan gradientin suhteen pieni askel kerrallaan. Tähän tutustutaan seuraavassa luvussa.
 
@@ -30,9 +29,9 @@ Tämän yksinkertaisen metodin sijasta voisimme käyttää Gradient Descent -alg
 
 Tärkeät termit:
 
-* **Virhefunktio**. Virhefunktio tai tappiofunktio mittaa mallin ennusteen virheellisyyttä. Meille on jo aiemmin tullut tutuksi MSE eli keskimääräinen neliövirhe.
-* **Optimointi**. Optimointi on prosessi, jossa pyritään minimoimaan yllä mainittua virhefunktiota. Tässä luvussa käytämme Hill Climbing -algoritmia.
-* **Parametrit**. Parametrit ovat mallin kertoimia tai painoja, jotka määrittävät mallin käyttäytymisen. Esimerkiksi lineaarisessa regressiossa kertoimet `a` ja `b` määrittävät suoran kulmakertoimen ja vakiotermin. Funktio `.fit(X, y)` laskee nämä kertoimet eli sovittaa mallin parametrit dataan.
+- **Virhefunktio**. Virhefunktio tai tappiofunktio mittaa mallin ennusteen virheellisyyttä. Meille on jo aiemmin tullut tutuksi MSE eli keskimääräinen neliövirhe.
+- **Optimointi**. Optimointi on prosessi, jossa pyritään minimoimaan yllä mainittua virhefunktiota. Tässä luvussa käytämme Hill Climbing -algoritmia.
+- **Parametrit**. Parametrit ovat mallin kertoimia tai painoja, jotka määrittävät mallin käyttäytymisen. Esimerkiksi lineaarisessa regressiossa kertoimet `a` ja `b` määrittävät suoran kulmakertoimen ja vakiotermin. Funktio `.fit(X, y)` laskee nämä kertoimet eli sovittaa mallin parametrit dataan.
 
 ### Parametrit (W)
 
@@ -57,12 +56,12 @@ $$
 
 Koska muuttujia on kaksi, myös kulmakertoimia (tai muuttujien painokertoimia) on kaksi. Kirjain `b` edustaa vakiotermiä, joka on sama kuin aiemmin. Koska haluamme, että myös `b` on optimoitava parametri, lisätään se matriisiin `X` staattisena ==numerona yksi==. Kun tätä ykköstä kertoo millä tahansa painolla, tulos on aina sama kuin paino (koska `w = w * 1`). Jatkossa matriisi `X`, kun siihen lisätään vakiotermille oma sarakkeensa, on muotoa:
 
-| x[0] | x[1]   | x[2]  |
-| ---- | ------ | ----- |
-| 1    | 78.38  | 32.55 |
-| 1    | 300.00 | 35.00 |
-| 1    | 208.11 | 0.00  |
-| ...  | ...    | ...   |
+| x0  | x1     | x2    |
+| --- | ------ | ----- |
+| 1   | 78.38  | 32.55 |
+| 1   | 300.00 | 35.00 |
+| 1   | 208.11 | 0.00  |
+| ... | ...    | ...   |
 
 Jatkossa kutakin kaikkia näitä kolmea, `x[0], x[1], x[2]`, kohden on olemassa oma kulmakerroin `w[0], w[1], w[2]`. Matriisi `X` no siis kokoa `(m, n)`, jossa `m` on piirteiden määrä ja `n` on havaintojen määrä. Vektori `w` on kokoa `(m, 1)`.
 
@@ -170,23 +169,23 @@ Muistutuksena `x[0]` on :snake: mitta (cm) ja `x[1]` on sää (°C). Y on sairas
 
 ![](../images/620_hillclimb_snake_corr_heatmap.png)
 
-**Kuva 1:** *Seabornin heatmap-funktiolla plotattu `df.corr()` -funktion palauttama korrelaatiomatriisi paljastaa numeraalisena arvona, kuinka samat parit korreloivat keskenään.*
+**Kuva 1:** _Seabornin heatmap-funktiolla plotattu `df.corr()` -funktion palauttama korrelaatiomatriisi paljastaa numeraalisena arvona, kuinka samat parit korreloivat keskenään._
 
 Korrelaatiomatsiisista on pääteltävissä, että:
 
-* `Temperature` <=> `y` korrelaatio on 0.58
-    * Sään lämpötila ja sairaslomapäivien määrä korreloivat keskenään
-    * Jos sinua purraan helteellä, saat todennäköisesti enemmän sairaslomapäiviä
-* `Snake Length` <=> `y` korrelaatio on 0.62
-    * Käärmeen pituus ja sairaslomapäivien määrä korreloivat keskenään
-    * Jos pitkä käärme puree, saat todenäköisesti enemmän sairaslomapäiviä
-* `Temperature` <=> `Snake Length` korrelaatio on -0.25
-    * Lämpötila ja käärmeen pituus korreloivat miedon negatiivisesti keskenään
-    * Jos lämpötila kasvaa, purevan käärmeen pituus laskee.
+- `Temperature` <=> `y` korrelaatio on 0.58
+    - Sään lämpötila ja sairaslomapäivien määrä korreloivat keskenään
+    - Jos sinua purraan helteellä, saat todennäköisesti enemmän sairaslomapäiviä
+- `Snake Length` <=> `y` korrelaatio on 0.62
+    - Käärmeen pituus ja sairaslomapäivien määrä korreloivat keskenään
+    - Jos pitkä käärme puree, saat todenäköisesti enemmän sairaslomapäiviä
+- `Temperature` <=> `Snake Length` korrelaatio on -0.25
+    - Lämpötila ja käärmeen pituus korreloivat miedon negatiivisesti keskenään
+    - Jos lämpötila kasvaa, purevan käärmeen pituus laskee.
 
 ![](../images/620_hillclimb_snake_scatter_3d.gif)
 
-**Kuva 2:** *Scatter 3D -kuvaaja, joka on luotu Plotly Express -kirjastolla. Kuvaajasta on ihmissilmin pääteltävissä, mihin kohtaan taso kuuluisi piirtää.*
+**Kuva 2:** _Scatter 3D -kuvaaja, joka on luotu Plotly Express -kirjastolla. Kuvaajasta on ihmissilmin pääteltävissä, mihin kohtaan taso kuuluisi piirtää._
 
 ## Hill Climb preparaatio
 
@@ -222,7 +221,7 @@ Ensimmäinen ennuste voidaan laskea siis seuraavasti:
 
 $$
 \begin{align*}
-\hat{y}_1 &= (0.79 \cdot 1) + (0.01 \cdot 1.13) + (0.60 \cdot 0.93) \\ 
+\hat{y}_1 &= (0.79 \cdot 1) + (0.01 \cdot 1.13) + (0.60 \cdot 0.93) \\
 &= 0.79 + 0.02 + 0.56 \\
 &= 1.36
 \end{align*}
@@ -307,7 +306,7 @@ def hill_climb(X, y, max_iter=10_000) -> HillClimbResult:
 
     for i in range(max_iter):
         candidate_weights = (
-            best_weights 
+            best_weights
             + np.random.uniform(-1.0, 1.0, best_weights.shape)
         )
         candidate_predictions = predict(X, candidate_weights)
@@ -377,7 +376,7 @@ plt.show()
 
 ![](../images/620_hillclimb_iterations_mse.png)
 
-**Kuva 3:** *Virheen kehitys iteraatioittain. Algoritmi laskee virheen iteraatioiden määrän funktiona.*
+**Kuva 3:** _Virheen kehitys iteraatioittain. Algoritmi laskee virheen iteraatioiden määrän funktiona._
 
 Tuloksen sisältämät painot, `result.w`, on lopulta esimerkiksi `array([137.42809371,   2.29821156,  42.30948618])`. Voimme käyttää tätä ennustamaan `y_hat`-arvot käyttäen `predict`-funktiota. Tämä on laskettuna jo valmiiksi `result.y_hat`-muuttujassa. Lopulta voimme tarkistaa sekä MSE:n että RMSE:n seuraavalla koodilla:
 
@@ -398,7 +397,7 @@ Lopuksi voimme visualisoida ennusteen ja oikeat arvot parvikuvaajana.
 
 ![](../images/620_hillclimb_y_vs_yhat.png)
 
-**Kuva 4:** *Ennusteen ja oikeiden arvojen vertailu. Punainen viiva kuvaa sellaisen ideaalimaailman tilannetta, jossa kaikki data on keskiarvoa, eli siis meidän mallimme ennustetta. Oranssi viiva on RMSE:n mukainen virhe (+-10.47 päivää).* 
+**Kuva 4:** _Ennusteen ja oikeiden arvojen vertailu. Punainen viiva kuvaa sellaisen ideaalimaailman tilannetta, jossa kaikki data on keskiarvoa, eli siis meidän mallimme ennustetta. Oranssi viiva on RMSE:n mukainen virhe (+-10.47 päivää)._
 
 ## Tehtävät
 
@@ -408,5 +407,6 @@ Lopuksi voimme visualisoida ennusteen ja oikeat arvot parvikuvaajana.
 
 ## Lähteet
 
-[^essential-math-for-ds]: Nield, T. *Essential Math for Data Science*. O'Reilly. 2022.
-[^clever-algorithms]: Brownlee, J. *Clever Algorithms: Nature-Inspired Programming Recipes – Stochastic Hill Climbing*. https://cleveralgorithms.com/nature-inspired/stochastic/hill_climbing_search.html
+[^essential-math-for-ds]: Nield, T. _Essential Math for Data Science_. O'Reilly. 2022.
+
+[^clever-algorithms]: Brownlee, J. _Clever Algorithms: Nature-Inspired Programming Recipes – Stochastic Hill Climbing_. https://cleveralgorithms.com/nature-inspired/stochastic/hill_climbing_search.html
