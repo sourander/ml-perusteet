@@ -395,7 +395,7 @@ Osoittautuu, että painoilla `[ 5.67, -4.10,  0.84]` syntyy ennnuste, joka minim
 
     Tämä tehtävän idea on pyrkiä auttamaan sinua löytämään intuitio (binäärisen) logistisen regression toiminnasta.
 
-!!! question "Tehtävä: Kyberviha (TODO)"
+!!! question "Tehtävä: Kyberviha"
 
     Teemme luokittelijan, joka ennustaa, onko henkilö kokenut vuoden aikana kybervihaa vai ei. Käytetty data on [Digital skills among youth: A dataset from a three-wave longitudinal survey in six European countries](https://www.sciencedirect.com/science/article/pii/S2352340924003652)-julkaisusta, mutta opettaja tulee antamaan osittain valmiiksi käsitellyn datan tehtävän helpottamiseksi. Vaiheet ovat siis:
 
