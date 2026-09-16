@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - 'docs/**'
-      - 'zensical.yml'
+      - 'zensical.toml'
       - 'uv.lock'
 
 permissions:
