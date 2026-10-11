@@ -4,7 +4,7 @@ priority: 400
 
 # Skaalaus
 
-Osa koneoppimisalgoritmeista ovat herkkiä skaalaukselle. Tämä tarkoittaa, että algoritmin suorituskyky voi rampautua, mikäli eri piirteiden välillä on suuria eroja. Esimerkiksi huoneiden lukumäärä on yleensä pieni luku, kun taas asunnon hinta dollareita on valtava lukema.
+Osa koneoppimisalgoritmeista ovat herkkiä skaalaukselle. Tämä tarkoittaa, että algoritmin suorituskyky voi rampautua, mikäli eri piirteiden välillä on suuria eroja. Esimerkiksi huoneiden lukumäärä on yleensä pieni luku, kun taas asunnon hinta dollareissa on valtava lukema.
 
 Jos mallin virhe perustuu etäisyyteen, skaalaus on tärkeää. Tässä luvussa käsitelty k-NN-algoritmi käyttää nimenomaan etäisyyttä mittarinaan – tämän voi päätellä jo algoritmin nimestä ==k-lähimmän naapurin== luokittelija (engl. *k-Nearest Neighbors*) [^kämäräinen]. Jos yksi piirre on skaalaltaan luonnollisesti suurempi kuin toinen, se vaikuttaa enemmän etäisyyteen. [^fromscratch] Huomaa, että skaalauksen tarkka muoto vaihtelee. Kenties piirre puristetaan välille `[0,1]`, tai kenties se skaalataan siten, että keskihajonta mahtuu alueelle `[-1,1]`. Näihin tutustutaan alla tarkemmin, mutta tarkistathan aina että valitsemasi datan esikäsittelijä on se, mitä mallisi tarvitsee.
 

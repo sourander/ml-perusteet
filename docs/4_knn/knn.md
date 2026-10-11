@@ -14,7 +14,7 @@ Ennen tehtäviä kurkataan kuitenkin hieman teoriaa, joka on tämän mallin kohd
 
 ![2D Scatter Plot of Fake Data](../images/420_knn_scatter_2d.png)
 
-**Kuva 1:** *Kaksiulotteinen pistekaavio, jossa on kaksi luokkaa, sininen ja oranssi. Kuvassa on N pistettä, joista noin puolet ovat sinisiä ja noin puolet punaisia. Kuvassa on myös kaksi uutta pistettä, yksi sininen ja yksi oranssi.*
+**Kuva 1:** *Kaksiulotteinen pistekaavio, jossa on kaksi luokkaa, sininen ja oranssi. Kuvassa on N pistettä, joista noin puolet ovat sinisiä ja noin puolet oransseja. Kuvassa on myös kaksi uutta pistettä, yksi sininen ja yksi oranssi.*
 
 Yllä olevassa kuvassa (Kuva 1) on kaksi suuretta, toinen x-akselilla ja toinen y-akselilla. Pisteen väri on sen label.
 
