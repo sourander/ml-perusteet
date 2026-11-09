@@ -188,7 +188,7 @@ $$
 Z = XW
 $$
 
-Kuva voi olla tämän selittämisessä avukis, joten Kuvassa 2 näkyy matriisit $X$, $W$ ja niiden matriisitulo $Z$. Kuva on kurssitehtävästä, joten pääset penkomään tätä dataa itse.
+Kuva voi olla tämän selittämisessä avukis, joten Kuvassa 2 näkyy matriisit $X$, $W$ ja niiden matriisitulo $Z$. Kuva on kurssitehtävästä, joten pääset penkomaan tätä dataa itse.
 
 ![](../images/710_multinomial_X_W_Z.png)
 

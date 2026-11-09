@@ -57,7 +57,7 @@ Syntyvä data näyttää seuraavalta:
 
 Vinouma on positiivinen, mikä johtuu dataan tarkoituksella upotetuista suurista palkoista. Jos aivan tarkkoja ollaan datan syntytarinan suhteen, niin data on *multi-* tai *bimodaalista*, eli sillä on kaksi huippua. Lopputulemasta tätä on kuitenkin huomattavan vaikea sanoa, joten datan voidaan nyt tulkita olevan vinoutunutta seuraavia esimerkkejä varten.
 
-Huomaa, että suurin osa palkoista sijaitsee välillä 0-60 000. Vasemmalla puolella data leikkautuu nollan kohdalla. Oikealla on hajanaisia suuria palkkoja. Suurin palkka tässä tasasetissä on 268 898. 
+Huomaa, että suurin osa palkoista sijaitsee välillä 0-60 000. Vasemmalla puolella data leikkautuu nollan kohdalla. Oikealla on hajanaisia suuria palkkoja. Suurin palkka tässä datasetissä on 268 898. 
 
 ### Vinous (skew)
 
