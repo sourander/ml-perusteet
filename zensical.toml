@@ -1,11 +1,9 @@
 [project]
-variant = "modern"
 site_name = "Johdatus Koneoppimiseen"
 site_url = "https://sourander.github.io/ml-perusteet/"
 site_author = "Jani Sourander"
 repo_name = "sourander/ml-perusteet"
 repo_url = "https://github.com/sourander/ml-perusteet"
-language = "fi"
 
 copyright = """
 Copyright &copy; 2026 <a href="https://www.kamk.fi">Kajaanin Ammattikorkeakoulu Oy</a>.
@@ -24,6 +22,8 @@ extra_javascript = [
 
 # Theme
 [project.theme]
+variant = "modern"
+language = "fi"
 features = [
   "content.code.annotate",      # Code annotation
   "content.code.copy",          # Copy code button
