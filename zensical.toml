@@ -30,7 +30,7 @@ features = [
   "content.code.select",        # Toggle line selection button
   "content.footnote.tooltips",  # Footnote popup review
   "navigation.footer",          # Next and prev page buttons
-  "navigation.sections",        # Directory contents as nav headers
+  # "navigation.sections",        # Directory contents as nav headers
   "navigation.tracking",        # Update URL fragment when scrolling
   "search.highlight",           # Highlight search results
 ]
