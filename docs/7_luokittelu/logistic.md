@@ -6,7 +6,7 @@ priority: 710
 
 Logistinen regressio on aiemmista luvuista tuttu lineaarinen malli, mutta toisin kuten nimestä voisi päätellä, se on tarkoitettu luokittelu- eikä regressio-ongelmien ratkaisuun. Käsittelemme tällä kurssilla logistista regressiota vain pintapuolisesti, mutta on tärkeää huomata, että se on käytännössä neuroniverkon yksinkertaisin muoto. Logistinen regressio on siis yhden neuronin neuroverkko. Tulet siis kohtaamaan tämän algoritmin (tai vähintään sen monimutkaisempia muunnelmia) syväoppimista käsittelevillä kursseilla.
 
-```mermaid
+``` mermaid
 graph LR
     bias --> model("σ(x1 * w1 + ... + xn * wn)")
     x_1 --> model
@@ -21,7 +21,7 @@ graph LR
 
 !!! tip "Ei pitäisi, mutta muistutan silti!"
 
-    Opiskelijan pitäisi jo tietää, että kurssin aiheita käsitellään kurssikirjassa. En tarkoituksella käytä lähteenä laisinkaan kurssikirjaa *Hands-On Machine Learning with Scikit-Learn and PyTorch*, jotta opiskelijalle jäisi löytämisen ilo. Tämä(kin) aihe kuitenkin löytyy kirjasta, luvusta 4, aliotsikon **Logistic Regression** alta.
+    Opiskelijan pitäisi jo tietää, että kurssin aiheita käsitellään kurssikirjassa. En tarkoituksella käytä lähteenä laisinkaan kurssikirjaa _Hands-On Machine Learning with Scikit-Learn and PyTorch_, jotta opiskelijalle jäisi löytämisen ilo. Tämä(kin) aihe kuitenkin löytyy kirjasta, luvusta 4, aliotsikon **Logistic Regression** alta.
 
 ## Sigmoid-aktivointifunktio
 
@@ -31,18 +31,17 @@ graph LR
 
 ??? tip "Koodi diagrammin takana"
 
-    ```python title="IPython"
+    ``` python title="IPython"
     x = np.linspace(-5, 5, 100)
     plt.plot(x, sigmoid(x))
     plt.title("Sigmoid activation function")
     ```
 
-
 Malli luo `y_hat`-ennusteen samalla tavalla kuin aiemmin, eli `X @ w`. Erona on, että tämä ennuste syötetään logistiseen funktioon, joka palauttaa arvon väliltä 0-1. Tämä arvo voidaan tulkita todennäköisyydeksi, että havainto kuuluu positiiviseen luokkaan. Näitä logistisia funktioita kutsutaan aktivaatiofunktioiksi, ja niitä käytetään myös syväoppimisessa, joskin käyttötarkoitus on hieman erilainen.
 
 Aiemmin tutustuimme log-, Box-Cox- ja muihin muunnoksiin. Näitä käytetään muuttamaan datan jakaumaa mallinnukselle helpommaksi. Logistisessa regressiossa muunnoksen rooli on hieman erilainen: emme ensisijaisesti muunna syötedataa, vaan mallin tuottamaa lineaarista arvoa. Lineaarinen malli voi antaa minkä tahansa reaaliluvun, mutta luokitteluongelmassa haluamme usein tulkita tuloksen todennäköisyytenä. Sigmoid-funktio toimii tässä “puristimena”, joka muuntaa minkä tahansa luvun välille 0–1.
 
-Lopulta logistinen regressio ennustaa luokan todennäköisyyttä. Sen sijaan, että ennuste olisi esimerkiksi 12.534, ennuste on jokin liukuluku välillä `0` ja `1`. Varsinainen luokitus voidaan tehdä asettamalla kynnysarvo (*engl. threshold*), joka on tyypillisesti vakioarvoltaan `0.5`. Jos ennuste on suurempi kuin `0.5`, havainto luokitellaan positiiviseksi, muuten negatiiviseksi. Tätä kynnysarvoa voidaan säätää, mikä vaikuttaa mallin herkkyyteen ja tarkkuuteen – eli se siirtää tuloksia hämmennysmatriisin `recall`-laatikosta `precision`-laatikkoon tai päinvastoin. Tässä(kin) asiassa on trade-off, joten optimaalinen kynnysarvo riippuu kontekstista.
+Lopulta logistinen regressio ennustaa luokan todennäköisyyttä. Sen sijaan, että ennuste olisi esimerkiksi 12.534, ennuste on jokin liukuluku välillä `0` ja `1`. Varsinainen luokitus voidaan tehdä asettamalla kynnysarvo (_engl. threshold_), joka on tyypillisesti vakioarvoltaan `0.5`. Jos ennuste on suurempi kuin `0.5`, havainto luokitellaan positiiviseksi, muuten negatiiviseksi. Tätä kynnysarvoa voidaan säätää, mikä vaikuttaa mallin herkkyyteen ja tarkkuuteen – eli se siirtää tuloksia hämmennysmatriisin `recall`-laatikosta `precision`-laatikkoon tai päinvastoin. Tässä(kin) asiassa on trade-off, joten optimaalinen kynnysarvo riippuu kontekstista.
 
 ## Logistisen regression idea kolmessa vaiheessa
 
@@ -84,7 +83,7 @@ $$
 
 Tähän asti esitellyn voi esittää koodina seuraavasti:
 
-```python title="IPython"
+``` python title="IPython"
 def predict_proba(X, w):
     return X @ w
 
@@ -115,7 +114,7 @@ Yllä on esitelty pelkkä `forward pass` eli ennuste eli scikit-learn:stä tuttu
     ŷ = 0.01 → erittäin suuri tappio
     ```
 
-Tappiofunktioita on useita, ja näihin tutustut lisää Syväoppiminen I kurssilla, mutta binääristen luokitteluongelmien yhteydessä käytetään tyypillisesti ristientropiaa (*engl. cross-entropy, log loss, negative log-likelihood*). 
+Tappiofunktioita on useita, ja näihin tutustut lisää Syväoppiminen I kurssilla, mutta binääristen luokitteluongelmien yhteydessä käytetään tyypillisesti ristientropiaa (_engl. cross-entropy, log loss, negative log-likelihood_).
 
 !!! tip "Entropy? Likelihood? Bayes?"
 
@@ -127,7 +126,7 @@ $$
 \text{loss} = -\frac{1}{m} \sum_{i=1}^{m} y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i)
 $$
 
-```python title="IPython"
+``` python title="IPython"
 def cross_entropy_loss(y_hat, y, eps=1e-15):
     # Avoid division by zero
     y_clip = np.clip(y_hat, eps, 1 - eps)
@@ -150,7 +149,7 @@ $$
 \frac{\partial \text{loss}}{\partial w} = \frac{1}{m} X^T (\hat{y} - y)
 $$
 
-```python title="IPython"
+``` python title="IPython"
 def gradient_of_cross_entropy(X, y, w):
     y_hat = predict_proba(X, w)
     m = len(y)
@@ -164,19 +163,19 @@ Monen luokan ennustimen voi toteutttaa monella tavalla. Yksi tapa on OvR (One-vs
 
 !!! warning "Termisekaannus"
 
-    Käsitteitä *multiclass* ja *multilabel* käytetään usein aika hövelisti sekaisin. Turvallisempaa olisi käyttää pitkiä kuvauksia:
+    Käsitteitä _multiclass_ ja _multilabel_ käytetään usein aika hövelisti sekaisin. Turvallisempaa olisi käyttää pitkiä kuvauksia:
 
-    * multiclass, single-label classification
-    * multilabel, multi-class classification
+    - multiclass, single-label classification
+    - multilabel, multi-class classification
 
     Me käsittelemme tässä materiaalissa näistä ensimmäistä. Tämän voi avata lauseeksi: **on olemassa monta luokkaa, mutta kukin havainto kuuluu vain yhteen luokkaan**.
 
 Lopulta eroavaisuudet binäärisen ja moniluokkaisen logistisen regression välillä ovat melko pieniä. Käytännössä vaihtuvat seuraavat asiat:
 
-* Ennusteen laskukaava: `z = Xw` → `Z = XW`
-* Aktivointifunktio: sigmoid → softmax
-* Tappiofunktio: binary cross-entropy → categorical cross-entropy
-* Lopullinen luokka on rivikohtainen maksimi softmax-matriisista
+- Ennusteen laskukaava: `z = Xw` → `Z = XW`
+- Aktivointifunktio: sigmoid → softmax
+- Tappiofunktio: binary cross-entropy → categorical cross-entropy
+- Lopullinen luokka on rivikohtainen maksimi softmax-matriisista
 
 Käsitellään nämä muutokset yksi kerrallaan.
 
@@ -192,7 +191,7 @@ Kuva voi olla tämän selittämisessä avukis, joten Kuvassa 2 näkyy matriisit 
 
 ![](../images/710_multinomial_X_W_Z.png)
 
-**Kuva 2:** *Matriisit $X$, $W$ ja niiden matriisitulo $Z$. Kukin $Z$:n rivi vastaa yhtä havaintoa, ja jokainen sarake vastaa yhtä luokkaa. Arvoo on ns. raaka logitti, joka ei tässä vaiheessa tarkoita vielä oikein mitään.*
+**Kuva 2:** _Matriisit $X$, $W$ ja niiden matriisitulo $Z$. Kukin $Z$:n rivi vastaa yhtä havaintoa, ja jokainen sarake vastaa yhtä luokkaa. Arvoo on ns. raaka logitti, joka ei tässä vaiheessa tarkoita vielä oikein mitään._
 
 ### Aktivointifunktio
 
@@ -202,10 +201,9 @@ $$
 \hat{y}_j = \frac{e^{z_j}}{\sum_{k=1}^{d} e^{z_k}}
 $$
 
-
 Jos tämän toteuttaa koodina Kuvan 2 ensimmäiselle havainnolla, saadaan:
 
-```python title="IPython"
+``` python title="IPython"
 import numpy as np
 
 def softmax(z):
@@ -218,7 +216,7 @@ print(probs)
 print(np.sum(probs))
 ```
 
-```plaintext title="stdout"
+``` plaintext title="stdout"
 [[0.28494662 0.46979755 0.24525583]]
 1.0
 ```
@@ -239,12 +237,11 @@ Kaavasta voi olla hieman vaikea nähdä, mitä siinä käytännössä tehdänä,
 
 ![](../images/710_Y_cross_entropy_loss.png)
 
-**Kuva 3:** *Vasemmalla meillä on aiemmin laskettu Z, jonka oikealla puolella on $\hat{Y}$, joka on softmax-aktivoitu Z eli todennäköisyyksien matriisi. Näiden oikealla puolella on $y$, joka sisältää oikeat luokat kokolukuina. Tämä ei siis ole one-hot-koodattu $Y$-matriisi vaan sisältää luokan indeksin kokonaislukuna. Lopulta cross-entropy -tappio lasketaan yksinkertaisesti pitämällä kyseisen indeksin osoittaman todennäköisyyden `-log()`-arvot, jotka keskiarvoistetaan. Näin saadaan kokonaisvirhe.*
+**Kuva 3:** _Vasemmalla meillä on aiemmin laskettu Z, jonka oikealla puolella on $\hat{Y}$, joka on softmax-aktivoitu Z eli todennäköisyyksien matriisi. Näiden oikealla puolella on $y$, joka sisältää oikeat luokat kokolukuina. Tämä ei siis ole one-hot-koodattu $Y$-matriisi vaan sisältää luokan indeksin kokonaislukuna. Lopulta cross-entropy -tappio lasketaan yksinkertaisesti pitämällä kyseisen indeksin osoittaman todennäköisyyden `-log()`-arvot, jotka keskiarvoistetaan. Näin saadaan kokonaisvirhe._
 
 Jos myös tämä toteutetaan koodina, ==mutta vain ensimmäiselle näytteelle==, saadaan:
 
-
-```python title="IPython"
+``` python title="IPython"
 def categorical_cross_entropy(probs, y):
     # Lukuohje: 
     #   np.arange(len(y)) luo listan rivien indekseistä: 
@@ -268,7 +265,7 @@ loss = categorical_cross_entropy(probs, y)
 print(loss)
 ```
 
-```plaintext title="stdout"
+``` plaintext title="stdout"
 np.float64(1.4054534165990737)
 ```
 
@@ -288,10 +285,9 @@ $$
 
 Scikit-learn kirjaston datasetteihin kuuluu iris-datasetti. Suomeksi iris on kurjenmiekka. Datasetistä löytyy kolmen eri kurjenmiekkalajin (iris setosa, iris versicolor, iris virginica) mittauksia. Kukin havainto koostuu neljästä piirteen arvosta: sepal length, sepal width, petal length ja petal width. Me käytämme vain kahta lajiketta: iris setosa (kaunokurjenmiekka) sekä iris versicolor (kirjokurjenmiekka). Käytämme myös vain kahta ensimmäistä piirrettä: sepal length ja sepal width eli verholehden pituutta ja leveyttä.
 
-
 ??? tip "Koodi datan takana"
 
-    ```python title="IPython"
+    ``` python title="IPython"
     import numpy as np
 
     from sklearn import datasets
@@ -323,7 +319,7 @@ Arvomme myös alkuarvot painoille. Tässä tapauksessa käytämme arvoja `[5.67,
 
 Voimme käyttää tuttuun tapaan gradientteja painojen säätämiseen epookki epookilta. Alla on koodi, joka hyödyntää yllä luomiamme funktioita:
 
-```python title="IPython"
+``` python title="IPython"
 def predict_proba(X, w):
     return sigmoid(predict(X, w))
 
@@ -356,11 +352,9 @@ w, costs = gradient_descent(X, y, w)
 
 Osoittautuu, että painoilla `[ 5.67, -4.10,  0.84]` syntyy ennnuste, joka minimoi tappiofunktion - tai ainakin valitsemillamme asetuksilla eli 2000 epookilla ja oppimisnopeudella 0.1. Monimutkaisemman datan kohdalla käyttäisimme verifiointiin erillistä testidataa, ja tutkisimme mallin suorituskykyä mittareita kuten ROC-käyrää ja hämmennysmatriisia käyttäen. Koska data on poikkeuksellisen simppeliä, ja oikea vastaus on nähtävissä jokseenkin paljain silmin, voimme tyytyä tarkastelemaan mallin tuottamaa rajaviivaa sekä koulutusvirheen kehitystä epookkien yli.
 
-
 ![Training loss over epochs](../images/710_logistic_regression_iris_loss_over_epochs.png)
 
 **Kuva 5.** Koulutusvirheen kehitys epookkien yli. Koulutusvirhe laskee jyrkästi ensimmäisten epookkien aikana, mutta tasoittuu lopulta. Mikäli virhe ei laskisi, valitsemamme oppimisnopeus olisi liian suuri. Jos se laskisi mitättömän hitaasti, oppimisnopeus olisi liian pieni.
-
 
 ![Iris Dataset and Decision Boundary After Training](../images/710_logistic_regression_iris_scatter_epoch_2000.png)
 
@@ -370,7 +364,7 @@ Osoittautuu, että painoilla `[ 5.67, -4.10,  0.84]` syntyy ennnuste, joka minim
 
 !!! question "Tehtävä: Binäärinen logistinen regressio"
 
-    Avaa Marimo Notebook `700_binary_logreg.py` ja aja se. Tutustu Notebookin koodiin ja lopuksi tee viimeisessä solussa oleva tehtävä, jossa sinun tulee
+    Avaa Marimo Notebook `710_binary_logreg.py` ja aja se. Tutustu Notebookin koodiin ja lopuksi tee viimeisessä solussa oleva tehtävä, jossa sinun tulee
 
     1. Laskea gradientit käyttäen oppimisnopeutta 0.0001
     2. Laskea painojen päivitysaskel
@@ -379,7 +373,7 @@ Osoittautuu, että painoilla `[ 5.67, -4.10,  0.84]` syntyy ennnuste, joka minim
 
 !!! question "Tehtävä: Moniluokkainen logistinen regressio"
 
-    Avaa Marimo Notebook `701_multinomial_logreg.py`. Tehtävä on sama kuin yllä, mutta nyt on olemassa luokat 0, 1 ja 2, joten kyseessä on moniluokkainen logistinen regressio. Tehtävässä sinun tulee:
+    Avaa Marimo Notebook `711_multinomial_logreg.py`. Tehtävä on sama kuin yllä, mutta nyt on olemassa luokat 0, 1 ja 2, joten kyseessä on moniluokkainen logistinen regressio. Tehtävässä sinun tulee:
 
     1. Laskea gradientit käyttäen oppimisnopeutta 0.001
     2. Laskea painojen päivitysaskel
@@ -410,5 +404,5 @@ Osoittautuu, että painoilla `[ 5.67, -4.10,  0.84]` syntyy ennnuste, joka minim
 
 ## Lähteet
 
-[^wiki-multinomial-lr]: Wikipedia Community. *Multinomial logistic regression*. Wikipedia. https://en.wikipedia.org/wiki/Multinomial_logistic_regression
-[^modern-cv-with-pytorch]: Ayyadevara, V. & Reddy, Y. *Modern Computer Vision with PyTorch - Second Edition*. Packt Publishing. 2024.
+[^wiki-multinomial-lr]: Wikipedia Community. _Multinomial logistic regression_. Wikipedia. https://en.wikipedia.org/wiki/Multinomial_logistic_regression
+[^modern-cv-with-pytorch]: Ayyadevara, V. & Reddy, Y. _Modern Computer Vision with PyTorch - Second Edition_. Packt Publishing. 2024.
